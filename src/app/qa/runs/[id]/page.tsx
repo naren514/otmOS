@@ -22,6 +22,7 @@ export default function QaRunDetailPage({ params }: { params: Promise<{ id: stri
   const [runId, setRunId] = useState<string>("");
   const [run, setRun] = useState<Run | null>(null);
   const [logs, setLogs] = useState<{ buildLog: string; execLog: string } | null>(null);
+  const [events, setEvents] = useState<Array<{ kind: string; level: string; message: string; at?: string | null }>>([]);
 
   useEffect(() => {
     void params.then((p) => setRunId(p.id));
@@ -31,15 +32,18 @@ export default function QaRunDetailPage({ params }: { params: Promise<{ id: stri
     if (!runId) return;
     let cancelled = false;
     async function load() {
-      const [runRes, logsRes] = await Promise.all([
+      const [runRes, logsRes, eventsRes] = await Promise.all([
         fetch(`/api/qa/runs/${runId}`),
         fetch(`/api/qa/runs/${runId}/logs`),
+        fetch(`/api/qa/runs/${runId}/events`),
       ]);
       const runData = (await runRes.json()) as { run: Run };
       const logsData = (await logsRes.json()) as { buildLog: string; execLog: string };
+      const eventsData = (await eventsRes.json()) as { events: Array<{ kind: string; level: string; message: string; at?: string | null }> };
       if (!cancelled) {
         setRun(runData.run);
         setLogs(logsData);
+        setEvents(eventsData.events ?? []);
       }
     }
     void load();
@@ -68,7 +72,10 @@ export default function QaRunDetailPage({ params }: { params: Promise<{ id: stri
               <div style={{ fontWeight: 700, fontSize: 20 }}>{run?.testId ?? runId}</div>
               <div className="muted" style={{ marginTop: 6 }}>Live run detail viewer (first pass)</div>
             </div>
-            <span className={`badge ${run?.status === "passed" ? "good" : run?.status === "failed" ? "bad" : "warn"}`}>{run?.status ?? "loading"}</span>
+            <div className="toolbar">
+              <span className={`badge ${run?.status === "passed" ? "good" : run?.status === "failed" ? "bad" : "warn"}`}>{run?.status ?? "loading"}</span>
+              <span className="badge">Auto refresh: 5s</span>
+            </div>
           </div>
 
           {run ? (
@@ -82,16 +89,31 @@ export default function QaRunDetailPage({ params }: { params: Promise<{ id: stri
           {run?.error ? <div className="errorText" style={{ marginTop: 12 }}>{run.error}</div> : null}
 
           <div style={{ marginTop: 16 }}>
-            <div style={{ fontWeight: 700, marginBottom: 8 }}>Execution logs</div>
-            <details open>
-              <summary style={{ cursor: "pointer" }}>Build log</summary>
-              <pre className="pre mono" style={{ marginTop: 8, fontSize: 12, whiteSpace: "pre-wrap" }}>{logs?.buildLog || "Loading..."}</pre>
-            </details>
-            <details style={{ marginTop: 12 }} open>
-              <summary style={{ cursor: "pointer" }}>Exec log</summary>
-              <pre className="pre mono" style={{ marginTop: 8, fontSize: 12, whiteSpace: "pre-wrap" }}>{logs?.execLog || "Loading..."}</pre>
-            </details>
+            <div style={{ fontWeight: 700, marginBottom: 8 }}>Step timeline</div>
+            <div className="listStack">
+              {events.length ? events.map((event, index) => (
+                <div key={`${event.kind}-${index}`} className="detailPane" style={{ minHeight: "auto" }}>
+                  <div className="toolbar" style={{ justifyContent: "space-between", alignItems: "center" }}>
+                    <span className={`badge ${event.level === "error" ? "bad" : event.level === "info" ? "good" : "warn"}`}>{event.kind}</span>
+                    <span className="muted">{event.at ?? "live"}</span>
+                  </div>
+                  <div style={{ marginTop: 8 }}>{event.message}</div>
+                </div>
+              )) : <div className="muted">No step events yet.</div>}
+            </div>
           </div>
++
++          <div style={{ marginTop: 16 }}>
++            <div style={{ fontWeight: 700, marginBottom: 8 }}>Execution logs</div>
++            <details open>
++              <summary style={{ cursor: "pointer" }}>Build log</summary>
++              <pre className="pre mono" style={{ marginTop: 8, fontSize: 12, whiteSpace: "pre-wrap" }}>{logs?.buildLog || "Loading..."}</pre>
++            </details>
++            <details style={{ marginTop: 12 }} open>
++              <summary style={{ cursor: "pointer" }}>Exec log</summary>
++              <pre className="pre mono" style={{ marginTop: 8, fontSize: 12, whiteSpace: "pre-wrap" }}>{logs?.execLog || "Loading..."}</pre>
++            </details>
++          </div>
         </section>
 
         <section className="card">

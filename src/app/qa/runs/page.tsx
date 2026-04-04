@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Shell from "@/components/Shell";
 import SectionIntro from "@/components/SectionIntro";
@@ -55,7 +56,9 @@ export default function QARunsPage() {
   const grouped = useMemo(() => {
     const running = runs.filter((r) => ["running", "queued"].includes(r.status));
     const done = runs.filter((r) => !["running", "queued"].includes(r.status));
-    return { running, done };
+    const passed = runs.filter((r) => r.status === "passed").length;
+    const failed = runs.filter((r) => r.status === "failed").length;
+    return { running, done, passed, failed };
   }, [runs]);
 
   return (
@@ -75,6 +78,12 @@ export default function QARunsPage() {
         />
         <p className="muted mono">{status}</p>
 
+        <div className="grid3" style={{ marginTop: 16 }}>
+          <div className="detailPane" style={{ minHeight: "auto" }}><div className="muted">Active</div><div style={{ fontSize: 24, fontWeight: 700, marginTop: 4 }}>{grouped.running.length}</div></div>
+          <div className="detailPane" style={{ minHeight: "auto" }}><div className="muted">Passed</div><div style={{ fontSize: 24, fontWeight: 700, marginTop: 4 }}>{grouped.passed}</div></div>
+          <div className="detailPane" style={{ minHeight: "auto" }}><div className="muted">Failed</div><div style={{ fontSize: 24, fontWeight: 700, marginTop: 4 }}>{grouped.failed}</div></div>
+        </div>
+
         {!apiUrl ? (
           <p className="muted" style={{ marginTop: 16 }}>Configure the Runner API in Admin first.</p>
         ) : null}
@@ -91,6 +100,7 @@ export default function QARunsPage() {
                   </div>
                   <div className="muted mono" style={{ marginTop: 6 }}>{run.id}</div>
                   <div className="muted" style={{ marginTop: 4 }}>{run.startedAt}</div>
+                  <div style={{ marginTop: 8 }}><Link href={`/qa/runs/${run.id}`}>Open run viewer</Link></div>
                 </button>
               )) : <p className="muted">No active runs.</p>}
             </div>
@@ -105,6 +115,7 @@ export default function QARunsPage() {
                   </div>
                   <div className="muted mono" style={{ marginTop: 6 }}>{run.id}</div>
                   <div className="muted" style={{ marginTop: 4 }}>{run.finishedAt ?? run.startedAt}</div>
+                  <div style={{ marginTop: 8 }}><Link href={`/qa/runs/${run.id}`}>Open run viewer</Link></div>
                 </button>
               )) : <p className="muted">No recent runs.</p>}
             </div>
@@ -127,7 +138,10 @@ export default function QARunsPage() {
                   </div>
 
                   <div style={{ marginTop: 18 }}>
-                    <h4 style={{ marginBottom: 8 }}>Artifacts</h4>
+                    <div className="toolbar" style={{ justifyContent: "space-between", alignItems: "center" }}>
+                      <h4 style={{ marginBottom: 8 }}>Artifacts</h4>
+                      <Link href={`/qa/runs/${selectedRun.id}`}>Open full run viewer</Link>
+                    </div>
                     <pre className="pre">{JSON.stringify(selectedRun.artifacts ?? {}, null, 2)}</pre>
                   </div>
                 </>
