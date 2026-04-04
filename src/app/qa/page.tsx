@@ -23,8 +23,8 @@ export default function QAPage() {
             <strong>Cycles</strong>
             <div className="muted" style={{ marginTop: 8 }}>Save groups of tests and run them in sequence.</div>
           </Link>
-          <Link href="/admin" className="listItem" style={{ textDecoration: "none", color: "inherit" }}>
-            <strong>QA Admin</strong>
+          <Link href="/qa/settings" className="listItem" style={{ textDecoration: "none", color: "inherit" }}>
+            <strong>QA Settings</strong>
             <div className="muted" style={{ marginTop: 8 }}>Configure runner API, environment URL, username, browser, and session password.</div>
           </Link>
         </div>

@@ -6,7 +6,6 @@ const nav = [
   { href: "/orders", label: "Order Generator" },
   { href: "/edi", label: "EDI Explainer" },
   { href: "/qa", label: "OTM QA" },
-  { href: "/admin", label: "Admin" },
 ];
 
 export default function Shell({ title, children }: { title: string; children: ReactNode }) {

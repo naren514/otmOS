@@ -8,6 +8,11 @@ import { getDefaultOrdersApiBase } from "@/lib/runtimeConfig";
 
 type PostResult = { id: string; endpoint: string; username: string; status: string; message: string; createdAt: string; payloadBytes?: string } | null;
 const ORDERS_API_BASE = getDefaultOrdersApiBase();
+const KEY_ENDPOINT = "otmos.orders.endpoint";
+const KEY_USERNAME = "otmos.orders.username";
+const KEY_PASSWORD = "otmos.orders.password";
+const KEY_REMEMBER = "otmos.orders.remember";
+const KEY_DRY_RUN = "otmos.orders.dryRun";
 
 export default function OrdersPage() {
   const [orderKind, setOrderKind] = useState("Sales Orders");
@@ -24,9 +29,20 @@ export default function OrdersPage() {
   const [value, setValue] = useState(100);
   const [importText, setImportText] = useState("");
   const [templates, setTemplates] = useState<{ salesOrdersCsv?: string; purchaseOrdersCsv?: string }>({});
-  const [endpoint, setEndpoint] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [rememberSession, setRememberSession] = useState(() => typeof window !== 'undefined' && window.sessionStorage.getItem(KEY_REMEMBER) === 'true');
+  const [dryRun, setDryRun] = useState(() => typeof window === 'undefined' ? true : (window.sessionStorage.getItem(KEY_DRY_RUN) ?? 'true') === 'true');
+  const [endpoint, setEndpoint] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    return window.sessionStorage.getItem(KEY_REMEMBER) === 'true' ? (window.sessionStorage.getItem(KEY_ENDPOINT) ?? '') : '';
+  });
+  const [username, setUsername] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    return window.sessionStorage.getItem(KEY_REMEMBER) === 'true' ? (window.sessionStorage.getItem(KEY_USERNAME) ?? '') : '';
+  });
+  const [password, setPassword] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    return window.sessionStorage.getItem(KEY_REMEMBER) === 'true' ? (window.sessionStorage.getItem(KEY_PASSWORD) ?? '') : '';
+  });
   const [preview, setPreview] = useState("<xml>Preview will appear here after generation.</xml>");
   const [summary, setSummary] = useState<Record<string, string> | null>(null);
   const [postResult, setPostResult] = useState<PostResult>(null);
@@ -66,6 +82,11 @@ export default function OrdersPage() {
       });
       setPreview(generated.xml ?? "");
       setSummary(generated.summary ?? null);
+      if (dryRun) {
+        setPostResult({ id: 'dry-run', endpoint, username, status: 'dry-run', message: "Dry run enabled — payload generated but not POSTed.", createdAt: new Date().toISOString(), payloadBytes: String((generated.xml || '').length) });
+        setStatus("Dry run complete.");
+        return;
+      }
       const data = await orderPost<{ result: PostResult }>(ORDERS_API_BASE, "/post", { endpoint, username, password, xml: generated.xml });
       setPostResult(data.result ?? null);
       setStatus("Post request completed.");
@@ -122,10 +143,55 @@ export default function OrdersPage() {
 
         <section className="card">
           <SectionIntro title="OTM connection" description="Posting is allowed only for non-prod endpoints containing dev or test." actions={<button className="btn" onClick={generateAndPost}>Generate & Post</button>} />
+          <div className="toolbar" style={{ marginBottom: 12 }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <input type="checkbox" checked={rememberSession} onChange={(e) => {
+                const v = e.target.checked;
+                setRememberSession(v);
+                window.sessionStorage.setItem(KEY_REMEMBER, String(v));
+                if (v) {
+                  window.sessionStorage.setItem(KEY_ENDPOINT, endpoint);
+                  window.sessionStorage.setItem(KEY_USERNAME, username);
+                  window.sessionStorage.setItem(KEY_PASSWORD, password);
+                }
+              }} />
+              <span className="label">Remember for this session</span>
+            </label>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <input type="checkbox" checked={dryRun} onChange={(e) => {
+                const v = e.target.checked;
+                setDryRun(v);
+                window.sessionStorage.setItem(KEY_DRY_RUN, String(v));
+              }} />
+              <span className="label">Dry run (don’t POST)</span>
+            </label>
+            <button className="btn" onClick={() => {
+              setEndpoint('');
+              setUsername('');
+              setPassword('');
+              setRememberSession(false);
+              window.sessionStorage.removeItem(KEY_ENDPOINT);
+              window.sessionStorage.removeItem(KEY_USERNAME);
+              window.sessionStorage.removeItem(KEY_PASSWORD);
+              window.sessionStorage.removeItem(KEY_REMEMBER);
+            }}>Clear saved</button>
+          </div>
           <div className="formGrid">
-            <label><span className="label">OTM Endpoint</span><input className="input" value={endpoint} onChange={(e) => setEndpoint(e.target.value)} placeholder="https://pod-dev.../WMServlet" /></label>
-            <label><span className="label">Username</span><input className="input" value={username} onChange={(e) => setUsername(e.target.value)} /></label>
-            <label><span className="label">Password</span><input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></label>
+            <label><span className="label">OTM Endpoint (must contain &apos;dev&apos; or &apos;test&apos;)</span><input className="input" value={endpoint} onChange={(e) => {
+              const v = e.target.value;
+              setEndpoint(v);
+              if (rememberSession) window.sessionStorage.setItem(KEY_ENDPOINT, v);
+            }} placeholder="https://pod-dev.../WMServlet" /></label>
+            <label><span className="label">OTM Username</span><input className="input" value={username} onChange={(e) => {
+              const v = e.target.value;
+              setUsername(v);
+              if (rememberSession) window.sessionStorage.setItem(KEY_USERNAME, v);
+            }} /></label>
+            <label><span className="label">OTM Password</span><input className="input" type="password" value={password} onChange={(e) => {
+              const v = e.target.value;
+              setPassword(v);
+              if (rememberSession) window.sessionStorage.setItem(KEY_PASSWORD, v);
+            }} /></label>
           </div>
           <p className="muted mono" style={{ marginTop: 12 }}>{status}</p>
           {postResult ? <div className="detailPane" style={{ marginTop: 16 }}><div className="kvGrid"><div><span className="muted">Status</span><div>{postResult.status}</div></div><div><span className="muted">Endpoint</span><div>{postResult.endpoint}</div></div><div><span className="muted">Message</span><div>{postResult.message}</div></div><div><span className="muted">Bytes</span><div>{postResult.payloadBytes || '-'}</div></div></div></div> : null}
