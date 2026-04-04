@@ -22,6 +22,15 @@ export async function qaRunnerFetch(path: string, init?: RequestInit) {
     cache: "no-store",
   });
 
+  const contentType = res.headers.get("content-type") ?? "";
+  if (!contentType.includes("application/json")) {
+    const buffer = await res.arrayBuffer();
+    return new Response(buffer, {
+      status: res.status,
+      headers: { "Content-Type": contentType || "application/octet-stream" },
+    });
+  }
+
   const text = await res.text();
   let data: unknown = null;
   try {
