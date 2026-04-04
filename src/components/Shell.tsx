@@ -3,12 +3,10 @@ import type { ReactNode } from "react";
 
 const nav = [
   { href: "/", label: "Home" },
-  { href: "/admin", label: "Admin" },
-  { href: "/qa/tests", label: "QA Tests" },
-  { href: "/qa/cycles", label: "QA Cycles" },
-  { href: "/qa/runs", label: "QA Runs" },
-  { href: "/edi", label: "EDI Explainer" },
   { href: "/orders", label: "Order Generator" },
+  { href: "/edi", label: "EDI Explainer" },
+  { href: "/qa", label: "OTM QA" },
+  { href: "/admin", label: "Admin" },
 ];
 
 export default function Shell({ title, children }: { title: string; children: ReactNode }) {

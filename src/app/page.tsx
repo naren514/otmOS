@@ -10,9 +10,9 @@ export default function Home() {
           Production-direction frontend for otmOS on Vercel.
         </p>
         <ul style={{ marginTop: 16, paddingLeft: 18, lineHeight: 1.8 }}>
-          <li><Link href="/qa/tests">OTM QA Runner</Link> — remote-runner driven test execution</li>
-          <li><Link href="/edi">EDI Explainer</Link> — polished frontend scaffold for explain / ingest / knowledge flows</li>
-          <li><Link href="/orders">Order Generator</Link> — polished frontend scaffold for SO/PO generation and posting</li>
+          <li><Link href="/orders">Order Generator</Link> — generate and post Sales Orders / Purchase Orders</li>
+          <li><Link href="/edi">EDI Explainer</Link> — explain X12, manage mappings, and ingest docs</li>
+          <li><Link href="/qa">OTM QA</Link> — Selenium-backed QA runs, cycles, and run history</li>
         </ul>
       </section>
 
