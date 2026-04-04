@@ -11,17 +11,17 @@ export default function Home() {
         </p>
         <ul style={{ marginTop: 16, paddingLeft: 18, lineHeight: 1.8 }}>
           <li><Link href="/qa/tests">OTM QA Runner</Link> — remote-runner driven test execution</li>
-          <li>EDI Explainer — planned next</li>
-          <li>Order Generator — planned after EDI</li>
+          <li><Link href="/edi">EDI Explainer</Link> — polished frontend scaffold for explain / ingest / knowledge flows</li>
+          <li><Link href="/orders">Order Generator</Link> — polished frontend scaffold for SO/PO generation and posting</li>
         </ul>
       </section>
 
       <section className="card" style={{ marginTop: 16 }}>
         <h2>Current focus</h2>
         <ul style={{ marginTop: 16, paddingLeft: 18, lineHeight: 1.8 }}>
-          <li>QA Runner UI on Next.js</li>
+          <li>QA Runner UI with run detail + polling</li>
+          <li>EDI Explainer and Order Generator Vercel-facing scaffolds</li>
           <li>Remote API contract instead of local Selenium/npm coupling</li>
-          <li>Vercel-compatible frontend behavior</li>
         </ul>
       </section>
     </Shell>

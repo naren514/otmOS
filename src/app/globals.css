@@ -147,6 +147,25 @@ a {
   padding: 2px 8px;
   font-size: 12px;
   color: var(--muted);
+  background: #fff;
+}
+
+.badge.good {
+  color: #067647;
+  border-color: #a6f4c5;
+  background: #ecfdf3;
+}
+
+.badge.bad {
+  color: #b42318;
+  border-color: #fecdca;
+  background: #fef3f2;
+}
+
+.badge.warn {
+  color: #b54708;
+  border-color: #fedf89;
+  background: #fffaeb;
 }
 
 .muted {
@@ -168,6 +187,69 @@ a {
 
 .errorText {
   color: #b42318;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
+  gap: 16px;
+}
+
+.listStack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.listItem {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.listItem.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.12);
+}
+
+.detailPane {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  min-height: 280px;
+}
+
+.kvGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.dropzone,
+.emptyState {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  background: #fafcff;
+  color: var(--muted);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 6px;
+  resize: vertical;
+}
+
+.inputSmall {
+  width: 96px;
 }
 
 @media (max-width: 860px) {

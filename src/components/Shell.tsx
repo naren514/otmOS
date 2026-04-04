@@ -7,6 +7,8 @@ const nav = [
   { href: "/qa/tests", label: "QA Tests" },
   { href: "/qa/cycles", label: "QA Cycles" },
   { href: "/qa/runs", label: "QA Runs" },
+  { href: "/edi", label: "EDI Explainer" },
+  { href: "/orders", label: "Order Generator" },
 ];
 
 export default function Shell({ title, children }: { title: string; children: ReactNode }) {
