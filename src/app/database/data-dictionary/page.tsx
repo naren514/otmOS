@@ -60,6 +60,9 @@ export default function DataDictionaryPage() {
           <div className="muted" style={{ marginTop: 6 }}>
             Search and open OTM data model diagram subject areas from the supplied dictionary export.
           </div>
+          <div className="detailPane" style={{ marginTop: 12, minHeight: "auto" }}>
+            <strong>Note:</strong> this legacy diagram browser depends on large raw HTML/image exports and is intended for local use. The Vercel deployment uses the indexed Table Explorer / SQL Builder path instead.
+          </div>
 
           <input
             className="input"

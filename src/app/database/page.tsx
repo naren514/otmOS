@@ -11,10 +11,7 @@ export default function DatabaseToolsPage() {
 
         <ul style={{ marginTop: 16, paddingLeft: 18, lineHeight: 1.9 }}>
           <li>
-            <Link href="/database/data-dictionary">Data Dictionary Explorer</Link> — searchable subject-area browser for the OTM data model diagrams.
-          </li>
-          <li>
-            <Link href="/database/tables">Table Explorer</Link> — browse subject areas, tables, and field-level definitions from the richer OTM data dictionary export.
+            <Link href="/database/tables">Table Explorer</Link> — browse subject areas, tables, and field-level definitions from the indexed OTM data dictionary.
           </li>
           <li>
             <Link href="/database/sql-builder">SQL Builder</Link> — assemble SQL queries from tables and fields with dictionary assistance.
