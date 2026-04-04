@@ -238,6 +238,11 @@ a {
   color: var(--muted);
 }
 
+.dropzoneActive {
+  border-color: var(--accent);
+  background: #eef5ff;
+}
+
 .textarea {
   width: 100%;
   min-height: 220px;
