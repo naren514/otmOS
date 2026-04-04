@@ -8,9 +8,10 @@ import { qaGet, type QARun } from "@/lib/qaApi";
 
 const KEY_URL = "otmos.qa.apiUrl";
 const KEY_TOKEN = "otmos.qa.apiToken";
+const DEFAULT_URL = "/api/qa";
 
 export default function QARunsPage() {
-  const [apiUrl] = useState(() => typeof window === "undefined" ? "" : (window.localStorage.getItem(KEY_URL) ?? ""));
+  const [apiUrl] = useState(() => typeof window === "undefined" ? DEFAULT_URL : (window.localStorage.getItem(KEY_URL) ?? DEFAULT_URL));
   const [apiToken] = useState(() => typeof window === "undefined" ? "" : (window.localStorage.getItem(KEY_TOKEN) ?? ""));
   const [runs, setRuns] = useState<QARun[]>([]);
   const [selectedRun, setSelectedRun] = useState<QARun | null>(null);

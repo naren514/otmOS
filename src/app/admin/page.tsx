@@ -8,9 +8,10 @@ import { qaGet, qaPost, type QAConfig } from "@/lib/qaApi";
 const KEY_URL = "otmos.qa.apiUrl";
 const KEY_TOKEN = "otmos.qa.apiToken";
 const KEY_PASSWORD = "otmos.qa.password";
+const DEFAULT_URL = "/api/qa";
 
 export default function AdminPage() {
-  const [apiUrl] = useState(() => typeof window === "undefined" ? "" : (window.localStorage.getItem(KEY_URL) ?? ""));
+  const [apiUrl] = useState(() => typeof window === "undefined" ? DEFAULT_URL : (window.localStorage.getItem(KEY_URL) ?? DEFAULT_URL));
   const [apiToken] = useState(() => typeof window === "undefined" ? "" : (window.localStorage.getItem(KEY_TOKEN) ?? ""));
   const [baseUrl, setBaseUrl] = useState("");
   const [username, setUsername] = useState("");

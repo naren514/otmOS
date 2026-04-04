@@ -4,9 +4,10 @@ import { useState } from "react";
 
 const KEY_URL = "otmos.qa.apiUrl";
 const KEY_TOKEN = "otmos.qa.apiToken";
+const DEFAULT_URL = "/api/qa";
 
 export default function RunnerSettings() {
-  const [apiUrl, setApiUrl] = useState(() => typeof window === "undefined" ? "" : (window.localStorage.getItem(KEY_URL) ?? ""));
+  const [apiUrl, setApiUrl] = useState(() => typeof window === "undefined" ? DEFAULT_URL : (window.localStorage.getItem(KEY_URL) ?? DEFAULT_URL));
   const [apiToken, setApiToken] = useState(() => typeof window === "undefined" ? "" : (window.localStorage.getItem(KEY_TOKEN) ?? ""));
   const [saved, setSaved] = useState("");
 
@@ -33,7 +34,7 @@ export default function RunnerSettings() {
       <div className="formGrid" style={{ marginTop: 16 }}>
         <label>
           <span className="label">Runner API URL</span>
-          <input className="input" value={apiUrl} onChange={(e) => setApiUrl(e.target.value)} placeholder="https://qa-runner.example.com/api" />
+          <input className="input" value={apiUrl} onChange={(e) => setApiUrl(e.target.value)} placeholder="/api/qa or https://qa-runner.example.com/api" />
         </label>
         <label>
           <span className="label">Bearer token</span>
