@@ -1,4 +1,4 @@
-const DEFAULT_REMOTE_BASE = "http://34.46.217.134:4010/api";
+const DEFAULT_REMOTE_BASE = "http://136.114.93.164:4010/api";
 const DEFAULT_REMOTE_TOKEN = "RXDhRkOEosUUzc3U7Cg2AajpeiluuMmH";
 
 export function getQaRunnerBase() {
