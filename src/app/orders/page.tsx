@@ -50,6 +50,9 @@ export default function OrdersPage() {
   const [templates, setTemplates] = useState<{ salesOrdersCsv?: string; purchaseOrdersCsv?: string }>({});
   const [preview, setPreview] = useState("<xml>Preview will appear here after generation.</xml>");
   const [summary, setSummary] = useState<Record<string, string> | null>(null);
+  const [generatedPayloads, setGeneratedPayloads] = useState<Array<{ humanId: string; shipFrom: string; shipTo: string; lineCount: number }>>([]);
+  const [zipFiles, setZipFiles] = useState<Array<{ name: string; contentBase64: string }>>([]);
+  const [lastXml, setLastXml] = useState("");
   const [postResult, setPostResult] = useState<PostResult>(null);
   const [status, setStatus] = useState("");
   const [dragActive, setDragActive] = useState(false);
@@ -128,9 +131,12 @@ export default function OrdersPage() {
       seed,
       useGzip,
     };
-    const data = await orderPost<{ xml: string; summary: Record<string, string>; templates?: { salesOrdersCsv: string; purchaseOrdersCsv: string } }>(ORDERS_API_BASE, "/generate", payload);
+    const data = await orderPost<{ xml: string; summary: Record<string, string>; templates?: { salesOrdersCsv: string; purchaseOrdersCsv: string }; payloads?: Array<{ humanId: string; shipFrom: string; shipTo: string; lineCount: number }>; zipFiles?: Array<{ name: string; contentBase64: string }>; lastXml?: string }>(ORDERS_API_BASE, "/generate", payload);
     setPreview(data.xml ?? "");
     setSummary(data.summary ?? null);
+    setGeneratedPayloads(data.payloads ?? []);
+    setZipFiles(data.zipFiles ?? []);
+    setLastXml(data.lastXml ?? "");
     if (data.templates) setTemplates(data.templates);
     setStatus("Preview ready.");
   }
@@ -149,6 +155,14 @@ export default function OrdersPage() {
     } catch (e) {
       setStatus(e instanceof Error ? e.message : String(e));
     }
+  }
+
+  function downloadBase64File(name: string, contentBase64: string, mime = 'application/xml') {
+    const url = `data:${mime};base64,${contentBase64}`;
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    a.click();
   }
 
   return (
@@ -274,6 +288,8 @@ export default function OrdersPage() {
       <section className="card" style={{ marginTop: 16 }}>
         <SectionIntro title="Preview &amp; results" description="Generated XML preview and result summary." />
         {summary ? <div className="kvGrid" style={{ marginBottom: 16 }}><div><span className="muted">Order Kind</span><div>{summary.orderKind}</div></div><div><span className="muted">Mode</span><div>{summary.inputMode}</div></div><div><span className="muted">Domain</span><div>{summary.domain}</div></div><div><span className="muted">Base XID</span><div>{summary.baseXid}</div></div><div><span className="muted">Lines</span><div>{summary.lineCount}</div></div></div> : null}
+        {generatedPayloads.length ? <div style={{ overflowX: 'auto', marginBottom: 16 }}><table className="table"><thead><tr><th>Order ID</th><th>Ship From</th><th>Ship To</th><th># Lines</th></tr></thead><tbody>{generatedPayloads.map((p) => <tr key={p.humanId}><td>{p.humanId}</td><td>{p.shipFrom}</td><td>{p.shipTo}</td><td>{p.lineCount}</td></tr>)}</tbody></table></div> : null}
+        {zipFiles.length ? <div className="toolbar" style={{ marginBottom: 16 }}><button className="btn" onClick={() => zipFiles.forEach((f) => downloadBase64File(f.name, f.contentBase64))}>⬇️ Download all XMLs</button>{lastXml ? <button className="btn" onClick={() => downloadBase64File('last_order.xml', btoa(unescape(encodeURIComponent(lastXml))))}>⬇️ Download last XML</button> : null}</div> : null}
         {postResult ? <div className="detailPane" style={{ marginBottom: 16 }}><div className="kvGrid"><div><span className="muted">Status</span><div>{postResult.status}</div></div><div><span className="muted">Endpoint</span><div>{postResult.endpoint || "-"}</div></div><div><span className="muted">Message</span><div>{postResult.message}</div></div><div><span className="muted">Bytes</span><div>{postResult.payloadBytes || "-"}</div></div></div></div> : null}
         <p className="muted mono" style={{ marginBottom: 12 }}>{status}</p>
         <pre className="pre">{preview}</pre>
