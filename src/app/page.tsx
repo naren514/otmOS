@@ -1,28 +1,29 @@
+import Link from "next/link";
+import Shell from "@/components/Shell";
+
 export default function Home() {
   return (
-    <main style={{ maxWidth: 960, margin: '0 auto', padding: '48px 24px', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ marginBottom: 8 }}>otmOS Web</h1>
-      <p style={{ color: '#555', marginTop: 0 }}>
-        Vercel-friendly frontend for Order Generator, EDI Explainer, and OTM QA Runner.
-      </p>
-
-      <section style={{ marginTop: 32 }}>
+    <Shell title="otmOS Web">
+      <section className="card">
         <h2>Tools</h2>
-        <ul>
-          <li><strong>Order Generator</strong> — generate and post OTM SO/PO payloads via API</li>
-          <li><strong>EDI Explainer</strong> — explain X12 messages, manage mappings, ingest docs</li>
-          <li><strong>OTM QA Runner</strong> — configure QA envs, launch tests/cycles, inspect runs</li>
+        <p className="muted" style={{ marginTop: 8 }}>
+          Production-direction frontend for otmOS on Vercel.
+        </p>
+        <ul style={{ marginTop: 16, paddingLeft: 18, lineHeight: 1.8 }}>
+          <li><Link href="/qa/tests">OTM QA Runner</Link> — remote-runner driven test execution</li>
+          <li>EDI Explainer — planned next</li>
+          <li>Order Generator — planned after EDI</li>
         </ul>
       </section>
 
-      <section style={{ marginTop: 32 }}>
-        <h2>Migration status</h2>
-        <ul>
-          <li>Next.js shell scaffolded</li>
-          <li>Vercel migration plan documented</li>
-          <li>Next recommended step: build QA Runner pages first</li>
+      <section className="card" style={{ marginTop: 16 }}>
+        <h2>Current focus</h2>
+        <ul style={{ marginTop: 16, paddingLeft: 18, lineHeight: 1.8 }}>
+          <li>QA Runner UI on Next.js</li>
+          <li>Remote API contract instead of local Selenium/npm coupling</li>
+          <li>Vercel-compatible frontend behavior</li>
         </ul>
       </section>
-    </main>
+    </Shell>
   );
 }
