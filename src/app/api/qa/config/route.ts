@@ -1,19 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
-import { loadStore, saveStore } from "@/lib/demoStore";
+import { NextRequest } from "next/server";
+import { qaRunnerFetch } from "@/lib/qaProxy";
 
 export async function GET() {
-  const store = await loadStore();
-  return NextResponse.json({ config: store.qa.config });
+  return qaRunnerFetch("/config");
 }
 
 export async function POST(req: NextRequest) {
-  const body = await req.json();
-  const store = await loadStore();
-  store.qa.config = {
-    baseUrl: body.baseUrl ?? "",
-    username: body.username ?? "",
-    browser: body.browser ?? "chrome",
-  };
-  await saveStore(store);
-  return NextResponse.json({ ok: true, config: store.qa.config });
+  const body = await req.text();
+  return qaRunnerFetch("/config", { method: "POST", body });
 }

@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
+import { qaRunnerFetch } from "@/lib/qaProxy";
 
 export async function GET() {
-  return NextResponse.json({ ok: true, mode: "embedded-demo" });
+  return qaRunnerFetch("/health");
 }

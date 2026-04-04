@@ -1,6 +1,6 @@
 export function getDefaultQaApiBase(): string {
   const env = process.env.NEXT_PUBLIC_QA_API_BASE?.trim();
-  return env && env.length > 0 ? env : "http://34.46.217.134:4010/api";
+  return env && env.length > 0 ? env : "/api/qa";
 }
 
 export function getDefaultEdiApiBase(): string {
