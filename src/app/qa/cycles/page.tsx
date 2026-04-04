@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import Shell from "@/components/Shell";
 import { qaGet, qaPost, type QACycle } from "@/lib/qaApi";
+import { getDefaultQaApiBase } from "@/lib/runtimeConfig";
 
 const KEY_URL = "otmos.qa.apiUrl";
 const KEY_TOKEN = "otmos.qa.apiToken";
-const DEFAULT_URL = "/api/qa";
+const DEFAULT_URL = getDefaultQaApiBase();
 
 export default function QACyclesPage() {
   const [apiUrl] = useState(() => typeof window === "undefined" ? DEFAULT_URL : (window.localStorage.getItem(KEY_URL) ?? DEFAULT_URL));

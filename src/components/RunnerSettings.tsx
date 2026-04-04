@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { getDefaultQaApiBase } from "@/lib/runtimeConfig";
 
 const KEY_URL = "otmos.qa.apiUrl";
 const KEY_TOKEN = "otmos.qa.apiToken";
-const DEFAULT_URL = "/api/qa";
+const DEFAULT_URL = getDefaultQaApiBase();
 
 export default function RunnerSettings() {
   const [apiUrl, setApiUrl] = useState(() => typeof window === "undefined" ? DEFAULT_URL : (window.localStorage.getItem(KEY_URL) ?? DEFAULT_URL));
