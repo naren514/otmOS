@@ -3,8 +3,11 @@
 import { useState } from "react";
 import Shell from "@/components/Shell";
 import SectionIntro from "@/components/SectionIntro";
+import { orderPost } from "@/lib/orderApi";
+import { getDefaultOrdersApiBase } from "@/lib/runtimeConfig";
 
 type PostResult = { id: string; endpoint: string; username: string; status: string; message: string; createdAt: string } | null;
+const ORDERS_API_BASE = getDefaultOrdersApiBase();
 
 export default function OrdersPage() {
   const [orderKind, setOrderKind] = useState("Sales Orders");
@@ -22,27 +25,23 @@ export default function OrdersPage() {
 
   async function generatePreview() {
     setStatus("Generating preview...");
-    const res = await fetch("/api/orders/generate", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ orderKind, inputMode, domain, baseXid, currency }),
-    });
-    const data = await res.json();
+    const data = await orderPost<{ xml: string; summary: Record<string, string> }>(ORDERS_API_BASE, "/generate", { orderKind, inputMode, domain, baseXid, currency });
     setPreview(data.xml ?? "");
     setSummary(data.summary ?? null);
     setStatus("Preview ready.");
   }
 
   async function generateAndPost() {
-    await generatePreview();
-    const res = await fetch("/api/orders/post", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ endpoint, username, password, xml: preview }),
-    });
-    const data = await res.json();
-    setPostResult(data.result ?? null);
-    setStatus(res.ok ? "Post request completed." : "Post blocked / failed.");
+    try {
+      const generated = await orderPost<{ xml: string; summary: Record<string, string> }>(ORDERS_API_BASE, "/generate", { orderKind, inputMode, domain, baseXid, currency });
+      setPreview(generated.xml ?? "");
+      setSummary(generated.summary ?? null);
+      const data = await orderPost<{ result: PostResult }>(ORDERS_API_BASE, "/post", { endpoint, username, password, xml: generated.xml });
+      setPostResult(data.result ?? null);
+      setStatus("Post request completed.");
+    } catch (e) {
+      setStatus(e instanceof Error ? e.message : String(e));
+    }
   }
 
   return (

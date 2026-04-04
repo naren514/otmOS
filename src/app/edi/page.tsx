@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useState } from "react";
 import Shell from "@/components/Shell";
 import SectionIntro from "@/components/SectionIntro";
+import { ediGet, ediPost, type EdiDoc, type EdiExplainRow, type EdiMapping } from "@/lib/ediApi";
+import { getDefaultEdiApiBase } from "@/lib/runtimeConfig";
 
-type ExplainedRow = { segIndex: number; segment: string; pos: number; value: string; meaning: string; notes: string; source: string };
-type Mapping = { id: string; version: string; txSet: string; carrier: string; segment: string; elementPos: number; code: string; meaning: string; notes: string; source: string };
-type EdiDoc = { id: string; sourceName: string; status: string; snippetPreview: string; chunkCount: number; charCount: number; createdAt: string };
+const EDI_API_BASE = getDefaultEdiApiBase();
 
 export default function EDIPage() {
   const [version, setVersion] = useState("4010");
@@ -15,9 +15,9 @@ export default function EDIPage() {
   const [elementSep, setElementSep] = useState("*");
   const [segmentTerm, setSegmentTerm] = useState("~");
   const [x12, setX12] = useState("ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *250101*1200*U*00401*000000905*0*T*:~\nGS*SM*SENDER*RECEIVER*20250101*1200*1*X*004010~\nST*204*0001~\nB2**CARRIER*SCAC~\nSE*4*0001~");
-  const [rows, setRows] = useState<ExplainedRow[]>([]);
+  const [rows, setRows] = useState<EdiExplainRow[]>([]);
   const [kbQuery, setKbQuery] = useState("");
-  const [kbMappings, setKbMappings] = useState<Mapping[]>([]);
+  const [kbMappings, setKbMappings] = useState<EdiMapping[]>([]);
   const [kbDocs, setKbDocs] = useState<EdiDoc[]>([]);
   const [docName, setDocName] = useState("");
   const [docNotes, setDocNotes] = useState("");
@@ -30,49 +30,39 @@ export default function EDIPage() {
 
   const explain = useCallback(async () => {
     setStatus("Explaining...");
-    const res = await fetch("/api/edi/explain", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ version, txSet, carrier, elementSep, segmentTerm, x12 }),
-    });
-    const data = await res.json();
+    const data = await ediPost<{ rows: EdiExplainRow[] }>(EDI_API_BASE, "/explain", { version, txSet, carrier, elementSep, segmentTerm, x12 });
     setRows(data.rows ?? []);
     setStatus("Explanation updated.");
   }, [version, txSet, carrier, elementSep, segmentTerm, x12]);
 
   const loadKnowledge = useCallback(async (query = kbQuery) => {
-    const url = query ? `/api/edi/search?q=${encodeURIComponent(query)}` : `/api/edi/search?q=`;
-    const res = await fetch(url, { cache: "no-store" });
-    const data = await res.json();
+    const path = query ? `/search?q=${encodeURIComponent(query)}` : `/search?q=`;
+    const data = await ediGet<{ mappings: EdiMapping[]; docs: EdiDoc[] }>(EDI_API_BASE, path);
     setKbMappings(data.mappings ?? []);
     setKbDocs(data.docs ?? []);
   }, [kbQuery]);
 
   async function saveMapping() {
-    const res = await fetch("/api/edi/mappings", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ version, txSet, carrier, segment: saveSegment, elementPos: savePos, code: saveCode, meaning: saveMeaning, notes: "", source: "user" }),
-    });
-    if (res.ok) {
+    try {
+      await ediPost(EDI_API_BASE, "/mappings", { version, txSet, carrier, segment: saveSegment, elementPos: savePos, code: saveCode, meaning: saveMeaning, notes: "", source: "user" });
       setStatus("Mapping saved.");
       await explain();
       await loadKnowledge();
+    } catch (e) {
+      setStatus(e instanceof Error ? e.message : String(e));
     }
   }
 
   async function ingestDoc() {
-    const res = await fetch("/api/edi/docs", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ version, txSet, carrier, sourceName: docName, notes: docNotes, rawText: docText }),
-    });
-    if (res.ok) {
+    try {
+      await ediPost(EDI_API_BASE, "/docs", { version, txSet, carrier, sourceName: docName, notes: docNotes, rawText: docText });
       setStatus("Document ingested.");
       setDocName("");
       setDocNotes("");
       setDocText("");
       await loadKnowledge();
+    } catch (e) {
+      setStatus(e instanceof Error ? e.message : String(e));
     }
   }
 
