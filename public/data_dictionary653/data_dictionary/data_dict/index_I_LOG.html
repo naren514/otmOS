@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE>Data Dictionary</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Data Dictionary</H1>
+<TABLE BORDER="0">
+<TR><TD COLSPAN="5"><A NAME="I_LOG"><STRONG><FONT SIZE="+1">I_LOG</FONT></STRONG></A>&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A></TD>
+<TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>I_LOG_SEQNO&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html#I_LOG_SEQNO" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>I_TRANSACTION_NO&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html#I_TRANSACTION_NO" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>I_TRANSMISSION_NO&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html#I_TRANSMISSION_NO" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>WRITTEN_BY&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html#WRITTEN_BY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>I_MESSAGE_CLASS&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html#I_MESSAGE_CLASS" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>I/E/W</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>I_MESSAGE_CODE&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html#I_MESSAGE_CODE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(30)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>I_MESSAGE_TEXT&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html#I_MESSAGE_TEXT" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>CLOB</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>TIME_STAMP&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html#TIME_STAMP" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>PARTITION_KEY&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html#PARTITION_KEY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>I_MESSAGE_GID</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>PROCESSING_ERROR_CODE_GID&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_DIAG_PROCESS_FAILURE_REASON.html">DIAG_PROCESS_FAILURE_REASON</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DOMAIN_NAME</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LOG_PROCESS_ID&nbsp;&nbsp;<A HREF="index-defs_I_LOG.html#LOG_PROCESS_ID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Indices:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4">ILOG_TRANS (I_TRANSMISSION_NO)</TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4">IND_ILOG_ITRANSA_NO (I_TRANSACTION_NO)</TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4">IND_TRANS_NOS (I_TRANSMISSION_NOI_TRANSACTION_NO)</TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4">IX_I_MESSAGE_GID (I_MESSAGE_GID)</TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4">IX_IL_PROCESSING_ERROR_CODE_G (PROCESSING_ERROR_CODE_GID)</TD></TR>
+</TABLE></BODY>
+</HTML>

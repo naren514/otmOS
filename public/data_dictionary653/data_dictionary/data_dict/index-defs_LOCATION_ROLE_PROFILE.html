@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - LOCATION_ROLE_PROFILE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - LOCATION_ROLE_PROFILE</H1>
+Detail information about the location role(s). The detail information consists of the minimum stop time at the location, location hours per role. For e.g., the location time for the loading zone can be 8 AM to 5 PM but unloading time may be 12 noon to 7 PM.<P>
+<DL>
+<DT><A NAME="LOCATION_GID">LOCATION_GID</A><DD>LOCATION_GID contains the unique identifier for the location.
+<DT><A NAME="LOCATION_ROLE_GID">LOCATION_ROLE_GID</A><DD>LOCATION_ROLE_GID contains the unique identifier for the location role.
+<DT><A NAME="CALENDAR_GID">CALENDAR_GID</A><DD>CALENDAR_GID contains the unique identifier for the calendar used for the location role profile.
+<DT><A NAME="FIXED_HANDLING_TIME_BASE">FIXED_HANDLING_TIME_BASE</A><DD>FIXED_HANDLING_TIME in base units.
+<DT><A NAME="VAR_HANDLING_TIME_BASE">VAR_HANDLING_TIME_BASE</A><DD>VAR_HANDLING_TIME in base units.
+<DT><A NAME="PCT_ACTIVITY_BEFORE_LOC_OPEN">PCT_ACTIVITY_BEFORE_LOC_OPEN</A><DD>This value will be devided by 100 in the application to be used as a percentage. The valid value for this column is >= 0 and <= 100. When it is null, treat as 0 for location role SHIPPING/RECEIVING
+<DT><A NAME="PCT_ACTIVITY_AFTER_LOC_CLOSE">PCT_ACTIVITY_AFTER_LOC_CLOSE</A><DD>This value will be devided by 100 in the application to be used as a percentage. The valid value for this column is >= 0 and <= 100. When null, treat as 100 for location role SHIPPING/RECEIVING
+<DT><A NAME="VAR_HNDCST_WGT">VAR_HNDCST_WGT</A><DD>Planning Handling Cost Weight at this location
+<DT><A NAME="VAR_HNDCST_WGT_BASE">VAR_HNDCST_WGT_BASE</A><DD>var_hndcst_wgt in base units
+<DT><A NAME="VAR_HNDCST_WGT_COST">VAR_HNDCST_WGT_COST</A><DD>Variable Handling Cost Per Weight at this location
+<DT><A NAME="VAR_HNDCST_WGT_COST_BASE">VAR_HNDCST_WGT_COST_BASE</A><DD>var_hndcst_wgt_cost in base units
+<DT><A NAME="VAR_HNDCST_VOL">VAR_HNDCST_VOL</A><DD>Planning Handling Cost Volume at this location
+<DT><A NAME="VAR_HNDCST_VOL_BASE">VAR_HNDCST_VOL_BASE</A><DD>var_hndcst_vol in base units
+<DT><A NAME="VAR_HNDCST_VOL_COST">VAR_HNDCST_VOL_COST</A><DD>Variable Handling Cost Per Volume at this location
+<DT><A NAME="VAR_HNDCST_VOL_COST_BASE">VAR_HNDCST_VOL_COST_BASE</A><DD>var_hndcst_vol_cost in base units
+</DL>
+</BODY>
+</HTML>

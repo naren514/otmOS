@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>Data Dictionary</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Data Dictionary</H1>
+<TABLE BORDER="0">
+<TR><TD COLSPAN="5"><A NAME="Q_INTEGRATION_IN"><STRONG><FONT SIZE="+1">Q_INTEGRATION_IN</FONT></STRONG></A><TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>Q_EVENT_SEQ&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_EVENT_SEQ" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_PREEMPTION_PRIORITY&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_PREEMPTION_PRIORITY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER(9)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_START&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_START" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_STATE&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_STATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>QUEUED/ACTIVE/CANCELED/PROCESSED/FAILED</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_TIME&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_TIME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_TIME_UOM_CODE&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_TIME_UOM_CODE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(64)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_TIME_BASE&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_TIME_BASE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_PROCESS_START&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_PROCESS_START" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_PROCESS_TIME&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_PROCESS_TIME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_PROCESS_TIME_UOM_CODE&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_PROCESS_TIME_UOM_CODE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(64)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_PROCESS_TIME_BASE&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_PROCESS_TIME_BASE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_LOG_PROCESS_ID&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_LOG_PROCESS_ID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_PROCESS_MACHINE_GID&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_PROCESS_MACHINE_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_APP_MACHINE.html">APP_MACHINE</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_APP_SERVER_GID&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_APP_SERVER_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_APP_SERVER.html">APP_SERVER</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_RELATED_QUEUE_SEQ&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_RELATED_QUEUE_SEQ" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER(10)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>P_QUEUE_START_KEY&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#P_QUEUE_START_KEY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER(2)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>I_TRANSMISSION_NO&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#I_TRANSMISSION_NO" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>TOPIC_DESCRIPTION&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#TOPIC_DESCRIPTION" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(500)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>TOPIC_CLASS_NAME&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#TOPIC_CLASS_NAME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(255)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>TOPIC_PARAMETERS&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#TOPIC_PARAMETERS" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1000)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_RELATED_QUEUE_NAME&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_RELATED_QUEUE_NAME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(30)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>Q_QUEUE_NAME&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#Q_QUEUE_NAME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(30)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DOMAIN_NAME</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_LONG_RUNNING_TASK&nbsp;&nbsp;<A HREF="index-defs_Q_INTEGRATION_IN.html#IS_LONG_RUNNING_TASK" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP>Y/ N</TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Tables that FK into this one:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_LONG_RUNNING_TASK.html">LONG_RUNNING_TASK</A></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Indices:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4">IX_Q_INT_IN_I_TRANS_NO (I_TRANSMISSION_NO)</TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4">IX_Q_INT_IN_Q_STATE (Q_STATE)</TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4">IX_Q_INTIN_PREMPT_PRIORTY (Q_EVENT_SEQQ_PREEMPTION_PRIORITY)</TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4">IX_Q_PROCESS_MACHINE_GID (Q_PROCESS_MACHINE_GIDQ_STATEQ_EVENT_SEQ)</TD></TR>
+</TABLE></BODY>
+</HTML>

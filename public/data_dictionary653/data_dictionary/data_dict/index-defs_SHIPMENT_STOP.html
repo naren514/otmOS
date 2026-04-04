@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SHIPMENT_STOP</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SHIPMENT_STOP</H1>
+This table stores departure and arrival information about every stop along the way for the life of the shipment (both planned and actual).  The key is both the SHIPMENT_GID and the STOP_NUM.<P>
+<DL>
+<DT><A NAME="SHIPMENT_GID">SHIPMENT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="STOP_NUM">STOP_NUM</A><DD>This field defines the stop number within the shipment. Stop Num = 1 is the Pickup stop, and the max (Stop Num) for a shipment is the delivery stop.
+<DT><A NAME="LOCATION_GID">LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="LOCATION_ROLE_GID">LOCATION_ROLE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="PLANNED_ARRIVAL">PLANNED_ARRIVAL</A><DD>The planned date and time of arrival at the stop.
+<DT><A NAME="ESTIMATED_ARRIVAL">ESTIMATED_ARRIVAL</A><DD>The estimated time of arrival at the stop. It represents the up to the minute ETA that takes into account ETA updates.  This date is editable by the carrier or load planner and should incorporate any known delays to delivery.  It represents to the best of our knowledge, when we expect the shipment to arrive.
+<DT><A NAME="ACTUAL_ARRIVAL">ACTUAL_ARRIVAL</A><DD>The actual arrival date and time at the stop.
+<DT><A NAME="PLANNED_DEPARTURE">PLANNED_DEPARTURE</A><DD>The planned departure date and time at the stop.
+<DT><A NAME="ESTIMATED_DEPARTURE">ESTIMATED_DEPARTURE</A><DD>The estimated time of departure for the stop.   It represents the up to the minute ETA that takes into account ETA updates.  This date is editable by the carrier or load planner and should incorporate any known delays to departure.  It represents to the best of our knowledge, when we expect the shipment to depart from the stop.
+<DT><A NAME="ACTUAL_DEPARTURE">ACTUAL_DEPARTURE</A><DD>The actual departure date and time at the stop.
+<DT><A NAME="WAIT_TIME">WAIT_TIME</A><DD>The time the truck or the transportation mode has to wait at the stop.
+<DT><A NAME="WAIT_TIME_UOM_CODE">WAIT_TIME_UOM_CODE</A><DD>Unit of measure for WAIT_TIME column.
+<DT><A NAME="WAIT_TIME_BASE">WAIT_TIME_BASE</A><DD>WAIT_TIME in base units.
+<DT><A NAME="REST_TIME">REST_TIME</A><DD>The time the truck or the transportation mode should take for rest at the stop.
+<DT><A NAME="REST_TIME_UOM_CODE">REST_TIME_UOM_CODE</A><DD>Unit of measure for REST_TIME column.
+<DT><A NAME="REST_TIME_BASE">REST_TIME_BASE</A><DD>REST_TIME in base units.
+<DT><A NAME="DRIVE_TIME">DRIVE_TIME</A><DD>The drive time to teh stop from the last stop.
+<DT><A NAME="DRIVE_TIME_UOM_CODE">DRIVE_TIME_UOM_CODE</A><DD>Unit of measure for DRIVE_TIME column.
+<DT><A NAME="DRIVE_TIME_BASE">DRIVE_TIME_BASE</A><DD>DRIVE_TIME in base units.
+<DT><A NAME="DIST_FROM_PREV_STOP">DIST_FROM_PREV_STOP</A><DD>The distance from the last stop.
+<DT><A NAME="DIST_FROM_PREV_STOP_UOM_CODE">DIST_FROM_PREV_STOP_UOM_CODE</A><DD>Unit of measure for DIST_FROM_PREV_STOP column.
+<DT><A NAME="DIST_FROM_PREV_STOP_BASE">DIST_FROM_PREV_STOP_BASE</A><DD>DIST_FROM_PREV_STOP in base units.
+<DT><A NAME="ACTIVITY_TIME">ACTIVITY_TIME</A><DD>The time spent at the stop for pickup or delivery.
+<DT><A NAME="ACTIVITY_TIME_UOM_CODE">ACTIVITY_TIME_UOM_CODE</A><DD>Unit of measure for ACTIVITY_TIME column.
+<DT><A NAME="ACTIVITY_TIME_BASE">ACTIVITY_TIME_BASE</A><DD>ACTIVITY_TIME in base units.
+<DT><A NAME="ACCESSORIAL_TIME">ACCESSORIAL_TIME</A><DD>The sum of fixed_accessorial_time for a particular stop.
+<DT><A NAME="PARENT_LOCATION_GID">PARENT_LOCATION_GID</A><DD>If an operational location, such as terminal at a port, is chosen for this stop, the LOCATION_GID will be copied to this field and the LOCATION_GID field will contain the operational location.
+<DT><A NAME="STOP_REQUIREMENT_TYPE">STOP_REQUIREMENT_TYPE</A><DD>This field is currently used only for TRIPs.
+<DT><A NAME="ARBITRARY_TYPE">ARBITRARY_TYPE</A><DD>SOURCE or DEST to indicate the type of arbitrary.  If null, this stop is not an arbitrary.
+<DT><A NAME="IS_FIXED_DISTANCE">IS_FIXED_DISTANCE</A><DD>When set to Y, indicates the existence of a user-entered value for the dis_from_prev_stop field
+<DT><A NAME="VOYAGE_GID">VOYAGE_GID</A><DD>Refers column VOYAGE.VOYAGE_GID.
+<DT><A NAME="IS_MOTHER_VESSEL">IS_MOTHER_VESSEL</A><DD>Desginating a leg as mother vessel to automatically populated header.
+<DT><A NAME="FLIGHT_INSTANCE_ID">FLIGHT_INSTANCE_ID</A><DD>Refers column FLIGHT_INSTANCE. FLIGHT_INSTANCE GID.
+<DT><A NAME="STOP_TYPE">STOP_TYPE</A><DD>Define the type of this stop.
+<DT><A NAME="DRIVER_NON_PAYABLE">DRIVER_NON_PAYABLE</A><DD>Allows the user to specify that stop is payable or not.
+<DT><A NAME="DISTANCE_TYPE">DISTANCE_TYPE</A><DD>L - Loaded, B- Bobtail, D - Deadhead
+<DT><A NAME="RATE_DISTANCE_GID">RATE_DISTANCE_GID</A><DD>This column would give the rate distance to be used when finding distance from this stop to next stop. This is done mainly for arbitrary case. 
+<DT><A NAME="ROUTE_CODE_GID">ROUTE_CODE_GID</A><DD>This column would give the route code to be used when finding distance from this stop to next stop This is done mainly for handling arbitrary case. 
+<DT><A NAME="ATTRIBUTE_NUMBER11">ATTRIBUTE_NUMBER11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER12">ATTRIBUTE_NUMBER12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER13">ATTRIBUTE_NUMBER13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER14">ATTRIBUTE_NUMBER14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER15">ATTRIBUTE_NUMBER15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER16">ATTRIBUTE_NUMBER16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER17">ATTRIBUTE_NUMBER17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER18">ATTRIBUTE_NUMBER18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER19">ATTRIBUTE_NUMBER19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER20">ATTRIBUTE_NUMBER20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_DATE11">ATTRIBUTE_DATE11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE12">ATTRIBUTE_DATE12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE13">ATTRIBUTE_DATE13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE14">ATTRIBUTE_DATE14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE15">ATTRIBUTE_DATE15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE16">ATTRIBUTE_DATE16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE17">ATTRIBUTE_DATE17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE18">ATTRIBUTE_DATE18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE19">ATTRIBUTE_DATE19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE20">ATTRIBUTE_DATE20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+</DL>
+</BODY>
+</HTML>

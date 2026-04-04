@@ -1,0 +1,85 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - LOCATION</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - LOCATION</H1>
+A Location is a place where transportation related activities occur, such as loading and unloading freight. In addition, a location may represent a corporation, and/or a service provider.<P>
+<DL>
+<DT><A NAME="LOCATION_GID">LOCATION_GID</A><DD>LOCATION_GID contains the unique identifier for the location.
+<DT><A NAME="LOCATION_XID">LOCATION_XID</A><DD>LOCATION_XID contains the unique external identifier for the location.
+<DT><A NAME="LOCATION_NAME">LOCATION_NAME</A><DD>LOCATION_NAME contains the name of the location.
+<DT><A NAME="CITY">CITY</A><DD>CITY contains the name of the city for the location.
+<DT><A NAME="PROVINCE">PROVINCE</A><DD>PROVINCE contains the province (or U.S. state) for the location.
+<DT><A NAME="PROVINCE_CODE">PROVINCE_CODE</A><DD>PROVINCE_CODE contains the abbreviation for the provice (or U.S. state) for the location.
+<DT><A NAME="POSTAL_CODE">POSTAL_CODE</A><DD>POSTAL_CODE contains the postal code for the location.
+<DT><A NAME="COUNTRY_CODE3_GID">COUNTRY_CODE3_GID</A><DD>A unique identifier to define the three digit country code in GC3.
+<DT><A NAME="ZONE1">ZONE1</A><DD>The zone where the location fits in.
+<DT><A NAME="ZONE2">ZONE2</A><DD>The zone where the location fits in.
+<DT><A NAME="ZONE3">ZONE3</A><DD>The zone where the location fits in.
+<DT><A NAME="ZONE4">ZONE4</A><DD>The zone where the location fits in.
+<DT><A NAME="TIME_ZONE_GID">TIME_ZONE_GID</A><DD>TIME_ZONE_GID contains the unique identifier for the time zone of the location. Examples of time zones include America/Curacao and Europe/Monaco.
+<DT><A NAME="LAT">LAT</A><DD>LAT contains the latitude for the location.
+<DT><A NAME="LON">LON</A><DD>LON contains the longitude of the location.
+<DT><A NAME="SOURCING_GROUP_NAME">SOURCING_GROUP_NAME</A><DD>Another way of grouping the locations.
+<DT><A NAME="DELIVERY_GROUP_NAME">DELIVERY_GROUP_NAME</A><DD>Another way of grouping the locations.
+<DT><A NAME="REGION_GID">REGION_GID</A><DD>REGION_GID contains the unique identifier for the region.
+<DT><A NAME="SERVPROV_PROFILE_GID">SERVPROV_PROFILE_GID</A><DD>SERVPROV_PROFILE_GID contains the unique identifier for the service provider for the location.
+<DT><A NAME="LOCATION_GROUP_GID">LOCATION_GROUP_GID</A><DD>LOCATION_GROUP_GID contains the unique identifier for the location group for the location.
+<DT><A NAME="IS_TEMPORARY">IS_TEMPORARY</A><DD>A flag to identify if the location is created temporarily for a certain shipment or order. This location will not be used for other shipments or processes.
+<DT><A NAME="IS_MAKE_APPT_BEFORE_PLAN">IS_MAKE_APPT_BEFORE_PLAN</A><DD>A tru or false flag to identify if an appointment is required at the location for (example) for pickup, delivery etc.
+<DT><A NAME="IS_ADDRESS_VALID">IS_ADDRESS_VALID</A><DD>Flag to indicate whether the address is considered valid or not (by checking against the POSTAL_CODE_VALIDATE table).
+<DT><A NAME="RATE_CLASSIFICATION_GID">RATE_CLASSIFICATION_GID</A><DD>RATE_CLASSIFICATION_GID contains the unique identifier for the rate classification. Examples include: COMMERCIAL and RESIDENTIAL.
+<DT><A NAME="SLOT_TIME_INTERVAL">SLOT_TIME_INTERVAL</A><DD>The smallest appointment slot interval for the location.
+<DT><A NAME="NUM_OF_ROWS_IN_YARD">NUM_OF_ROWS_IN_YARD</A><DD>The total number of rows in the yard of the location.
+<DT><A NAME="NUM_OF_SLOTS_PER_ROW_IN_YARD">NUM_OF_SLOTS_PER_ROW_IN_YARD</A><DD>The number of slots per row in the yard of the location.
+<DT><A NAME="USE_APPOINTMENT_PRIORITY">USE_APPOINTMENT_PRIORITY</A><DD>Whether or not to consider appointment priority
+<DT><A NAME="SCHEDULE_LOW_PRIORITY_APPOINT">SCHEDULE_LOW_PRIORITY_APPOINT</A><DD>Whether or not to schedule appointment for low priority appointment that has been bumped off.
+<DT><A NAME="ENFORCE_TIME_WINDOW_APPOINT">ENFORCE_TIME_WINDOW_APPOINT</A><DD>Whether or not to enforce the pick up or delivery time window during appointment schedule process."USE_APPOINTMENT_PRIORITY" takes precedence of "ENFORCE_TIME_WINDOW_APPOINT".
+<DT><A NAME="SCHEDULE_INFEASIBLE_APPOINT">SCHEDULE_INFEASIBLE_APPOINT</A><DD>Whether or not to schedule appointment if the appointment time available is out of pick up or delivery time window.
+<DT><A NAME="BB_MAX_CASES_PER_BATCH">BB_MAX_CASES_PER_BATCH</A><DD>Maximum number of cases allowed in each batch.  If blank, OTM will assume that there is no limit.  If the number of cases in the order exceeds this maximum, then the batch balancer's splitting logic will distribute the cases into multiple batches uniformly while honoring certain rules.
+<DT><A NAME="BB_IS_NEW_STORE">BB_IS_NEW_STORE</A><DD>Indicates if this location should be treated as a new store by the Batch Balancer logic.  New stores can only be assigned by Batch Balancer to a DOOR whose LOAD_NEW_STORE field is set to Y.
+<DT><A NAME="BB_ORDER_SPLIT_METHOD">BB_ORDER_SPLIT_METHOD</A><DD>Value of "CONVEYABLE" causes only conveyable cases to be counted toward max cases, value of "ALL" causes all cases (including non-con and repack) to count toward max cases.
+<DT><A NAME="EXCLUDE_FROM_ROUTE_EXECUTION">EXCLUDE_FROM_ROUTE_EXECUTION</A><DD>When = Y, this location is excluded from any Route Instance Legs.
+<DT><A NAME="APPOINT_DISPLAY">APPOINT_DISPLAY</A><DD>The duration of appointment display time period.
+<DT><A NAME="APPOINT_DISPLAY_BASE">APPOINT_DISPLAY_BASE</A><DD>Unit of measure for ACTIVITY_TIME column. Unit of measure for ACTIVITY_TIME column. The unit of measue of appoint_display column.
+<DT><A NAME="APPOINT_DISPLAY_UOM_CODE">APPOINT_DISPLAY_UOM_CODE</A><DD>APPOINT_DISPLAY in base unit.
+<DT><A NAME="APPOINT_DISPLAY_START_TIME">APPOINT_DISPLAY_START_TIME</A><DD>The start time of appointment view display.
+<DT><A NAME="POSTAL_SPLC_GID">POSTAL_SPLC_GID</A><DD>The Postal Standard Point Location Code for this Location.
+<DT><A NAME="RAIL_SPLC_GID">RAIL_SPLC_GID</A><DD>The Rail Standard Point Location Code for this Location.
+<DT><A NAME="RAIL_STATION_CODE_GID">RAIL_STATION_CODE_GID</A><DD>The Rail Station Code for this Location.
+<DT><A NAME="ERPC_GID">ERPC_GID</A><DD>The Eastern Region Presidents Commission Code for this Location.
+<DT><A NAME="RAIL_JUNCTION_CODE_GID">RAIL_JUNCTION_CODE_GID</A><DD>The Rail Junction Code for this Location.
+<DT><A NAME="SERVING_SERVPROV_PROFILE_GID">SERVING_SERVPROV_PROFILE_GID</A><DD>The Serving Service Provider Profile for this Location.
+<DT><A NAME="YARD_ROW_LABELS">YARD_ROW_LABELS</A><DD>Comma separated list of labels for rows in a yard.
+<DT><A NAME="YARD_SLOT_LABELS">YARD_SLOT_LABELS</A><DD>Comma separated list of labels for slots in a yard.
+<DT><A NAME="IS_TEMPLATE">IS_TEMPLATE</A><DD>identifies if locatio record is a template or represents physical location
+<DT><A NAME="DESCRIPTION">DESCRIPTION</A><DD>free text to capture different location types or classification like customer or vendor site, stores etc.
+<DT><A NAME="STANDING_APPT_CUTOFF_WINDOW">STANDING_APPT_CUTOFF_WINDOW</A><DD>It defines the cutoff window by which unbooked standing appointments to be released.
+<DT><A NAME="ALLOW_DRIVER_REST">ALLOW_DRIVER_REST</A><DD>Indicates if a driver is allowed to take a rest period at this location if he runs out of available HOS
+<DT><A NAME="IS_FIXED_ADDRESS">IS_FIXED_ADDRESS</A><DD>Y/N if address is only allowed to be edited by the UI.
+<DT><A NAME="IS_ACTIVE">IS_ACTIVE</A><DD>Used to activate or deactivate location. When the value is 'N', it can restrain user from planing order to or from the inactive location; from tendering shipment with inactive location.
+<DT><A NAME="ADDRESS_UPDATE_DATE">ADDRESS_UPDATE_DATE</A><DD>Date on which the details -CITY,COUNTRY,PROVINCE,PROVINCE_CODE,POSTAL_CODE are modified.RPLS checks this date before it starts screening.
+<DT><A NAME="ATTRIBUTE_DATE11">ATTRIBUTE_DATE11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Date
+<DT><A NAME="ATTRIBUTE_DATE12">ATTRIBUTE_DATE12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Date
+<DT><A NAME="ATTRIBUTE_DATE13">ATTRIBUTE_DATE13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Date
+<DT><A NAME="ATTRIBUTE_DATE14">ATTRIBUTE_DATE14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Date
+<DT><A NAME="ATTRIBUTE_DATE15">ATTRIBUTE_DATE15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Date
+<DT><A NAME="ATTRIBUTE_DATE16">ATTRIBUTE_DATE16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Date
+<DT><A NAME="ATTRIBUTE_DATE17">ATTRIBUTE_DATE17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Date
+<DT><A NAME="ATTRIBUTE_DATE18">ATTRIBUTE_DATE18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Date
+<DT><A NAME="ATTRIBUTE_DATE19">ATTRIBUTE_DATE19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Date
+<DT><A NAME="ATTRIBUTE_DATE20">ATTRIBUTE_DATE20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Date
+<DT><A NAME="ATTRIBUTE_NUMBER11">ATTRIBUTE_NUMBER11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Number
+<DT><A NAME="ATTRIBUTE_NUMBER12">ATTRIBUTE_NUMBER12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Number
+<DT><A NAME="ATTRIBUTE_NUMBER13">ATTRIBUTE_NUMBER13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Number
+<DT><A NAME="ATTRIBUTE_NUMBER14">ATTRIBUTE_NUMBER14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Number
+<DT><A NAME="ATTRIBUTE_NUMBER15">ATTRIBUTE_NUMBER15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Number
+<DT><A NAME="ATTRIBUTE_NUMBER16">ATTRIBUTE_NUMBER16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Number
+<DT><A NAME="ATTRIBUTE_NUMBER17">ATTRIBUTE_NUMBER17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Number
+<DT><A NAME="ATTRIBUTE_NUMBER18">ATTRIBUTE_NUMBER18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Number
+<DT><A NAME="ATTRIBUTE_NUMBER19">ATTRIBUTE_NUMBER19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Number
+<DT><A NAME="ATTRIBUTE_NUMBER20">ATTRIBUTE_NUMBER20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type as Number
+</DL>
+</BODY>
+</HTML>

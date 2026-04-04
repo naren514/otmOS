@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<TITLE>Data Dictionary</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Data Dictionary</H1>
+<TABLE BORDER="0">
+<TR><TD COLSPAN="5"><A NAME="OBJECT_LOCK"><STRONG><FONT SIZE="+1">OBJECT_LOCK</FONT></STRONG></A>&nbsp;&nbsp;<A HREF="index-defs_OBJECT_LOCK.html" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A></TD>
+<TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>LOCK_TYPE&nbsp;&nbsp;<A HREF="index-defs_OBJECT_LOCK.html#LOCK_TYPE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(300)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>OBJECT_ID&nbsp;&nbsp;<A HREF="index-defs_OBJECT_LOCK.html#OBJECT_ID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(300)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>OWNER_MACHINE_GID&nbsp;&nbsp;<A HREF="index-defs_OBJECT_LOCK.html#OWNER_MACHINE_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_APP_MACHINE.html">APP_MACHINE</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>OWNED_SINCE&nbsp;&nbsp;<A HREF="index-defs_OBJECT_LOCK.html#OWNED_SINCE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ACTIVITY&nbsp;&nbsp;<A HREF="index-defs_OBJECT_LOCK.html#ACTIVITY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(500)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LOG_PROCESS_ID&nbsp;&nbsp;<A HREF="index-defs_OBJECT_LOCK.html#LOG_PROCESS_ID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>OWNER_SEQUENCE</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>PARTITION_KEY</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Index:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4">IDX_OBJECT_LOCK_OWNR_SEQ (OWNER_SEQUENCE)</TD></TR>
+</TABLE></BODY>
+</HTML>

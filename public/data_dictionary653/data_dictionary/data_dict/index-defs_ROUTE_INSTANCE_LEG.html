@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ROUTE_INSTANCE_LEG</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ROUTE_INSTANCE_LEG</H1>
+<DL>
+<DT><A NAME="LEG_NUM">LEG_NUM</A><DD>Number must be unique, in sequence with no gap.
+<DT><A NAME="START_REGION_GID">START_REGION_GID</A><DD>Copied over from Route Template Leg.  Region must have a representative location.
+<DT><A NAME="START_DIST_THRESHOLD">START_DIST_THRESHOLD</A><DD>Distance threshold from representative location of start region.
+<DT><A NAME="END_REGION_GID">END_REGION_GID</A><DD>Copied over from Route Template Leg.  Region must have a representative location.
+<DT><A NAME="END_DIST_THRESHOLD">END_DIST_THRESHOLD</A><DD>Distance threshold from representative location of end region.
+<DT><A NAME="EARLY_DEPARTURE_TIME">EARLY_DEPARTURE_TIME</A><DD>Based on timezone for representative location from Start Region.
+<DT><A NAME="LATE_DEPARTURE_TIME">LATE_DEPARTURE_TIME</A><DD>Based on timezone for representative location from Start Region.
+<DT><A NAME="EARLY_ARRIVAL_TIME">EARLY_ARRIVAL_TIME</A><DD>Based on timezone for representative location from End Region.
+<DT><A NAME="LATE_ARRIVAL_TIME">LATE_ARRIVAL_TIME</A><DD>Based on timezone for representative location from End Region.
+<DT><A NAME="EQUIP_GROUP_PROFILE_GID">EQUIP_GROUP_PROFILE_GID</A><DD>This field overrides EQUIPMENT_GROUP_PROFILE_GID on Instance Header level (ROUTE_INSTANCE table)
+<DT><A NAME="TIME_PHASED_PLN_THRSH">TIME_PHASED_PLN_THRSH</A><DD>Time Phased Planning Threshold.  Copied over from Route Template Leg.  If the difference between the system time and the Instance Leg's early pickup time is within this threshold, and if there is no shipment that falls within the regions of the Instance Leg, planning engine will look for shipments that are outside the region but within the distance theshold.
+<DT><A NAME="ASSIGNMENT_TYPE">ASSIGNMENT_TYPE</A><DD>Indicate how well this shipment is assigned to the Route Instance Leg from a geographical point of view.  "MOST SPECIFIC": within the regions on Leg;  "WITHIN THRESHOLD": outside the regions, but within thresholds;  "NON STANDARD": outside the regions and outside the thresholds.
+<DT><A NAME="ASSIGNMENT_SOURCE">ASSIGNMENT_SOURCE</A><DD>"SYSTEM": assignment of shipment to leg was made by Bulk Plan or Build Shipment Direct;  "MANUAL": assignment of shipment to leg was made via manual action.
+<DT><A NAME="DOMAIN_PROFILE_GID">DOMAIN_PROFILE_GID</A><DD>Copied over from Route Template Leg.  If this field is not null, only a shipment/order in the domain that is contained in this profile can be matched to this Leg.
+</DL>
+</BODY>
+</HTML>

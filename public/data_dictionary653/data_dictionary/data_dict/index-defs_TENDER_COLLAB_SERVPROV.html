@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - TENDER_COLLAB_SERVPROV</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - TENDER_COLLAB_SERVPROV</H1>
+This table contains the information for various service providers to whom the tender collaboration record was sent. In the case of normal tenders there is one record in this table matching to the tender collaboration record. However for broadcast and spot tenders there are multiple (n) records in this table for every tender collaboration record.<P>
+<DL>
+<DT><A NAME="I_TRANSACTION_NO">I_TRANSACTION_NO</A><DD>Foreign key to Tender Collaboration
+<DT><A NAME="SERVPROV_GID">SERVPROV_GID</A><DD>The service provider who received the tender or for spot bidding, the service provider spot bid
+<DT><A NAME="TRANSACTION_TIME">TRANSACTION_TIME</A><DD>The date of the tender collaboration either tender sent, accept, withdrawal, etc or the last tender spot bid
+<DT><A NAME="ACCEPTANCE_CODE">ACCEPTANCE_CODE</A><DD>Either A for Tender Accept or D for Tender Decline
+<DT><A NAME="RESPONSE_COM_METHOD_GID">RESPONSE_COM_METHOD_GID</A><DD>The communication method used for the collaboration
+<DT><A NAME="RESPONDING_GL_USER_GID">RESPONDING_GL_USER_GID</A><DD>The gluser responding in the collaboration
+<DT><A NAME="DECLINE_REASON_CODE_GID">DECLINE_REASON_CODE_GID</A><DD>If decline, the reason for the tender decline
+<DT><A NAME="DISPATCH_LOCATION_GID">DISPATCH_LOCATION_GID</A><DD>The id of the contact of the service provider
+<DT><A NAME="BID_AMOUNT">BID_AMOUNT</A><DD>The amount of the bid indicated by this service provider
+<DT><A NAME="BID_AMOUNT_CURRENCY_GID">BID_AMOUNT_CURRENCY_GID</A><DD>The currency of the bid amount
+<DT><A NAME="BID_AMOUNT_BASE">BID_AMOUNT_BASE</A><DD>The amount of the bid indicated by this service provider in base units
+<DT><A NAME="INDICATOR">INDICATOR</A><DD>Indicator indicating whether or not this service provider has submitted a valid bid.  Values are R (red) and G(Green)
+<DT><A NAME="IS_WINNER">IS_WINNER</A><DD>Yes if service provider is the winner, no otherwise.  If traditional tender, this is set to Y if / when they accept the tender offer.
+<DT><A NAME="RESPONSE_I_TRANSACTION_NO">RESPONSE_I_TRANSACTION_NO</A><DD>store the i_transaction_no of in_bound i_transaction when tender response is sent through integration.
+<DT><A NAME="PICKUP_TIME">PICKUP_TIME</A><DD>Original value is from shipment, if servprov changes pickup time, it is stored in this column.
+<DT><A NAME="TENDER_COM_METHOD_GID">TENDER_COM_METHOD_GID</A><DD>Record the com method used in tender notification.
+</DL>
+</BODY>
+</HTML>

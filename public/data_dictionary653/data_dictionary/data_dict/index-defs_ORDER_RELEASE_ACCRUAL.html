@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ORDER_RELEASE_ACCRUAL</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ORDER_RELEASE_ACCRUAL</H1>
+Stores allocated freight costs for accruals.<P>
+<DL>
+<DT><A NAME="ORDER_RELEASE_ACCRUAL_GID">ORDER_RELEASE_ACCRUAL_GID</A><DD>Unique Id for this accrual entry
+<DT><A NAME="ORDER_RELEASE_ACCRUAL_XID">ORDER_RELEASE_ACCRUAL_XID</A><DD>Unique Id for this accrual entry
+<DT><A NAME="ORDER_RELEASE_GID">ORDER_RELEASE_GID</A><DD>Order release id for which this accrual is related
+<DT><A NAME="SENT_DATE">SENT_DATE</A><DD>Timestamp of when this accrual was sent from GC3, null means it has not been sent yet.
+<DT><A NAME="FREIGHT_COST">FREIGHT_COST</A><DD>Total current allocated freight cost
+<DT><A NAME="FREIGHT_SENT_COST">FREIGHT_SENT_COST</A><DD>Total allocated freight cost already sent via the accrual interface.
+<DT><A NAME="IS_REVERSAL">IS_REVERSAL</A><DD>A flag to determine whether the Order Release Accrual is a reversal.
+<DT><A NAME="SHIPMENT_START_DATE">SHIPMENT_START_DATE</A><DD>The Shipment Start Date.
+<DT><A NAME="FREIGHT_COST_FN">FREIGHT_COST_FN</A><DD>functional currency amount for freight_cost
+<DT><A NAME="FREIGHT_SENT_C_FN">FREIGHT_SENT_C_FN</A><DD>functional currency amount for freight_sent_cost
+<DT><A NAME="DELTA">DELTA</A><DD>delta or difference for the accrual calculated as: new amount - amount previously sent
+<DT><A NAME="DELTA_FN">DELTA_FN</A><DD>functional currency amount for delta
+<DT><A NAME="COST_TYPE_GID">COST_TYPE_GID</A><DD>if line accruals are enabled, this will be populated with the cost type for the accrual line
+<DT><A NAME="ACCESSORIAL_CODE_GID">ACCESSORIAL_CODE_GID</A><DD>if line accruals are enabled, this will be populated with the accessorial id for the accrual line
+</DL>
+</BODY>
+</HTML>

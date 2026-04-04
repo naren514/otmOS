@@ -5,6 +5,8 @@ const nav = [
   { href: "/", label: "Home" },
   { href: "/orders", label: "Order Generator" },
   { href: "/edi", label: "EDI Explainer" },
+  { href: "/integration", label: "Integration Tools" },
+  { href: "/database", label: "Database Tools" },
   { href: "/qa", label: "OTM QA" },
 ];
 
@@ -13,8 +15,7 @@ export default function Shell({ title, children }: { title: string; children: Re
     <div className="shell">
       <aside className="sidebar">
         <div>
-          <div className="brand">otmOS Web</div>
-          <div className="muted">Vercel-friendly frontend</div>
+          <div className="brand">otmOS</div>
         </div>
         <nav className="nav">
           {nav.map((item) => (

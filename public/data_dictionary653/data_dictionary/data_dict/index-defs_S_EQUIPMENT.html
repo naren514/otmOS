@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - S_EQUIPMENT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - S_EQUIPMENT</H1>
+<DL>
+<DT><A NAME="S_EQUIPMENT_GID">S_EQUIPMENT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="S_EQUIPMENT_XID">S_EQUIPMENT_XID</A><DD>A system generated unique identifier for the shipment equipment (without the domain).
+<DT><A NAME="EQUIPMENT_INITIAL">EQUIPMENT_INITIAL</A><DD>Number identifying the equipment used, which is not represented by a record in GC3's  EQUIPMENT table (use EQUIPMENT_GID for that).
+<DT><A NAME="EQUIPMENT_NUMBER">EQUIPMENT_NUMBER</A><DD>Number identifying the equipment used, which is not represented by a record in GC3'S EQUIPMENT table (use EQUIPMENT_GID for that).
+<DT><A NAME="EQUIPMENT_TYPE_GID">EQUIPMENT_TYPE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="EQUIPMENT_GROUP_GID">EQUIPMENT_GROUP_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="EQUIPMENT_GID">EQUIPMENT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="WEIGHT_QUALIFIER">WEIGHT_QUALIFIER</A><DD>Indicates what the SCALE_WEIGHT and TARE_WEIGHT fields represent: Estimate, Net or Gross weight,
+<DT><A NAME="SCALE_WEIGHT">SCALE_WEIGHT</A><DD>Weight recorded by scale when equipment is loaded.
+<DT><A NAME="SCALE_WEIGHT_UOM">SCALE_WEIGHT_UOM</A><DD>Weight UOM for SCALE_WEIGHT
+<DT><A NAME="SCALE_WEIGHT_BASE">SCALE_WEIGHT_BASE</A><DD>Weight base.
+<DT><A NAME="TARE_WEIGHT">TARE_WEIGHT</A><DD>Weight of equipment when empty.
+<DT><A NAME="TARE_WEIGHT_UOM">TARE_WEIGHT_UOM</A><DD>Weight UOM for TARE_WEIGHT
+<DT><A NAME="TARE_WEIGHT_BASE">TARE_WEIGHT_BASE</A><DD>Tare weight base.
+<DT><A NAME="SCALE_LOCATION">SCALE_LOCATION</A><DD>Placeholder for scale location information.
+<DT><A NAME="SCALE_NAME">SCALE_NAME</A><DD>Placeholder for scale name information.
+<DT><A NAME="SCALE_TICKET">SCALE_TICKET</A><DD>Sequence ID printed on the scale ticket when weight is recorded.
+<DT><A NAME="INTERMODAL_EQUIP_LENGTH">INTERMODAL_EQUIP_LENGTH</A><DD>Specially formatted field that is required by the railroads, representing the length of the equipement.  It is in the format FtFtInIn, so 4803 would represent 48 feet, 3 inches.
+<DT><A NAME="SUBSTITUTE_EQUIPMENT_GROUP_GID">SUBSTITUTE_EQUIPMENT_GROUP_GID</A><DD>Equipment group substituted by carrier for this equipments
+<DT><A NAME="TYPE_ASSIGNMENT_CODE">TYPE_ASSIGNMENT_CODE</A><DD>Indicates the source of the EQUIPMENT_TYPE_GID
+<DT><A NAME="ASSIGNMENT_CODE">ASSIGNMENT_CODE</A><DD>Indicates the source of the EQUIPMENT_GID
+<DT><A NAME="PICK_SKU_GID">PICK_SKU_GID</A><DD>With PICK_SKU_QUANTITY_TYPE_GID, this identifies the pickup inventory bucket adjusted during equipment type assignment.
+<DT><A NAME="DROP_SKU_GID">DROP_SKU_GID</A><DD>With DROP_SKU_QUANTITY_TYPE_GID, this identifies the dropoff inventory bucket adjusted during equipment type assignment.
+<DT><A NAME="FLOOR_HEIGHT">FLOOR_HEIGHT</A><DD>Actual height of the platform or floor above the ground or the rail.
+<DT><A NAME="EMPTY_CG_HEIGHT">EMPTY_CG_HEIGHT</A><DD>When empty, indicates the height from Top of Rail to the Center of Gravity
+<DT><A NAME="DRY_CAPACITY">DRY_CAPACITY</A><DD>The maximum interior capacity of the equipment
+<DT><A NAME="LIQUID_CAPACITY">LIQUID_CAPACITY</A><DD>The number of gallons the equipment will hold
+<DT><A NAME="CALCULATED_GROSS_WT">CALCULATED_GROSS_WT</A><DD>The actual sum of the cargo plus the actual tare weight. A calculated version of a scale weight. 
+<DT><A NAME="ACTUAL_LOAD_LIMIT">ACTUAL_LOAD_LIMIT</A><DD>The maximum permissible weight of the commodity that can be loaded into the equipment.
+<DT><A NAME="ACTUAL_LENGTH">ACTUAL_LENGTH</A><DD>The inside length of the actual equipment from end to end inside walls, linings, and permanent bulkheads
+<DT><A NAME="ACTUAL_WIDTH">ACTUAL_WIDTH</A><DD>The inside width of the actual equipment from side walls and linings
+<DT><A NAME="ACTUAL_HEIGHT">ACTUAL_HEIGHT</A><DD>The inside height of the actual equipment from the floor to the lowest point of the interior ceiling
+</DL>
+</BODY>
+</HTML>

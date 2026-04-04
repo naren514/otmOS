@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - AGENT_ACTION</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - AGENT_ACTION</H1>
+<DL>
+<DT><A NAME="AGENT_ACTION_GID">AGENT_ACTION_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="AGENT_ACTION_XID">AGENT_ACTION_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="DATA_QUERY_TYPE_GID">DATA_QUERY_TYPE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="HELP_DESCRIPTION">HELP_DESCRIPTION</A><DD>Non-editable help for the action that is delivered as part of GC3.
+<DT><A NAME="COMPATIBLE_AGENT_EVENT_CLASS">COMPATIBLE_AGENT_EVENT_CLASS</A><DD>The event class with which the the action is compatible.
+<DT><A NAME="IS_PRE_PERSISTENCE_COMPATIBLE">IS_PRE_PERSISTENCE_COMPATIBLE</A><DD>Indicates whether the action is compatible with pre-persistence lifetime events.
+<DT><A NAME="IS_POST_PERSISTENCE_COMPATIBLE">IS_POST_PERSISTENCE_COMPATIBLE</A><DD>Indicates whether the action is compatible with post-persistence lifetime  events.
+<DT><A NAME="IS_POST_REMOVAL_COMPATIBLE">IS_POST_REMOVAL_COMPATIBLE</A><DD>Indicates whether the action is compatible with post removal lifetime events.
+<DT><A NAME="IS_LONG_RUNNING_TASK">IS_LONG_RUNNING_TASK</A><DD>If Y, this agent action is a long running task and should be monitored in the LONG_RUNNING_TASK table.
+<DT><A NAME="LRT_INTERRUPTABILITY">LRT_INTERRUPTABILITY</A><DD>Interruptability support: NONE = task cannot be interrupted; INTERRUPTIBLE = task can be interrupted, likely ending in a failure state; RESUBMITTABLE: task can be resubmitted into it's origin queue for handling by another machine 
+<DT><A NAME="LRT_INTERRUPT_ON_SQL">LRT_INTERRUPT_ON_SQL</A><DD>If 'Y', a task interruption will force the next SQL statement to fail.
+</DL>
+</BODY>
+</HTML>

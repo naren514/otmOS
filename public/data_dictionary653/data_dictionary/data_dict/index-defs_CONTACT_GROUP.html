@@ -1,0 +1,13 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - CONTACT_GROUP</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - CONTACT_GROUP</H1>
+The contact_group table associates individual person contacts to a group contact (nonperson).  By creating this association, it allows settings of attributes such as interest in particular event notifications to be set at the group level, so that is does not need to be set at the individual level.<P>
+<DL>
+<DT><A NAME="GROUP_CONTACT_GID">GROUP_CONTACT_GID</A><DD>Valid only if contact_type = 'GROUP'.  This is a non-person contact which is used to group individuals together who share interest in notifications, etc.
+<DT><A NAME="CONTACT_GID">CONTACT_GID</A><DD>The contact_gid references a person contact which will inherit notifications, etc. from it's contact group.  A contact may belong to more than one contact_group.
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - EXT_RE_FIELDSET</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - EXT_RE_FIELDSET</H1>
+<DL>
+<DT><A NAME="EXT_RE_FIELDSET_GID">EXT_RE_FIELDSET_GID</A><DD>Identifies the fieldset
+<DT><A NAME="VALID_EXTERNAL_ENGINE_GID">VALID_EXTERNAL_ENGINE_GID</A><DD>Identifies the external rating engine that can utilize this particular fieldset
+<DT><A NAME="CONNECTION_TYPE">CONNECTION_TYPE</A><DD>Defines the type of transport mechanism used.  In this case, S = Socket, J = javaclass, W= web service which implements REXPublicExternalInterface.java  Other mechanisms may be supported in future iterations.
+<DT><A NAME="FIELD_FORMAT">FIELD_FORMAT</A><DD>Defines the field format type.  V = variable, delimited.  F = fixed
+<DT><A NAME="FIELD_DELIMITER">FIELD_DELIMITER</A><DD>Defines the string used to separate fields in the output stream.  No fixed width.
+<DT><A NAME="INCLUDE_RBI_GID">INCLUDE_RBI_GID</A><DD>Specifies whether or not to include the RBI gid in the output stream.
+<DT><A NAME="JAVA_CLASS">JAVA_CLASS</A><DD>Specifies the unqualified name of the java class which will implement the link to the external rating engine.
+<DT><A NAME="CONNECTION_PROPERTY">CONNECTION_PROPERTY</A><DD>Defines the base property name for a fieldset.  All properties used by a fieldset will be prepended with "glog.rate.RateEngine."  The socket connection type requires two properties: glog.rate.RateEngine.<property>.URL and glog.rate.RateEngine.<property>.port
+<DT><A NAME="EXTERNAL_SYSTEM_GID">EXTERNAL_SYSTEM_GID</A><DD>This flag would specify the external system that needs to be used for rating.
+</DL>
+</BODY>
+</HTML>

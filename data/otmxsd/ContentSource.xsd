@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://xmlns.oracle.com/apps/otm/cs/v1" 
+		targetNamespace="http://xmlns.oracle.com/apps/otm/cs/v1" 
+        xmlns:types="http://xmlns.oracle.com/apps/otm/types/v1" 
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0">
+		
+	<xsd:import namespace="http://xmlns.oracle.com/apps/otm/types/v1" schemaLocation="Common.xsd"/>
+	
+	<xsd:element name="ContentSourceRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+         	    <xsd:element name="ContentSourceGid" type="types:Gid" minOccurs="0"/>	       
+         	    <xsd:element name="SubscriptionName" type="xsd:string"/>
+         	    <xsd:element name="SubscriptionReferenceId" type="xsd:string"/>
+         	    <xsd:element name="LastTransactionId" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+            <xsd:attribute name="schemaVersion" use="required" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+	
+ 	<xsd:element name="ContentSourceResponse"> 	
+   	    <xsd:complexType>
+   	        <xsd:sequence>
+   		        <xsd:element name="ResponseHeader" minOccurs="0">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="LastExternalSequenceId" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                   </xsd:complexType>
+                </xsd:element>	       
+       		    <xsd:element ref="Content" minOccurs="0"/>
+   	        </xsd:sequence>
+   	        <xsd:attribute name="schemaVersion" use="required" type="xsd:string"/>
+   	    </xsd:complexType>
+    </xsd:element>
+	
+	<xsd:element name="Content" type="xsd:anyType"/>
+	
+	<xsd:element name="ContentSourceAck">	
+      	<xsd:complexType>
+      	    <xsd:sequence>	       
+      		    <xsd:element ref="ContentAck" minOccurs="0"/>
+      	    </xsd:sequence>
+      	    <xsd:attribute name="schemaVersion" use="required" type="xsd:string"/>
+      	</xsd:complexType>
+    </xsd:element>	
+	
+	<xsd:element name="ContentAck" type="xsd:anyType"/>	
+	
+</xsd:schema>

@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - TENDER_COLLABORATION</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - TENDER_COLLABORATION</H1>
+This tables stores the shipment tender information. Among other things, it contains the service provider name, expected response time and the actual response (Accepted/ Declined) from the service provider.<P>
+<DL>
+<DT><A NAME="SHIPMENT_GID">SHIPMENT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="TENDER_TYPE">TENDER_TYPE</A><DD>Defines the type of tender. Values are 'Ordinary', 'Broadcast Tender', and 'Spot Bid'
+<DT><A NAME="ORIGIN_LOCATION">ORIGIN_LOCATION</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="DESTINATION_LOCATION">DESTINATION_LOCATION</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="RATE_GEO_GID">RATE_GEO_GID</A><DD>References the rate record that that is associated with the tender.
+<DT><A NAME="PLANNED_COST">PLANNED_COST</A><DD>Copied planning cost from shipment.
+<DT><A NAME="PLANNED_COST_BASE">PLANNED_COST_BASE</A><DD>Copied planning cost from shipment in base units.
+<DT><A NAME="PLANNED_COST_CURRENCY_GID">PLANNED_COST_CURRENCY_GID</A><DD>Unit of measure for the planned cost.
+</DL>
+</BODY>
+</HTML>

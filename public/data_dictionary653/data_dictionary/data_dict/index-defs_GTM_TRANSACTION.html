@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - GTM_TRANSACTION</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - GTM_TRANSACTION</H1>
+Trade transaction. It also references a transportion object such as order release or shipment.<P>
+<DL>
+<DT><A NAME="GTM_DECLARATION_TYPE_GID">GTM_DECLARATION_TYPE_GID</A><DD>This field represents declaration type ID accross all domains. Which is a foreign key to GTM_DECLARATION_TYPE table.
+<DT><A NAME="REQ_BS_STATUS_GROUP_GID">REQ_BS_STATUS_GROUP_GID</A><DD>This column referns to the Status Group of the request status of custom filing of a declaration. Which is a foreign key to the BS_STATUS_GROUP table.
+<DT><A NAME="REQ_BS_STATUS_CODE_GID">REQ_BS_STATUS_CODE_GID</A><DD>This column refers to the Status Code of the request for customs fliling of a declaration. Which is a foreign key to the BS_STATUS_CODE table.
+<DT><A NAME="RESP_BS_STATUS_GROUP_GID">RESP_BS_STATUS_GROUP_GID</A><DD>This column referns to the Status Group of the response status received after custom filing of a declaration. Which is a foreign key to the BS_STATUS_GROUP table.
+<DT><A NAME="RESP_BS_STATUS_CODE_GID">RESP_BS_STATUS_CODE_GID</A><DD>This column refers to the Status Code of the response received after customs fliling of a declaration. Which is a foreign key to the BS_STATUS_CODE table.
+<DT><A NAME="GTM_DECL_S_TYPE_GID">GTM_DECL_S_TYPE_GID</A><DD>This field represents Declaration Sub Type ID. It is foreign key reference to GTM_DECL_S_TYPE table. 
+<DT><A NAME="GTM_TRADE_PREFERENCE_GID">GTM_TRADE_PREFERENCE_GID</A><DD>This field represents the Trade Preference ID. It is foreign key reference to GTM_TRADE_PREFERENCE table. 
+<DT><A NAME="GTM_PROCEDURE_GID">GTM_PROCEDURE_GID</A><DD>Procedure GID 
+<DT><A NAME="GTM_PRIOR_PROCEDURE_GID">GTM_PRIOR_PROCEDURE_GID</A><DD>Prior Procedure GID 
+<DT><A NAME="GTM_PROCEDURE_DETAIL_GID">GTM_PROCEDURE_DETAIL_GID</A><DD>Procedure Detail GID 
+<DT><A NAME="EXCHANGE_RATE_GID">EXCHANGE_RATE_GID</A><DD>This field represents Exchange Rate ID to be used for value conversion while preparing the declaration. It is foreign key reference to EXCHANGE_RATE table. 
+<DT><A NAME="EXCHANGE_RATE_DATE">EXCHANGE_RATE_DATE</A><DD>This field represents Exchange Rate date to be used for value conversion while preparing the declaration.
+<DT><A NAME="CURRENCY_GID">CURRENCY_GID</A><DD>This field represents currency in which values should be sent for filing. It is foreign key reference to CURRENCY table. 
+<DT><A NAME="LOGIC_CONFIG_GID">LOGIC_CONFIG_GID</A><DD>This field describes declaration configuration details that were used to build declaration from transactions or transaction lines.
+<DT><A NAME="INLAND_CONVEYANCE_NAME">INLAND_CONVEYANCE_NAME</A><DD>This field represents inland conveyance name.
+<DT><A NAME="INLAND_CONVEYANCE_FLAG">INLAND_CONVEYANCE_FLAG</A><DD>This field represents inland conveyance flag.
+<DT><A NAME="INLAND_TRANSPORT_MODE_GID">INLAND_TRANSPORT_MODE_GID</A><DD>This field represents inland transport mode. Which is a foreign key to TRANSPORT_MODE table.
+<DT><A NAME="DEPARTURE_CONVEYANCE_NAME">DEPARTURE_CONVEYANCE_NAME</A><DD>This field represents departure conveyance name.
+<DT><A NAME="DEPARTURE_CONVEYANCE_FLAG">DEPARTURE_CONVEYANCE_FLAG</A><DD>This field represents departure conveyance flag.
+<DT><A NAME="DEPART_TRANSPORT_MODE_GID">DEPART_TRANSPORT_MODE_GID</A><DD>This field represents departure transport mode. Which is a foreign key to TRANSPORT_MODE table.
+<DT><A NAME="GTM_VALUATION_METHOD_GID">GTM_VALUATION_METHOD_GID</A><DD>Valuation Method ID
+</DL>
+</BODY>
+</HTML>

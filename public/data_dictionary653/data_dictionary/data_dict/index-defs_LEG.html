@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - LEG</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - LEG</H1>
+The leg defines the path between the source and destination. It identifies other constraints like mode of transportation (only trucks allowed, air mode etc.)<P>
+<DL>
+<DT><A NAME="LEG_GID">LEG_GID</A><DD>LEG_GID contains the unique identifier for the leg.
+<DT><A NAME="LEG_XID">LEG_XID</A><DD>LEG_XID contains the unique external identifier for the leg.
+<DT><A NAME="SOURCE_LOCATION_GID">SOURCE_LOCATION_GID</A><DD>SOURCE_LOCATION_GID contains the unique identifier for the source location for the leg.
+<DT><A NAME="DEST_LOCATION_PROFILE_GID">DEST_LOCATION_PROFILE_GID</A><DD>DEST_LOCATION_PROFILE_GID contains the unique identifier for the destination location profile for the leg.
+<DT><A NAME="DEST_LOCATION_RADIUS">DEST_LOCATION_RADIUS</A><DD>DEST_LOCATION_RADIUS contains the radius for the destination location for the leg.
+<DT><A NAME="DEST_LOCATION_RADIUS_UOM_CODE">DEST_LOCATION_RADIUS_UOM_CODE</A><DD>Unit of measure for DEST_LOCATION_RADIUS column.
+<DT><A NAME="DEST_LOCATION_RADIUS_BASE">DEST_LOCATION_RADIUS_BASE</A><DD>DEST_LOCATION_RADIUS in base units.
+<DT><A NAME="CREATE_SINGLE_SHIPMENT">CREATE_SINGLE_SHIPMENT</A><DD>Flag indicating whether or not there should be one Shipment created per Equipment needed on this leg (N) or one Shipment for all Equipment needed on this leg (Y)
+<DT><A NAME="SOURCE_LOCATION_ROLE_GID">SOURCE_LOCATION_ROLE_GID</A><DD>SOURCE_LOCATION_ROLE_GID contains the unique identifier for the source location role for the leg.
+<DT><A NAME="DEST_LOCATION_GID">DEST_LOCATION_GID</A><DD>DEST_LOCATION_GID contains the unique identifier for the destination location for the leg.
+<DT><A NAME="DEST_LOCATION_ROLE_GID">DEST_LOCATION_ROLE_GID</A><DD>DEST_LOCATION_ROLE_GID contains the unique identifier for the destination location role for the leg.
+<DT><A NAME="SERVPROV_PROFILE_GID">SERVPROV_PROFILE_GID</A><DD>SERVPROV_PROFILE_GID contains the unique identifier for the service provider's profile for the leg.
+<DT><A NAME="EQUIPMENT_GROUP_PROFILE_GID">EQUIPMENT_GROUP_PROFILE_GID</A><DD>EQUIPMENT_GROUP_PROFILE_GID contains the unique identifier for the equipment group profile for the leg.
+<DT><A NAME="MODE_PROFILE_GID">MODE_PROFILE_GID</A><DD>MODE_PROFILE_GID contains the unique identifier for the mode profile for the leg.
+<DT><A NAME="QUALITY_FACTOR_PROFILE_GID">QUALITY_FACTOR_PROFILE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="EXPECTED_TRANSIT_TIME">EXPECTED_TRANSIT_TIME</A><DD>EXPECTED_TRANSIT_TIME contains the expected time for this leg of the shipment to take.
+<DT><A NAME="EXPECTED_TRANSIT_TIME_UOM_CODE">EXPECTED_TRANSIT_TIME_UOM_CODE</A><DD>Unit of measure for EXPECTED_TRANSIT_TIME column.
+<DT><A NAME="EXPECTED_TRANSIT_TIME_BASE">EXPECTED_TRANSIT_TIME_BASE</A><DD>EXPECTED_TRANSIT_TIME in base units.
+<DT><A NAME="EXPECTED_COST">EXPECTED_COST</A><DD>EXPECTED_COST contains the expected cost for the leg.
+<DT><A NAME="EXPECTED_COST_BASE">EXPECTED_COST_BASE</A><DD>EXPECTED_COST in base units.
+<DT><A NAME="EXPECTED_COST_CURRENCY_GID">EXPECTED_COST_CURRENCY_GID</A><DD>EXPECTED_COST_CURRENCY_GID contains the currency for the expected cost of the leg.
+<DT><A NAME="EQUIPMENT_ASSIGNMENT_TYPE">EQUIPMENT_ASSIGNMENT_TYPE</A><DD>Flag indicating how equipment groups are assigned for this Leg. A value of 'N' indicates that No Equipment will be used (i.e. it's loose freight), 'O' stands for Optimize Equipment (i.e. run through Container Optimization), and 'R' stands for Re-use Equipment from Previous Leg (or Optimize if no previous equipment is available).
+<DT><A NAME="RATE_OFFERING_GID">RATE_OFFERING_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RATE_GEO_GID">RATE_GEO_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="X_DOCK_LOCATION_GID">X_DOCK_LOCATION_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="HAZMAT_REGION_GID">HAZMAT_REGION_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="INTERMEDIARY_CORPORATION_GID">INTERMEDIARY_CORPORATION_GID</A><DD>A unique identier that represents the corporation that the location represents. The gid contains the domain portion.
+<DT><A NAME="RULE_11_INDICATOR">RULE_11_INDICATOR</A><DD>If not null  Identifies the Leg as being part of a rail rule_11 Itinerary segment and  determines if the shipment built from the Leg is tendered or not.
+<DT><A NAME="RAIL_INTER_MODAL_PLAN_GID">RAIL_INTER_MODAL_PLAN_GID</A><DD>This is the rail inter-modal plan gid.  I.e.) Plan 20 - door-to-door, Plan 25 - ramp-to-ramp, etc.
+<DT><A NAME="CUSTOMER_RATE_CODE">CUSTOMER_RATE_CODE</A><DD>This code signifies what rate is used on a  Leg, either 'C' for the Customer's rate, or 'S' for the Shipper's rate.
+<DT><A NAME="COFC_TOFC">COFC_TOFC</A><DD>Container-On-Flat-Car_Trailer-On-Flat-Car code used along with the Rail_Inter_Modal_Plan_gid to determine the  rate.
+<DT><A NAME="SERVPROV_ASSIGNMENT_TYPE">SERVPROV_ASSIGNMENT_TYPE</A><DD>Valid values are O and R, which stand for Optimize and Re-use.   "Optimize" will be the default and allow GC3 to work the way it does currently where it finds the best service provider for each leg.  "Re-use" will force GC3 to keep the same service provider on this leg that was used on the previous one.
+<DT><A NAME="PAYMENT_METHOD_CODE_GID">PAYMENT_METHOD_CODE_GID</A><DD>Payment method on leg which will be copied to the corresponding shipment.
+<DT><A NAME="VIA_SRC_LOC_PROFILE_GID">VIA_SRC_LOC_PROFILE_GID</A><DD>List of valid source VIA locations to evaluate in rating and routing.
+<DT><A NAME="VIA_DEST_LOC_PROFILE_GID">VIA_DEST_LOC_PROFILE_GID</A><DD>List of valid destination VIA locations to evaluate in rating and routing.
+<DT><A NAME="VIA_SRC_LOC_GID">VIA_SRC_LOC_GID</A><DD>Used when only a single VIA source location is valid, will be used in rating and routing.
+<DT><A NAME="VIA_DEST_LOC_GID">VIA_DEST_LOC_GID</A><DD>Used when only a single VIA destination location is valid, will be used in rating and routing.
+<DT><A NAME="PLAN_TO_OPERATIONAL_LOC">PLAN_TO_OPERATIONAL_LOC</A><DD>If Y, shipments for this leg should be planned to a specific operational location such as a terminal at a port
+<DT><A NAME="TRANS_ARB_SEARCH_TYPE">TRANS_ARB_SEARCH_TYPE</A><DD>Describes when to search for trans-shipment arbitraries
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - DM_TRANSACTION_LINEITEM</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - DM_TRANSACTION_LINEITEM</H1>
+It captures the chargeable days and cost for demurrage transaction. Example include for the PVT car, its possible that there are both storage and detention charges applied for a demurrage transaction.<P>
+<DL>
+<DT><A NAME="DM_TRANSACTION_SEQ_NO">DM_TRANSACTION_SEQ_NO</A><DD>DM_TRANSACTION_SEQ_NO contains the unique identifier for the demurrage transaction.
+<DT><A NAME="DM_TRANSACTION_LINEITEM_SEQ_NO">DM_TRANSACTION_LINEITEM_SEQ_NO</A><DD>DM_TRANSACTION_LINEITEM_SEQ_NO contains the unique identifier for the demurrage transaction lineitem.
+<DT><A NAME="SPECIAL_SERVICE_GID">SPECIAL_SERVICE_GID</A><DD>Determine the type of charge. Example could be Demurrage - Empty to Load. These are modeled as special services.
+<DT><A NAME="DWELL_DAYS">DWELL_DAYS</A><DD>length of time that elapsed from the moment a car reaches the destinations till its released.
+<DT><A NAME="CREDIT_DAYS">CREDIT_DAYS</A><DD>days that are free of charge
+<DT><A NAME="DEBIT_DAYS">DEBIT_DAYS</A><DD>dwell days offset by credit days
+<DT><A NAME="ADJUSTMENT_REASON_GID">ADJUSTMENT_REASON_GID</A><DD>Reason Code for adjusting the chargeable days or charges.
+<DT><A NAME="IS_SYSTEM_GENERATED">IS_SYSTEM_GENERATED</A><DD>Is the line item system generated.
+<DT><A NAME="RATE_OFFERING_GID">RATE_OFFERING_GID</A><DD>Rate Offering linked to demurrage line item. Its helps to determine demurrage charges.
+<DT><A NAME="RATE_GEO_GID">RATE_GEO_GID</A><DD>Rate Geo linked to demurrage transaction line item. Its helps to determine demurrage charges.
+<DT><A NAME="SHIPMENT_GID">SHIPMENT_GID</A><DD>Line item charges is linked as NFRC/demurrage charge shipment.
+<DT><A NAME="SECONDARY_CHARGE_RULE_GID">SECONDARY_CHARGE_RULE_GID</A><DD>secondary charge rule ID
+<DT><A NAME="CHARGE_TYPE">CHARGE_TYPE</A><DD>Charge type possible values are NFRC shipment, inbound shipment, outbound shipment and Secondary charge shipment.
+<DT><A NAME="COST">COST</A><DD>Line item Charges from the linked NFRC/Demurrage Charge Shipment.
+</DL>
+</BODY>
+</HTML>

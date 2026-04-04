@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - REPORT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - REPORT</H1>
+The REPORT table contains the list of standard and customized reports.  One record per report.<P>
+<DL>
+<DT><A NAME="REPORT_GID">REPORT_GID</A><DD>GC3 Global indetifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="REPORT_DESC">REPORT_DESC</A><DD>Report description.
+<DT><A NAME="REPORT_GROUP_GID">REPORT_GROUP_GID</A><DD>GC3 Global indetifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="DOMAIN_NAME">DOMAIN_NAME</A><DD>Domain of the User. Is used for creating the GID.
+<DT><A NAME="REPORT_XID">REPORT_XID</A><DD>GC3 Unique indetifier for the entity. Is used for creating the GID
+<DT><A NAME="REPORT_DISPLAY_NAME">REPORT_DISPLAY_NAME</A><DD>The name of the report that will appear in the GC3 application.
+<DT><A NAME="REPORT_PHYSICAL_NAME">REPORT_PHYSICAL_NAME</A><DD>The actual file name of the report.
+<DT><A NAME="ADDITIONAL_URL_ARGUMENTS">ADDITIONAL_URL_ARGUMENTS</A><DD>Contains any additional URL arguments that should be called when the report is called within the GC3 application.
+<DT><A NAME="CAN_AUTO_GENERATE">CAN_AUTO_GENERATE</A><DD>Specifies if the report can be included in a report set.  Generally only the reports that take a shipment_gid or order_base_gid as its parameter may only be set for auto generation.
+<DT><A NAME="SECURITY_LEVEL">SECURITY_LEVEL</A><DD>If a value is present, it specifies the security level when sending the report.  If no value is present, the default is taken from the properties file.
+<DT><A NAME="IS_RPT_MGR_DISPLAY">IS_RPT_MGR_DISPLAY</A><DD>Flag that defines whether this report will appear on the Report Manager screen or not.  Valid values are Y and N.
+<DT><A NAME="REPORT_FROM_DB">REPORT_FROM_DB</A><DD>Default database name on which the report should be run.
+<DT><A NAME="SEED_DATA">SEED_DATA</A><DD>Specifies if the Report is a seed data.
+<DT><A NAME="INSERT_USER">INSERT_USER</A><DD>For audit trail purposes. This field stores the id of the user who first entered the record.
+<DT><A NAME="INSERT_DATE">INSERT_DATE</A><DD>For audit trail purposes. This field stores the date and time when the record was first entered in the database.
+<DT><A NAME="UPDATE_USER">UPDATE_USER</A><DD>For audit trail purposes. This field stores the id of the user who last updated the record.
+<DT><A NAME="UPDATE_DATE">UPDATE_DATE</A><DD>For audit trail purposes. This field stores the date and time when the record was updated in the database.
+<DT><A NAME="USE_PARAMS_AS_BIND">USE_PARAMS_AS_BIND</A><DD>Flag to determine whether to build the report parameters into valid SQL value(s) to be used as bind values or to use the finder string value(s).
+<DT><A NAME="THIRD_PARTY_CONTENT_TYPE">THIRD_PARTY_CONTENT_TYPE</A><DD>Type of support for 3rd party report generation
+<DT><A NAME="USE_THIRD_PARTY_DISTRIBUTION">USE_THIRD_PARTY_DISTRIBUTION</A><DD>Flag to control whether a 3rd party is responsible for report distribution
+<DT><A NAME="REPORT_SYSTEM_GID">REPORT_SYSTEM_GID</A><DD>Report System generating the report. If left blank, embedded BI Publisher is used.
+<DT><A NAME="REPORT_PATH">REPORT_PATH</A><DD>The path of the report. Report systems use this path, along with a path prefix to determine which report to generate.
+<DT><A NAME="USE_PARAM_OPERATORS">USE_PARAM_OPERATORS</A><DD>Flag specifying whether finder operators should be used for report parameters. Note that this is independent of use_params_as_bind. That flag determines whether the report parses whatever arguments it receives and uses bind variables for queries. You can have a report that uses bind variables and finder operators, or one that uses concatenation without operators. 
+<DT><A NAME="DATA_QUERY_TYPE_GID">DATA_QUERY_TYPE_GID</A><DD>Data query type associated with the report. Used for optional document storage.
+</DL>
+</BODY>
+</HTML>

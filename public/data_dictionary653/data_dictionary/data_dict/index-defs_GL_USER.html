@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - GL_USER</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - GL_USER</H1>
+This table stores the GC3 users and their passwords. It also links to the USERS table to provide the U_NAME to get to Web Logic.<P>
+<DL>
+<DT><A NAME="GL_USER_GID">GL_USER_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="GL_USER_XID">GL_USER_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="GL_ACCOUNT_POLICY_GID">GL_ACCOUNT_POLICY_GID</A><DD>The account policy the user is associated with (defines rules for passwords, etc.)
+<DT><A NAME="PW_EXPIRATION_DATE">PW_EXPIRATION_DATE</A><DD>The date the current password will expire.
+<DT><A NAME="ACCOUNT_LOCKOUT_TIME">ACCOUNT_LOCKOUT_TIME</A><DD>Determines the time that the account was locked out, due to invalid password attempts.
+<DT><A NAME="DOCUMENT_USE_PROFILE_GID">DOCUMENT_USE_PROFILE_GID</A><DD>Profile defining document upload and view for this user. Overrides use profile for the domain.
+<DT><A NAME="IS_RESERVED">IS_RESERVED</A><DD>If Y, the user is reserved by OTM: it cannot be deleted and it's user role is unmutable.
+<DT><A NAME="FORCE_PASSWORD_RESET">FORCE_PASSWORD_RESET</A><DD>If Y, the user must reset his password on the next login
+<DT><A NAME="AUTO_APPROVE_RULE_PROFILE_GID">AUTO_APPROVE_RULE_PROFILE_GID</A><DD>Added to Link the user to a profile that establishes approval amounts by Transportation Mode
+<DT><A NAME="SALT">SALT</A><DD>This is a base 64 encoded randomly generated ID unique to each user for each new password.
+<DT><A NAME="HASH_ALG">HASH_ALG</A><DD>This is metadata used to identify the digest algorithm used to produce the encrypted password.
+<DT><A NAME="EFFECTIVE_DATE">EFFECTIVE_DATE</A><DD>User effective date
+<DT><A NAME="EXPIRATION_DATE">EXPIRATION_DATE</A><DD>user expiration date
+<DT><A NAME="IS_OBIEE">IS_OBIEE</A><DD>If 'Y', the user maps to an OBIEE LDAP user. Creation and removal of this user, along with any password modifications, should be delegated to OBIEE.
+</DL>
+</BODY>
+</HTML>

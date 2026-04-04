@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - AUTO_ASSIGN_CRITERIA</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - AUTO_ASSIGN_CRITERIA</H1>
+Content provided by GC3...maps the valid criteria that may be used to configure auto-assignment.  Also provides the information to the auto-assign engine to get the data from the business object.<P>
+<DL>
+<DT><A NAME="AUTO_ASSIGN_CRITERIA_GID">AUTO_ASSIGN_CRITERIA_GID</A><DD>Id for the criteria that GC3 can look at to decide on auto assignments
+<DT><A NAME="CRITERIA_TRANSLATION_GID">CRITERIA_TRANSLATION_GID</A><DD>Translation id for the auto assign criteria
+<DT><A NAME="DATA_TYPE1">DATA_TYPE1</A><DD>Data type of the field to show when the user creates a list of items for the component; may be S/B/I/N/D/G/U/C/P/H/L/F for String, Boolean, Integer, Number, Double, Gid, UOM, Char, Percentage, Geo Hierarchy, Drop-down list, Fixed Values.  If null, no field should be shown.
+<DT><A NAME="GID_QUERY_CLASS1">GID_QUERY_CLASS1</A><DD>Query class to use if DATA_TYPE is a finder
+<DT><A NAME="VALID_VALUE_TYPE1_GID">VALID_VALUE_TYPE1_GID</A><DD>If DATA_TYPE is F, indicates the key for the set of fixed values to be displayed in a picklist
+<DT><A NAME="UOM_TYPE1">UOM_TYPE1</A><DD>Uom type to use if DATA_TYPE is a uom such as DISTANCE, CURRENCY, WEIGHT etc.
+<DT><A NAME="DATA_TYPE2">DATA_TYPE2</A><DD>Same as DATA_TYPE1, but may be used if there is a second field for a single piece of criteria
+<DT><A NAME="GID_QUERY_CLASS2">GID_QUERY_CLASS2</A><DD>Same as GID_QUERY_CLASS1, but may be used if there is a second field for a single piece of criteria
+<DT><A NAME="VALID_VALUE_TYPE2_GID">VALID_VALUE_TYPE2_GID</A><DD>Indicates the key for the set of fixed values to be displayed in a picklist
+<DT><A NAME="UOM_TYPE2">UOM_TYPE2</A><DD>Same as UOM_TYPE1, but may be used if there is a second field for a single piece of criteria
+<DT><A NAME="DATA_FIELD1">DATA_FIELD1</A><DD>Field in the implied business object to get the data for the component
+<DT><A NAME="DATA_FIELD2">DATA_FIELD2</A><DD>Same as DATA_FIELD1 but may be used if there is a second field for a single piece of criteria
+<DT><A NAME="JAVA_CLASS">JAVA_CLASS</A><DD>Java class to get the data for the component if it is not directly accessible by a field name in the implied business object
+<DT><A NAME="RESULT_HANDLER_CLASS">RESULT_HANDLER_CLASS</A><DD>Java class to handle checking the data from the business object against the list defined in the rule
+</DL>
+</BODY>
+</HTML>

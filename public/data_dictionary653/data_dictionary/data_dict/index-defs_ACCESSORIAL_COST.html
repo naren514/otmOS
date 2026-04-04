@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ACCESSORIAL_COST</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ACCESSORIAL_COST</H1>
+<DL>
+<DT><A NAME="ROUNDING_TYPE">ROUNDING_TYPE</A><DD>The type of rounding that will occur during rating.  Value are: N=no rounding,I=round to nearest interval,F=floor, and C=ceiling.
+<DT><A NAME="ROUNDING_INTERVAL">ROUNDING_INTERVAL</A><DD>Numbers will be rounded (or truncated) to the nearest increment of this value.
+<DT><A NAME="ROUNDING_FIELDS_LEVEL">ROUNDING_FIELDS_LEVEL</A><DD>Determines which kinds of fields will be affected by the rounding settings during costing.  Values are 0-7, where 0=all fields, 1=none, 2=numeric fields only, 3=unit fields (weight, etc.), 4=currency, 5=numeric and unit fields, 6=numeric and currency fields, and 7=unit and currency fields.
+<DT><A NAME="ROUNDING_APPLICATION">ROUNDING_APPLICATION</A><DD>Determines when to apply the rounding rules.  Values are A/N/C/O where A=always, N=never, C=conditionals only, and O=cost calculations only.
+<DT><A NAME="DEFICIT_CALCULATIONS_TYPE">DEFICIT_CALCULATIONS_TYPE</A><DD>When to apply deficit calculations. Values are Y/N/P where Y = Yes, N = No and P = Payant Pour
+<DT><A NAME="PAYMENT_METHOD_CODE_GID">PAYMENT_METHOD_CODE_GID</A><DD>payment method to apply to the shipment cost when the shipment action to apply payment terms is executed
+<DT><A NAME="IS_FILED_AS_TARIFF">IS_FILED_AS_TARIFF</A><DD>Indicates if this accessorial cost has been filed as tariff.  This is set to 'N' for new spot rates.  Users may wish to set up a saved query to notify users if this rate is used.
+<DT><A NAME="COST_TYPE">COST_TYPE</A><DD>Designates the type of the cost.  C = Charge, D = Discount, P = Profile, E = External, L = Logic Parameter
+<DT><A NAME="CALENDAR_ACTIVITY_GID">CALENDAR_ACTIVITY_GID</A><DD>Allows the user to select a calendar activity for the calendar validation test
+<DT><A NAME="RATE_UNIT_BREAK_PROFILE_GID">RATE_UNIT_BREAK_PROFILE_GID</A><DD>The main rate unit break profile
+<DT><A NAME="RATE_UNIT_BREAK_PROFILE2_GID">RATE_UNIT_BREAK_PROFILE2_GID</A><DD>The secondary rate unit break profile (cannot have a value if the main profile gid is null)
+<DT><A NAME="CHARGE_BREAK_COMPARATOR2_GID">CHARGE_BREAK_COMPARATOR2_GID</A><DD>The RBI used to lookup values in the secondary rate unit break profile
+<DT><A NAME="EXTERNAL_RATING_ENGINE_GID">EXTERNAL_RATING_ENGINE_GID</A><DD>For cost_type of E, specifies the external rating engine gid
+<DT><A NAME="EXT_RE_FIELDSET_GID">EXT_RE_FIELDSET_GID</A><DD>For external rating engine gids of type GENERIC, this specifies the fieldset used to call out to the external engine
+<DT><A NAME="COST_CODE_GID">COST_CODE_GID</A><DD>Tags a cost with an accessorial code.  This does not indicate that the cost is an accessorial.  It is a way of identifying groups of costs.
+<DT><A NAME="LOGIC_PARAM_QUAL_GID">LOGIC_PARAM_QUAL_GID</A><DD>For cost_type of L, specifies the logic parameter qualifier (of type Currency) which contains the cost value used as the charge multiplier.
+<DT><A NAME="IS_ACTIVE">IS_ACTIVE</A><DD>When 'N', indicates accessorial cost is inactive and should not be used.
+</DL>
+</BODY>
+</HTML>

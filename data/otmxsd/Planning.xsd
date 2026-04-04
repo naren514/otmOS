@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4" xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4" attributeFormDefault="unqualified"
+            elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:annotation>
+      <xsd:documentation>
+         Last modified .
+
+         Contains element, attribute and types definitions common to all Planning interfaces.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:include schemaLocation="TransmissionCommon.xsd"/>
+   <xsd:include schemaLocation="LocationContact.xsd"/>
+
+   <xsd:element name="Itinerary" type="ItineraryType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Interface to create an Itinerary which defines the path between two locations and constraints
+            that can be used to plan shipments.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="XLane" type="XLaneType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines a link from a source to a destination. The source and destination may specify either general or specific geography.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="Mileage" type="MileageType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Interface to define the distance between points for a particular lane.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="RouteTemplate" type="RouteTemplateType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Route Template represents the plan for a cooperative route. A cooperative route, at its very essence, is a linking of
+            lanes that have been identified to have sufficient recurring volume of shipments to form a good route for a fleet or
+            dedicated vehicle.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="BulkPlan" type="BulkPlanType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            This is used to provide statistics about the orders that were planned and the shipments that were
+            created during a given run of bulk plan.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="BulkRating" type="BulkRatingType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            This is used to provide statistics about shipments rated or distance calculated during a given run of bulk rating.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="BulkContMove" type="BulkContMoveType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            This is used to provide statistics about shipments that were selected and linked during a given run of bulk continuous moves.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="BulkTrailerBuild" type="BulkTrailerBuildType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            This is used to provide statistics about shipments groups that were created during a given run of bulk trailer build.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="FleetBulkPlan" type="FleetBulkPlanType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            This is used to provide statistics about the fleet resource assignments that were created to the planned shipments during a
+            given run of fleet bulk plan.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="ServiceTime" type="ServiceTimeType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Used to define the time it takes to go between the two locations of a Lane.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:complexType name="ItineraryType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The itinerary defines the path between two locations. It is described in terms of the legs.
+            An itinerary can have one or more legs, and consists of the constraints for developing the shipment.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionIn">
+            <xsd:sequence>
+               <xsd:element name="ItineraryGid" type="GLogXMLGidType"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0" />
+               <xsd:element name="ItineraryName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="MinWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The minimum amount of weight that a shipment must have before it can use this itinerary.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="MaxWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The maximum amount of weight that a shipment can have to use this itinerary.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="CorporationProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="CalendarGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Defines dates and times when an itinerary is valid.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="XLaneRef" type="XLaneRefType" minOccurs="0"/>
+               <xsd:element name="IsMultiStop" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Indicates that Pool - Crossdock Planning logic should be used inside bulk plan process.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Perspective" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TotalCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+               <xsd:element name="TotalTransitTime" type="GLogXMLDurationType" minOccurs="0"/>
+               <xsd:element name="UseDeconsolidationPool" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Indicates whether orders should be planned direct or through deconsolidation pools.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UseConsolidationPool" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Indicates whether orders should be planned direct or through consolidation pools.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="MinStopoffWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The minimum stopoff weight allowed for a multistop shipment.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="MaxPoolWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The highest weight allowed for shipments that use the pool.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="MaxDistBtwPickupStops" type="GLogXMLDistanceType" minOccurs="0"/>
+               <xsd:element name="MaxDistBtwDeliveryStops" type="GLogXMLDistanceType" minOccurs="0"/>
+               <xsd:element name="RadiusForPickupStops" type="GLogXMLDistanceType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The distance from any pickup stop to the bundle's source location cannot exceed this distance.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="RadiusPctForPickupStops" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The distance from any pickup stop to the source location divided by the distance cannot exceed this percentage.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="RadiusForDeliveryStops" type="GLogXMLDistanceType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The distance from any delivery stop to the bundle's destination location cannot exceed this distance.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="RadiusPctForDeliveryStops" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The distance from any delivery stop to the destination divided by the distance cannot exceed this percentage.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TotalStopsConstraint" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="PickupStopsConstraint" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="DeliveryStopsConstraint" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="MinTLWeightVolume" type="WeightVolumeType" minOccurs="0"/>
+               <xsd:element name="MinTLUsagePercentage" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Represents the minimum percentage of the truck that needs to be full to be considered for a multistop truckload move.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="MaxSmallDirectWeightVolume" type="WeightVolumeType" minOccurs="0"/>
+               <xsd:element name="MaxXDockWeightVolume" type="WeightVolumeType" minOccurs="0"/>
+               <xsd:element name="IsMatchConsolPoolToSource" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        If true, the pool logic matches orders to consolidation pools based on order's source locations.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsMatchDeconsolPoolToDest" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        If true, the pool logic matches orders to deconsolidation pools based on order's destination locations.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsDestBundlePreferred" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="HazmatModeGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="Rank" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsActive" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="ItineraryType" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsRule11" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IncoTermProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="DepotProfileGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Defines the lane and Source and/or Destination Locations that are added as stops on a shipment.
+                        The depot profile on the itinerary leg overrides the one on the itinerary.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PaymentMethodProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="ItineraryDetail" type="ItineraryDetailType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+               <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+               <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="ItineraryDetailType">
+      <xsd:annotation>
+         <xsd:documentation>Itinerary details. Contains references to path from source to destination.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string"/>
+         <xsd:element name="LegRef" type="LegRefType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LegRefType">
+      <xsd:annotation>
+         <xsd:documentation>LegRef specifies the Leg.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="LegGid" type="GLogXMLGidType"/>
+         <xsd:element name="Leg" type="LegType"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="LegType">
+      <xsd:annotation>
+         <xsd:documentation>
+            A Leg defines a destination for shipment activity on an itinerary and may establish requirements associated destination.
+            For example, you can associate scheduling priorities, intermediate stops, service providers, costs, commodities, and
+            modes of transport as requirements for a particular leg.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="LegGid" type="GLogXMLGidType"/>
+         <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+         <xsd:element name="LegName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SourceLocationRef" type="GLogXMLLocRefType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  For network routing, this defines the start throughpoint location for a network leg.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SourceLocationRoleGid" type="GLogXMLLocRoleType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  For network routing, this defines the start throughpoint location role for a network leg.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="DestinationLocationRef" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="DestLocationRoleGid" type="GLogXMLLocRoleType" minOccurs="0"/>
+         <xsd:element name="DestLocationProfileGid" type="GLogXMLLocProfileType" minOccurs="0"/>
+         <xsd:element name="DestLocationRadius" type="GLogXMLDistanceType" minOccurs="0"/>
+         <xsd:element name="DestRadiusEmphasis" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CreateSingleShipment" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsPrimary" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The primary leg obeys the constraints of order releases that use the itinerary.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ServiceProviderProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="EquipmentGroupProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ModeProfileGid" type="GLogXMLGidType"/>
+         <xsd:element name="ExpectedTransitTime" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="ExpectedCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="ArrangementResponsibility" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SchedulingPriority" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EquipmentAssignmentType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CalculateContractedRate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CalculateServiceTime" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RateOfferingGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RateGeoGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="XDockLocation" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="HazmatRegionGid" type="GLogXMLRegionGidType" minOccurs="0"/>
+         <xsd:element name="IntermediaryCorporationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="Rule11_Indicator" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RailInterModalPlanGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="CustomerRateCode" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="COFC_TOFC" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EquipGroupProfileSetGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ServiceProviderAssignmentType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="MaxLocationCount" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="AutoConsolidateType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="InterimPointOption" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RateServiceProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="PaymentMethodCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ViaSourceLocProfileGid" type="GLogXMLLocProfileType" minOccurs="0"/>
+         <xsd:element name="ViaDestLocProfileGid" type="GLogXMLLocProfileType" minOccurs="0"/>
+         <xsd:element name="ViaSourceLocationRef" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="ViaDestLocationRef" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="PlanToOperationalLocation" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsTemporary" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TransArbSearchType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LegClassificationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="UseConsol" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="InvolvedParty" type="InvolvedPartyType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="LegInterimPoint" type="LegInterimPointType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="LegSchedule" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the Trip schedules associated with leg.
+               </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="RepetitionScheduleGid" type="GLogXMLGidType"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="CapacityOverrideGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="LegType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RoutingNetworkGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="SourceRegionGid" type="GLogXMLRegionGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  For network routing, this defines the start region for a network leg.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="DestRegionGid" type="GLogXMLRegionGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  For network routing, this defines the end region for a network leg.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="LegConsolidationGroupGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  For network routing, this defines which leg consolidatoin group this leg belongs to.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="DepotProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="AllowCrossConsolidation" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LegInterimPointType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Contains the details of the intermediate locations within a specified leg.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string"/>
+         <xsd:element name="LocationRef" type="LocationRefType"/>
+         <xsd:element name="SpecialServiceGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="BulkTrailerBuildType">
+      <xsd:annotation>
+         <xsd:documentation>
+            This is used to provide statistics about shipments groups that were created during a given run of bulk trailer build.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionOut">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="BulkTrailerBuildGid" type="GLogXMLGidType"/>
+               <xsd:element name="QueryName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="StartTime" type="GLogDateTimeType" minOccurs="0"/>
+               <xsd:element name="EndTime" type="GLogDateTimeType" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsSelected" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsBuiltToGroups" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsNotInGroups" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentGroupsBuilt" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="MileageType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Use the Mileage element to specify the distance for a particular lane.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionIn">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="XLaneRef" type="XLaneRefType"/>
+               <xsd:element name="RateDistanceGid" type="GLogXMLGidType"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="Distance" type="DistanceType"/>
+               <xsd:element name="ServiceTime" type="ServiceTimeType" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="RouteTemplateType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Route Template represents the plan for a cooperative route.
+            A cooperative route, at its very essence, is a linking of lanes that have been identified to have sufficient recurring
+            volume of shipments to form a good route for a fleet or dedicated vehicle.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionIn">
+            <xsd:sequence>
+               <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0"/>
+               <xsd:element name="RouteTemplateGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0"/>
+               <xsd:element name="RouteTemplateHdr" type="RouteTemplateHdrType" minOccurs="0"/>
+               <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="InvolvedParty" type="InvolvedPartyType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Status" type="StatusType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="RouteTemplateLeg" type="RouteTemplateLegType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="RouteTemplateLegType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Route Template Leg represents a leg of the route for the plan for a cooperative route.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0"/>
+         <xsd:element name="RouteTemplateLegGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+         <xsd:element name="RouteTemplateLegHdr" type="RouteTemplateLegHdrType" minOccurs="0"/>
+         <xsd:element name="RouteTempLegLocIncompat" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the location incompatibilities for the route template leg.
+               </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="LocCompat" minOccurs="0" maxOccurs="unbounded">
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="LocationRef" type="LocationRefType"/>
+                           <xsd:element name="ActivityGid" type="GLogXMLGidType" minOccurs="0"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="RouteTempLegOrderCompat" minOccurs="0">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="RouteTempLegShipCompat" minOccurs="0">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="InvolvedParty" type="InvolvedPartyType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RouteTemplateHdrType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The RouteTemplateHdr contains general information about the route template.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="CreationSource" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsActive" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Perspective" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EffectiveDate" type="GLogDateTimeType"/>
+         <xsd:element name="ExpirationDate" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="StartDepotLocRef" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="EndDepotLocRef" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="ServiceProviderGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="EquipmentGroupProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="TransportModeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="NumInstances" type="xsd:string"/>
+         <xsd:element name="IsClosedLoop" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="AllowOverlappingShipments" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RouteTempStrategicInfo" type="RouteTempStrategicInfoType" minOccurs="0"/>
+         <xsd:element name="UserDefIconInfo" type="UserDefIconInfoType" minOccurs="0"/>
+         <xsd:element name="Indicator" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RouteTempStrategicInfoType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Specifies the route template strategic info.
+            The values are prepopulated from the cooperative route if the creation source is C.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="TotalDistance" type="GLogXMLDistanceType" minOccurs="0"/>
+         <xsd:element name="LoadedDistance" type="GLogXMLDistanceType" minOccurs="0"/>
+         <xsd:element name="DeadheadDistance" type="GLogXMLDistanceType" minOccurs="0"/>
+         <xsd:element name="DeadheadPct" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SavingsPerInstance" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="Duration" type="DurationType" minOccurs="0"/>
+         <xsd:element name="ConfidenceFactor" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RouteTemplateLegHdrType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The RouteTemplateLegHdr contains general information about the route template leg.
+            Note: When creating the RouteTemplateLeg, the StartRegionGid and EndRegionGid are required.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string"/>
+         <xsd:element name="EquipmentGroupProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="StartRegionGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="StartDistThreshold" type="GLogXMLDistanceType" minOccurs="0"/>
+         <xsd:element name="EndRegionGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="EndDistThreshold" type="GLogXMLDistanceType" minOccurs="0"/>
+         <xsd:element name="TimeWindowSec" type="TimeWindowSecType" minOccurs="0"/>
+         <xsd:element name="TimePhasedPlanThreshold" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="MinTimeToNextLeg" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="MaxTimeToNextLeg" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="MatchShipToLeg" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="WarnForMissingLeg" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="DomainProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="TimeWindowSecType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Specifies the time window in the number of seconds after midnight of day 1 of the week.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="EarlyDepartureTimeSec" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LateDepartureTimeSec" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EarlyArrivalTimeSec" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LateArrivalTimeSec" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="BulkPlanType">
+      <xsd:annotation>
+         <xsd:documentation>
+            This is used to provide statistics about the orders that were planned and the shipments that were
+            created during a given run of bulk plan.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionOut">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="BulkPlanGid" type="GLogXMLGidType"/>
+               <xsd:element name="Perspective" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="QueryName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="StartTime" type="GLogDateTimeType" minOccurs="0"/>
+               <xsd:element name="EndTime" type="GLogDateTimeType" minOccurs="0"/>
+               <xsd:element name="NumOfOrdersSelected" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfOrdersUnassigned" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfOrdersPlanned" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsBuilt" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOrdersPlannedFailed" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOrdersExcluded" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="PlanningParamSetGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="NumOrderMovementsSelected" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOrderMovementsUnassigned" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOrderMovementsPlanned" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOrderMovementsFailed" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOrderMovementsExcluded" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TotalCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+               <xsd:element name="TotalWeightVolume" type="GLogXMLWeightVolumeType" minOccurs="0"/>
+               <xsd:element name="TotalDistance" type="GLogXMLDistanceType" minOccurs="0"/>
+               <xsd:element name="TotalNumStops" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="BulkPlanByMode" type="BulkPlanByModeType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="BulkPlanPartition" type="BulkPlanPartitionType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="FleetBulkPlanType">
+      <xsd:annotation>
+         <xsd:documentation>
+            This is used to provide statistics about the fleet resource assignments that were created to the planned shipments during a
+            given run of fleet bulk plan.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionOut">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="FleetBulkPlanGid" type="GLogXMLGidType"/>
+               <xsd:element name="ShipmentQueryName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="ResourceQueryName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="StartTime" type="GLogDateTimeType" minOccurs="0"/>
+               <xsd:element name="EndTime" type="GLogDateTimeType" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsSelected" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfResourcesSelected" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="ResourceType" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsAssignable" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfResourcesAssignable" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfResourcesWithMultiAssign" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsAssigned" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfResourcesAssigned" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="PreShipCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+               <xsd:element name="AfterShipCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+               <xsd:element name="BobTailDist" type="GLogXMLDistanceType" minOccurs="0"/>
+               <xsd:element name="LoadedDist" type="GLogXMLDistanceType" minOccurs="0"/>
+               <xsd:element name="DeadHeadDist" type="GLogXMLDistanceType" minOccurs="0"/>
+               <xsd:element name="PlanningParamSetGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="FleetBulkPlanCost" type="FleetBulkPlanCostType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="FleetBulkPlanCostType">
+      <xsd:annotation>
+         <xsd:documentation>cost details of bulkplan assignment</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="CostCategoryGid" type="xsd:string"/>
+         <xsd:element name="PreCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="AfterCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="BulkRatingType">
+      <xsd:annotation>
+         <xsd:documentation>
+            This is used to provide statistics about shipments rated or distance calculated during a given run of bulk rating.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionOut">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="BulkRatingGid" type="GLogXMLGidType"/>
+               <xsd:element name="QueryName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="StartTime" type="GLogDateTimeType" minOccurs="0"/>
+               <xsd:element name="EndTime" type="GLogDateTimeType" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsSelected" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsRated" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsDistanced" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="BulkPlanByModeType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the bulk plan summary information broken down by transport mode.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="TransportModeGid" type="GLogXMLGidType"/>
+         <xsd:element name="NumOfOrdersPlanned" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOrderMovementsPlanned" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOfShipmentsBuilt" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TotalCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="TotalWeightVolume" type="GLogXMLWeightVolumeType" minOccurs="0"/>
+         <xsd:element name="TotalDistance" type="GLogXMLDistanceType" minOccurs="0"/>
+         <xsd:element name="TotalNumStops" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="BulkPlanPartitionType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the bulk plan summary information broken down by transport mode.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="PlanPartitionGid" type="GLogXMLGidType"/>
+         <xsd:element name="SubmitTime" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="StartTime" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="EndTime" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="NumOfOrdersSelected" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOfOrdersUnassigned" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOfOrdersPlanned" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOfShipmentsBuilt" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOrdersPlannedFailed" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOrderMovementsSelected" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOrderMovementsUnassigned" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOrderMovementsPlanned" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOrderMovementsFailed" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TotalCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="TotalWeightVolume" type="GLogXMLWeightVolumeType" minOccurs="0"/>
+         <xsd:element name="TotalDistance" type="GLogXMLDistanceType" minOccurs="0"/>
+         <xsd:element name="TotalNumStops" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="BulkPlanPartitionByMode" type="BulkPlanPartitionByModeType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="BulkPlanPartitionByModeType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the summary information for a bulk plan partition broken down by transport mode.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="TransportModeGid" type="GLogXMLGidType"/>
+         <xsd:element name="NumOfOrdersPlanned" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOfShipmentsBuilt" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NumOrderMovementsPlanned" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TotalCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="TotalWeightVolume" type="GLogXMLWeightVolumeType" minOccurs="0"/>
+         <xsd:element name="TotalDistance" type="GLogXMLDistanceType" minOccurs="0"/>
+         <xsd:element name="TotalNumStops" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ServiceTimeType">
+      <xsd:annotation>
+         <xsd:documentation>
+            When specified as part of a Mileage element, the TransactionCode and XLaneRef elements are ignored.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionIn">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="RateServiceGid" type="GLogXMLGidType"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+               <xsd:element name="XLaneRef" type="XLaneRefType" minOccurs="0"/>
+               <xsd:element name="Duration" type="DurationType" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="XLaneRefType">
+      <xsd:annotation>
+         <xsd:documentation>An XLaneRef is either a reference to an existing lane, or a new lane definition.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="XLaneGid" type="GLogXMLGidType"/>
+         <xsd:element name="XLane" type="XLaneType"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="XLaneType">
+      <xsd:annotation>
+         <xsd:documentation>
+            An XLane specifies a link from a source node to a destination node.
+            The source and destination nodes may specify either vague or specific geography.
+            For example, a source could be an exact location, or an entire state.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="XLaneGid" type="GLogXMLGidType"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+               <xsd:element name="XLaneSource" type="GLogXMLXLaneNodeType"/>
+               <xsd:element name="XLaneDest" type="GLogXMLXLaneNodeType"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="GLogXMLXLaneNodeType">
+      <xsd:sequence>
+         <xsd:element name="XLaneNode" type="XLaneNodeType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="XLaneNodeType">
+      <xsd:annotation>
+         <xsd:documentation>An XLaneNode is either a mileage address or region reference.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="MileageAddress" type="MileageAddressType"/>
+         <xsd:element name="RegionRef" type="RegionRefType"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="BulkContMoveType">
+      <xsd:annotation>
+         <xsd:documentation>
+            This is used to provide statistics about shipments that were selected and linked during a given run of bulk continuous moves.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionOut">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="BulkContMoveGid" type="GLogXMLGidType"/>
+               <xsd:element name="QueryName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="StartTime" type="GLogDateTimeType" minOccurs="0"/>
+               <xsd:element name="EndTime" type="GLogDateTimeType" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsSelected" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumOfShipmentsLinked" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+</xsd:schema>

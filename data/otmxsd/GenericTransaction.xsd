@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4"
+            xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4" attributeFormDefault="unqualified"
+            elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:annotation>
+      <xsd:documentation>
+         Last modified .
+
+         Contains element, attribute and types definitions for generic interfaces.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:include schemaLocation="TransmissionCommon.xsd"/>
+   <xsd:include schemaLocation="LocationContact.xsd"/>
+   <xsd:include schemaLocation="Shipment.xsd"/>
+   <xsd:include schemaLocation="Rate.xsd"/>
+   <xsd:include schemaLocation="Order.xsd"/>
+   <xsd:include schemaLocation="ShipUnit.xsd"/>
+
+   <xsd:element name="Topic" type="TopicType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Used to construct and trigger an agent workflow topic.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="GenericStatusUpdate" type="GenericStatusUpdateType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Updates properties - status, remark, reference number and indicator - for most business objects
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="RemoteQuery" type="RemoteQueryType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Used in a request/reply transaction to perform queries for rating or to retrieve object data.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="RemoteQueryReply" type="RemoteQueryReplyType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Contains the response to a RemoteQuery query transaction e.g. the requested object data.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="DataQuerySummary" type="DataQuerySummaryType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Sends a summary of the data required by an external system.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="TransactionAck" type="TransactionAckType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Used to acknowledge that a previous outbound Transaction has been received and/or processed.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:complexType name="TransactionAckType">
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionIn">
+            <xsd:sequence>
+               <xsd:element name="ReferencedSendReason" minOccurs="0">
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="ProcessControlRequestID" type="xsd:string">
+                           <xsd:annotation>
+                              <xsd:documentation>
+                                 A unique Id used to identify the Transaction for Notification Guaranteed Delivery.
+                              </xsd:documentation>
+                           </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="SendReasonGid" type="GLogXMLGidType">
+                           <xsd:annotation>
+                              <xsd:documentation>
+                                 SendReasonGid provides a code indicating the reason the notification/data/information
+                                 is being sent to the external system.
+                                 SendReasonGid references the SEND_REASON_CODE table.
+                              </xsd:documentation>
+                           </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="ObjectType" type="xsd:string"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="ITransactionNo" type="xsd:string"/>
+               <xsd:element name="SenderTransactionId" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the sender transaction id. Used as a reference for the Transaction (GLogXMLElement).
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="AckCode" type="xsd:string">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Code indicating the status of the acknowledgement. Possible values are A (Accept) or R (Reject)
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="AckReason" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="TopicType">
+      <xsd:annotation>
+         <xsd:documentation>
+            An example would be to initiate a Bulk Plan through the Integration interface after all the TransOrders
+            have been loaded.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionIn">
+            <xsd:sequence>
+               <xsd:element name="TopicAliasName" type="xsd:string"/>
+               <xsd:element name="TopicArg" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies arguments to be passed to the topic.
+                        These correspond to the 'CommandLine' parameters to the topic.
+                     </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="TopicArgName" type="xsd:string"/>
+                        <xsd:element name="TopicArgValue" type="xsd:string"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="GenericStatusUpdateType">
+      <xsd:annotation>
+         <xsd:documentation>
+            The object is identified within OTM using the Gid and SequenceNumber elements. The Gid is used to specify
+            primary key of the object(e.g. for SHIPMENT, this would be the
+            ShipmentGid). And the SequenceNumber is used in conjunction with the Gid element to identify the object
+            when the Gid is insufficient. For example, the S_SHIP_UNIT_LINE object has a S_SHIP_UNIT_LINE_NO field as
+            part of its primary key, so the SequenceNumber would correspond to the S_SHIP_UNIT_LINE_NO. Other objects
+            requiring the sequence number include the INVOICE_LINEITEM and SHIPMENT_STOP.
+
+            For the Refnum objects that have the qualifier and value as part of the primary key, the Transaction code
+            will indicate whether the new qualifier/value pair should be added (Insert), or used to replace all of the
+            current records with the same qualifier (Update). For example, the Shipment_Refnum table has a composite
+            primary key made up of the ShipmentGid, RefnumQualifier, and RefnumValue. Assume a Shipment has the
+            following ShipmentRefnum Qualifier/Value pairs in the system:
+            - CO/A-12345, CO/B-89387, CN/C-83920.
+            If a new refnum qualifier/value of CO/D-23849 is being sent in using the GenericStatusUpdate interface,
+            the change would be affected by the TransactionCode as follows:
+            i. TransactionCode = I The new refnum would be added, resulting in all of the following being
+            present in the table:
+            CO/A-12345, CO/B-89387, CN/C-83920, CO/D-23849
+            ii. TransactionCode = U The current refnums with the same qualifier would be deleted, and replaced
+            by the new one. In this case, the result would leave the following in the table:
+            CN/C-83920, CO/D-23849
+            The TransactionCode is only applicable for the Refnum and Remark elements. It is not used for the Status or
+            Indicator elements, which are only intended to be updated.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionIn">
+            <xsd:sequence>
+               <xsd:element name="GenericStatusObjectType" type="xsd:string">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to specify the type of object being updated. Possible values are:
+
+                        INVOICE_LINEITEM, INVOICE, LOCATION, OB_LINE, OB_ORDER_BASE, OB_SHIP_UNIT, ORDER_RELEASE,
+                        SHIPMENT, SHIPMENT_STOP, SHIP_GROUP, S_SHIP_UNIT, S_SHIP_UNIT_LINE, VOUCHER, SCHEDULE,
+                        CHARTER_VOYAGE, CLAIM_LINE_ITEM, CLAIM, CONSOL, ITEM, JOB, ORDER_RELEASE_LINE, DOCUMENT,
+                        CONTAINER_GROUP, DRIVER, DRIVER_TYPE, POWER_UNIT, POWER_UNIT_TYPE, OR_STOP, EQUIPMENT,
+                        EQUIPMENT_TYPE, WORK_INVOICE, SHIP_STATUS_SPCL_SERVICE, ORDER_MOVEMENT, CONTACT,
+                        GTM_TRANSACTION, GTM_TRANSACTION_LINE, GTM_REGISTRATION, GTM_STRUCTURE.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0"/>
+               <xsd:element name="Gid" type="GidType" minOccurs="0"/>
+               <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Status" type="StatusType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Indicator" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="RemoteQueryType">
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionIn">
+            <xsd:choice>
+               <xsd:element name="RIQQuery" type="RIQQueryType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        RIQQuery is the xml equivalent of the 'ask GLog' screen for rates.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ShipmentQuery" type="ShipmentQueryType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        ShipmentQuery provides a mechanism for 'pulling' a shipment xml document from GLog.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TransmissionReportQuery" type="TransmissionReportQueryType"/>
+               <xsd:element name="GenericQuery" type="GenericQueryType"/>
+               <xsd:element name="AppointmentQuery" type="AppointmentQueryType"/>
+               <xsd:element name="OrderRoutingRuleQuery" type="OrderRoutingRuleQueryType"/>
+            </xsd:choice>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="RemoteQueryReplyType">
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionOut">
+            <xsd:choice>
+               <xsd:element name="RIQQueryReply" type="RIQQueryReplyType"/>
+               <xsd:element name="ShipmentQueryReply" type="ShipmentQueryReplyType"/>
+               <xsd:element name="TransmissionReportQueryReply" type="TransmissionReportQueryReplyType"/>
+               <xsd:element name="GenericQueryReply" type="GenericQueryReplyType"/>
+               <xsd:element name="AppointmentQueryReply" type="AppointmentQueryReplyType"/>
+               <xsd:element name="OrderRoutingRuleReply" type="OrderRoutingRuleReplyType"/>
+            </xsd:choice>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="RIQQueryType">
+      <xsd:annotation>
+         <xsd:documentation>Rate Inquiry Input Information.
+            For ShipUnit used within RIQQuery, please only specify information in ShipUnitSpecGid, ShipUnitCount,
+            WeightVolume, LengthWidthHeight, DeclaredValue, FlexCommodityValue.
+
+            The OutXmlProfileGid is used to apply an outbound profile when the IncludeRefInfo element is Y.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="RIQRequestType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RateGroupGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="SourceAddress" type="MileageCorporationType" minOccurs="0"/>
+         <xsd:element name="SourceLocationProfileGid" type="GLogXMLLocProfileType" minOccurs="0"/>
+         <xsd:element name="DestAddress" type="MileageCorporationType"/>
+         <xsd:element name="StopLocation" minOccurs="0" maxOccurs="unbounded">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="LocationGid" type="GLogXMLGidType" minOccurs="0" />
+                    <xsd:element name="LegPosition" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Define where to insert this stop in a multi-stop situation . Validation: (L,F)
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="TransportModeGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="ServiceProviderGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="AccessorialCodeGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:choice minOccurs="0">
+            <xsd:element name="SpecialServiceGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="RIQQuerySpecialService" type="RIQQuerySpecialServiceType" minOccurs="0" maxOccurs="unbounded"/>
+         </xsd:choice>
+         <xsd:element name="EquipmentGroupGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="ShipmentRefnum" type="ShipmentRefnumType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="OrderRefnum" type="OrderRefnumType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="AvailableBy" type="AvailableByType" minOccurs="0"/>
+         <xsd:element name="DeliveryBy" type="DeliveryByType" minOccurs="0"/>
+         <xsd:element name="FlexCommodityQualifierGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="EquipmentGroupProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="EquipmentInitial" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EquipmentNumber" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="OrigCarrierGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="DelivCarrierGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RouteCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="Perspective" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsPreferred" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RateOfferingGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RateGeoGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RateServiceGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="UseRIQRoute" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CustomerDomain" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CustomerGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ForceTieredRating" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EstTieredRateNum" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IncoTermGid" type="GLogXMLGidType" minOccurs="0"/>
+		   <xsd:element name="IncoTermLocationText" type="xsd:string" minOccurs="0">
+	          <xsd:annotation>
+	             <xsd:documentation>
+	                Identifies the Inco Term Location Text.
+	             </xsd:documentation>
+	          </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IncludeRefInfo" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="OutXmlProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="IntPreferenceGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="CostCategorySetGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ShipUnit" type="ShipUnitType" maxOccurs="unbounded"/>
+         <xsd:element name="UseRIQRouteNR" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PortOfLoadLocationRef" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="PortOfDisLocationRef" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="VoyageGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="PrimaryOptionDefinition" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="MaxPrimaryOptions" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="MaxSupportingOptions" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PlanningParamSetGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="IsPrimaryOptionCentric" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="MaxOptionsPerRoute" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ItineraryProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RoutingConstraints" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Description:
+                  A grouping of constraints to be applied to the Order Release for query processing
+
+                  Elements:
+                  PortOfLoadLocation - (inbound) Specifies a list of Port Of Load locations
+                  PortOfDischargeLocation - (inbound) Specifies a list of Port Of Discharge locations
+
+               </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="PortOfLoadLocation" type="LocationRefType" minOccurs="0" maxOccurs="unbounded"/>
+                  <xsd:element name="PortOfDischargeLocation" type="LocationRefType" minOccurs="0"
+                               maxOccurs="unbounded"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RIQQueryReplyType">
+      <xsd:annotation>
+         <xsd:documentation>RIQQueryReply: Rate Inquiry Reply.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="RIQQuery" type="RIQQueryType"/>
+         <xsd:element name="RIQQueryInfo" type="RIQQueryInfoType" minOccurs="0"/>
+         <xsd:choice minOccurs="0">
+            <xsd:element name="RIQResult" type="RIQResultType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="RIQResultRoute" type="RIQResultRouteType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="RIQResultRouteNR" type="RIQResultRouteNRType" minOccurs="0" maxOccurs="unbounded"/>
+         </xsd:choice>
+         <xsd:element name="RemoteQueryStatus" type="RemoteQueryStatusType" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RIQSecondaryChargesType">
+      <xsd:annotation>
+         <xsd:documentation>All secondary charge shipments of RIQ routing option.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="RIQRouteShipment" type="RIQRouteShipmentType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RIQResultType">
+      <xsd:annotation>
+         <xsd:documentation>RIQResult: Rate Inquiry Results.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SourceLocationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ServiceProviderGid" type="GLogXMLGidType"/>
+         <xsd:element name="RateOfferingGid" type="GLogXMLGidType"/>
+         <xsd:element name="RateGeoGid" type="GLogXMLGidType"/>
+         <xsd:element name="RateServiceGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="TransportModeGid" type="GLogXMLGidType"/>
+         <xsd:element name="EquipmentGroupProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="EquipmentGroupGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="DeliveryBy" type="DeliveryByType"/>
+         <xsd:element name="PickupBy" type="PickupByType" minOccurs="0"/>
+         <xsd:element name="TransitTime" type="GLogXMLDurationType"/>
+         <xsd:element name="Cost" type="GLogXMLFinancialAmountType"/>
+         <xsd:element name="TotalActualCostPerUOM" type="GLogXMLCostPerUOM" minOccurs="0"/>
+         <xsd:element name="TotalWeightedCostPerUOM" type="GLogXMLCostPerUOM" minOccurs="0"/>
+         <xsd:element name="CostDetails" type="CostDetailsType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="IsTimeFeasible" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsOptimalResult" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="DimWeight" type="GLogXMLWeightType" minOccurs="0"/>
+         <xsd:element name="Perspective" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Distance" type="DistanceType" minOccurs="0"/>
+         <xsd:element name="OrigCarrierGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="DelivCarrierGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RouteCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RIQResultInfo" type="RIQResultInfoType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RIQQueryInfoType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies reference information from the RIQQuery. This includes the source and destination
+            location details when the location gid is specified in the source and dest
+            address.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SourceLocRef" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>A SourceLocRef is a reference to a source location.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="Location" type="LocationType"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="DestLocRef" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>A DestLocRef is a reference to a destination location.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="Location" type="LocationType"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="AppointmentQueryType">
+      <xsd:annotation>
+         <xsd:documentation>Used to query for a shipment appointment.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:choice>
+            <xsd:element name="ShipmentGid" type="GLogXMLGidType"/>
+            <xsd:element name="ShipmentGroupGid" type="GLogXMLGidType"/>
+         </xsd:choice>
+         <xsd:element name="LocationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="StopSequence" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsOverrideAppointment" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="AppointmentQueryReplyType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the reply for an appointment query.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="AppointmentQuery" type="AppointmentQueryType"/>
+         <xsd:element name="AppointmentInfo" type="AppointmentInfoType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="AppointmentMissing" type="AppointmentMissingType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="AppointmentMissingType">
+      <xsd:annotation>
+         <xsd:documentation>Used to denote a message from the query. For example, if no resource is available to
+            schedule appointment,
+            this would indicate the reason why the appointment cannot be
+            scheduled.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:choice>
+            <xsd:element name="ShipmentGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="ShipmentGroupGid" type="GLogXMLGidType" minOccurs="0"/>
+         </xsd:choice>
+         <xsd:element name="StopSequence" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="QueryResponse" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="TransmissionReportQueryType">
+      <xsd:sequence>
+         <xsd:element name="TransmissionNo" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="TransmissionReportQueryReplyType">
+      <xsd:sequence>
+         <xsd:element name="TransmissionReport" type="TransmissionReportType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShipmentQueryType">
+      <xsd:annotation>
+         <xsd:documentation>A ShipmentQuery consists of a ShipmentGid. GLog replies to this query by returning the
+            requested Shipment.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ShipmentGid" type="GLogXMLGidType"/>
+         <xsd:element name="OutXmlProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="IntPreferenceGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShipmentQueryReplyType">
+      <xsd:annotation>
+         <xsd:documentation>A ShipmentQueryReply consists of of Shipment.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="Shipment" type="ShipmentType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RIQResultRouteNRType">
+      <xsd:sequence>
+         <xsd:element name="PrimaryLegRouteOption" type="PrimaryLegRouteOptionType" minOccurs="0"
+                      maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PrimaryLegRouteOptionType">
+      <xsd:sequence>
+         <xsd:element name="RIQResultRoute" type="RIQResultRouteType" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RIQRouteShipmentType">
+      <xsd:annotation>
+         <xsd:documentation>Contains shipment detail information resulting from the RIQ Query using the RIQ Route
+            functionality.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ServiceProviderGid" type="GLogXMLGidType"/>
+         <xsd:element name="RateOfferingGid" type="GLogXMLGidType"/>
+         <xsd:element name="RateGeoGid" type="GLogXMLGidType"/>
+         <xsd:element name="RateServiceGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="TransportModeGid" type="GLogXMLGidType"/>
+         <xsd:element name="EquipmentGroupGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="SourceLocationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="DestLocationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="FlightGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="StartTimestamp" type="TimeWithTimezoneType" minOccurs="0"/>
+         <xsd:element name="EndTimestamp" type="TimeWithTimezoneType" minOccurs="0"/>
+         <xsd:element name="Distance" type="DistanceType" minOccurs="0"/>
+         <xsd:element name="TotalActualCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="TotalWeightedCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="TotalActualCostPerUOM" type="GLogXMLCostPerUOM" minOccurs="0"/>
+         <xsd:element name="TotalWeightedCostPerUOM" type="GLogXMLCostPerUOM" minOccurs="0"/>
+         <xsd:element name="Indicator" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="OrigCarrierGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="DelivCarrierGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RouteCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RouteCodeCombinationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="CostDetails" type="CostDetailsType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="RIQResultInfo" type="RIQResultInfoType" minOccurs="0"/>
+         <xsd:element name="IsPrimary" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EstArrivalTimeSrc" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="EstDeptTimeSrc" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="EstArrivalTimeDest" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="EstDeptTimeDest" type="GLogDateTimeType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RIQResultRouteType">
+      <xsd:annotation>
+         <xsd:documentation>Rate Inquiry results when the RIQ Route option is used.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ItineraryGid" type="GLogXMLGidType"/>
+         <xsd:element name="StartTimestamp" type="TimeWithTimezoneType" minOccurs="0"/>
+         <xsd:element name="EndTimestamp" type="TimeWithTimezoneType" minOccurs="0"/>
+         <xsd:element name="TotalActualCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="IsFeasible" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RIQRouteShipment" type="RIQRouteShipmentType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="Perspective" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsOptimalResult" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LeadTime" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="TotalActualCostPerUOM" type="GLogXMLCostPerUOM" minOccurs="0"/>
+         <xsd:element name="TotalWeightedCostPerUOM" type="GLogXMLCostPerUOM" minOccurs="0"/>
+         <xsd:element name="TotalWeightedCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="TransportModeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ServiceProviderGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="TotalTransitTime" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="OrigCarrierGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="DelivCarrierGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="EquipmentGroupGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RouteCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="VesselGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="PortOfLoadLocationRef" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="PortOfDisLocationRef" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="PrimarySourceLocationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="PrimaryDestLocationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="PrimaryTotalCost" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="VoyageGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="PrimaryTransitTime" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="CommitmentCountPlanned" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CommitmentCountActual" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PrimaryRateOfferingGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="PrimaryRateGeoGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="CommodityGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ShipFromLocationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ShipToLocationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RIQSecondaryCharges" type="RIQSecondaryChargesType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RemoteQueryStatusType">
+      <xsd:annotation>
+         <xsd:documentation>RemoteQueryStatus is used to return status information as part of a remote query reply.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="RemoteQueryStatusCode" type="xsd:string"/>
+         <xsd:element name="RemoteQueryStatusSubject" type="xsd:string"/>
+         <xsd:element name="RemoteQueryStatusMessage" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="StackTrace" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TransactionReport" type="TransactionReportType" minOccurs="0"/>
+         <xsd:element name="Perspective" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="OrderRoutingRuleQueryType">
+      <xsd:annotation>
+         <xsd:documentation>Used to take order related data and return order routing rule data.
+            Note: The PackagedItemGid is required when the GetFreightCost = Y.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SourceAddress" type="MileageCorporationType"/>
+         <xsd:element name="DestAddress" type="MileageCorporationType"/>
+         <xsd:element name="EstDepartureDt" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="EstArrivalDt" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="Weight" type="WeightType" minOccurs="0"/>
+         <xsd:element name="Volume" type="VolumeType" minOccurs="0"/>
+         <xsd:element name="PaymentMethodCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="OrderRoutingRuleReplyType">
+      <xsd:annotation>
+         <xsd:documentation>Represents the response to the OrderRoutingRuleQuery.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="OrderRoutingRuleQuery" type="OrderRoutingRuleQueryType" minOccurs="0"/>
+         <xsd:element name="RuleName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TransportModeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ServiceProviderGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RateServiceGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="PaymentMethodCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RemoteQueryStatus" type="RemoteQueryStatusType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GenericQueryType">
+      <xsd:annotation>
+         <xsd:documentation>The GenericQuery interface is used to query or generate the xml for an existing outbound
+            interface (e.g. PlannedShipment).
+            The element name indicates the interface to generate which will be one or more children of the
+            GenericQueryReply element.
+            The SqlQuery or IntSavedQuery is used to define the query that searches for the gids of the objects to be
+            generated. The
+            query should be limited to returning just the gid columns.
+            The OutXMLProfileGid is used to apply an outbound profile when generating the xml.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ElementName" type="xsd:string"/>
+         <xsd:choice>
+            <xsd:element name="SqlQuery" type="xsd:string"/>
+            <xsd:element name="IntSavedQuery" type="IntSavedQueryType"/>
+         </xsd:choice>
+         <xsd:element name="OutXmlProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="IntPreferenceGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GenericQueryReplyType">
+      <xsd:sequence>
+         <xsd:element name="GLogXMLElement" type="GLogXMLElementType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RIQResultInfoType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies additional rate details information for the RIQ Query Result.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="RATE_OFFERING" type="RateOfferingType" minOccurs="0"/>
+         <xsd:element name="RATE_GEO" type="RateGeoType" minOccurs="0"/>
+         <xsd:element name="RouteCode" type="RouteCodeType" minOccurs="0"/>
+         <xsd:element name="EquipMarks" type="EquipMarksType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="DataQuerySummaryType">
+      <xsd:annotation>
+         <xsd:documentation>The DataQuerySummary element is used to provide a summary (i.e. primary Id) of the
+            notification/data/information being sent to an external system. Certain external
+            systems
+            may not want GC3 to send large amounts of data when the system is unprepared
+            to receive it. Alternatively, this provides a mechanism to send only a summary of
+            the data. The external system
+            can retrieve the summary data and request the
+            individual records from GC3 at appropriate times (e.g. idle times, overnight).
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionOut">
+            <xsd:sequence>
+               <xsd:element name="TransactionCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="SendReason" type="SendReasonType"/>
+               <xsd:element name="DataQueryTypeGid" type="GLogXMLGidType"/>
+               <xsd:element name="RecordCount" type="xsd:string"/>
+               <xsd:element name="DataList" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>DataList element contains multiple DataGids providing references to the
+                        records.
+                     </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="DataGid" type="GLogXMLGidType" maxOccurs="unbounded"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="RIQQuerySpecialServiceType">
+      <xsd:annotation>
+         <xsd:documentation>Defines RIQ Special Service information.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SpecialServiceGid" type="GLogXMLGidType"/>
+         <xsd:element name="Duration" type="DurationType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="MileageCorporationType">
+      <xsd:annotation>
+         <xsd:documentation>SourceAddress is the Address of the Source.
+            Note: The CorporationGid is only valid when the SourceAddress is in the OrderRoutingRuleQuery element.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="MileageAddress" type="MileageAddressType"/>
+         <xsd:element name="CorporationGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="CostDetailsType">
+      <xsd:annotation>
+         <xsd:documentation>Provides a breakdown of costs (including cost type, amount, and associated codes).
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="CostType" type="xsd:string"/>
+         <xsd:element name="Cost" type="GLogXMLFinancialAmountType"/>
+         <xsd:element name="IsWeighted" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="AccessorialCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="CostDetailInfo" type="CostDetailInfoType" minOccurs="0"/>
+		 <xsd:element name="CostCategoryGid" type="GLogXMLGidType" minOccurs="0"/>
+		 <xsd:element name="SpecialServiceGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="CostDetailInfoType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies additional cost details information for the RIQ Query Result.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="RateGeoCostGroupGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RateGeoCostSeq" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RateUnitBreakGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RATE_GEO_COST" type="RATE_GEO_COST_TYPE" minOccurs="0"/>
+         <xsd:element name="RATE_GEO_COST_UNIT_BREAK" type="RATE_GEO_COST_UNIT_BREAK_TYPE" minOccurs="0"/>
+         <xsd:element name="ACCESSORIAL_COST" type="ACCESSORIAL_COST_TYPE" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="DeliveryByType">
+      <xsd:sequence>
+         <xsd:element name="DeliveryByDate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TimeZoneGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PickupByType">
+      <xsd:sequence>
+         <xsd:element name="PickupByDate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TimeZoneGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="AvailableByType">
+      <xsd:sequence>
+         <xsd:element name="AvailableDate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TimeZoneGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="TimeWithTimezoneType">
+      <xsd:annotation>
+         <xsd:documentation>Start Time and Time Zone.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="GLogDate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TimeZoneGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4" xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4" attributeFormDefault="unqualified" elementFormDefault="qualified"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:annotation>
+      <xsd:documentation>
+         Last modified .
+
+         Contains element, attribute and types definitions for configuration data related interfaces.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:include schemaLocation="TransmissionCommon.xsd"/>
+
+   <xsd:element name="User" type="UserType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            User is a structure representing an OTM user, the user used to login to the application. This
+            includes information for authentication and authorization, including various roles the user can assume.
+            See the OTM Security Guide for details regarding the OTM Security Model.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="CSVDataLoad" type="CSVDataLoadType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            CSVDataLoad provides the capability to embed the contents of a CSV file for processing into the database.
+            Each CSVDataLoad element can contain only one CSV File.  This element should only be used for small sets of data.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:complexType name="UserType">
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionIn">
+            <xsd:sequence>
+               <xsd:element name="GlUserGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        ID of the user. 
+                        For systems supporting single sign-on, either the user ID or the user nickname
+                        must match the single sign-on on ID.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="Nickname" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Nickname of the user, supporting mixed-case.
+                        For systems supporting single-sign on, either the user ID or the user nickname
+                        must match the single sign-on ID.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UserPassword" type="UserPasswordType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (inbound) Credential specification for the user.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="GlAccountPolicyGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Account Policy ID governing the user. 
+                        An account policy determines password, account lockout and login history rules for the user.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UserRoleGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Default User Role ID for the user.
+                        The user role defines data and functional security for the user.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UserPreferenceGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Default user preference to associate with the user. These preferences will be 
+                        automatically added to the user's User Access.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UserMenuLayoutGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (inbound) Default user menu layout to associate with the user. This menu will be 
+                        automatically added to the user's User Access.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="DocumentUseProfileGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Document Use Profile ID for the user.
+                        The document use profile specifies the rights the user has to upload document content.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="DefaultAAReport" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The default advanced analytics Report ID for the user.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsExternal" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (inbound) If true, the user is used only by external systems. I.e., it cannot be used to login to OTM.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsObiee" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                    <xsd:documentation>
+                        If true, the user is used for external OBIEE loging. I.e., it is stored in the OBIEE LDAP.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="EffectiveDate" type="GLogDateTimeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (inbound) Date the user is effective.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ExpirationDate" type="GLogDateTimeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (inbound) Date the user expires.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UserBIAppGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (inbound) Business Intelligence Applications (FTI and/or GTI) granted to the user.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UserBIRoleGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Business Intelligence Roles granted to the user.
+                        These are defined in the BI_ROLE table and include NO ACCESS, SERVPROV, LSP HOST,
+                        LSP CUSTOMER, BIADMINISTATOR, BICONSUMER, BIAUTHOR and KPIMANAGER.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+                <xsd:element name="FirstName" type="xsd:string" minOccurs="0">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            The given name of the user.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="LastName" type="xsd:string" minOccurs="0">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            The surname of the user.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="EmailAddress" type="xsd:string" minOccurs="0">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            The email address of the user.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="AutoApproveRuleProfileGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Auto Approve Rule Profile ID for the user.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsFederated" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                    <xsd:documentation>
+                        If true, the user is considered a federated user.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsSync" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                    <xsd:documentation>
+                        If true, the user should be synchronized.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="UserPasswordType">
+      <xsd:annotation>
+         <xsd:documentation>
+            User password specification for insert or update.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="OldPassword" type="GLogXMLGlPassword" minOccurs="0" >
+            <xsd:annotation>
+               <xsd:documentation>
+                  Existing user password. Must be supplied when updating an existing user's password.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NewPassword" type="GLogXMLGlPassword" >
+            <xsd:annotation>
+               <xsd:documentation>
+                  New user password.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NewPasswordExpirationDate" type="GLogDateTimeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Reserved for future enhancement.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GLogXMLGlPassword">
+      <xsd:sequence>
+         <xsd:element name="GlPassword" type="GlPasswordType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  User credential, specified with either a text or encrypted password.
+                  When using text passwords, protect OTM communications with HTTPS.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GlPasswordType">
+      <xsd:sequence>
+         <xsd:choice>
+            <xsd:element name="TextPassword" type="xsd:string">
+               <xsd:annotation>
+                  <xsd:documentation>
+                     Plain text password
+                  </xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EncryptedPassword" type="xsd:string">
+               <xsd:annotation>
+                  <xsd:documentation>
+                     Encrypted password.
+                     Note that an encrypted password must match the message digest stored in the GL_USER table.
+                  </xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+         </xsd:choice>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="CSVDataLoadType" >
+      <xsd:annotation>
+         <xsd:documentation>
+            Refer to the Data Management Guide document for details on the CSV file format that applies to the CsvColumnList and
+            CsvRow elements.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="CsvCommand" type="xsd:string"/>
+               <xsd:element name="CsvTableName" type="xsd:string"/>
+               <xsd:element name="CsvColumnList" type="xsd:string"/>
+               <xsd:element name="CsvRow" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+</xsd:schema>

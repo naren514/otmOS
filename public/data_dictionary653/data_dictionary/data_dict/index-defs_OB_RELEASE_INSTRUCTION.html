@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - OB_RELEASE_INSTRUCTION</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - OB_RELEASE_INSTRUCTION</H1>
+This table is linked at the line item level. It identifies the line item and how much quantity to release against that line item in the base order. It provides further instructions to the create_order_release process in GC3. A build_shipment_process in GC3 then takes this information to build the shipments against the line item order.<P>
+<DL>
+<DT><A NAME="ORDER_BASE_GID">ORDER_BASE_GID</A><DD>A unique identifier to define the order base in the system. It is system generated. The gid contains the domian portion.
+<DT><A NAME="OB_LINE_GID">OB_LINE_GID</A><DD>A unique identifier to define the line items in the order. The gid contains the domain portion.
+<DT><A NAME="QUANTITY_QUALIFIER_GID">QUANTITY_QUALIFIER_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SOURCE_LOCATION_GID">SOURCE_LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="DEST_LOCATION_GID">DEST_LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="WEIGHT_VALUE_BASE">WEIGHT_VALUE_BASE</A><DD>WEIGHT_VALUE in base units.
+<DT><A NAME="VOLUME_VALUE_BASE">VOLUME_VALUE_BASE</A><DD>VOLUME_VALUE in base units.
+<DT><A NAME="TOTAL_WEIGHT">TOTAL_WEIGHT</A><DD>Total Weight for this release instruction.
+<DT><A NAME="TOTAL_WEIGHT_UOM_CODE">TOTAL_WEIGHT_UOM_CODE</A><DD>Unit of measure for TOTAL_WEIGHT column.
+<DT><A NAME="TOTAL_WEIGHT_BASE">TOTAL_WEIGHT_BASE</A><DD>TOTAL_WEIGHT in base units.
+<DT><A NAME="TOTAL_VOLUME">TOTAL_VOLUME</A><DD>Total Volume for this release instruction.
+<DT><A NAME="TOTAL_VOLUME_UOM_CODE">TOTAL_VOLUME_UOM_CODE</A><DD>Unit of measure for TOTAL_VOLUME column.
+<DT><A NAME="TOTAL_VOLUME_BASE">TOTAL_VOLUME_BASE</A><DD>TOTAL_VOLUME in base units.
+<DT><A NAME="SHIP_UNIT_COUNT">SHIP_UNIT_COUNT</A><DD>The number of Ship Units for this release instruction.
+<DT><A NAME="TRANSPORT_HANDLING_UNIT_GID">TRANSPORT_HANDLING_UNIT_GID</A><DD>The Ship Unit Specifiation for this release instruction.
+<DT><A NAME="OB_SU_RELEASE_INSTRUCTION_GID">OB_SU_RELEASE_INSTRUCTION_GID</A><DD>If not null, this line is release at the SU level
+</DL>
+</BODY>
+</HTML>

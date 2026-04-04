@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - CR_LV_AGGREGATE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - CR_LV_AGGREGATE</H1>
+Individual aggregation of lane volume by date/shift.<P>
+<DL>
+<DT><A NAME="CR_FORECAST_GID">CR_FORECAST_GID</A><DD>The LV Forecast to which this aggregate contributes.  This link exists even if the aggregate is an outlier.
+<DT><A NAME="CR_AGGREGATION_GID">CR_AGGREGATION_GID</A><DD>The ID of the aggregation in which this aggregate was created.  Null for user-created data.
+<DT><A NAME="START_DATE">START_DATE</A><DD>Start date for shipments in the aggregate.
+<DT><A NAME="START_DOW">START_DOW</A><DD>Start day of week (1 = Sunday)
+<DT><A NAME="START_DAY">START_DAY</A><DD>Start day within cycle.
+<DT><A NAME="AVG_START_TIME">AVG_START_TIME</A><DD>Number of seconds from midnight
+<DT><A NAME="END_DATE">END_DATE</A><DD>End date for shipments in the aggregate.
+<DT><A NAME="END_DOW">END_DOW</A><DD>End day-of-week (1 = Sunday)
+<DT><A NAME="END_DAY">END_DAY</A><DD>End day within cycle.
+<DT><A NAME="AVG_END_TIME">AVG_END_TIME</A><DD>Number of seconds from midnight
+<DT><A NAME="TOTAL_VOLUME">TOTAL_VOLUME</A><DD>Total number of shipments for this aggregate.
+<DT><A NAME="IS_USER_EDITED">IS_USER_EDITED</A><DD>Indicates whether this aggregate has been edited/created by the user.
+<DT><A NAME="IS_OUTLIER">IS_OUTLIER</A><DD>Indicates whether this aggregate is excluded as an outlier.
+</DL>
+</BODY>
+</HTML>

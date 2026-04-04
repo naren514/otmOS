@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - DATA_QUEUE_DEF</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - DATA_QUEUE_DEF</H1>
+Defines a data queue<P>
+<DL>
+<DT><A NAME="DATA_QUEUE_DEF_GID">DATA_QUEUE_DEF_GID</A><DD>Global ID for the data queue definition
+<DT><A NAME="DATA_QUEUE_DEF_XID">DATA_QUEUE_DEF_XID</A><DD>Data queue definition ID
+<DT><A NAME="DATA_QUEUE_TABLE_GID">DATA_QUEUE_TABLE_GID</A><DD>Data table GID
+<DT><A NAME="DATA_QUEUE_POLLER_GID">DATA_QUEUE_POLLER_GID</A><DD>Data queue poller GID
+<DT><A NAME="DATA_QUEUE_EXECUTOR_GID">DATA_QUEUE_EXECUTOR_GID</A><DD>Data queue executor GID
+<DT><A NAME="THREAD_COUNT">THREAD_COUNT</A><DD>Number of threads to allocate to pollers
+<DT><A NAME="BATCH_SIZE">BATCH_SIZE</A><DD>Number of events to retrieve in a polling batch. If null, all events are retrieved.
+<DT><A NAME="POLLING_FREQUENCY">POLLING_FREQUENCY</A><DD>Duration between queue polls
+<DT><A NAME="FINDER_SET_GID">FINDER_SET_GID</A><DD>Finder set for Event Queue viewer
+<DT><A NAME="IS_ACTIVE">IS_ACTIVE</A><DD>If N, the queue is inactive and ignored by GC3
+<DT><A NAME="LRT_RELATED_EVENT_QUEUE">LRT_RELATED_EVENT_QUEUE</A><DD>Event queue associated with the data queue. This allows the server to check event queue resources when pulling of records from the queue table.
+<DT><A NAME="LRT_SCA_REQUIREMENTS">LRT_SCA_REQUIREMENTS</A><DD>For long running tasks, determines if the task should be pulled out of the data queue only when resources are available to process it. NONE=task is pulled regardless of resources; THREAD=task is pulled only if an event thread in the queue is available; MEDIATOR=task is pulled only if an event thread is available and the task will not be blocked by the mediator.  Note this column is only used when LRT_RELATED_EVENT_QUEUE is not null.
+</DL>
+</BODY>
+</HTML>

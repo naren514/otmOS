@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - I_TRANSACTION_DETAIL</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - I_TRANSACTION_DETAIL</H1>
+The I_TRANSACTION_DETAIL table provides additional details for the I_TRANSACTION when the Transaction applies to more than one object gid.<P>
+<DL>
+<DT><A NAME="I_TRANSACTION_NO">I_TRANSACTION_NO</A><DD>Transaction Number.
+<DT><A NAME="SEQUENCE_NO">SEQUENCE_NO</A><DD>Sequence number.
+<DT><A NAME="STATUS">STATUS</A><DD>Specifies the status of the transaction for the object gid.
+<DT><A NAME="OBJECT_GID">OBJECT_GID</A><DD>Specifies the Gid of the Object that was affected by the Transaction.
+<DT><A NAME="NEW_TRANSACTION_NO">NEW_TRANSACTION_NO</A><DD>If the processing of the object required obtaining a new i_transaction_no, this field provides a reference to the number.  Note: An i_transaction record may not exist for this new transaction.
+<DT><A NAME="OBJECT_SEQUENCE">OBJECT_SEQUENCE</A><DD>Specifies the sequence number for the primary key for the object.
+</DL>
+</BODY>
+</HTML>

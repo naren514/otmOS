@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/service/agent/driver/v2" 
+            xmlns="http://xmlns.oracle.com/apps/otm/service/agent/driver/v2"
+            xmlns:agtsvc="http://xmlns.oracle.com/apps/otm/service/agent/v3" 
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            version="1.0">
+            
+    <xsd:import namespace="http://xmlns.oracle.com/apps/otm/service/agent/v3" schemaLocation="AgentService.xsd"/>
+    
+    <xsd:element name="DriverActionMessage">
+       <xsd:complexType>
+           <xsd:complexContent>
+               <xsd:extension base="agtsvc:ActionMessageType"/>
+           </xsd:complexContent>
+       </xsd:complexType>
+    </xsd:element>    
+    
+    <xsd:element name="DriverActionReplyMessage">
+       <xsd:complexType>
+           <xsd:complexContent>
+               <xsd:extension base="agtsvc:ActionReplyMessageType"/>
+           </xsd:complexContent>
+       </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

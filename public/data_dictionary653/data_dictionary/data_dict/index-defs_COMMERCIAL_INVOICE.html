@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - COMMERCIAL_INVOICE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - COMMERCIAL_INVOICE</H1>
+<DL>
+<DT><A NAME="EXCHANGE_RATE_DATE">EXCHANGE_RATE_DATE</A><DD>Indicates the date to be used for any currency conversions; if null, the latest conversion should be used.
+<DT><A NAME="EXCHANGE_RATE_GID">EXCHANGE_RATE_GID</A><DD>Indicates the set of exchange rates to use for currency conversions; if null, the default set should be used; this only applies if IS_OVERRIDE_EXCHANGE_RATE is 'N' (false)
+<DT><A NAME="EXCHANGE_FROM_CURRENCY_GID">EXCHANGE_FROM_CURRENCY_GID</A><DD>When a conversion rate specific to this commercial invoice is specified (EXCHANGE_RATE field), this field should be populated with the FROM currency gid for that exchange rate
+<DT><A NAME="IS_OVERRIDE_EXCHANGE_RATE">IS_OVERRIDE_EXCHANGE_RATE</A><DD>If true, indicates a specific conversion rate for this commercial invoice is entered in the EXCHANGE_RATE field and should be used
+<DT><A NAME="COMMERCIAL_INVOICE_NUMBER">COMMERCIAL_INVOICE_NUMBER</A><DD>This column will be set by BN Generator.
+<DT><A NAME="PRODUCT_AMOUNT_FN">PRODUCT_AMOUNT_FN</A><DD>functional currency amount for product_amount
+<DT><A NAME="OTHER_CHARGE_FN">OTHER_CHARGE_FN</A><DD>functional currency amount for other_charge_amount
+<DT><A NAME="TOTAL_INVOICE_FN">TOTAL_INVOICE_FN</A><DD>functional currency amount for total_invoice_amount
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4"
+            xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified" elementFormDefault="qualified">
+
+   <xsd:annotation>
+      <xsd:documentation>
+         Last modified .
+
+         This schema is the root for all other Transmission related schemas.
+
+         It defines the main messages supported for Inbound and Outbound XML integration with the Oracle Transportation
+         and Global Trade Management applications.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:include schemaLocation="TransmissionCommon.xsd"/>
+
+   <xsd:element name="Transmission">
+      <xsd:annotation>
+         <xsd:documentation>
+            Transmission is the main inbound and outbound XML document.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+         <xsd:complexContent>
+            <xsd:extension base="TransmissionDocumentType">
+               <xsd:sequence>
+                  <xsd:element name="TransmissionHeader" type="TransmissionHeaderType">
+                     <xsd:annotation>
+                        <xsd:documentation>
+                           Used to specify message properties which apply to the Transmission as a whole.
+                        </xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="TransmissionBody">
+                     <xsd:annotation>
+                        <xsd:documentation>
+                           Contains one or more Transactions to be processed. Each Transaction will be contained
+                           in a GLogXMLElement element.
+                        </xsd:documentation>
+                     </xsd:annotation>
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="GLogXMLElement" type="GLogXMLElementType" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+               </xsd:sequence>
+               <xsd:attribute name="Version" type="xsd:string" use="optional">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the major/minor version of the schema used to create the Transmission.
+                        This would be required on inbound if the XML message did not have a namespace declaration in
+                        order to identify the precise version format.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:attribute>
+            </xsd:extension>
+         </xsd:complexContent>
+      </xsd:complexType>
+   </xsd:element>
+
+   <xsd:element name="TransmissionAck">
+      <xsd:annotation>
+         <xsd:documentation>
+            The TransmissionAck document is a response to an inbound or outbound Transmission document. It is also
+            supported as an inbound message in which case it will create a record in the I_TRANSMISSION_ACK table.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType>
+         <xsd:complexContent>
+            <xsd:extension base="TransmissionDocumentType">
+               <xsd:sequence>
+                  <xsd:element name="EchoedTransmissionHeader">
+                     <xsd:annotation>
+                        <xsd:documentation>
+                           An EchoedTransmissionHeader contains a copy of the TransmissionHeader that OTM received, but
+                           with the ReferenceTransmissionNo set to the transmission number that OTM assigned to the
+                           transmission.
+                        </xsd:documentation>
+                     </xsd:annotation>
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="TransmissionHeader" type="TransmissionHeaderType"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element name="TransmissionAckStatus" type="xsd:string" minOccurs="0">
+                     <xsd:annotation>
+                        <xsd:documentation>
+                           (inbound) This data is persisted in the I_TRANSMISSION_ACK table for later use and is also
+                           used to set the External Status for the Transmission this ack is in response to.
+                        </xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="TransmissionAckReason" type="xsd:string" minOccurs="0">
+                     <xsd:annotation>
+                        <xsd:documentation>
+                           (inbound) Used to provide additional information and persisted in the I_TRANSMISSION_ACK
+                           table for later use.
+                        </xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="StackTrace" type="xsd:string" minOccurs="0">
+                     <xsd:annotation>
+                        <xsd:documentation>
+                           If an exception occurs during processing this element will contain the exception short
+                           message.
+                           For outbound responses, if the application server is configured to allow it, this can also
+                           contain the full stack trace.
+                        </xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="TransmissionText" type="xsd:string" minOccurs="0"/>
+                  <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded">
+                     <xsd:annotation>
+                        <xsd:documentation>
+                           (inbound) Used to persist one or more reference numbers in the I_TRANSMISSION_REFNUM table in
+                           response to the associated Transmission.
+                        </xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="QueryResultInfo" type="QueryResultInfoType" minOccurs="0"/>
+               </xsd:sequence>
+               <xsd:attribute name="Version" type="xsd:string" use="optional"/>
+            </xsd:extension>
+         </xsd:complexContent>
+      </xsd:complexType>
+   </xsd:element>
+
+   <xsd:element name="TransmissionHeader" type="TransmissionHeaderType"/>
+
+   <!-- This needs to moved to TransmissionCommon while we support schema validation of TransmissionReport as a Transaction. -->
+   <!-- Ideally we should be allowing it as a root document similar to how inbound TransmissionAck works. -->
+   <!-- Once that is done we can reinstate it here alongside all the other root document elements -->
+
+<!--   <xsd:element name="TransmissionReport" type="TransmissionReportType" substitutionGroup="GLogXMLTransaction">-->
+<!--      <xsd:annotation>-->
+<!--         <xsd:documentation>-->
+<!--            OTM can send or receive TransmissionReport messages to record the completion status of a message.-->
+<!--            -->
+<!--            Deprecated 6.4.3: Sending as a GLogXMLTransaction is deprecated and will be removed in the next release-->
+<!--         </xsd:documentation>-->
+<!--      </xsd:annotation>-->
+<!--   </xsd:element>-->
+
+   <xsd:complexType name="TransmissionHeaderType">
+      <xsd:annotation>
+         <xsd:documentation>TransmissionHeader contains header level information for a Transmission, such as Transmission
+            Type, Sender Reference ID.
+
+            Deprecated 6.4.2: UserName, Password. See Integration Guide for full details.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="Version" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TransmissionType" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (inbound) Optional. If not specified the message will be processed asynchronously.
+                  If specified, it must be one of:
+                  QUERY   - the transactions are to be processed as a synchronous request/reply.
+                  SERVICE - Identical to QUERY but only used for ServiceRequest transactions.
+                  STAGING - Indicates that StagingInfo will be used to determine when the content should be processed.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="QueryReplyFormat" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (inbound) Specifies the root element that should be returned when the TransmissionType is QUERY and
+                  the TransmissionBody contains RemotQuery transactions. Possible values are 'TransmissionAck'
+                  (preferred) and 'Transmission'. If this element is not specified, the response is determined by one
+                  of the following:
+                  a) If the property -
+                  glog.integration.remoteQuery.wrapReplyInTransmission=1 is specified, then the result is the
+                  Transmission.
+                  b) Otherwise, the result will be a single RemoteQueryReply element as the root node. This has the
+                  limitation that only one RemoteQuery can be contained in the Transmission XML that was sent to OTM.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="StagingInfo" type="StagingInfoType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (inbound) Used to control the Staging behavior of the Transmission. Staging is enabled when the
+                  TransmissionType is set to STAGING.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TransmissionCreateDt" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="TransactionCount" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SenderHostName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ReceiverHostName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SenderSystemID" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="UserName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Password" type="PasswordType" minOccurs="0"/>
+         <xsd:element name="SenderTransmissionNo" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ReferenceTransmissionNo" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SuppressTransmissionAck" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (inbound) Used when inbound transport is QUEUE and no TransmissionAck is required.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="AckSpec" type="AckSpecType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (inbound) AckSpec specifies when a TransmissionReport should be sent after the  processing of the transmission.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsProcessInSequence" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (inbound) Y/N. Specifies if all the transactions (GLogXMLElement) in the Transmission are to be processed in
+                  sequence or in parallel. The sequence is defined by the order of the GLogXMLElements in the Transmission.
+                  If ProcessGroupings are specified in the TransmissionHeader, then this element specifies if the groups
+                  are to be processed in sequence or in parallel. Default value is 'Y' for sequential processing.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="StopProcessOnError" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="GLogXMLElementName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ProcessGrouping" type="ProcessGroupingType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (inbound) Used to specify a hierarchy of transaction groupings where each group can run its
+                  transactions and subgroups sequentially or across parallel threads. The ProcessGroup
+                  element specifies the name of the group, and the InSequence element specifies whether
+                  the transactions are to be processed sequentially or in parallel. Each group can be
+                  child of another
+                  group, in which the parent group is denoted by the ProcessGroupOwner.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NotifyInfo" type="NotifyInfoType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (oubound) Specifies the contact information for the notification.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="DataQueuePriority" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (inbound) Used to specify a priority for this transmission to be used by a data queue poller to
+                  select transmissions for processing in priority order.
+                  Can be used in combination with the DataQueueGid element to distribute inbound messages across
+                  multiple queues with various message priorities. See Integration Guide for more details.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="DataQueueGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (inbound) Used to specify inbound integration data queue that will manage this transmission.
+                  If not specified, will default to the data queue configured by the glog.integration.dataqueue.inbound
+                  property which itself defaults to the public INTEGRATION IN data queue.
+                  Can be used in combination with the DataQueuePriority element to distribute inbound messages across
+                  multiple queues with various message priorities. See Integration Guide for more details.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="NotifyInfoType">
+      <xsd:sequence>
+         <xsd:element name="ContactGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  ID for whom the message is meant.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ExternalSystemGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  ID of the system to which the message is sent. Multiple contacts can share the same external system.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MessageText" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the additional message text that may have been entered via Compose And Send UI.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="AckSpecType">
+      <xsd:sequence>
+         <xsd:element name="ComMethodGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Speccifies the transport method required for TransmissionReport. Supported methods are:-
+                  - EMAIL
+                  - HTTPPOST
+                  - REST
+                  - SERVICE
+                  - QUEUE
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="EmailAddress" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  This element or ContactGid must be populated if transport method is EMAIL.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SmtpHost" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  This element can be used to override the default SMTP server if transport method is EMAIL.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ServletURL" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  This element must be populated if transport method is HTTPPOST. Alternatively, a contact can be used where the associated external system has a valid URL.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="AckOption" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specify when the Transmission Report should be sent:-
+                  - ERROR      Send only when there are errors.
+                  - YES        Always send.
+                  - NO         Never send.
+                  If unspecified, the glog.property glog.integration.TransmissionReport is used instead.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ContactGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  This element must be populated if transport method is SERVICE or REST or EMAIL (in preference to EmailAddress).
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="StagingInfoType">
+      <xsd:sequence>
+         <xsd:element name="StagingQuery" type="GLogXMLIntSavedQueryType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Used to search for an existing Staging Transmission that will have the Transactions added. If
+                  the query returns a valid Staging Transmission, the Transactions will be added.
+                  If nothing returns, the Transmission will be treated as a separate Transmission. If multiple Transmissions
+                  are returned, then the first Transmission in the result is selected.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="StagingProcess" type="GLogXMLIntSavedQueryType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Used to control when a Staging Transmission should be processed.
+                  If the query is specified and returns a result, then the Transmission status will be changed to FRESH
+                  and the Transmission will be processed.
+                  If this element is not specified or the query returns nothing, then the Transmission will be left in a
+                  STAGING status.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ProcessGroupingType">
+      <xsd:sequence>
+         <xsd:element name="ProcessGroup" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The ProcessGroup element specifies the name of the group. Each group can be child of another
+                  group, in which the parent group is denoted by the ProcessGroupOwner.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ProcessGroupOwner" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Used to specify the parent ProcessGroup.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="InSequence" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y, N. Specifies if the transactions for the ProcessGroup should be processed in sequence.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="StopProcessOnError" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y, N. Specifies if processing of the Transmission should be stopped when an error occurs in a Transaction.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GLogXMLIntSavedQueryType">
+      <xsd:sequence>
+         <xsd:element name="IntSavedQuery" type="IntSavedQueryType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+</xsd:schema>

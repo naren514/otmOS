@@ -1,0 +1,16 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - I_LOG_DETAIL</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - I_LOG_DETAIL</H1>
+This table is related to the I_LOG table for storing the details of the audit trail information for the XML transmissions and transactions. The I_LOG_DETAIL table stores qualifier/value pairs associated with a given log message.<P>
+<DL>
+<DT><A NAME="I_LOG_DETAIL_SEQNO">I_LOG_DETAIL_SEQNO</A><DD>I_LOG_DETAIL_SEQNO provides a sequence number for a transaction.
+<DT><A NAME="I_LOG_SEQNO">I_LOG_SEQNO</A><DD>A pointer back to the log sequence number from I_Log table.
+<DT><A NAME="I_LOG_DETAIL_QUAL">I_LOG_DETAIL_QUAL</A><DD>I_LOG_DETAIL_QUAL provides the application name, transaction code and transaction number for an XML transaction.
+<DT><A NAME="I_LOG_DETAIL_VALUE">I_LOG_DETAIL_VALUE</A><DD>The actual value for log detail.
+<DT><A NAME="PARTITION_KEY">PARTITION_KEY</A><DD>Populated through a trigger, this key is used to determine into which partition this record should be inserted.  The formula is based upon the insert_date column and the frequency in which this table is associated (weekly, monthly, quarterly).  Valid values are 1-4.
+</DL>
+</BODY>
+</HTML>

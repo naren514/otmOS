@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - RATE_GEO_COST</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - RATE_GEO_COST</H1>
+Contains the cost information for transporting goods in a particular geo, and the number of units included per cost.  For example, the cost could be $10 per unit, or could indicate $100 per 50 units.<P>
+<DL>
+<DT><A NAME="RATE_GEO_COST_GROUP_GID">RATE_GEO_COST_GROUP_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="TARIFF_DISTANCE_BASE">TARIFF_DISTANCE_BASE</A><DD>TARIFF_DISTANCE in base units.
+<DT><A NAME="OPER1_GID">OPER1_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="OPER2_GID">OPER2_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="OPER3_GID">OPER3_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="OPER4_GID">OPER4_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="CHARGE_CURRENCY_GID">CHARGE_CURRENCY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="CHARGE_AMOUNT_BASE">CHARGE_AMOUNT_BASE</A><DD>CHARGE_AMOUNT in base units.
+<DT><A NAME="ROUNDING_TYPE">ROUNDING_TYPE</A><DD>The type of rounding that will occur during rating.  Value are: N=no rounding,I=round to nearest interval,F=floor, and C=ceiling.
+<DT><A NAME="ROUNDING_INTERVAL">ROUNDING_INTERVAL</A><DD>Numbers will be rounded (or truncated) to the nearest increment of this value.
+<DT><A NAME="ROUNDING_FIELDS_LEVEL">ROUNDING_FIELDS_LEVEL</A><DD>Determines which kinds of fields will be affected by the rounding settings during costing.  Values are 0-7, where 0=all fields, 1=none, 2=numeric fields only, 3=unit fields (weight, etc.), 4=currency, 5=numeric and unit fields, 6=numeric and currency fields, and 7=unit and currency fields.
+<DT><A NAME="ROUNDING_APPLICATION">ROUNDING_APPLICATION</A><DD>Determines when to apply the rounding rules.  Values are A/N/C/O where A=always, N=never, C=conditionals only, and O=cost calculations only.
+<DT><A NAME="DEFICIT_CALCULATIONS_TYPE">DEFICIT_CALCULATIONS_TYPE</A><DD>When to apply deficit calculations. Values are Y/N/P where Y = Yes, N = No and P = Payant Pour
+<DT><A NAME="PAYMENT_METHOD_CODE_GID">PAYMENT_METHOD_CODE_GID</A><DD>payment method to apply to the shipment cost when the shipment action to apply payment terms is executed
+<DT><A NAME="IS_FILED_AS_TARIFF">IS_FILED_AS_TARIFF</A><DD>Indicates if this rate cost has been filed as tariff.  This is set to 'N' for new spot rates.  Users may wish to set up a saved query to notify users if this rate is used.
+<DT><A NAME="TIER">TIER</A><DD>If using tiered rating, assigning a number to this field allows RIQ to query tiered rates by simply specifying a tier number.
+<DT><A NAME="COST_TYPE">COST_TYPE</A><DD>Designates the type of the cost.  C = Charge, D = Discount, P = Profile, E = External
+<DT><A NAME="CALENDAR_ACTIVITY_GID">CALENDAR_ACTIVITY_GID</A><DD>Allows the user to select a calendar activity for the calendar validation test
+<DT><A NAME="RATE_UNIT_BREAK_PROFILE_GID">RATE_UNIT_BREAK_PROFILE_GID</A><DD>The main rate unit break profile
+<DT><A NAME="RATE_UNIT_BREAK_PROFILE2_GID">RATE_UNIT_BREAK_PROFILE2_GID</A><DD>The secondary rate unit break profile (cannot have a value if the main profile gid is null)
+<DT><A NAME="CHARGE_BREAK_COMPARATOR2_GID">CHARGE_BREAK_COMPARATOR2_GID</A><DD>The RBI used to lookup values in the secondary rate unit break profile
+<DT><A NAME="EXTERNAL_RATING_ENGINE_GID">EXTERNAL_RATING_ENGINE_GID</A><DD>For cost_type of E, specifies the external rating engine gid
+<DT><A NAME="EXT_RE_FIELDSET_GID">EXT_RE_FIELDSET_GID</A><DD>For external rating engine gids of type GENERIC, this specifies the fieldset used to call out to the external engine
+<DT><A NAME="COST_CODE_GID">COST_CODE_GID</A><DD>Tags a cost with an accessorial code.  This does not indicate that the cost is an accessorial.  It is a way of identifying groups of costs.
+<DT><A NAME="LOGIC_PARAM_QUAL_GID">LOGIC_PARAM_QUAL_GID</A><DD>For cost_type of L, specifies the logic parameter qualifier (of type Currency) which contains the cost value used as the charge multiplier.
+</DL>
+</BODY>
+</HTML>

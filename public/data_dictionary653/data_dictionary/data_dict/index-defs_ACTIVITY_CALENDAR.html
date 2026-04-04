@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ACTIVITY_CALENDAR</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ACTIVITY_CALENDAR</H1>
+This table is a link between the Activity and the Calendar entries in the GC3 system. An activity can have many calendar activities like many Pickup times. Similarly a calendar profile can have many activities, like activities during a working hour  calendar profile can be Pickup, Dispatch etc. This there is a many to many relationship between calendar profiles and activities. This table resolves the many to many relationship.<P>
+<DL>
+<DT><A NAME="ACTIVITY_CALENDAR_ID">ACTIVITY_CALENDAR_ID</A><DD>ACTIVITY_CALENDAR_ID is the system-generated unique ID for ACTIVITY_CALENDAR. (IDs are internal system indexes; therefore, they are usually not recognizable to users.)
+<DT><A NAME="CALENDAR_GID">CALENDAR_GID</A><DD>CALENDAR_GID is the unique identifier for a calendar. A calendar entry defines when certain activities can occur.
+<DT><A NAME="ACTIVITY_GID">ACTIVITY_GID</A><DD>ACTIVITY_GID is the unique identifier of an activity. This entry defines an activity with the time(s) when that activity can occur.
+<DT><A NAME="IS_WORK_ON">IS_WORK_ON</A><DD>IS_WORK_ON is a flag describing whether a specific activity calendar is active. (Valid values are Y for yes (the calendar is active) or N for no (the calendar is not active).
+<DT><A NAME="BEGIN">BEGIN</A><DD>BEGIN contains the time when an activity can start.
+<DT><A NAME="DURATION">DURATION</A><DD>DURATION contains the length of time an activity can take place.
+<DT><A NAME="ACTIVITY_TIME_FACTOR">ACTIVITY_TIME_FACTOR</A><DD>Acitivity factor provides a multiplication factor for the activity.
+</DL>
+</BODY>
+</HTML>

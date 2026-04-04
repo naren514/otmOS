@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ORDER_MOVEMENT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ORDER_MOVEMENT</H1>
+Order movement represent part of the routing of an order. It is also a collection of ship units that are unplanned for certain part of a route.<P>
+<DL>
+<DT><A NAME="ORDER_MOVEMENT_GID">ORDER_MOVEMENT_GID</A><DD>the unique identifier of an order movement
+<DT><A NAME="IS_TEMPORARY">IS_TEMPORARY</A><DD>indicated whether this order movement can coexist with shipments. If this flag is true, the order movement will be removed once the order movement is planned on shipments. Otherwise the order movement's status is set to PLANNED-FINAL and stays in the system.
+<DT><A NAME="PERSPECTIVE">PERSPECTIVE</A><DD>indicate whether this is BUY or SELL
+<DT><A NAME="SOURCE_LOCATION_GID">SOURCE_LOCATION_GID</A><DD>the source of the order movement. It can be null
+<DT><A NAME="IS_FIXED_SRC">IS_FIXED_SRC</A><DD>indicate whether the source location on this order movement is the real source location or it is derived from the source location of its upstream shipments.
+<DT><A NAME="DEST_LOCATION_GID">DEST_LOCATION_GID</A><DD>the destination of the order movement. It can be null.
+<DT><A NAME="IS_FIXED_DEST">IS_FIXED_DEST</A><DD>indicate whether the dest location of this order movement is real or it is derived from the downstream shipments.
+<DT><A NAME="EARLY_PICKUP_DATE">EARLY_PICKUP_DATE</A><DD>the earliest pickup of this order movement
+<DT><A NAME="OPERATION_EARLY_PICKUP_DATE">OPERATION_EARLY_PICKUP_DATE</A><DD>the date is calculated from upstream shipments' end time
+<DT><A NAME="LATE_PICKUP_DATE">LATE_PICKUP_DATE</A><DD>the latest pickup time of this order movement
+<DT><A NAME="EARLY_DELIVERY_DATE">EARLY_DELIVERY_DATE</A><DD>the earliest delivery of this order movement
+<DT><A NAME="LATE_DELIVERY_DATE">LATE_DELIVERY_DATE</A><DD>the latest delivery of this order movement
+<DT><A NAME="OPERATION_LATE_DELIVERY_DATE">OPERATION_LATE_DELIVERY_DATE</A><DD>this date is calculated from downstream shipments' start time
+<DT><A NAME="ORIGINAL_LEG_POSITION">ORIGINAL_LEG_POSITION</A><DD>The position of the original leg. Main leg's leg position is 0. Legs left to main leg have positions -1, -2, etc. Legs right to the main leg have positions 1, 2, ....
+<DT><A NAME="USER_DEFINED1_ICON_GID">USER_DEFINED1_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes for the object.
+<DT><A NAME="USER_DEFINED2_ICON_GID">USER_DEFINED2_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes for the object.
+<DT><A NAME="USER_DEFINED3_ICON_GID">USER_DEFINED3_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes for the object.
+<DT><A NAME="USER_DEFINED4_ICON_GID">USER_DEFINED4_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes for the object.
+<DT><A NAME="USER_DEFINED5_ICON_GID">USER_DEFINED5_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes for the object.
+<DT><A NAME="SHIP_UNIT_WIDTH">SHIP_UNIT_WIDTH</A><DD>Width of the Ship unit. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_WIDTH_UOM_CODE">SHIP_UNIT_WIDTH_UOM_CODE</A><DD>Unit of Measure for Ship Unit Width. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_WIDTH_BASE">SHIP_UNIT_WIDTH_BASE</A><DD>Ship Unit Width in base units. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_LENGTH">SHIP_UNIT_LENGTH</A><DD>Length of the Ship unit. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_LENGTH_UOM_CODE">SHIP_UNIT_LENGTH_UOM_CODE</A><DD>Unit of Measure for Ship Unit Length. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_LENGTH_BASE">SHIP_UNIT_LENGTH_BASE</A><DD>Ship Unit Length in base units. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_HEIGHT">SHIP_UNIT_HEIGHT</A><DD>Height of the Ship unit. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_HEIGHT_UOM_CODE">SHIP_UNIT_HEIGHT_UOM_CODE</A><DD>Unit of Measure for Ship Unit Height. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_HEIGHT_BASE">SHIP_UNIT_HEIGHT_BASE</A><DD>Ship Unit Height in base units. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_DIAMETER">SHIP_UNIT_DIAMETER</A><DD>Diameter of the Ship unit. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_DIAMETER_UOM_CODE">SHIP_UNIT_DIAMETER_UOM_CODE</A><DD>Unit of Measure for Ship Unit Diameter. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="SHIP_UNIT_DIAMETER_BASE">SHIP_UNIT_DIAMETER_BASE</A><DD>Ship Unit Diameter in base units. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="TRANSPORT_HANDLING_UNIT_GID">TRANSPORT_HANDLING_UNIT_GID</A><DD>Transport Handling Unit. This column will show value only if the order movement has one ship unit.
+<DT><A NAME="INDICATOR">INDICATOR</A><DD>Indicator for Order Movement
+<DT><A NAME="PRIORITY">PRIORITY</A><DD>This column defines the priority associated with an Order Movement
+<DT><A NAME="MODE_PROFILE_GID">MODE_PROFILE_GID</A><DD>MODE_PROFILE_GID contains the unique identifier for the mode profile for the leg.
+<DT><A NAME="EQUIPMENT_GROUP_PROFILE_GID">EQUIPMENT_GROUP_PROFILE_GID</A><DD>EQUIPMENT_GROUP_PROFILE_GID contains the unique identifier for the equipment group profile for the leg.
+<DT><A NAME="EXPECTED_TRANSIT_TIME">EXPECTED_TRANSIT_TIME</A><DD>EXPECTED_TRANSIT_TIME contains the expected time for this leg of the shipment to take.
+<DT><A NAME="EXPECTED_TRANSIT_TIME_BASE">EXPECTED_TRANSIT_TIME_BASE</A><DD>EXPECTED_TRANSIT_TIME in base units.
+<DT><A NAME="EXPECTED_TRANSIT_TIME_UOM_CODE">EXPECTED_TRANSIT_TIME_UOM_CODE</A><DD>Unit of measure for EXPECTED_TRANSIT_TIME column.
+<DT><A NAME="EXPECTED_COST">EXPECTED_COST</A><DD>EXPECTED_COST contains the expected cost for the leg.
+<DT><A NAME="EXPECTED_COST_BASE">EXPECTED_COST_BASE</A><DD>EXPECTED_COST in base units.
+<DT><A NAME="EXPECTED_COST_CURRENCY_GID">EXPECTED_COST_CURRENCY_GID</A><DD>EXPECTED_COST_CURRENCY_GID contains the currency for the expected cost of the leg.
+<DT><A NAME="RATE_OFFERING_GID">RATE_OFFERING_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RATE_GEO_GID">RATE_GEO_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="LOADING_SPLIT_TYPE">LOADING_SPLIT_TYPE</A><DD>To indicate if the SSUs associated with the OM can be split (null), cannot be split or must split.
+<DT><A NAME="ATTRIBUTE_NUMBER11">ATTRIBUTE_NUMBER11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER12">ATTRIBUTE_NUMBER12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER13">ATTRIBUTE_NUMBER13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER14">ATTRIBUTE_NUMBER14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER15">ATTRIBUTE_NUMBER15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER16">ATTRIBUTE_NUMBER16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER17">ATTRIBUTE_NUMBER17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER18">ATTRIBUTE_NUMBER18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER19">ATTRIBUTE_NUMBER19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER20">ATTRIBUTE_NUMBER20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_DATE11">ATTRIBUTE_DATE11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE12">ATTRIBUTE_DATE12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE13">ATTRIBUTE_DATE13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE14">ATTRIBUTE_DATE14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE15">ATTRIBUTE_DATE15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE16">ATTRIBUTE_DATE16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE17">ATTRIBUTE_DATE17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE18">ATTRIBUTE_DATE18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE19">ATTRIBUTE_DATE19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE20">ATTRIBUTE_DATE20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - RATE_SERVICE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - RATE_SERVICE</H1>
+Includes the calendar in which lookups should occur, minimum and maximum dirve times, maximum wait per stop, and other similar rules.  Examples:  Overnight                   Two-day<P>
+<DL>
+<DT><A NAME="RATE_SERVICE_GID">RATE_SERVICE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RATE_SERVICE_XID">RATE_SERVICE_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="CALENDAR_GID">CALENDAR_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="MAX_DRIVE_TIME_BASE">MAX_DRIVE_TIME_BASE</A><DD>MAX_DRIVE_TIME in base units.
+<DT><A NAME="MAX_WORK_TIME_BASE">MAX_WORK_TIME_BASE</A><DD>MAX_WORK_TIME in base units.
+<DT><A NAME="MIN_REST_TIME_BASE">MIN_REST_TIME_BASE</A><DD>MIN_REST_TIME in base units.
+<DT><A NAME="TIME_WINDOW_TOLERANCE_BASE">TIME_WINDOW_TOLERANCE_BASE</A><DD>TIME_WINDOW_TOLERANCE in base units.
+<DT><A NAME="INTER_AIR_CONNECT_TIME_BASE">INTER_AIR_CONNECT_TIME_BASE</A><DD>INTER_AIR_CONNECT_TIME in base units.
+<DT><A NAME="INTRA_AIR_CONNECT_TIME_BASE">INTRA_AIR_CONNECT_TIME_BASE</A><DD>INTRA_AIR_CONNECT_TIME in base units.
+<DT><A NAME="SERVICE_EXTERNAL_ENGINE_GID">SERVICE_EXTERNAL_ENGINE_GID</A><DD>The SERVICE_EXTERNAL_ENGINE_GID refers to the SERVICE_EXTERNAL_ENGINE which is used to calculate the service time.  For a given third-party product, we often have multiple entries in the SERVICE_EXTERNAL_ENGINE table for things like fastest versus shortest route.
+<DT><A NAME="INITIAL_REST_TIME">INITIAL_REST_TIME</A><DD>The initial rest time for the rate service before the driver starts to drive.  This is actually a buffer added to the simulated run, since otherwise it assumed that a fully rested driver is available for the drive.  By adding the extra time, it lessens the chance that an order delivery window won't be met because the driver needed to rest from a previous run before starting the new drive.
+<DT><A NAME="INITIAL_REST_TIME_UOM_CODE">INITIAL_REST_TIME_UOM_CODE</A><DD>The unit of measure for the initial_rest_time column.
+<DT><A NAME="INITIAL_REST_TIME_BASE">INITIAL_REST_TIME_BASE</A><DD>The initial_rest_time in base units.
+<DT><A NAME="HOS_RULE_SET_GID">HOS_RULE_SET_GID</A><DD>Indicates which hours of service rules to honor for this rate service.
+</DL>
+</BODY>
+</HTML>

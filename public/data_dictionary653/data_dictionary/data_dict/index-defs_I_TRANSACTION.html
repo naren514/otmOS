@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - I_TRANSACTION</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - I_TRANSACTION</H1>
+The I_TRANSACTION table store all XML transactions which are received by GLog, or sent out of GLog. The I_TRANSACTION table is a child of the I_LOG_TRANSMISSION table. This table contains the one record per transaction in the XML transmissions. See table I_TRANSMISSION for the XML transmission details. Each transaction within the transmission are broken out and stored as individual records.<P>
+<DL>
+<DT><A NAME="I_TRANSACTION_NO">I_TRANSACTION_NO</A><DD>This is a foreign key from the I_LOG table. The I_TRANSACTION_NO column specifies the transaction to which this log message pertains.
+<DT><A NAME="I_TRANSMISSION_NO">I_TRANSMISSION_NO</A><DD>This is a foreign key to the I_TRANSMISSION table. The I_TRANSMISSION_NO column uniquely identifies the transmission.
+<DT><A NAME="TRANSACTION_CODE">TRANSACTION_CODE</A><DD>TRANSACTION_CODE provides a code for the type of transaction that was transmitted. Transaction codes include: D I IU U Unknown
+<DT><A NAME="WRITTEN_BY">WRITTEN_BY</A><DD>WRITTEN_BY contains the domain name that logged the transmission.
+<DT><A NAME="STATUS">STATUS</A><DD>STATUS indicates the status of the transaction. Status types include: FRESH New PROCESSED
+<DT><A NAME="ELEMENT_NAME">ELEMENT_NAME</A><DD>ELEMENT_NAME contains the name of the transaction element. These can include: ActualShipment AllocationBase Billing Invoice Item Location Rate Release RemoteQuery ShipmentStatus TenderOffer TenderResponse TransOrder Voucher Xlane
+<DT><A NAME="SENDER_TRANSACTION_ID">SENDER_TRANSACTION_ID</A><DD>Specifies the Transaction Number that the sender assigned to the transaction.
+<DT><A NAME="REFERENCE_TRANSACTION_ID">REFERENCE_TRANSACTION_ID</A><DD>Specifies an alternative Transaction Number that may be assigned by the recipient for the transaction.
+<DT><A NAME="EXTERNAL_STATUS">EXTERNAL_STATUS</A><DD>Specifies the external status for the Transaction.  The external status represents the result of processing at the external system.
+<DT><A NAME="TRANSACTION_TYPE">TRANSACTION_TYPE</A><DD>Specifies the type of information stored in the Transmission record.  For example, a record may be stored when an XML is staged via OAQ to support searching via Integration Saved Queries.
+<DT><A NAME="DATA_QUERY_TYPE_GID">DATA_QUERY_TYPE_GID</A><DD>Data query type of OBJECT_GID, if populated.
+<DT><A NAME="XML_BLOB">XML_BLOB</A><DD>The XML_BLOB column specifies the entire XML text of the transmission.
+<DT><A NAME="PARTITION_KEY">PARTITION_KEY</A><DD>Populated through a trigger, this key is used to determine into which partition this record should be inserted.  The formula is based upon the insert_date column and the frequency in which this table is associated (weekly, monthly, quarterly).  Valid values are 1-4.
+</DL>
+</BODY>
+</HTML>

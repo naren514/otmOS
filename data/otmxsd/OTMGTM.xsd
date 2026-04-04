@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4"
+        xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+
+    <xsd:annotation>
+        <xsd:documentation>
+            Last modified .
+
+            This schema is for use by schema validation processors.
+        </xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:include schemaLocation="Transmission.xsd"/>
+    <xsd:include schemaLocation="Transaction.xsd"/>
+
+</xsd:schema>

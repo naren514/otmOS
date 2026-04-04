@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/agent/v1" 
+			xmlns:otmtypes="http://xmlns.oracle.com/apps/otm/types/v1" 
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			xmlns="http://xmlns.oracle.com/apps/otm/agent/v1" 
+			attributeFormDefault="qualified" elementFormDefault="qualified"
+            version="1.0">
+<xsd:import namespace="http://xmlns.oracle.com/apps/otm/types/v1" schemaLocation="Common.xsd"/>
+
+<xsd:complexType name="AgentType">
+	<xsd:sequence>
+		<xsd:element name="AgentHeader" type="AgentHeaderType"/>
+		<xsd:element name="AgentActions" minOccurs="0">
+			<xsd:complexType>
+				<xsd:sequence>
+                    <xsd:element ref="AgentAction" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="AgentHeaderType">
+    <xsd:sequence>
+         <xsd:element name="AgentID" type="otmtypes:Gid" minOccurs="0"/>
+         <xsd:element name="QueryType" type="otmtypes:Gid" minOccurs="0"/>
+         <xsd:element name="RunAs" type="RunAsType" minOccurs="0"/>
+         <xsd:element name="ObjectLock" type="xsd:boolean" minOccurs="0"/>
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="RunAsType" >
+	<xsd:choice>
+	    <xsd:element name="UserRole" type="otmtypes:Gid" />
+	    <xsd:element name="ObjectDomainQuery" type="otmtypes:Gid" />
+	</xsd:choice>
+</xsd:complexType>
+
+<xsd:complexType name="AgentActionType" abstract="true">
+	<xsd:sequence>
+	    <xsd:element name="DtaGid" minOccurs="0" type="otmtypes:Gid"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="ShipmentActionType">
+    <xsd:complexContent>
+        <xsd:extension base="AgentActionType"/>
+    </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:complexType name="SellSideShipmentActionType">
+    <xsd:complexContent>
+        <xsd:extension base="AgentActionType"/>
+    </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:complexType name="DriverActionType">
+    <xsd:complexContent>
+        <xsd:extension base="AgentActionType"/>
+    </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:complexType name="OrderReleaseActionType">
+    <xsd:complexContent>
+        <xsd:extension base="AgentActionType"/>
+    </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:complexType name="OrderMovementActionType">
+    <xsd:complexContent>
+        <xsd:extension base="AgentActionType"/>
+    </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:element name="Agent" type="AgentType"/>
+<xsd:element name="AgentAction" type="AgentActionType"/>
+<xsd:element name="ShipmentAction" type="ShipmentActionType" substitutionGroup="AgentAction"/>
+<xsd:element name="OrderReleaseAction" type="OrderReleaseActionType" substitutionGroup="AgentAction"/>
+<xsd:element name="OrderMovementAction" type="OrderMovementActionType" substitutionGroup="AgentAction"/>
+<xsd:element name="SellSideShipmentAction" type="SellSideShipmentActionType" substitutionGroup="AgentAction"/>
+<xsd:element name="DriverAction" type="DriverActionType" substitutionGroup="AgentAction"/>
+</xsd:schema>

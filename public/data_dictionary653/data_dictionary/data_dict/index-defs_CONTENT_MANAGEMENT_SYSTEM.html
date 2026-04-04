@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - CONTENT_MANAGEMENT_SYSTEM</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - CONTENT_MANAGEMENT_SYSTEM</H1>
+Content Management System for document integration<P>
+<DL>
+<DT><A NAME="CONTENT_MANAGEMENT_SYSTEM_GID">CONTENT_MANAGEMENT_SYSTEM_GID</A><DD>Content Management System GID
+<DT><A NAME="CONTENT_MANAGEMENT_SYSTEM_XID">CONTENT_MANAGEMENT_SYSTEM_XID</A><DD>Content Management System XID
+<DT><A NAME="DESCRIPTION">DESCRIPTION</A><DD>Description of system
+<DT><A NAME="URL">URL</A><DD>URL for system communication
+<DT><A NAME="TYPE">TYPE</A><DD>Type of CMS: "OTM" = OTM is managing and storing documents within the schema. "WCC" - Oracle Webcenter Content is used to manage and store documents. "JCR" - Some other JSR-170 compliant system is used to manage and store documents.
+<DT><A NAME="USER_NAME">USER_NAME</A><DD>User name for remote authorization
+<DT><A NAME="PASSWORD">PASSWORD</A><DD>Credentials for remote authorization
+<DT><A NAME="WCC_SUPPORTS_ACCOUNTS">WCC_SUPPORTS_ACCOUNTS</A><DD>If "Y", WCC has been configured to support accounts.
+<DT><A NAME="WCC_USE_DIRECT_URL">WCC_USE_DIRECT_URL</A><DD>If "Y", users receive direct URL's into WCC, necessitating an SSO solution or login to WCC. If "N", content is piped through OTM.
+<DT><A NAME="WCC_USE_AUTO_GENERATED_ID">WCC_USE_AUTO_GENERATED_ID</A><DD>If "Y", WCC has been configured to auto generated document ID's.
+<DT><A NAME="WCC_SECURITY_GROUP">WCC_SECURITY_GROUP</A><DD>The default security group for documents.
+<DT><A NAME="WCC_DOCNAME_GEN_GID">WCC_DOCNAME_GEN_GID</A><DD>The default generator for the dDocName WCC parameter.
+<DT><A NAME="WCC_DOCTITLE_GEN_GID">WCC_DOCTITLE_GEN_GID</A><DD>The default generator for the dDocAccount WCC parameter.
+<DT><A NAME="WCC_ACCOUNT_GEN_GID">WCC_ACCOUNT_GEN_GID</A><DD>The default generator for the dDocAccount WCC parameter.
+<DT><A NAME="WCC_REVLABEL_GEN_GID">WCC_REVLABEL_GEN_GID</A><DD>The default generator for the dRevLabel WCC parameter.
+<DT><A NAME="WCC_REVIEW_MODE">WCC_REVIEW_MODE</A><DD>If "NONE", no document review workflows are used with the CMS. If "WCC", OTM forwards reviewers to WCC which is responsible for managing the review process. Users can accept or deny documents from OTM, but the action is forwarded to WCC. If "OTM", standard OTM review workflow is used. Documents cannot be accept or denied from WCC.
+<DT><A NAME="WCC_DISTRIBUTION_MODE">WCC_DISTRIBUTION_MODE</A><DD>If "NONE", no document distribution is used with the CMS. If "WCC", OTM forwards distribution parties to WCC which is responsible for forwarding them finalized content. Users can finalize or unfinalize documents from OTM, but the action is forwarded to WCC. If "OTM", standard OTM finalization workflow is used. Documents cannot be finalized from WCC.
+<DT><A NAME="JCR_CONNECTION_TYPE">JCR_CONNECTION_TYPE</A><DD>Type of connection to retrieve a JSR-170 Repository. "JNDI" assumes the content server supports JNDI lookup. "SERVICE LOADER" assumes libraries to support the content server are included with OTM. "JAVA" assumes a proprietary connection is needed.
+<DT><A NAME="JCR_CONNECTION_PLUGIN_GID">JCR_CONNECTION_PLUGIN_GID</A><DD>If the JCR connection type is "JAVA", the plugin to retrieve a JCR Repository object.
+<DT><A NAME="JCR_SUPPORTS_REVISIONS">JCR_SUPPORTS_REVISIONS</A><DD>If "Y", the JSR-170 compliant CMS supports document versioning
+<DT><A NAME="ROOT_FOLDER">ROOT_FOLDER</A><DD>Root folder for all OTM documents. If null, documents are assumed unfiled.
+<DT><A NAME="FOLDER_TYPE">FOLDER_TYPE</A><DD>Type of folders for document assignment. If NONE, documents are assumed unfiled. If FIXED, all documents are placed in the root folder. If DOMAIN, documents are placed in a subfolder of the root, equal to the domain. E.g., a document in domain A/B ,with a root of R, is placed in R/A/B. If GENERATED, the subfolder is determined by a parameter generator.
+<DT><A NAME="FOLDER_GEN_GID">FOLDER_GEN_GID</A><DD>The parameter generator for document subfolders.
+<DT><A NAME="CMIS_BINDING">CMIS_BINDING</A><DD>CMIS Binding. If WEB SERVICES, Web Service calls over SOAP are used to invoke CMIS. If ATOM PUB, RESTful calls are used.
+<DT><A NAME="CMIS_USE_VERSIONING">CMIS_USE_VERSIONING</A><DD>If Y, the CMIS versioning implementation should be used when adding OTM revisions. Otherwise, an independent document is created for each revision.
+<DT><A NAME="CMIS_NAME_GEN_GID">CMIS_NAME_GEN_GID</A><DD>Generator for the cmis:name parameter.
+<DT><A NAME="CMIS_REVLABEL_GEN_GID">CMIS_REVLABEL_GEN_GID</A><DD>Generator for the cmis:versionLabel parameter.
+<DT><A NAME="CMIS_REPOSITORY_ID">CMIS_REPOSITORY_ID</A><DD>CMIS repository ID. If left blank, OTM will use the first repository found.
+<DT><A NAME="FOLDER_CMS_TYPE">FOLDER_CMS_TYPE</A><DD>Custom folder CMS type.
+<DT><A NAME="DOCUMENT_CMS_TYPE">DOCUMENT_CMS_TYPE</A><DD>Custom document CMS type.
+<DT><A NAME="ODC_DOCTITLE_GEN_GID">ODC_DOCTITLE_GEN_GID</A><DD>This column would store the param generator gid to generate  title for documents
+</DL>
+</BODY>
+</HTML>

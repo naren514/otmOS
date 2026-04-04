@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - MANAGER_LAYOUT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - MANAGER_LAYOUT</H1>
+This defines a custom screen that is used to view or edit entitys in the system<P>
+<DL>
+<DT><A NAME="MANAGER_LAYOUT_NAME">MANAGER_LAYOUT_NAME</A><DD>The name of the manager layout record as it pertains to a user
+<DT><A NAME="ENTITY_NAME">ENTITY_NAME</A><DD>This is the top level business object that defines the map of child records
+<DT><A NAME="POST_SAVE_NAV">POST_SAVE_NAV</A><DD>This is the location the screen will navigate to after a record has been saved
+<DT><A NAME="MANAGER_LAYOUT_XML">MANAGER_LAYOUT_XML</A><DD>The XML that the layout manager UI manipulates to generate child records
+<DT><A NAME="MANAGER_LAYOUT_TYPE">MANAGER_LAYOUT_TYPE</A><DD>The type of Manager Layout, either (E)dit or (V)iew.
+<DT><A NAME="IS_TEMPLATE">IS_TEMPLATE</A><DD>If the manager layout is a template then the manager_layout_xml will include links to the public files to build the manager layout document.  Otherwise the manager_layout_xml will be the marked up version of the layout document
+<DT><A NAME="DISPLAY_UOM_AS_ENTERED">DISPLAY_UOM_AS_ENTERED</A><DD>If this is true all UOMs in this manager layout will display their values as they were entered instead of converting to user preference
+<DT><A NAME="PARENT_MANAGER_LAYOUT_GID">PARENT_MANAGER_LAYOUT_GID</A><DD>The parent manager layout gid is the template that this record was created from
+<DT><A NAME="SUPPORTS_ADD_FIELD">SUPPORTS_ADD_FIELD</A><DD>Determines if this manager layout allows fields to be added in the toolkit
+<DT><A NAME="TITLE">TITLE</A><DD>Title of Page
+</DL>
+</BODY>
+</HTML>

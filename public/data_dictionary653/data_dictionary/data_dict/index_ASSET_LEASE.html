@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE>Data Dictionary</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Data Dictionary</H1>
+<TABLE BORDER="0">
+<TR><TD COLSPAN="5"><A NAME="ASSET_LEASE"><STRONG><FONT SIZE="+1">ASSET_LEASE</FONT></STRONG></A><TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>ASSET_LEASE_GID&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#ASSET_LEASE_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ASSET_LEASE_XID&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#ASSET_LEASE_XID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ASSET_LEASE_TYPE&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#ASSET_LEASE_TYPE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>O/P/A</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>EFFECTIVE_DATE&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#EFFECTIVE_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>EXPIRATION_DATE&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#EXPIRATION_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>OWNER_NAME&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#OWNER_NAME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(120)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LESSOR&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#LESSOR" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_SCAC.html">SCAC</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LESSEE_GID&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#LESSEE_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_SCAC.html">SCAC</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LEASE_CHARGE_PER_DAY&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#LEASE_CHARGE_PER_DAY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LEASE_CHARGE_PER_DAY_CURR_GID&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#LEASE_CHARGE_PER_DAY_CURR_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_CURRENCY.html">CURRENCY</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LEASE_CHARGE_PER_DAY_BASE&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#LEASE_CHARGE_PER_DAY_BASE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UM_CHARGE&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#UM_CHARGE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UM_CHARGE_CURR_GID&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#UM_CHARGE_CURR_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_CURRENCY.html">CURRENCY</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UM_CHARGE_BASE&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#UM_CHARGE_BASE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DOMAIN_NAME</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UM_CHARGE_UNIT&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#UM_CHARGE_UNIT" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UM_CHARGE_UNIT_BASE&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#UM_CHARGE_UNIT_BASE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UM_CHARGE_UNIT_UOM_CODE&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#UM_CHARGE_UNIT_UOM_CODE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DESCRIPTION&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#DESCRIPTION" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(120)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>OWNERSHIP_CODE&nbsp;&nbsp;<A HREF="index-defs_ASSET_LEASE.html#OWNERSHIP_CODE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(20)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+</TABLE></BODY>
+</HTML>

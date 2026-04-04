@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - RATE_GEO</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - RATE_GEO</H1>
+Also known as a lane, a rate geo is a prescribed course for ships, aircraft, etc. that can have costing (or time of travel) associated with it.  A rate geo may be something as general as West Coast to East Coast, country to country, state to state, or as specific as zip code to zip code.  GC3 will always look at the most granular rate_geo it can find.<P>
+<DL>
+<DT><A NAME="RATE_GEO_GID">RATE_GEO_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RATE_GEO_XID">RATE_GEO_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="RATE_OFFERING_GID">RATE_OFFERING_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="X_LANE_GID">X_LANE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="EQUIPMENT_GROUP_PROFILE_GID">EQUIPMENT_GROUP_PROFILE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RATE_SERVICE_GID">RATE_SERVICE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="MIN_COST_GID">MIN_COST_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="MIN_COST_BASE">MIN_COST_BASE</A><DD>MIN_COST in base units.
+<DT><A NAME="CIRCUITY_DISTANCE_COST_GID">CIRCUITY_DISTANCE_COST_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="CIRCUITY_DISTANCE_COST_BASE">CIRCUITY_DISTANCE_COST_BASE</A><DD>CIRCUITY_DISTANCE_COST in base units.
+<DT><A NAME="MAX_CIRCUITY_DISTANCE_BASE">MAX_CIRCUITY_DISTANCE_BASE</A><DD>MAX_CIRCUITY_DISTANCE in base units.
+<DT><A NAME="FLEX_COMMODITY_PROFILE_GID">FLEX_COMMODITY_PROFILE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RATE_QUALITY_GID">RATE_QUALITY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SHORT_LINE_COST_GID">SHORT_LINE_COST_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SHORT_LINE_COST_BASE">SHORT_LINE_COST_BASE</A><DD>SHORT_LINE_COST in base units.
+<DT><A NAME="RATE_ZONE_PROFILE_GID">RATE_ZONE_PROFILE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="LOCATION_GID">LOCATION_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="ROUTE_CODE_GID">ROUTE_CODE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="DIM_RATE_FACTOR_GID">DIM_RATE_FACTOR_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SHIPPER_MIN_VALUE_GID">SHIPPER_MIN_VALUE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RAIL_INTER_MODAL_PLAN_GID">RAIL_INTER_MODAL_PLAN_GID</A><DD>This is the rail inter-modal plan. gid.  I.e.) Plan 20 - door-to-door, Plan 25 - ramp-to-ramp, etc.
+<DT><A NAME="CUSTOMER_RATE_CODE">CUSTOMER_RATE_CODE</A><DD>This code signifies what rate is used on a Leg, either 'C' for the Customer's rate, or 'S' for the Shipper's rate.
+<DT><A NAME="COFC_TOFC">COFC_TOFC</A><DD>Container-On-Flat-Car_Trailer-On-Flat-Car code used along with the Rail_Inter_Modal_Plan_gid  to determine the  rate.
+<DT><A NAME="EXPIRE_MARK_ID">EXPIRE_MARK_ID</A><DD>Used to indicate that the rate has been marked for expiration.
+<DT><A NAME="VIA_SRC_LOC_PROF_GID">VIA_SRC_LOC_PROF_GID</A><DD>List of compatible source VIA locations.
+<DT><A NAME="VIA_DEST_LOC_PROF_GID">VIA_DEST_LOC_PROF_GID</A><DD>List of compatible destination VIA locations.
+<DT><A NAME="VIA_SRC_LOC_GID">VIA_SRC_LOC_GID</A><DD>Used when only a single VIA source location is valid, will be used in rating and routing.
+<DT><A NAME="VIA_DEST_LOC_GID">VIA_DEST_LOC_GID</A><DD>Used when only a single VIA destination location is valid, will be used in rating and routing.
+<DT><A NAME="ROUNDING_TYPE">ROUNDING_TYPE</A><DD>The type of rounding that will occur during rating.  Value are: N=no rounding,I=round to nearest interval,F=floor, and C=ceiling.
+<DT><A NAME="ROUNDING_INTERVAL">ROUNDING_INTERVAL</A><DD>Numbers will be rounded (or truncated) to the nearest increment of this value.
+<DT><A NAME="ROUNDING_FIELDS_LEVEL">ROUNDING_FIELDS_LEVEL</A><DD>Determines which kinds of fields will be affected by the rounding settings during costing.  Values are 0-7, where 0=all fields, 1=none, 2=numeric fields only, 3=unit fields (weight, etc.), 4=currency, 5=numeric and unit fields, 6=numeric and currency fields, and 7=unit and currency fields.
+<DT><A NAME="ROUNDING_APPLICATION">ROUNDING_APPLICATION</A><DD>Determines when to apply the rounding rules.  Values are A/N/C/O where A=always, N=never, C=conditionals only, and O=cost calculations only.
+<DT><A NAME="DEFICIT_CALCULATIONS_TYPE">DEFICIT_CALCULATIONS_TYPE</A><DD>When to apply deficit calculations. Values are Y/N/P where Y = Yes, N = No and P = Payant Pour
+<DT><A NAME="BUY_SERVPROV_PROFILE_GID">BUY_SERVPROV_PROFILE_GID</A><DD>Id of the service provider profile to be used when building buy shipments.
+<DT><A NAME="BUY_RATE_GEO_PROFILE_GID">BUY_RATE_GEO_PROFILE_GID</A><DD>Id of the rate geo profile to be used when building buy shipments.
+<DT><A NAME="PAYMENT_METHOD_CODE_GID">PAYMENT_METHOD_CODE_GID</A><DD>Optional payment method for the rate record
+<DT><A NAME="IS_MASTER_OVERRIDES_BASE">IS_MASTER_OVERRIDES_BASE</A><DD>If Y, the BASE rate will not be evaluated and applied for this rate geo.
+<DT><A NAME="IS_QUOTE">IS_QUOTE</A><DD>Most commonly applicable to spot rates; indicates if this rate is to be found by rate finding logic. During RIQ, if the attached rate offering is a spot rate, the rate_geo can only be used if quote is checked.
+<DT><A NAME="RATE_GEO_SEQ">RATE_GEO_SEQ</A><DD>System generated unique identifier for a Rate Geo for internal use only.
+<DT><A NAME="LOGIC_CONFIG_GID">LOGIC_CONFIG_GID</A><DD>Specifies the logic config group id used to look up any logic params specified as charge_multipliers on costs.  If not null, overrides value specified on the owning rate offering.
+<DT><A NAME="RATE_GEO_DESC">RATE_GEO_DESC</A><DD>To store descrition of the Rate Geo
+<DT><A NAME="IS_SOURCING_RATE">IS_SOURCING_RATE</A><DD>This column is named as IS_SOURCING_RATE to maintain consistency with RATE_OFFERING table but used to serve the purpose of IS_READ_ONLY in the UI.
+</DL>
+</BODY>
+</HTML>

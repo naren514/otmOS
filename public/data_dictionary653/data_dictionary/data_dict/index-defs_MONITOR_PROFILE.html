@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - MONITOR_PROFILE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - MONITOR_PROFILE</H1>
+A monitor profile can be either a Template (Monitor Profile Template) or an 'instance' (Monitor Profile) created from a template.  If it is a Template, it will not have an associated business object.  If it is an 'instance', it will have an associated business object.<P>
+<DL>
+<DT><A NAME="MONITOR_PROFILE_GID">MONITOR_PROFILE_GID</A><DD>The unique identier of the monitor profile.
+<DT><A NAME="MONITOR_PROFILE_XID">MONITOR_PROFILE_XID</A><DD>The external identifier for the monitor profile.  It is used to be part of the key for a monitor profile template or monitor profile.
+<DT><A NAME="MONITOR_PROFILE_NAME">MONITOR_PROFILE_NAME</A><DD>Text, as entered by the user, for familiar reference.
+<DT><A NAME="MONITOR_PROFILE_TEMPLATE_GID">MONITOR_PROFILE_TEMPLATE_GID</A><DD>Null if this is a monitor profile template -or- the global identifier indicating the monitor profile template from which this monitor profile was created.
+<DT><A NAME="IS_TEMPLATE">IS_TEMPLATE</A><DD>True if this is a monitor profile template (default) -or- False if this is a monitor profile.
+<DT><A NAME="DATA_QUERY_TYPE_GID">DATA_QUERY_TYPE_GID</A><DD>The unique identifier referring to the data_query_type table to indicate which type of business object (order_base, shipment, order_release, invoice) the monitor_profile is associated.  Note: a Monitor Profile must have a value in this column depending on which value this has, the corresponding column (order_base_gid, shipment_gid, order_release_gid, invoice_gid) must have a value.  Thus, the type limits the type of agents you can use and events you can listen for.  For example, only Shipment events for a shipment data query type.
+</DL>
+</BODY>
+</HTML>

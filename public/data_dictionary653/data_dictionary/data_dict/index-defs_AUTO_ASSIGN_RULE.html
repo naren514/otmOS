@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - AUTO_ASSIGN_RULE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - AUTO_ASSIGN_RULE</H1>
+Header information for the auto-assign rule<P>
+<DL>
+<DT><A NAME="AUTO_ASSIGN_RULE_GID">AUTO_ASSIGN_RULE_GID</A><DD>Auto_assign rule id
+<DT><A NAME="AUTO_ASSIGN_TYPE_GID">AUTO_ASSIGN_TYPE_GID</A><DD>Type of auto-assignment done by the rule
+<DT><A NAME="RULE_SEQUENCE">RULE_SEQUENCE</A><DD>Sequence that rule should be run; managed only by an admin user.  Necessary for a rule assignment that may be dependent on values assigned by another rule.
+<DT><A NAME="PQ_AUTO_ASSIGN_CRITERIA_GID">PQ_AUTO_ASSIGN_CRITERIA_GID</A><DD>Optional pre-qualifier criteria to check if rule should even be considered
+<DT><A NAME="PQ_AUTO_ASSIGN_LIST_TYPE">PQ_AUTO_ASSIGN_LIST_TYPE</A><DD>If pre-qualify criteria is used, indicates how to process list: O=match one in list, N=match none in list
+<DT><A NAME="IS_ACTIVE">IS_ACTIVE</A><DD>Indicates if rule is active
+<DT><A NAME="IS_STOP_AFTER_1ST_ASSIGN">IS_STOP_AFTER_1ST_ASSIGN</A><DD>Indicates if assign engine shoule stop assigning after an assignment is made or if it should continue testing all conditions.
+<DT><A NAME="IS_PQ_MATCH_ALL">IS_PQ_MATCH_ALL</A><DD>If Y, indicates all values from the business object must pass the rule check. N indicates any match passes the rule.
+<DT><A NAME="CATEGORY">CATEGORY</A><DD>Optional user classification or id for the rule
+<DT><A NAME="DESCRIPTION">DESCRIPTION</A><DD>Optional user description for the rule
+</DL>
+</BODY>
+</HTML>

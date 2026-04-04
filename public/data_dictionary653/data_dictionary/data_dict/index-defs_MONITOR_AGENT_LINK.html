@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - MONITOR_AGENT_LINK</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - MONITOR_AGENT_LINK</H1>
+This is the link for a specific dependency service between two Monitor Planned Agents.<P>
+<DL>
+<DT><A NAME="MONITOR_AGENT_GID">MONITOR_AGENT_GID</A><DD>Part of the composite primary key. It is a foreign key reference back to the Monitor Agnet 'predecessor' in this link.
+<DT><A NAME="MONITOR_AGENT_SUCC_GID">MONITOR_AGENT_SUCC_GID</A><DD>Part of the composite primary key.  It is a foreign key reference back to the monitor agent 'successor' in this link.
+<DT><A NAME="DEPENDENCY_SERVICE_GID">DEPENDENCY_SERVICE_GID</A><DD>Part of the composite primary key.  It is a foreign key reference back to the dependency_service table indicating which type of dependency service this is for this link.
+<DT><A NAME="MONITOR_AGENT_LINK_SEQ">MONITOR_AGENT_LINK_SEQ</A><DD>If more than one link for each Monitor_Agent, Monitor_Agent_Successor, this specifies the process order for the Monitor Profile to process these dependency service links.  For example, if deactivate and a Time_Link links are between the same Monitor_Agent, Monitor_Agent_Successor, it result will be different if deactivate is processed first or second.
+<DT><A NAME="DURATION_OFFSET">DURATION_OFFSET</A><DD>Only for Time_Link, and is optional.  If set, it will add the duration_offset, which is specified in hours, to the Monitor_Agent_Successor's expiration Date.
+
+<DT><A NAME="EXPIRATION_DATE">EXPIRATION_DATE</A><DD>Only for a Time_Link, and is optional, For a template, it has the expiration date and time specified if, during the definition, the user wants to specify a specific date and time for the Monitor Agent Successor to be set to evaluate to true.  For example, 12/31/01 11:59:59 -or-  It has the expiration time specified (no date) if, during definition, the user wants to specify a time, where the date gets determined during execution.  For example, 5:00pm and when the assignment takes place, the instance will specify the date, for example, 9/2/02 5:00pm. -OR NULL if the expiration date and time will NOT be determined by the dependency service during execution but by the MonitorTimeAgent.
+
+<DT><A NAME="DURATION_OFFSET_UOM_CODE">DURATION_OFFSET_UOM_CODE</A><DD>Unit of measure for DURATION_OFFSET column.
+<DT><A NAME="DURATION_OFFSET_BASE">DURATION_OFFSET_BASE</A><DD>DURATION_OFFSET in base units.
+</DL>
+</BODY>
+</HTML>

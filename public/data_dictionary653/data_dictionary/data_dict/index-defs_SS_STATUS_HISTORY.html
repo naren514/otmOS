@@ -1,0 +1,15 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SS_STATUS_HISTORY</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SS_STATUS_HISTORY</H1>
+This table is used to store the status of the shipment. The status is received via an external transmission. This table stores the event that triggered the status. The events can be: Arrived, Delivered, Delayed, Cargo Problems, Departed, Delivery Problem, Est_Arrival, etc.<P>
+<DL>
+<DT><A NAME="SHIPMENT_GID">SHIPMENT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SERVPROV_GID">SERVPROV_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SHIPMENT_STOP_NUM">SHIPMENT_STOP_NUM</A><DD>This indicates the shipment stop number for a stop based event
+<DT><A NAME="EVENT_LOCATION_GID">EVENT_LOCATION_GID</A><DD>The location identifier of an location based event.  This will be null for non-location based events
+</DL>
+</BODY>
+</HTML>

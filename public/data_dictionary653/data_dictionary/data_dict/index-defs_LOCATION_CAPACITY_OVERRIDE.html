@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - LOCATION_CAPACITY_OVERRIDE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - LOCATION_CAPACITY_OVERRIDE</H1>
+<DL>
+<DT><A NAME="CAPACITY_TYPE">CAPACITY_TYPE</A><DD>Possible values: WEIGHT, VOLUME, SHIPMENT, TEU, FEU, and all Equipment_Reference_Unit_GIDs
+<DT><A NAME="ACTIVITY_GID">ACTIVITY_GID</A><DD>The sole purpose of this column is to make FK to LOCATION_CAPACITY_D.  It should match the ACTIVITY_GID of ACTIVITY_CALENDAR.
+<DT><A NAME="TIME_BUCKET_DURATION">TIME_BUCKET_DURATION</A><DD>Duration of each bucket
+<DT><A NAME="MAXIMUM_QUANTITY">MAXIMUM_QUANTITY</A><DD>The maximum quantity per bucket the location can handle. Cannot be exceeded. Only valid when CAPACITY_TYPE is neither WEIGHT nor VOLUME.
+<DT><A NAME="MAXIMUM_WEIGHT">MAXIMUM_WEIGHT</A><DD>The maximum weight per bucket the location can handle. Cannot be exceeded. Only valid when CAPACITY_TYPE is WEIGHT.
+<DT><A NAME="MAXIMUM_VOLUME">MAXIMUM_VOLUME</A><DD>The maximum volume per bucket the location can handle. Cannot be exceeded. Only valid when CAPACITY_TYPE is VOLUME.
+<DT><A NAME="TARGET_QUANTITY">TARGET_QUANTITY</A><DD>The ideal quantity per bucket the location should handle. Can be exceeded, but pay above target penalty. Only valid when CAPACITY_TYPE is neither WEIGHT nor VOLUME.
+<DT><A NAME="TARGET_WEIGHT">TARGET_WEIGHT</A><DD>The ideal weight per bucket the location should handle. Only valid when CAPACITY_TYPE is WEIGHT.
+<DT><A NAME="TARGET_VOLUME">TARGET_VOLUME</A><DD>The ideal volume per bucket the location should handle. Only valid when CAPACITY_TYPE is VOLUME.
+<DT><A NAME="BELOW_TARGET_PENALTY">BELOW_TARGET_PENALTY</A><DD>Below target penalty per quantity, or per weight unit (TARGET_WEIGHT_UOM_CODE), or per volume unit (TARGET_VOLUME_UOM_CODE)
+<DT><A NAME="ABOVE_TARGET_PENALTY">ABOVE_TARGET_PENALTY</A><DD>Above target penalty per quantity, or per weight unit (TARGET_WEIGHT_UOM_CODE), or per volume unit (TARGET_VOLUME_UOM_CODE)
+</DL>
+</BODY>
+</HTML>

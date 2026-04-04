@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - DATA_QUEUE_POLLER</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - DATA_QUEUE_POLLER</H1>
+Defines a poller for a data queue<P>
+<DL>
+<DT><A NAME="DATA_QUEUE_POLLER_GID">DATA_QUEUE_POLLER_GID</A><DD>Globale ID for the data queue poller
+<DT><A NAME="DATA_QUEUE_POLLER_XID">DATA_QUEUE_POLLER_XID</A><DD>Data Queue Poller ID
+<DT><A NAME="DESCRIPTION">DESCRIPTION</A><DD>A description of the function and logic of the poller
+<DT><A NAME="WHERE_FILTER">WHERE_FILTER</A><DD>A where clause to attach to queries. This is used to filter records by columns other than QUEUE_STATE.
+<DT><A NAME="ORDER_BY">ORDER_BY</A><DD>An order by clause to attach to queries. Defaults to sequence ordering.
+<DT><A NAME="JAVA_PLUGIN_GID">JAVA_PLUGIN_GID</A><DD>A java plugin used to retrieve records with the poller. The plugin must have a PLUGIN_USE_TYPE of 'DATA QUEUE POLLER'.
+<DT><A NAME="IS_PREEMPTIVE_POLLER">IS_PREEMPTIVE_POLLER</A><DD>If Y, the user can preempt events in the queue
+</DL>
+</BODY>
+</HTML>

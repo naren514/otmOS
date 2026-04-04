@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - DM_RULE_D</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - DM_RULE_D</H1>
+Demurrage Rule Detail provides the detail capability to define possible rules for the determination of demurrage, detention and storage chargeable days and charges<P>
+<DL>
+<DT><A NAME="DM_RULE_GID">DM_RULE_GID</A><DD>Demurrage Rule ID
+<DT><A NAME="DM_RULE_D_SEQ_NO">DM_RULE_D_SEQ_NO</A><DD>demurrage rule d seq no
+<DT><A NAME="ACTIVITY_TYPE_GID">ACTIVITY_TYPE_GID</A><DD>Activity Type ID. Possible demurrage activity type are load-load, load-empty, empty-load, empty-empty-bad-asset, empty-empty-not-used-asset.
+<DT><A NAME="SPECIAL_SERVICE_GID">SPECIAL_SERVICE_GID</A><DD>Determine the type of charge. Example could be Demurrage. These are modeled as special services.
+<DT><A NAME="FREE_DAYS_CALENDAR_GID">FREE_DAYS_CALENDAR_GID</A><DD>Free days calendar helps to capture the free days like weekends, holiday etc. This would not be considered to determine the debit days.
+<DT><A NAME="FREE_DAYS_ACTIVITY_GID">FREE_DAYS_ACTIVITY_GID</A><DD>Free days Activity again which the free days are defined with the free days calendar.
+<DT><A NAME="FREE_DAYS_TO_LOAD">FREE_DAYS_TO_LOAD</A><DD>free days to load.
+<DT><A NAME="FREE_DAYS_TO_UNLOAD">FREE_DAYS_TO_UNLOAD</A><DD>free days to unload.
+<DT><A NAME="FREE_DAYS_TO_UNLOAD_RELOAD">FREE_DAYS_TO_UNLOAD_RELOAD</A><DD>free days to unload and reload.
+<DT><A NAME="FREE_DAYS_TO_SWITCH">FREE_DAYS_TO_SWITCH</A><DD>free days for own switching
+<DT><A NAME="SECONDARY_CHARGE_RULE_GID">SECONDARY_CHARGE_RULE_GID</A><DD>charge the extended use of asset as secondary charge shipment.
+<DT><A NAME="START_BS_STATUS_CODE_GID">START_BS_STATUS_CODE_GID</A><DD>demurrage chargeable days start event (status code) ID. In the case of RR owned freight car, demurrage would typically start with the either constructive placement or actual placement events.
+<DT><A NAME="END_BS_STATUS_CODE_GID">END_BS_STATUS_CODE_GID</A><DD>demurrage chargeable days end event (status code) ID. In the case of RR owned freight car, demurrage would typically end with the released event. 
+<DT><A NAME="CHARGE_TYPE">CHARGE_TYPE</A><DD>Charge type, possible values are NFRC Shipment, Inbound Shipment, Outbound Shipment, Secondary Charge Shipment.
+</DL>
+</BODY>
+</HTML>

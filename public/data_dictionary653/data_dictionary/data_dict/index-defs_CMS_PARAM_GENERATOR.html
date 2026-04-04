@@ -1,0 +1,16 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - CMS_PARAM_GENERATOR</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - CMS_PARAM_GENERATOR</H1>
+Specification for the generation of a document parameter.<P>
+<DL>
+<DT><A NAME="GEN_TYPE">GEN_TYPE</A><DD>The type of generation to use for the parameter value. "BN" = Business Number Rule; "CONSTANT" = constant value; "SQL" = SQL statement returning a single value; "JAVA" = a Java plug-in
+<DT><A NAME="GEN_PLUGIN_GID">GEN_PLUGIN_GID</A><DD>If gen_type="JAVA", the java plugin that generates the parameter value.
+<DT><A NAME="GEN_BN_RULE_GID">GEN_BN_RULE_GID</A><DD>If gen_type="BN", the business number rule that generates the parameter value.
+<DT><A NAME="GEN_SQL">GEN_SQL</A><DD>If gen_type="SQL", the SQL select statement that generates the parameter value.
+<DT><A NAME="GEN_CONSTANT">GEN_CONSTANT</A><DD>If gen_type="CONSTANT", the constant value of the parameter.
+</DL>
+</BODY>
+</HTML>

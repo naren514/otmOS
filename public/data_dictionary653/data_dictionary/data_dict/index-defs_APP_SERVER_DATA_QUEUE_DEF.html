@@ -1,0 +1,14 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - APP_SERVER_DATA_QUEUE_DEF</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - APP_SERVER_DATA_QUEUE_DEF</H1>
+Directs data queue workload to specific SCA clusters<P>
+<DL>
+<DT><A NAME="APP_SERVER_GID">APP_SERVER_GID</A><DD>Cluster handling the data queue
+<DT><A NAME="DATA_QUEUE_DEF_GID">DATA_QUEUE_DEF_GID</A><DD>Data queue
+<DT><A NAME="LOAD_BALANCE_THREADS">LOAD_BALANCE_THREADS</A><DD>If N, the number of polling threads should be based only on the data queue thread count. If Y, it should take into account the load balance weight of the particular cluster machine (i.e. # = thread count * load balance weight)
+</DL>
+</BODY>
+</HTML>

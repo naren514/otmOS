@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SHIPMENT_SPECIAL_SERVICE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SHIPMENT_SPECIAL_SERVICE</H1>
+Allows you to define remarks for why a special service applies to the associated shipment.<P>
+<DL>
+<DT><A NAME="SHIPMENT_GID">SHIPMENT_GID</A><DD>The shipment associated with the remark.
+<DT><A NAME="SHIPMENT_SPECIAL_SERVICE_SEQ">SHIPMENT_SPECIAL_SERVICE_SEQ</A><DD>sequence to keep shipment special services unique
+<DT><A NAME="SPECIAL_SERVICE_GID">SPECIAL_SERVICE_GID</A><DD>The special service associated with the remark.
+<DT><A NAME="STOP_NUM">STOP_NUM</A><DD>If the special service is for a particular stop, this indicates the stop number
+<DT><A NAME="PROCESS_AS_FLOW_THRU">PROCESS_AS_FLOW_THRU</A><DD>Override for record to be copied to the sell side during rating.
+<DT><A NAME="ADJUSTMENT_REASON_GID">ADJUSTMENT_REASON_GID</A><DD>Reason why charge was added.
+<DT><A NAME="COMPLETION_STATE">COMPLETION_STATE</A><DD>indicates completion state of this special service
+<DT><A NAME="PAYABLE_INDICATOR_GID">PAYABLE_INDICATOR_GID</A><DD>indicates the payable status of this special service; if values, overrides the payable status on the special service itself
+<DT><A NAME="BILLABLE_INDICATOR_GID">BILLABLE_INDICATOR_GID</A><DD>indicates the billable status of this special service; if values, overrides the billable status on the special service itself
+<DT><A NAME="ACTUAL_OCCUR_TIME">ACTUAL_OCCUR_TIME</A><DD>actual date and time special service occurred
+<DT><A NAME="PLANNED_DURATION">PLANNED_DURATION</A><DD>planned duration of the special service
+<DT><A NAME="IS_PLANNED_DURATION_FIXED">IS_PLANNED_DURATION_FIXED</A><DD>if Y, prevents OTM from overwriting the planned duration for the special service
+<DT><A NAME="ACTUAL_DURATION">ACTUAL_DURATION</A><DD>if specified, actual duration of the special service
+<DT><A NAME="ACTUAL_DISTANCE">ACTUAL_DISTANCE</A><DD>if specified, actual distance of the special service
+<DT><A NAME="ACTUAL_WEIGHT">ACTUAL_WEIGHT</A><DD>if specified, actual weight of the goods applicable to this special service
+<DT><A NAME="ACTUAL_VOLUME">ACTUAL_VOLUME</A><DD>if specified, actual volume of the goods applicable to this special service
+<DT><A NAME="ACTUAL_SHIP_UNIT_COUNT">ACTUAL_SHIP_UNIT_COUNT</A><DD>if specified, actual ship unit count applicable to this special service
+<DT><A NAME="ACTUAL_ITEM_PACKAGE_COUNT">ACTUAL_ITEM_PACKAGE_COUNT</A><DD>if specified, actual package count applicable to this special service
+<DT><A NAME="IS_SYSTEM_GENERATED">IS_SYSTEM_GENERATED</A><DD>indicates if this special service was created by the system, allows logic to determine which special services to leave in place when re-syncing the shipment special services
+</DL>
+</BODY>
+</HTML>

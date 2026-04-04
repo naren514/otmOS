@@ -1,0 +1,13 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - RATE_SERVICE_PROFILE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - RATE_SERVICE_PROFILE</H1>
+Valid list of values for names of service profiles.   The profile links rate services together in the RATE_SERVICE_PROFILE_D table.  This might be used if multiple delivery options are OK for an order (GC3 can decide which one is overall viable).  Example: rate_service 1 = 'Overnight' rate_service 2 = 'Two-day'  We could create a profile called 'Under two days', and then associate each of the rate services with this profile within the RATE_SERVICE_PROFILE_D table.  The profile links to the OB_ORDER_BASE table.<P>
+<DL>
+<DT><A NAME="RATE_SERVICE_PROFILE_GID">RATE_SERVICE_PROFILE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RATE_SERVICE_PROFILE_XID">RATE_SERVICE_PROFILE_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+</DL>
+</BODY>
+</HTML>

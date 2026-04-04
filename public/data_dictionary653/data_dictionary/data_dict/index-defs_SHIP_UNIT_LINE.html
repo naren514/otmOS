@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SHIP_UNIT_LINE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SHIP_UNIT_LINE</H1>
+SHIP_UNIT_LINE stores line item information for an order release. It is a parallel table to S_SHIP_UNIT_LINE.<P>
+<DL>
+<DT><A NAME="SHIP_UNIT_GID">SHIP_UNIT_GID</A><DD>A unique identifier to define the shipping unit that will be used for the order release line. The gid contains the domain portion.
+<DT><A NAME="SHIP_UNIT_LINE_NO">SHIP_UNIT_LINE_NO</A><DD>The line number associated with the ship unit.
+<DT><A NAME="ORDER_RELEASE_LINE_GID">ORDER_RELEASE_LINE_GID</A><DD>A unique identifier to define the multiple order release lines per order release. The gid has the domain portion.
+<DT><A NAME="WEIGHT">WEIGHT</A><DD>Calculated weight of the shipping unit.
+<DT><A NAME="WEIGHT_UOM_CODE">WEIGHT_UOM_CODE</A><DD>Unit of measure for WEIGHT column.
+<DT><A NAME="WEIGHT_BASE">WEIGHT_BASE</A><DD>WEIGHT in base units.
+<DT><A NAME="VOLUME">VOLUME</A><DD>Calcuated volume of the shipping unit.
+<DT><A NAME="VOLUME_UOM_CODE">VOLUME_UOM_CODE</A><DD>Unit of measure for VOLUME column.
+<DT><A NAME="VOLUME_BASE">VOLUME_BASE</A><DD>VOLUME in base units.
+<DT><A NAME="ITEM_PACKAGE_COUNT">ITEM_PACKAGE_COUNT</A><DD>the number of packages in this SHIP_UNIT_LINE for one ship unit ( its S_SHIP_UNIT may represent more than one same ship units).    (e.g., for 20 ship units that contains 4 cases of 24 cans of coca,  each S_SHIP_UNIT_LINE row will have ITEM_GID: coca, ITEM_COUNT 4x24, ITEM_PACKAGE_SPEC_GID: case-of-24-cans, ITEM_PACKAGE_COUNT: 4.   In the SHIP_UNIT table, the SHIP_UNIT_COUNT will be 20)
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SHIPMENT_AGENT_RSP</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SHIPMENT_AGENT_RSP</H1>
+This table keeps the shipping agent contacts and their responsible shipments relationship and their approval/decline status for the shipments.<P>
+<DL>
+<DT><A NAME="SHIPMENT_GID">SHIPMENT_GID</A><DD>One of the primary keys.
+<DT><A NAME="SHIPPING_AGENT_CONTACT_GID">SHIPPING_AGENT_CONTACT_GID</A><DD>One of the primary keys.
+<DT><A NAME="JOB_GID">JOB_GID</A><DD>Indicates which Job the shipment is in.
+<DT><A NAME="APPROVED">APPROVED</A><DD>A:APPROVED, D:DECLINED, O:OUTSTANDING
+<DT><A NAME="ADJUSTMENT_REASON_GID">ADJUSTMENT_REASON_GID</A><DD>If APPROVED field is D, this field is required.
+<DT><A NAME="ADJUSTMENT_TEXT">ADJUSTMENT_TEXT</A><DD>If APPROVED field is D, this field is optional to keep the extra info about the declined shipment.
+</DL>
+</BODY>
+</HTML>

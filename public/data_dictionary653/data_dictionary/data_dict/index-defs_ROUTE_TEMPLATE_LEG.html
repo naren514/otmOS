@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ROUTE_TEMPLATE_LEG</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ROUTE_TEMPLATE_LEG</H1>
+<DL>
+<DT><A NAME="LEG_NUM">LEG_NUM</A><DD>LEG SEQNO, should be unique, in sequence with no gap.
+<DT><A NAME="START_REGION_GID">START_REGION_GID</A><DD>Any region specified here must have a representative location (REPRESENTATIVE_LOCATION_GID column in REGION table).
+<DT><A NAME="START_DIST_THRESHOLD">START_DIST_THRESHOLD</A><DD>Distance threshold from representative location of Start Region.
+<DT><A NAME="END_REGION_GID">END_REGION_GID</A><DD>Any region specified here must have a representative location (REPRESENTATIVE_LOCATION_GID column in REGION table).
+<DT><A NAME="END_DIST_THRESHOLD">END_DIST_THRESHOLD</A><DD>Distance threshold from representative location of End Region.
+<DT><A NAME="EARLY_DEPARTURE_TIME">EARLY_DEPARTURE_TIME</A><DD>Number of seconds after midnight of Day 1 of the week.
+<DT><A NAME="LATE_DEPARTURE_TIME">LATE_DEPARTURE_TIME</A><DD>Number of seconds after midnight of Day 1 of the week.
+<DT><A NAME="EARLY_ARRIVAL_TIME">EARLY_ARRIVAL_TIME</A><DD>Number of seconds after midnight of Day 1 of the week.
+<DT><A NAME="LATE_ARRIVAL_TIME">LATE_ARRIVAL_TIME</A><DD>Number of seconds after midnight of Day 1 of the week.
+<DT><A NAME="EQUIPMENT_GROUP_PROFILE_GID">EQUIPMENT_GROUP_PROFILE_GID</A><DD>This field overrides EQUIPMENT_GROUP_PROFILE_GID on Template Header level (ROUTE_TEMPLATE).
+<DT><A NAME="TIME_PHASED_PLN_THRSH">TIME_PHASED_PLN_THRSH</A><DD>Time Phased Planning Threshold.  If the difference between the system time and Instance Leg's early pickup time is within this threshold, and if there is no shipment that falls within the regions of the Instance Leg, planning engine will look for shipments that are outside the region but within the distance threshold.
+<DT><A NAME="DOMAIN_PROFILE_GID">DOMAIN_PROFILE_GID</A><DD>If this field is not null, only shipment/order in the domain that is contained in this profile can be matched to this Leg.  Should copy to Route Instance Leg.
+</DL>
+</BODY>
+</HTML>

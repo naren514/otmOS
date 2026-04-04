@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/apps/otm/DBXML" 
+            xmlns="http://xmlns.oracle.com/apps/otm/DBXML" xmlns:tns="http://xmlns.oracle.com/apps/otm/DBXML" 
+            elementFormDefault="qualified">
+            
+    <xsd:element name="sql2xml" type="sql2xmlType"/>
+    
+    <xsd:complexType name="sql2xmlType">
+        <xsd:sequence>
+           <xsd:element ref="Sql2xmlParameters"/>
+           <xsd:element name="FootPrint" type="xsd:string" minOccurs="0" />
+           <xsd:element name="UseLOBElement" type="xsd:string" minOccurs="0" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="Sql2xmlParameters" type="xsd:anyType"/>
+    
+    <xsd:element name="DBObject" substitutionGroup="Sql2xmlParameters">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Name" type="xsd:string"/>
+                <xsd:element name="Predicate" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="Query" substitutionGroup="Sql2xmlParameters">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RootName" type="xsd:string"/>
+                <xsd:element name="Statement" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="ObjectSet" substitutionGroup="Sql2xmlParameters">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Name" type="xsd:string"/>
+                <xsd:element name="Predicate" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="Entity" substitutionGroup="Sql2xmlParameters">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Name" type="xsd:string"/>
+                <xsd:element name="PK" type="xsd:string" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="xml2sql" type="xml2sqlType"/>
+    
+    <xsd:complexType name="xml2sqlType">
+        <xsd:sequence>
+           <xsd:sequence minOccurs="0">
+	           <xsd:element name="TransactionCode" type="xsd:string"/>
+	           <xsd:element name="SchemaOwner" type="xsd:string" minOccurs="0" />
+	           <xsd:element name="UpdateCache" type="xsd:string" minOccurs="0" />
+	           <xsd:element name="RaiseEvents" type="xsd:string" minOccurs="0" />
+               <xsd:element name="CommitScope" type="xsd:string" minOccurs="0" />
+	           <xsd:element name="ManagedTables" type="managedTablesType" minOccurs="0" />
+           </xsd:sequence>
+           <xsd:element ref="TRANSACTION_SET" />
+        </xsd:sequence>
+        <xsd:attribute name="Version" use="optional" type="xsd:string" />
+    </xsd:complexType>
+    
+    <xsd:complexType name="managedTablesType">
+       <xsd:sequence>
+          <xsd:element name="Table" minOccurs="1" maxOccurs="unbounded"/>
+       </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="TRANSACTION_SET">
+        <xsd:complexType mixed="true">
+            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                <xsd:any processContents="skip"/>
+            </xsd:sequence>
+            <xsd:attribute name="UseLOBElement" use="optional" type="xsd:boolean" default="false" />
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:complexType name="importResponseType">
+       <xsd:sequence>
+          <xsd:element name="SuccessCount" type="xsd:nonNegativeInteger"/>
+          <xsd:element name="ErrorCount" type="xsd:nonNegativeInteger"/>
+          <xsd:element name="ElapsedTime" type="xsd:nonNegativeInteger" />
+          <xsd:element name="TimePerTransaction" type="xsd:nonNegativeInteger"/>
+          <xsd:element name="Errors" minOccurs="0" >
+             <xsd:complexType>
+                <xsd:sequence>
+                   <xsd:element name="Error" type="xsd:string" maxOccurs="unbounded" />
+                </xsd:sequence>
+             </xsd:complexType>
+          </xsd:element>
+       </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="importResponse" type="importResponseType"/>
+    
+</xsd:schema>

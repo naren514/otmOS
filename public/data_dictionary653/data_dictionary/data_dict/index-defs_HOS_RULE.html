@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - HOS_RULE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - HOS_RULE</H1>
+Basic Hours of Service rule.  Building block for creating HOS Rule Set Option.<P>
+<DL>
+<DT><A NAME="HOS_ACTIVITY_TYPE">HOS_ACTIVITY_TYPE</A><DD>Activity type corresponding to activity time is: D-drive, W-work, or R-rest.
+<DT><A NAME="IS_ACTIVITY_TIME_MAX">IS_ACTIVITY_TIME_MAX</A><DD>Y- Activity time is a maximum time.N- Activity time is a minimum.
+<DT><A NAME="ALLOW_REST">ALLOW_REST</A><DD>Y - Rest duration will be inserted when max activity time is reached. N - If max activity time is exceeded, rule will be in violation.  No rest duration is inserted.
+<DT><A NAME="IS_ACTIVITY_TIME_CONTIGUOUS">IS_ACTIVITY_TIME_CONTIGUOUS</A><DD>Only applicable if IS_ACTIVITY_TIME_MAX is 'N'.
+<DT><A NAME="IS_REST_TRIGGERED_BY_WORK">IS_REST_TRIGGERED_BY_WORK</A><DD>Y- rest duration can be triggered during work activity or drive activity. N- rest duration can only be triggered during drive activity.
+<DT><A NAME="MIN_RESET_SEPARATION">MIN_RESET_SEPARATION</A><DD>Minimum duration required between the start of two resets
+<DT><A NAME="RESET_START_WINDOW_BEGIN">RESET_START_WINDOW_BEGIN</A><DD>Earliest time of day that counting can start for a reset break. Time is stored in milliseconds.
+<DT><A NAME="RESET_START_WINDOW_END">RESET_START_WINDOW_END</A><DD>Latest time of day that counting can start for a reset break. Time is stored in milliseconds.
+</DL>
+</BODY>
+</HTML>

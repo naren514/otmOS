@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SERVICE_EXTERNAL_ENGINE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SERVICE_EXTERNAL_ENGINE</H1>
+The SERVICE_EXTERNAL_ENGINE table holds data relevant to third party external engines, including which GC3 class handles that engine.  Each entry in the SERVICE_EXTERNAL_ENGINE table refers to an external engine along with (via the SERVICE_EXTERNAL_ENGINE_PARM table) a set of parameters to be passed to that engine in order to calculate service time.  .<P>
+<DL>
+<DT><A NAME="SERVICE_EXTERNAL_ENGINE_GID">SERVICE_EXTERNAL_ENGINE_GID</A><DD>The global identifier for a SERVICE_EXTERNAL_ENGINE.  A SERVICE_EXTERNAL_ENGINE refers to a third-party product that calculates service times.
+<DT><A NAME="SERVICE_EXTERNAL_ENGINE_XID">SERVICE_EXTERNAL_ENGINE_XID</A><DD>The external identifier for a SERVICE_EXTERNAL_ENGINE.
+<DT><A NAME="SERVICE_EXTERNAL_ENGINE_DESC">SERVICE_EXTERNAL_ENGINE_DESC</A><DD>A description of the service_external_engine.
+<DT><A NAME="JAVA_CLASS">JAVA_CLASS</A><DD>Name of java class that implements the external engine.
+<DT><A NAME="TIME_TOLERANCE">TIME_TOLERANCE</A><DD>If engine is time sensitive, how close must two start times be to be considered 'close enough'?  NULL if engine is not time sensitive.
+<DT><A NAME="TIME_TOLERANCE_UOM_CODE">TIME_TOLERANCE_UOM_CODE</A><DD>Unit of measure for TIME_TOLERANCE column.
+<DT><A NAME="TIME_TOLERANCE_BASE">TIME_TOLERANCE_BASE</A><DD>TIME_TOLERANCE in base units.
+</DL>
+</BODY>
+</HTML>

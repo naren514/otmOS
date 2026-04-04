@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - AGENT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - AGENT</H1>
+<DL>
+<DT><A NAME="AGENT_GID">AGENT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="AGENT_XID">AGENT_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="DATA_QUERY_TYPE_GID">DATA_QUERY_TYPE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SAVED_CONDITION_GID">SAVED_CONDITION_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="IS_ACTIVE">IS_ACTIVE</A><DD>Indicates whether agent is active or not.
+<DT><A NAME="THRESHOLD_GID">THRESHOLD_GID</A><DD>A threshold defined at agent level.  If the data changes of the lifetime events the agent listens to passed threshold tolerance, the agent will be triggered.
+<DT><A NAME="IS_OBJECT_LOCK">IS_OBJECT_LOCK</A><DD>If Y, the business object is locked until the agent completes
+<DT><A NAME="OBJECT_LOCK_TIMEOUT">OBJECT_LOCK_TIMEOUT</A><DD>Object lock timeout, if IS_OBJECT_LOCK=Y
+<DT><A NAME="OBJECT_LOCK_POLLING">OBJECT_LOCK_POLLING</A><DD>If not using JMS notification for cross-machine locks, the polling interval in msecs
+<DT><A NAME="IS_LONG_RUNNING_TASK">IS_LONG_RUNNING_TASK</A><DD>If Y, this agent is a long running task and should be monitored in the LONG_RUNNING_TASK table.
+</DL>
+</BODY>
+</HTML>

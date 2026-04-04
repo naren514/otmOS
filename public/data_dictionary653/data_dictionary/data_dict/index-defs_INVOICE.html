@@ -1,0 +1,98 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - INVOICE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - INVOICE</H1>
+One record per invoice. Main invoice table.  Currently, an invoice relates to billing of one shipment, but in the future, multiple shipments may be consolidated onto an invoice.  GC3 can populate this table from a shipment, or the invoice information can be fed into the system directly.   An invoice is a relative term - a bill and an invoice look the same, but the person who receives it ("BILL TO" involved party) would consider it an invoice and the person generating it ("SERVICE PROVIDER" party) would consider it a bill.<P>
+<DL>
+<DT><A NAME="INVOICE_GID">INVOICE_GID</A><DD>INVOICE_GID is the unique identifier for the invoice.
+<DT><A NAME="INVOICE_XID">INVOICE_XID</A><DD>INVOICE_XID is the unique external identifier for the invoice.
+<DT><A NAME="INVOICE_TYPE">INVOICE_TYPE</A><DD>INVOICE_TYPE indicates whether this is a bill or an invoice (valid values are 'I' or 'B').INVOICE_TYPE indicates whether this is a bill or an invoice (valid values are 'I' or 'B').
+<DT><A NAME="INVOICE_SOURCE">INVOICE_SOURCE</A><DD>INVOICE_SOURCE valid values are G, I, M.
+<DT><A NAME="ENTERED_BY_GL_USER_GID">ENTERED_BY_GL_USER_GID</A><DD>ENTERED_BY_GL_USER_GID identifies which GL user entered the invoice into the system.
+<DT><A NAME="INVOICE_NUMBER">INVOICE_NUMBER</A><DD>INVOICE_NUMBER indicates the number that was assigned to the invoice.
+<DT><A NAME="SERVPROV_ALIAS_QUAL_GID">SERVPROV_ALIAS_QUAL_GID</A><DD>SERVPROV_ALIAS_QUAL_GID identifies the service provider qualifier (such as scec), which  is then associated with the value in servprov_alias_value.
+<DT><A NAME="SERVPROV_ALIAS_VALUE">SERVPROV_ALIAS_VALUE</A><DD>SERVPROV_ALIAS_VALUE identifies service provider that handled the shipment related to the invoice.  The qualifer servprov_alias_qual_gid qualifies the value, which can be a scec code, or another descriptor for the service provider.
+<DT><A NAME="CORRECTION_CODE_ID">CORRECTION_CODE_ID</A><DD>Correction  code identifier.
+<DT><A NAME="INVOICE_DATE">INVOICE_DATE</A><DD>INVOICE_DATE contains the date of the invoice.
+<DT><A NAME="CURRENCY_GID">CURRENCY_GID</A><DD>CURRENCY_GID is the unique identifier for currency.
+<DT><A NAME="NET_AMOUNT_DUE">NET_AMOUNT_DUE</A><DD>NET_AMOUNT_DUE contains the net amount that is due for the invoice.
+<DT><A NAME="NET_AMOUNT_DUE_GID">NET_AMOUNT_DUE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="NET_AMOUNT_BASE">NET_AMOUNT_BASE</A><DD>NET_AMOUNT_BASE indicates the amount that is due in the base currency.
+<DT><A NAME="NET_DUE_DATE">NET_DUE_DATE</A><DD>NET_DUE_DATE contains the date on which the net amount for the invoice is due.
+<DT><A NAME="PAYMENT_METHOD_CODE_GID">PAYMENT_METHOD_CODE_GID</A><DD>PAYMENT_METHOD_CODE_GID contains the method of payment that is expected for the invoice. Examples include: check, cash on deliver, credit card and electronic funds transfer.
+<DT><A NAME="START_DATE">START_DATE</A><DD>START_DATE indicates the start range for which this invoice was generated.
+<DT><A NAME="END_DATE">END_DATE</A><DD>END_DATE indicates the end range for which this invoice was generated.
+<DT><A NAME="INVOICE_SERVICE_CODE_GID">INVOICE_SERVICE_CODE_GID</A><DD>INVOICE_SERVICE_CODE_GID indicates the type of service that was performed.  Foreign key to INVOICE_SERVICE_CODE.
+<DT><A NAME="INCO_TERM_GID">INCO_TERM_GID</A><DD>INCO_TERM_GID qualifies the terms of sale for this particular invoice.
+<DT><A NAME="DISCOUNT_AMOUNT">DISCOUNT_AMOUNT</A><DD>DISCOUNT_AMOUNT contains the total dollar amount of any discounts applied to the invoice.
+<DT><A NAME="DISCOUNT_AMOUNT_GID">DISCOUNT_AMOUNT_GID</A><DD>GC3 Global indentifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="DISCOUNT_AMOUNT_BASE">DISCOUNT_AMOUNT_BASE</A><DD>DISCOUNT_AMOUNT_BASE contains the amount of the discount in the base currency.
+<DT><A NAME="DISCOUNT_PERCENTAGE">DISCOUNT_PERCENTAGE</A><DD>DISCOUNT_PERCENTAGE contains either a specific amount for the discount or a percentage to be used for the discount.
+<DT><A NAME="DISCOUNT_DAYS_DUE">DISCOUNT_DAYS_DUE</A><DD>DISCOUNT_DAYS_DUE contains the number of days in the terms discount period by which payment is due if the terms of the discount are to be earned.
+<DT><A NAME="DISCOUNT_DUE_DATE">DISCOUNT_DUE_DATE</A><DD>DISCOUNT_DUE_DATE contains the date that the payment must be made by in order for the discount to be earned.
+<DT><A NAME="ORIGIN_STATION_CITY">ORIGIN_STATION_CITY</A><DD>ORIGIN_STATION_CITY identifies the city in which the related shipment began.
+<DT><A NAME="ORIGIN_STATION_FSAC">ORIGIN_STATION_FSAC</A><DD>ORIGIN_STATION_FSAC identifies the FSAC code for the station in which the related shipment began.
+<DT><A NAME="ORIGIN_STATION_SPLC">ORIGIN_STATION_SPLC</A><DD>ORIGIN_STATION_SPLC identifies the SPLC code for the station in which the related shipment began.
+<DT><A NAME="ORIGIN_STATION_PROVINCE_CODE">ORIGIN_STATION_PROVINCE_CODE</A><DD>ORIGIN_STATION_PROVINCE_CODE identifies the province code in which the related shipment began.
+<DT><A NAME="ORIGIN_STATION_POSTAL_CODE">ORIGIN_STATION_POSTAL_CODE</A><DD>ORIGIN_STATION_POSTAL_CODE identifies the postal code in which the related shipment began.
+<DT><A NAME="ORIGIN_COUNTRY_CODE3_GID">ORIGIN_COUNTRY_CODE3_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="DEST_STATION_CITY">DEST_STATION_CITY</A><DD>DEST_STATION_CITY identifies the city in which the related shipment ends.
+<DT><A NAME="DEST_STATION_FSAC">DEST_STATION_FSAC</A><DD>ORIGIN_STATION_FSAC identifies the FSAC code for the station in which the related shipment ended.
+<DT><A NAME="DEST_STATION_SPLC">DEST_STATION_SPLC</A><DD>The SPLC code for the destination of the shipment which relates to this invoice.
+<DT><A NAME="DEST_STATION_PROVINCE_CODE">DEST_STATION_PROVINCE_CODE</A><DD>DEST_STATION_PROVINCE_CODE identifies the province code in which the related shipment ended.
+<DT><A NAME="DEST_STATION_POSTAL_CODE">DEST_STATION_POSTAL_CODE</A><DD>DEST_STATION_POSTAL_CODE identifies the postal code in which the related shipment ended.
+<DT><A NAME="DEST_COUNTRY_CODE3_GID">DEST_COUNTRY_CODE3_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="LETTER_OF_CREDIT_EXP_DATE">LETTER_OF_CREDIT_EXP_DATE</A><DD>LETTER_OF_CREDIT_EXP_DATE contains the date until which the letter of credit is in effect. After this date, the letter of credit expires.
+<DT><A NAME="LETTER_OF_CREDIT_ISSUE_DATE">LETTER_OF_CREDIT_ISSUE_DATE</A><DD>LETTER_OF_CREDIT_ISSUE_DATE contains the date that the letter of credit was issued.
+<DT><A NAME="LETTER_OF_CREDIT_NUMBER">LETTER_OF_CREDIT_NUMBER</A><DD>LETTER_OF_CREDIT_NUMBER contains the identification number of the letter of credit.
+<DT><A NAME="VESSEL_CODE_QUALIFIER">VESSEL_CODE_QUALIFIER</A><DD>VESSEL_CODE_QUALIFIER identifies the qualifier for the vessel.
+<DT><A NAME="VESSEL_CODE">VESSEL_CODE</A><DD>VESSEL_CODE identifies the vessel that was used for the shipment that relates to the invoice.
+<DT><A NAME="VESSEL_COUNTRY_CODE3_GID">VESSEL_COUNTRY_CODE3_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="VESSEL_GID">VESSEL_GID</A><DD>Vessel ID for the invoice
+<DT><A NAME="VES_OP_SERVPROV_ALIAS_QUAL_GID">VES_OP_SERVPROV_ALIAS_QUAL_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="VES_OP_SERVPROV_ALIAS_VALUE">VES_OP_SERVPROV_ALIAS_VALUE</A><DD>Service provider alias of the vessel operator.
+<DT><A NAME="VOYAGE_NUMBER">VOYAGE_NUMBER</A><DD>VOYAGE_NUMBER indicates the number of the voyage that relates to the shipment for which this invoice is being created.
+<DT><A NAME="PARENT_INVOICE_GID">PARENT_INVOICE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="DATE_RECEIVED">DATE_RECEIVED</A><DD>The date the invoice was received.
+<DT><A NAME="IS_CREDIT_NOTE">IS_CREDIT_NOTE</A><DD>Indicates if this invoice is a credit note
+<DT><A NAME="USER_DEFINED1_ICON_GID">USER_DEFINED1_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the invoice.
+<DT><A NAME="USER_DEFINED2_ICON_GID">USER_DEFINED2_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the invoice.
+<DT><A NAME="USER_DEFINED3_ICON_GID">USER_DEFINED3_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the invoice.
+<DT><A NAME="USER_DEFINED4_ICON_GID">USER_DEFINED4_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the invoice.
+<DT><A NAME="USER_DEFINED5_ICON_GID">USER_DEFINED5_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the invoice.
+<DT><A NAME="EXCHANGE_RATE_DATE">EXCHANGE_RATE_DATE</A><DD>Indicates the date to be used for any currency conversions; if null, the latest conversion should be used.
+<DT><A NAME="EXCHANGE_RATE_GID">EXCHANGE_RATE_GID</A><DD>Indicates the set of exchange rates to use for currency conversions; if null, the default set should be used
+<DT><A NAME="IS_VAT_ANALYSIS_FIXED">IS_VAT_ANALYSIS_FIXED</A><DD>Indicates if the VAT Analysis is fixed (user entered) and GC3 should not try to calculate it
+<DT><A NAME="ORIGINAL_INVOICE_GID">ORIGINAL_INVOICE_GID</A><DD>for supplemental bills, references the original bill
+<DT><A NAME="DISCOUNT_AMT_FN">DISCOUNT_AMT_FN</A><DD>functional currency amount for discount_amount
+<DT><A NAME="NET_AMOUNT_DUE_FN">NET_AMOUNT_DUE_FN</A><DD>functional currency amount for net_amount_due
+<DT><A NAME="NET_AMT_W_TAX_FN">NET_AMT_W_TAX_FN</A><DD>functional currency amount for net_amount_due_with_tax
+<DT><A NAME="BASE_CHARGE_FN">BASE_CHARGE_FN</A><DD>functional currency amount for base_charge
+<DT><A NAME="OTHER_CHARGE_FN">OTHER_CHARGE_FN</A><DD>functional currency amount for other_charge
+<DT><A NAME="GL_DATE">GL_DATE</A><DD>GL Date for the invoice as set by agent or manual action
+<DT><A NAME="MARKED_FOR_PURGE">MARKED_FOR_PURGE</A><DD>A boolean field.  When it is set to "Y", this row and its child data will be purged.
+<DT><A NAME="ATTRIBUTE_NUMBER11">ATTRIBUTE_NUMBER11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type NUMBER
+<DT><A NAME="ATTRIBUTE_NUMBER12">ATTRIBUTE_NUMBER12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type NUMBER
+<DT><A NAME="ATTRIBUTE_NUMBER13">ATTRIBUTE_NUMBER13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type NUMBER
+<DT><A NAME="ATTRIBUTE_NUMBER14">ATTRIBUTE_NUMBER14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type NUMBER
+<DT><A NAME="ATTRIBUTE_NUMBER15">ATTRIBUTE_NUMBER15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type NUMBER
+<DT><A NAME="ATTRIBUTE_NUMBER16">ATTRIBUTE_NUMBER16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type NUMBER
+<DT><A NAME="ATTRIBUTE_NUMBER17">ATTRIBUTE_NUMBER17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type NUMBER
+<DT><A NAME="ATTRIBUTE_NUMBER18">ATTRIBUTE_NUMBER18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type NUMBER
+<DT><A NAME="ATTRIBUTE_NUMBER19">ATTRIBUTE_NUMBER19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type NUMBER
+<DT><A NAME="ATTRIBUTE_NUMBER20">ATTRIBUTE_NUMBER20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type NUMBER
+<DT><A NAME="ATTRIBUTE_DATE11">ATTRIBUTE_DATE11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type Date
+<DT><A NAME="ATTRIBUTE_DATE12">ATTRIBUTE_DATE12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type Date
+<DT><A NAME="ATTRIBUTE_DATE13">ATTRIBUTE_DATE13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type Date
+<DT><A NAME="ATTRIBUTE_DATE14">ATTRIBUTE_DATE14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type Date
+<DT><A NAME="ATTRIBUTE_DATE15">ATTRIBUTE_DATE15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type Date
+<DT><A NAME="ATTRIBUTE_DATE16">ATTRIBUTE_DATE16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type Date
+<DT><A NAME="ATTRIBUTE_DATE17">ATTRIBUTE_DATE17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type Date
+<DT><A NAME="ATTRIBUTE_DATE18">ATTRIBUTE_DATE18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type Date
+<DT><A NAME="ATTRIBUTE_DATE19">ATTRIBUTE_DATE19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type Date
+<DT><A NAME="ATTRIBUTE_DATE20">ATTRIBUTE_DATE20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data Type Date
+</DL>
+</BODY>
+</HTML>

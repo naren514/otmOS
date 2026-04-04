@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - DISTANCE_EXTERNAL_ENGINE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - DISTANCE_EXTERNAL_ENGINE</H1>
+This table defines any external engine that may be used for finding the distance<P>
+<DL>
+<DT><A NAME="DISTANCE_EXTERNAL_ENGINE_GID">DISTANCE_EXTERNAL_ENGINE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="DISTANCE_EXTERNAL_ENGINE_XID">DISTANCE_EXTERNAL_ENGINE_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="CACHE_CONTROL_TYPE">CACHE_CONTROL_TYPE</A><DD>Controls whether distances should be saved as GC3 lanes.  Y= Cache and lookup values from cache; L= Lookup values from cache but do not save them; C=Cache values but do not use the cache for lookup; N=Cache off.  Do not save value and do not look them up.
+<DT><A NAME="COUNTY_OVERRIDE_GID">COUNTY_OVERRIDE_GID</A><DD>County override if county is being used in EDE lookup and requires a translation from OTM to EDE
+<DT><A NAME="EXTERNAL_SYSTEM_GID">EXTERNAL_SYSTEM_GID</A><DD>This flag would specify the external system that needs to be used for rating.
+<DT><A NAME="CONNECTION_TYPE">CONNECTION_TYPE</A><DD>Defines the type of transport mechanism used.  In this case, J = javaclass, W= web service which implements REXPublicExternalInterface.java  Other mechanisms may be supported in future iterations.
+</DL>
+</BODY>
+</HTML>

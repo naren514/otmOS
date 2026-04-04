@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ORDER_RELEASE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ORDER_RELEASE</H1>
+This table is linked to the OB_ORDER_BASE table. It specifies the release information against the base order information. An order release can have only single origin and single destination. All line items for the order release information must have the same time windows.<P>
+<DL>
+<DT><A NAME="ORDER_RELEASE_GID">ORDER_RELEASE_GID</A><DD>A unique identifier created by the system for the order release. the gid contains the domain portion.
+<DT><A NAME="ORDER_RELEASE_XID">ORDER_RELEASE_XID</A><DD>Same as gid except for the domain portion.
+<DT><A NAME="ORDER_RELEASE_NAME">ORDER_RELEASE_NAME</A><DD>A name given to the order release by the user.
+<DT><A NAME="ORDER_RELEASE_TYPE_GID">ORDER_RELEASE_TYPE_GID</A><DD>A unique identifier to define the type of the order release. For example:  Customer order  Distribution order  Manufacturing order  Purchase order etc.
+<DT><A NAME="ORDER_BASE_GID">ORDER_BASE_GID</A><DD>A unique identifier to define the order base in the system. It is system generated. The gid contains the domian portion.
+<DT><A NAME="SOURCE_LOCATION_GID">SOURCE_LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="DEST_LOCATION_GID">DEST_LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="FIXED_ITINERARY_GID">FIXED_ITINERARY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="ASSIGNED_ITINERARY_GID">ASSIGNED_ITINERARY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="FIXED_SELL_ITINERARY_GID">FIXED_SELL_ITINERARY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SHIP_UNIT_ORIGIN">SHIP_UNIT_ORIGIN</A><DD>Indicates how the ship units were created (BL=order base by line, BS=order base by ship unit, RL=order release by line, RS=order release by ship unit).  If this field is not 'RS' (formerly 'U'), GC3 deletes all existing order ship unit for the given order release, before calling new releasing logic to generate ship unit.
+<DT><A NAME="TOTAL_WEIGHT_BASE">TOTAL_WEIGHT_BASE</A><DD>TOTAL_WEIGHT in base units.
+<DT><A NAME="TOTAL_VOLUME_BASE">TOTAL_VOLUME_BASE</A><DD>TOTAL_VOLUME in base units.
+<DT><A NAME="TOTAL_ITEM_PACKAGE_COUNT">TOTAL_ITEM_PACKAGE_COUNT</A><DD>Summary of ITEM_PACKAGE_COUNT of all line items.
+<DT><A NAME="MAX_LENGTH_BASE">MAX_LENGTH_BASE</A><DD>MAX_LENGTH in base units.
+<DT><A NAME="MAX_WIDTH_BASE">MAX_WIDTH_BASE</A><DD>MAX_WIDTH in base units.
+<DT><A NAME="MAX_HEIGHT_BASE">MAX_HEIGHT_BASE</A><DD>MAX_HEIGHT in base units.
+<DT><A NAME="PLAN_FROM_LOCATION_GID">PLAN_FROM_LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="PLAN_TO_LOCATION_GID">PLAN_TO_LOCATION_GID</A><DD>Must be Y or N.  Y indicates that the order should not be bundled with any others.  Order releasing logic will copy this value from the order base when the order is released.
+<DT><A NAME="BULK_PLAN_GID">BULK_PLAN_GID</A><DD>If the order was planned via the bulk plan process, then the global identifier for the bulk plan.
+<DT><A NAME="SELL_BULK_PLAN_GID">SELL_BULK_PLAN_GID</A><DD>The bulk plan gid for a sell side bulk plan for this order.
+<DT><A NAME="TOTAL_SHIP_UNIT_COUNT">TOTAL_SHIP_UNIT_COUNT</A><DD>Number of ship units on this order.
+<DT><A NAME="LOAD_POINT">LOAD_POINT</A><DD>source load point
+<DT><A NAME="UNLOAD_POINT">UNLOAD_POINT</A><DD>dest unload point
+<DT><A NAME="PICKUP_IS_APPT">PICKUP_IS_APPT</A><DD>Indicates if the early/late pickup times are appointment times
+<DT><A NAME="DELIVERY_IS_APPT">DELIVERY_IS_APPT</A><DD>Indicates if the early/late delivery times are appointment times
+<DT><A NAME="PLAN_FROM_LOAD_POINT">PLAN_FROM_LOAD_POINT</A><DD>load point associated with plan from location
+<DT><A NAME="PLAN_TO_UNLOAD_POINT">PLAN_TO_UNLOAD_POINT</A><DD>unload point associated with plan to location
+<DT><A NAME="USER_DEFINED1_ICON_GID">USER_DEFINED1_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the order release.
+<DT><A NAME="USER_DEFINED2_ICON_GID">USER_DEFINED2_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the order release.
+<DT><A NAME="USER_DEFINED3_ICON_GID">USER_DEFINED3_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the order release.
+<DT><A NAME="USER_DEFINED4_ICON_GID">USER_DEFINED4_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the order release.
+<DT><A NAME="USER_DEFINED5_ICON_GID">USER_DEFINED5_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the order release.
+<DT><A NAME="PRIMARY_LEG_SOURCE_LOC_GID">PRIMARY_LEG_SOURCE_LOC_GID</A><DD>Location ID of source for primary leg shipment
+<DT><A NAME="PRIM_LEG_SRC_LOC_OVERRIDE_GID">PRIM_LEG_SRC_LOC_OVERRIDE_GID</A><DD>Location override ID of source for primary leg shipment
+<DT><A NAME="PORT_OF_LOAD_LOCATION_GID">PORT_OF_LOAD_LOCATION_GID</A><DD>Location ID of the Port of Load for primary leg carrier
+<DT><A NAME="PORT_OF_LOAD_LOC_OVERRIDE_GID">PORT_OF_LOAD_LOC_OVERRIDE_GID</A><DD>Location override ID of the Port of Load for primary leg carrier
+<DT><A NAME="PORT_OF_DIS_LOCATION_GID">PORT_OF_DIS_LOCATION_GID</A><DD>Location ID of the Port of Discharge for primary leg carrier
+<DT><A NAME="PORT_OF_DIS_LOC_OVERRIDE_GID">PORT_OF_DIS_LOC_OVERRIDE_GID</A><DD>Location override ID of the Port of Discharge for primary leg carrier
+<DT><A NAME="PRIMARY_LEG_DEST_LOC_GID">PRIMARY_LEG_DEST_LOC_GID</A><DD>Location ID of destination for primary leg shipment
+<DT><A NAME="PRIM_LEG_DEST_OVERRIDE_LOC_GID">PRIM_LEG_DEST_OVERRIDE_LOC_GID</A><DD>Location override ID of destination for primary leg shipment
+<DT><A NAME="TEMPLATE_TYPE">TEMPLATE_TYPE</A><DD>Hide template created for customer from other order UI. "Customer" is for customer template.
+<DT><A NAME="BUNDLING_TYPE">BUNDLING_TYPE</A><DD>AUTOMATIC or MANUAL ONLY allow bundling; they are distinguished only by user defined queries. DO NOT BUNDLE means order will never be bundled with other orders.
+<DT><A NAME="IS_CONSOLIDATE_OR_EQUIPMENT">IS_CONSOLIDATE_OR_EQUIPMENT</A><DD>Whether to consolidate order release equipment when bundling.
+<DT><A NAME="PARTITION_GID">PARTITION_GID</A><DD>acording to this name, bulk plan partition orders to be planned together in one partition
+<DT><A NAME="TOTAL_DECLARED_VALUE">TOTAL_DECLARED_VALUE</A><DD>Sum of declared value on ORDER_RELEASE_LINE.
+<DT><A NAME="BUY_ITINERARY_PROFILE_GID">BUY_ITINERARY_PROFILE_GID</A><DD>A constraint. Only itineraries compatible with this profile shall be considered when building buy shipments
+<DT><A NAME="SELL_ITINERARY_PROFILE_GID">SELL_ITINERARY_PROFILE_GID</A><DD>A constraint. Only itineraries compatible with this profile shall be considered when building sell shipments
+<DT><A NAME="SELL_SERVPROV_GID">SELL_SERVPROV_GID</A><DD>indicates the service provider to be used when planning this order onto a sell side shipment
+<DT><A NAME="SELL_SERVPROV_PROFILE_GID">SELL_SERVPROV_PROFILE_GID</A><DD>indicates the service provider profile to be used when planning this order onto a sell side shipment
+<DT><A NAME="IS_IGNORE_LOCATION_CALENDAR">IS_IGNORE_LOCATION_CALENDAR</A><DD>if it is Y, location calendar will be ignored when plan this order on to shipment. If NULL, treat it as N
+<DT><A NAME="RATE_SERVICE_GID">RATE_SERVICE_GID</A><DD>Rate service constraint for the order
+<DT><A NAME="SHIP_UNIT_WIDTH">SHIP_UNIT_WIDTH</A><DD>Width of the Ship unit. This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_WIDTH_UOM_CODE">SHIP_UNIT_WIDTH_UOM_CODE</A><DD>Unit of Measure for Ship Unit Width.This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_WIDTH_BASE">SHIP_UNIT_WIDTH_BASE</A><DD>Ship Unit Width in base units. This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_LENGTH">SHIP_UNIT_LENGTH</A><DD>Length of the Ship unit. This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_LENGTH_UOM_CODE">SHIP_UNIT_LENGTH_UOM_CODE</A><DD>Unit of Measure for Ship Unit Length.This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_LENGTH_BASE">SHIP_UNIT_LENGTH_BASE</A><DD>Ship Unit Length in base units.This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_HEIGHT">SHIP_UNIT_HEIGHT</A><DD>Height of the Ship unit. This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_HEIGHT_UOM_CODE">SHIP_UNIT_HEIGHT_UOM_CODE</A><DD>Unit of Measure for Ship Unit Height.This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_HEIGHT_BASE">SHIP_UNIT_HEIGHT_BASE</A><DD>Ship Unit Height in base units.This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_DIAMETER">SHIP_UNIT_DIAMETER</A><DD>Diameter of the Ship unit. This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_DIAMETER_UOM_CODE">SHIP_UNIT_DIAMETER_UOM_CODE</A><DD>Unit of Measure for Ship Unit Diameter.This column will show value only if the order release has one ship unit
+<DT><A NAME="SHIP_UNIT_DIAMETER_BASE">SHIP_UNIT_DIAMETER_BASE</A><DD>Ship Unit Diameter in base units.This column will show value only if the order release has one ship unit
+<DT><A NAME="TRANSPORT_HANDLING_UNIT_GID">TRANSPORT_HANDLING_UNIT_GID</A><DD>Transport Handling Unit. This column will show value only if the order release has one ship unit
+<DT><A NAME="ON_RT_EXECUTION">ON_RT_EXECUTION</A><DD>If 'Y': indicates that a shipment built from this order release has been assigned to a route instance leg.  For migration: old existing order releases migrated to the default value ('N').
+<DT><A NAME="IS_SPLITTABLE">IS_SPLITTABLE</A><DD>Indicates whether the Order Release can be split when planning during container optimization.
+<DT><A NAME="LATEST_EST_DELIVERY_DATE">LATEST_EST_DELIVERY_DATE</A><DD>Latest Estimate Delivery Date on the last leg shipments
+<DT><A NAME="PRIORITY">PRIORITY</A><DD>This column defines the priority associated with an Order Release
+<DT><A NAME="LATEST_EST_PICKUP_DATE">LATEST_EST_PICKUP_DATE</A><DD>Latest Estimated Pickup Date on the first leg shipments.
+<DT><A NAME="MARKED_FOR_PURGE">MARKED_FOR_PURGE</A><DD>A boolean field.  When it is set to "Y", this row and its child data will be purged.
+<DT><A NAME="EQUIPMENT_TYPE_GID">EQUIPMENT_TYPE_GID</A><DD>Equipment Type Constaints for Equipment Assignment.
+<DT><A NAME="EM_PHONE_NUMBER">EM_PHONE_NUMBER</A><DD>Emergency phone number when shipping Hazardous Materials. The 24 hours contact for the shipment.
+<DT><A NAME="IS_PRE_ENTERED_PU">IS_PRE_ENTERED_PU</A><DD>When this field is check, indicate if this order is a pre-entered pickup 
+<DT><A NAME="EARLIEST_EST_PICKUP_DATE">EARLIEST_EST_PICKUP_DATE</A><DD>Earliest Estimated Pickup Date on the first leg shipments.
+<DT><A NAME="ATTRIBUTE_NUMBER11">ATTRIBUTE_NUMBER11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER12">ATTRIBUTE_NUMBER12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER13">ATTRIBUTE_NUMBER13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER14">ATTRIBUTE_NUMBER14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER15">ATTRIBUTE_NUMBER15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER16">ATTRIBUTE_NUMBER16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER17">ATTRIBUTE_NUMBER17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER18">ATTRIBUTE_NUMBER18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER19">ATTRIBUTE_NUMBER19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER20">ATTRIBUTE_NUMBER20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_DATE11">ATTRIBUTE_DATE11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE12">ATTRIBUTE_DATE12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE13">ATTRIBUTE_DATE13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE14">ATTRIBUTE_DATE14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE15">ATTRIBUTE_DATE15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE16">ATTRIBUTE_DATE16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE17">ATTRIBUTE_DATE17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE18">ATTRIBUTE_DATE18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE19">ATTRIBUTE_DATE19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE20">ATTRIBUTE_DATE20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - LANE_SUMMARY</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - LANE_SUMMARY</H1>
+Summarizes historical workload on each lane<P>
+<DL>
+<DT><A NAME="BEGIN_DATE">BEGIN_DATE</A><DD>When building the lane summary, only shipments whose start date is greater than begin_date are considered
+<DT><A NAME="END_DATE">END_DATE</A><DD>When building the lane summary, only shipments whose start date is less than end_date are considered
+<DT><A NAME="SAVED_QUERY_GID">SAVED_QUERY_GID</A><DD>In addition to using begin_date, end_date, etc, you may specify an arbitrary saved query to indicate arbitrarily complex shipment filtering
+<DT><A NAME="TIME_PERIOD_SIZE">TIME_PERIOD_SIZE</A><DD>Defines the width of each time period in days.  The number of time periods is than determined by the begin_date and end_date.  Example: begin_date = 1/1/2005, end_date=12/31/2005.  Time_period_size = 7.  In this case, there would be 52 time periods
+<DT><A NAME="BEST_SRC_GEO_HIERARCHY_GID">BEST_SRC_GEO_HIERARCHY_GID</A><DD>Defines the best source geography - this is used when its necessary to generate a lane in procurement - see requirements doc for more information
+<DT><A NAME="BEST_DST_GEO_HIERARCHY_GID">BEST_DST_GEO_HIERARCHY_GID</A><DD>Defines the best dest geography - this is used when its necessary to generate a lane in procurement - see requirements doc for more information
+</DL>
+</BODY>
+</HTML>

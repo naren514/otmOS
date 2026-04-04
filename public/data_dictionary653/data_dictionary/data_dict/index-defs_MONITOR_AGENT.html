@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - MONITOR_AGENT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - MONITOR_AGENT</H1>
+A Monitor_Agent has state reflecting the events of interest of the Monitor_Agent's Agent specified.  A Monitor_Agent is an abstraction of several types of specialized agents.  They are Planned, Unplanned, Exception, Execution, and Assignment.  These are specified by the Montor_Agent_Type_GID reference to the Monitor_Agent_Type table.  A Monitor_Agent belongs to a Monitor Profile and therefore can't be "shared" among Monitor Profiles.  I.e. each Monitor_Agent_GID is unique.  Note: a Monitor Agent belonging to a Monitor Profile Template is referred to as a Monitor Agent Template.  Similar to a Monitor Profile "instance" is created from a Monitor Profile Template, a Monitor Agent "instance" is created from a Monitor Agent Template.<P>
+<DL>
+<DT><A NAME="MONITOR_AGENT_GID">MONITOR_AGENT_GID</A><DD>The unique identifier for a monitor agent.  If this is a monitor agent belonging to a monitor profile template, then this is the concatentation fo the monitor_agent_xid, '-', and the domain_name.  If this monitor agent belongs to a monitor profile, then the xid is generated and guaranteed to be unique.
+<DT><A NAME="MONITOR_AGENT_XID">MONITOR_AGENT_XID</A><DD>The external identifier for the monitor agent.
+<DT><A NAME="MONITOR_AGENT_NAME">MONITOR_AGENT_NAME</A><DD>Text, as entered by the user, for familiar reference.
+<DT><A NAME="MONITOR_AGENT_TEMPLATE_GID">MONITOR_AGENT_TEMPLATE_GID</A><DD>Null if this is a monitor agent template -or- The GID for the monitor agent template from which this monitor agent instance was created.
+<DT><A NAME="MONITOR_PROFILE_GID">MONITOR_PROFILE_GID</A><DD>The monitor profile to which this monitor agent belongs.
+<DT><A NAME="AGENT_GID">AGENT_GID</A><DD>Specifies the agent used to listen for events and perform actions.
+<DT><A NAME="MONITOR_AGENT_TYPE_GID">MONITOR_AGENT_TYPE_GID</A><DD>The unique identifier (foreign key) into the Monitor_Agent_Type table.  Types of Agents are MonitorPlannedAgent, MonitorUnplannedAgent, MonitorExceptionAgent, MonitorExecutionAgent, and MonitorAssignmentAgent
+<DT><A NAME="IS_PERFORM_AGENT_ACTION">IS_PERFORM_AGENT_ACTION</A><DD>'Y' if the monitor agent is to perform its agent's actions after receiving an event of interest.
+<DT><A NAME="OCCURRENCE_COUNT">OCCURRENCE_COUNT</A><DD>The number of events received by this agent.
+<DT><A NAME="EXPIRATION_DATE">EXPIRATION_DATE</A><DD>Used for a MonitorPlannedAgent only.  Optionally for a "Template" type,
+Has the expiration date and time specified if, during the definition, the user wants to specify a specific date and time for this Agent to evaluate to true.  For example, 12/31/01 11:59:59
+   OR Has the expiration time specified (no date) if, during definition, the user wants to specify a time, where the date gets determined during execution.  For example, 5:00pm and when the assignment takes place, the instance will specify the date, for example, 9/2/02 5:00pm.
+   OR
+   NULL if the expiration date and time will be determined by the dependency service during execution.
+   .  Optionally for an "instance" type,
+   Has the expiration date and time specified if, during the definition, the user specified a specific date and time for this Agent to evaluate to true.  For example, 12/31/01 11:59:59
+   OR
+Has the expiration time specified  with the calculated date from execution.  For example, 5:00pm and when the assignment takes place, the instance will specify the date, for example, 9/2/02 5:00pm.
+   OR
+   Date and Time determined by the dependency service during execution
+
+<DT><A NAME="LAST_EVENT_OCCUR_DATE">LAST_EVENT_OCCUR_DATE</A><DD>Null for a "Template" type
+OR
+The date and time the event occurred for the event most recently received by this agent which the query conditions evaluated to true and has its IS_RECORD_EVENT = true.
+<DT><A NAME="LAST_EVENT_RECEIVED_DATE">LAST_EVENT_RECEIVED_DATE</A><DD>Null for a "Template" type OR The date and time the event was received for the event most recently received by this agent which the query conditions evaluated to true and has its IS_RECORD_EVENT = true.
+<DT><A NAME="TIME_RESET_OFFSET">TIME_RESET_OFFSET</A><DD>For a MonitorPlannedAgent only.  The duration, in hours, to which to offset an expiration date.  For example, if this agent receives a time event of interest, after performing its action(s), it resets its expiration date to it expiration date + the Time_Reset_Offset and subscribes a workflow trigger to listen for the specified expiration date as an event.
+<DT><A NAME="TIME_RESET_OFFSET_UOM_CODE">TIME_RESET_OFFSET_UOM_CODE</A><DD>Unit of measure for TIME_RESET_OFFSET column.
+<DT><A NAME="TIME_RESET_OFFSET_BASE">TIME_RESET_OFFSET_BASE</A><DD>TIME_RESET_OFFSET in base units.
+<DT><A NAME="CONTEXT_OFFSET_BASE">CONTEXT_OFFSET_BASE</A><DD>CONTEXT_OFFSET in base units.
+<DT><A NAME="IS_MANDATORY">IS_MANDATORY</A><DD>'Y' indicates that an event of interest to this agent must be received at least once during its "life".  Its life is determined to be "over" when the "final" agent has received an event. -OR 'N' indicates that it is required that the Agent does not receive an event during its "life".
+<DT><A NAME="IS_INIT_EXPIRATION_DATE">IS_INIT_EXPIRATION_DATE</A><DD>When a Monitor Profile is initially assigned to a Business Object, subscribe a workflow trigger to listen for the specified expiration date as an event.  Note this is for a MonitorPlannedAgent only.
+'Y' indicates that when this MonitorTimerAgent is assigned, it uses the event's date and time as the base to initially calculate its expiration date.  For example, if this agent is assigned by an event whose date/time occurred 9/01/02 9:00am, and this agents Time_Reset_Offset is 2hrs, then the expiration date is set for 9/01/02 11:00am when assigned to a Business Object.
+<DT><A NAME="IS_FIRST_MONITORED_EVENT">IS_FIRST_MONITORED_EVENT</A><DD>'Y' if this agent is the first Monitor Planned, and 'N' if this agent is not the first Monitor Planned Agent.
+
+<DT><A NAME="IS_LAST_MONITORED_EVENT">IS_LAST_MONITORED_EVENT</A><DD>'Y' if this agent is the agent in which when an event is received, it is considered to be the "last" event to be received by its Monitor Profile.  When this occurs, its "life" is considered over.
+<DT><A NAME="MAX_OCCURRENCE_COUNT">MAX_OCCURRENCE_COUNT</A><DD>The maximum number of times that the event should be recorded.  If the number of occurrences exceeds this number, an exception will be raised.  If no there is no desired maximum, then this field should be null.
+<DT><A NAME="PROCESS_CONTROL_REQUEST_ID">PROCESS_CONTROL_REQUEST_ID</A><DD>If this monitor agent is a monitor planned agent type, and it has a Time Expiration set, the Process Control Request ID is the identifier of the MonitorShipmentTimeBasedEvent published for this Monitor Planned Agent.
+<DT><A NAME="MONITORED_OBJECT">MONITORED_OBJECT</A><DD>Gid of the object that is being monitored
+<DT><A NAME="LAST_STATUS_CODE_GID">LAST_STATUS_CODE_GID</A><DD>Status code of the last event monitored by this agent
+<DT><A NAME="LAST_REASON_CODE_GID">LAST_REASON_CODE_GID</A><DD>Reason code of the last event monitored by this agent
+<DT><A NAME="CONTEXT_SAVED_QUERY_GID">CONTEXT_SAVED_QUERY_GID</A><DD>The saved query gid when the based on offset = SQLQuery
+<DT><A NAME="TOLERANCE_RULE_GID">TOLERANCE_RULE_GID</A><DD>Tolerance rule for a planned milestone.
+<DT><A NAME="IS_RELATED_PROFILING">IS_RELATED_PROFILING</A><DD>If "Y" , the event received on planned milestone will trigger related profiling.
+<DT><A NAME="REPLICATION_TYPE">REPLICATION_TYPE</A><DD>The type that the monitor agent is replicate for, such as Equipment, Stop.
+<DT><A NAME="REPLICATION_PARAMETER">REPLICATION_PARAMETER</A><DD>The detail information of the replication type.  e.g. For Replication_Type='STOP', Replication_Parameter is '-stop_number 1 -location_gid PHL'
+</DL>
+</BODY>
+</HTML>

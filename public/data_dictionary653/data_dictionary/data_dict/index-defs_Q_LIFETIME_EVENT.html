@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - Q_LIFETIME_EVENT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - Q_LIFETIME_EVENT</H1>
+The data queue for lifetime events<P>
+<DL>
+<DT><A NAME="Q_EVENT_SEQ">Q_EVENT_SEQ</A><DD>Queue sequence for the lifetime event. The sequence name is Q_LIFETIME_EVENT_SEQUENCE.
+<DT><A NAME="TOPIC_DESCRIPTION">TOPIC_DESCRIPTION</A><DD>A short description of the topic, displayed on the lifetime events finder
+<DT><A NAME="TOPIC_CLASS_NAME">TOPIC_CLASS_NAME</A><DD>Workflow topic class of the event
+<DT><A NAME="TOPIC_PARAMETERS">TOPIC_PARAMETERS</A><DD>Workflow parameters for the event
+<DT><A NAME="Q_PREEMPTION_PRIORITY">Q_PREEMPTION_PRIORITY</A><DD>A negative sequence used for queue preemption
+<DT><A NAME="Q_START">Q_START</A><DD>Time the event was last queued. If the event is scheduled, this will equal the scheduled time. If resubmitted, the resubmit time. Otherwise it matches the insert date.
+<DT><A NAME="Q_STATE">Q_STATE</A><DD>Queue state of the event (QUEUED, ACTIVE, CANCELED, PROCESSED, FAILED)
+<DT><A NAME="Q_TIME">Q_TIME</A><DD>Time the event spent in queue
+<DT><A NAME="Q_PROCESS_START">Q_PROCESS_START</A><DD>Time the event was last dequeued and passed to the executor for processing
+<DT><A NAME="Q_PROCESS_TIME">Q_PROCESS_TIME</A><DD>Time the event took to execute
+<DT><A NAME="Q_LOG_PROCESS_ID">Q_LOG_PROCESS_ID</A><DD>ID linking the event execution to the system logs
+<DT><A NAME="Q_PROCESS_MACHINE_GID">Q_PROCESS_MACHINE_GID</A><DD>The application machine that polled and executed the event
+<DT><A NAME="Q_RELATED_QUEUE_SEQ">Q_RELATED_QUEUE_SEQ</A><DD>Sequence of the parent queue event that populated this event
+<DT><A NAME="P_QUEUE_START_KEY">P_QUEUE_START_KEY</A><DD>Index for date-based partitioning
+</DL>
+</BODY>
+</HTML>

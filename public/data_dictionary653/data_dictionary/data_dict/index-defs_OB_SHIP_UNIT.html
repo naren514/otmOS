@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - OB_SHIP_UNIT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - OB_SHIP_UNIT</H1>
+The details for a base order can be either specified by the line item (OB_LINE and related tables) or by the shipping units. The shipping units include the specification of pallets or packaging information. The shipper may not know or may choose not to specify the contents within the palettes. Other information like weight, height, pickup times etc. may be specified.<P>
+<DL>
+<DT><A NAME="OB_SHIP_UNIT_GID">OB_SHIP_UNIT_GID</A><DD>An order can be identified by the items within the order or the ship units. This field is a unique identifier to define the ship units. The gid contains the domain portion.
+<DT><A NAME="OB_SHIP_UNIT_XID">OB_SHIP_UNIT_XID</A><DD>Similar to the gid except for the domain portion.
+<DT><A NAME="ORDER_BASE_GID">ORDER_BASE_GID</A><DD>A unique identifier to define the order base in the system. It is system generated. The gid contains the domian portion.
+<DT><A NAME="SHIP_UNIT_COUNT">SHIP_UNIT_COUNT</A><DD>The count of the ship units in this line.
+<DT><A NAME="SOURCE_LOCATION_GID">SOURCE_LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="DEST_LOCATION_GID">DEST_LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="EARLY_PICKUP_DATE">EARLY_PICKUP_DATE</A><DD>The earliest date when the unit can be picked up.
+<DT><A NAME="LATE_PICKUP_DATE">LATE_PICKUP_DATE</A><DD>The latest date when the unit can be picked up.
+<DT><A NAME="EARLY_DELIVERY_DATE">EARLY_DELIVERY_DATE</A><DD>The earliest date when the unit can be delivered.
+<DT><A NAME="LATE_DELIVERY_DATE">LATE_DELIVERY_DATE</A><DD>The latest date when the unit can be delevered.
+<DT><A NAME="WEIGHT">WEIGHT</A><DD>Calculated weight of the unit based on the items from teh OB_SHIP_UNIT_CONTENT table.
+<DT><A NAME="WEIGHT_UOM_CODE">WEIGHT_UOM_CODE</A><DD>Unit of measure for WEIGHT column.
+<DT><A NAME="WEIGHT_BASE">WEIGHT_BASE</A><DD>WEIGHT in base units.
+<DT><A NAME="VOLUME">VOLUME</A><DD>Calculated volume of the unit based on the items from teh OB_SHIP_UNIT_CONTENT table.
+<DT><A NAME="VOLUME_UOM_CODE">VOLUME_UOM_CODE</A><DD>Unit of measure for VOLUME column.
+<DT><A NAME="VOLUME_BASE">VOLUME_BASE</A><DD>VOLUME in base units.
+<DT><A NAME="LENGTH">LENGTH</A><DD>Length of the ship unit
+<DT><A NAME="LENGTH_UOM_CODE">LENGTH_UOM_CODE</A><DD>Unit of measure for LENGTH column.
+<DT><A NAME="LENGTH_BASE">LENGTH_BASE</A><DD>LENGTH in base units.
+<DT><A NAME="WIDTH">WIDTH</A><DD>Width of the ship unit
+<DT><A NAME="WIDTH_UOM_CODE">WIDTH_UOM_CODE</A><DD>Unit of measure for WIDTH column.
+<DT><A NAME="WIDTH_BASE">WIDTH_BASE</A><DD>WIDTH in base units.
+<DT><A NAME="HEIGHT">HEIGHT</A><DD>Height of the ship unit
+<DT><A NAME="HEIGHT_UOM_CODE">HEIGHT_UOM_CODE</A><DD>Unit of measure for HEIGHT column.
+<DT><A NAME="HEIGHT_BASE">HEIGHT_BASE</A><DD>HEIGHT in base units.
+<DT><A NAME="DECLARED_VALUE">DECLARED_VALUE</A><DD>The declared cost of the ship unit.
+<DT><A NAME="DECLARED_VALUE_BASE">DECLARED_VALUE_BASE</A><DD>DECLARED_VALUE in base units.
+<DT><A NAME="DECLARED_VALUE_CURRENCY_GID">DECLARED_VALUE_CURRENCY_GID</A><DD>A unique identifier to define the currency type for the declared value.
+<DT><A NAME="FLEX_COMMODITY_CODE">FLEX_COMMODITY_CODE</A><DD>The user defined commodity code for the item. Eg. HTS, SITC, STCC, NMFC
+<DT><A NAME="FLEX_COMMODITY_QUAL_GID">FLEX_COMMODITY_QUAL_GID</A><DD>A unique identifier for the reference qualifiers on the user defined commodities.
+<DT><A NAME="PLAN_FROM_LOCATION_GID">PLAN_FROM_LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="LOAD_POINT">LOAD_POINT</A><DD>Source load point
+<DT><A NAME="UNLOAD_POINT">UNLOAD_POINT</A><DD>Dest unload point
+<DT><A NAME="PICKUP_IS_APPT">PICKUP_IS_APPT</A><DD>Indicates if the early/late pickup times are appointment times
+<DT><A NAME="DELIVERY_IS_APPT">DELIVERY_IS_APPT</A><DD>Indicates if the early/late delivery times are appointment times
+<DT><A NAME="PLAN_FROM_LOAD_POINT">PLAN_FROM_LOAD_POINT</A><DD>Load point associated with plan from location
+<DT><A NAME="PLAN_TO_UNLOAD_POINT">PLAN_TO_UNLOAD_POINT</A><DD>Unload point associated with plan to location
+<DT><A NAME="CORE_DIAMETER">CORE_DIAMETER</A><DD>For cylindrical objects, this defines the diameter of the core
+<DT><A NAME="CORE_DIAMETER_UOM_CODE">CORE_DIAMETER_UOM_CODE</A><DD>For cylindrical objects, unit of measure for the diameter of the core
+<DT><A NAME="CORE_DIAMETER_BASE">CORE_DIAMETER_BASE</A><DD>For cylindrical objects, the base value of the diameter of the core. For cylindrical objects, the base value of the diameter of the core
+<DT><A NAME="SPLITTABLE_BY">SPLITTABLE_BY</A><DD>Indicates how the resulting order release ship unit may be split across equipment
+</DL>
+</BODY>
+</HTML>

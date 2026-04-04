@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SERVPROV</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SERVPROV</H1>
+This table stores the information about the service providers.<P>
+<DL>
+<DT><A NAME="SERVPROV_GID">SERVPROV_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="SERVPROV_XID">SERVPROV_XID</A><DD>Similar to the gid except for the domain portion.
+<DT><A NAME="TENDER_RESPONSE_TIME">TENDER_RESPONSE_TIME</A><DD>The expected response time by this service provider  for shipment tenders.
+<DT><A NAME="TENDER_RESPONSE_TIME_UOM_CODE">TENDER_RESPONSE_TIME_UOM_CODE</A><DD>Unit of measure for TENDER_RESPONSE_TIME column.
+<DT><A NAME="TENDER_RESPONSE_TIME_BASE">TENDER_RESPONSE_TIME_BASE</A><DD>TENDER_RESPONSE_TIME in base units.
+<DT><A NAME="MODE_PROFILE_GID">MODE_PROFILE_GID</A><DD>A unique identifier to define the mode profiles(group) that the service provider uses.
+<DT><A NAME="MATCH_RULE_PROFILE_GID">MATCH_RULE_PROFILE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="MATCH_VALID_RULE_PROFILE_GID">MATCH_VALID_RULE_PROFILE_GID</A><DD>profile for the match validation rules that should be tested if the validate match action is run on an invoice for this service provider
+<DT><A NAME="AUTO_APPROVE_RULE_PROFILE_GID">AUTO_APPROVE_RULE_PROFILE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="ALLOCATION_RULE_PROFILE_GID">ALLOCATION_RULE_PROFILE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="IS_DISPATCH_BY_REGION">IS_DISPATCH_BY_REGION</A><DD>A flag to turn on/off the Tender by Locale feature.
+<DT><A NAME="OUT_XML_PROFILE_GID">OUT_XML_PROFILE_GID</A><DD>Associates the service provider with an out_xml_profile, which helps define the content of outgoing XML to this service provider.
+<DT><A NAME="RATE_SERVICE_GID">RATE_SERVICE_GID</A><DD>Rate Service GID. This will be the default Rate Service used to re-drive the shipment if the service provider does not have a rate offering that matches the shipment
+<DT><A NAME="IS_ACCEPT_SPOT_BIDS">IS_ACCEPT_SPOT_BIDS</A><DD>Is set to Y(es) if the service provider will participate in spot bid tendering.
+<DT><A NAME="IS_ACCEPT_BROADCAST_TENDERS">IS_ACCEPT_BROADCAST_TENDERS</A><DD>Is set to Y(es) if the service provider will participate in broadcast tendering.
+<DT><A NAME="IS_LOCALIZE_BROADCAST_CONTACT">IS_LOCALIZE_BROADCAST_CONTACT</A><DD>If "Y", use the preference /language, etc of BROADCAST_SPOT_CONTACT. Otherwise, use shipment's LOGISTICS involved party's preference is used for broadcast notification.
+<DT><A NAME="BROADCAST_SPOT_CONTACT_GID">BROADCAST_SPOT_CONTACT_GID</A><DD>This field can be used to override the shipper's primary contact to be used to determine localization preferences for tender notification
+<DT><A NAME="DO_CONDITIONAL_ACCEPTS">DO_CONDITIONAL_ACCEPTS</A><DD>used to determing if the servprov can participate conditional booking.
+<DT><A NAME="LINE_APPROVE_TOL_PROFILE_GID">LINE_APPROVE_TOL_PROFILE_GID</A><DD>Optional; if specified, indicates the line approval tolerance rule profile to apply
+<DT><A NAME="SCAC_GID">SCAC_GID</A><DD>The Standard Carrier Alpha Code for this Service Provider.
+<DT><A NAME="EQUIPMENT_MARK_LIST_GID">EQUIPMENT_MARK_LIST_GID</A><DD>The Equipment Mark List for this Service Provider.
+<DT><A NAME="IS_FLEET">IS_FLEET</A><DD>Only shipments created for fleet service providers can perform fleet related actions.
+<DT><A NAME="ALLOW_SPOT_RATING">ALLOW_SPOT_RATING</A><DD>Flag to indicate that service provider is valid for Spot Rating actions
+<DT><A NAME="OBT_XML_PROFILE_GID">OBT_XML_PROFILE_GID</A><DD>Associates the service provider with an online_booking_xml_profile, Which helps to define the content of XML to this service provider for UI display.
+</DL>
+</BODY>
+</HTML>

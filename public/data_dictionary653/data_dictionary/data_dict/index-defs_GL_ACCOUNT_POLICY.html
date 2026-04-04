@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - GL_ACCOUNT_POLICY</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - GL_ACCOUNT_POLICY</H1>
+Holds configurable parameters for GC3 account policies.  This includes when GC3 user'spasswords should expire, whether to maintain a login history for a user, etc.  The policy is then associated to a user account  within the GL_USER table.<P>
+<DL>
+<DT><A NAME="GL_ACCOUNT_POLICY_GID">GL_ACCOUNT_POLICY_GID</A><DD>The unique global identifier for the account policy.
+<DT><A NAME="GL_ACCOUNT_POLICY_XID">GL_ACCOUNT_POLICY_XID</A><DD>The external identifier for the account policy.
+<DT><A NAME="PW_EXPIRATION_DURATION">PW_EXPIRATION_DURATION</A><DD>Identifies a length of time (in days) before a new password will expire.  A null value indicates the password never expires.
+<DT><A NAME="PW_EXPIRATION_WARNING_PERIOD">PW_EXPIRATION_WARNING_PERIOD</A><DD>Identifies the length of time(in days) prior to a user'spassword expiration in which the user should receive password expiration messages.
+<DT><A NAME="NUM_PW_FOR_HISTORY">NUM_PW_FOR_HISTORY</A><DD>The number of passwords which should be kept within the history for each user.  The user will not be able to set his password to any password that is kept within the history.
+<DT><A NAME="PW_CHANGE_AFTER_RESET">PW_CHANGE_AFTER_RESET</A><DD>Determines whether or not a password preset by the system or reset by an account ADMIN user via the User Manager screen will expire upon the first user login.
+<DT><A NAME="MAX_ATTEMPTS_ACCOUNT_LOCKOUT">MAX_ATTEMPTS_ACCOUNT_LOCKOUT</A><DD>The maximum number of login attempts allowed before an account is locked out.  If the number is zero, then there is no lockout.
+<DT><A NAME="LOCKOUT_DURATION">LOCKOUT_DURATION</A><DD>How long to lock out an account after exceeding allowed login attempts.
+<DT><A NAME="LOCKOUT_DURATION_UOM_CODE">LOCKOUT_DURATION_UOM_CODE</A><DD>The unit of measure for the lockout duration.
+<DT><A NAME="LOCKOUT_DURATION_BASE">LOCKOUT_DURATION_BASE</A><DD>The lockout duration in base units.
+<DT><A NAME="MAX_DAYS_ACCOUNT_DORMANCY">MAX_DAYS_ACCOUNT_DORMANCY</A><DD>Allowed inactive duration (in days)  before an account is disabled.
+<DT><A NAME="KEEP_LOGIN_HISTORY">KEEP_LOGIN_HISTORY</A><DD>Whether or not to maintain a login history for the users.
+</DL>
+</BODY>
+</HTML>

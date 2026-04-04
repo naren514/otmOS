@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - MONITOR_AGENT_EVENT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - MONITOR_AGENT_EVENT</H1>
+The MONITOR_AGENT_EVENT is a link for each agent to the list of events which were of interest to the agent and evaluated its saves queries to true.<P>
+<DL>
+<DT><A NAME="MONITOR_AGENT_EVENT_SEQNO">MONITOR_AGENT_EVENT_SEQNO</A><DD>The primary key for uniqueness.
+<DT><A NAME="MONITOR_AGENT_GID">MONITOR_AGENT_GID</A><DD>A foreign key reference to the Monitor_Agent to which the event was of interest and evaluated its saved queries to true.
+<DT><A NAME="I_TRANSACTION_NO">I_TRANSACTION_NO</A><DD>The foreign key reference into the ie_shipment_status table for events which are xml based.
+<DT><A NAME="EVENT_GROUP_GID">EVENT_GROUP_GID</A><DD>The foreign key reference into the agent_event_group table.
+<DT><A NAME="EVENT_OCCUR_DATE">EVENT_OCCUR_DATE</A><DD>The date and time the event occurred.
+<DT><A NAME="EVENT_RECEIVED_DATE">EVENT_RECEIVED_DATE</A><DD>The date and time the event was received.
+<DT><A NAME="EXCEPTION_MONITOR_AGENT_GID">EXCEPTION_MONITOR_AGENT_GID</A><DD>The milestone that got an error because of the profiling exception milestone.
+<DT><A NAME="TRIG_EXPT_MONITOR_AGENT_GID">TRIG_EXPT_MONITOR_AGENT_GID</A><DD>The milestone which caused the profiling exception determined by the exception milestone
+<DT><A NAME="EXCEPTION_AGENT_EVENT_GID">EXCEPTION_AGENT_EVENT_GID</A><DD>This is the GID of the exception event that was detected. (e.g. MONITORED SHIPMENT - MISSING This is the GID of the exception event that was detected. (e.g. MONITORED SHIPMENT - MISSING SEQUENCE MILESTONE)
+<DT><A NAME="IS_CURRENT_EXCEPTION">IS_CURRENT_EXCEPTION</A><DD>Indicates that the agent event in case of an exception event is currently valid. This value is reset to 'N' every time an agent that produced the exception event is profiled. If the exception still persists another event record is inserted with a value of 'Y'.
+<DT><A NAME="PREDECESSOR_MONITOR_AGENT_GID">PREDECESSOR_MONITOR_AGENT_GID</A><DD>GID of the predecessor milestone used to determine this exception.
+<DT><A NAME="SUCCESSOR_MONITOR_AGENT_GID">SUCCESSOR_MONITOR_AGENT_GID</A><DD>GID of the successor milestone used to determine this exception.
+<DT><A NAME="STATUS_CODE_GID">STATUS_CODE_GID</A><DD>Status code for this event
+<DT><A NAME="REASON_CODE_GID">REASON_CODE_GID</A><DD>Reason code for this event
+</DL>
+</BODY>
+</HTML>

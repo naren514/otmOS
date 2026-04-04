@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/service/v1" 
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            xmlns:otmtypes="http://xmlns.oracle.com/apps/otm/types/v1" 
+            xmlns="http://xmlns.oracle.com/apps/otm/service/v1" 
+            elementFormDefault="qualified"
+            version="1.0">
+            
+<xsd:import namespace="http://xmlns.oracle.com/apps/otm/types/v1" schemaLocation="Common.xsd"/>
+
+<xsd:complexType name="ServiceMessageType" abstract="true">
+	<xsd:sequence>
+		<xsd:element name="ServiceHeader" type="ServiceHeaderType"/>
+       	<xsd:element name="BusinessObjectPks" type="BusinessObjectPksType" minOccurs="0"/>
+	</xsd:sequence>
+    <xsd:attribute name="schemaVersion" type="xsd:string"/>
+</xsd:complexType>
+
+<xsd:complexType name="ServiceHeaderType">
+    <xsd:sequence>
+        <xsd:element name="LogMessage" type="xsd:boolean" minOccurs="0"/>
+        <xsd:element name="Type" minOccurs="0">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="SHIPMENT"/>
+                    <xsd:enumeration value="ORDER RELEASE"/>
+                    <xsd:enumeration value="ORDER MOVEMENT"/>
+                    <xsd:enumeration value="SELL SIDE SHIPMENT"/>
+                    <xsd:enumeration value="DRIVER"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="UserName" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="Password" type="otmtypes:PasswordType" minOccurs="0"/>
+        <xsd:element name="Processing" type="Processing"/>
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="BusinessObjectPksType">
+    <xsd:sequence>
+         <xsd:element ref="Pk" maxOccurs="unbounded"/>
+    </xsd:sequence>
+</xsd:complexType>
+              
+<xsd:element name="Pk" type="otmtypes:Gid"/>
+<xsd:element name="ShipmentPk" type="otmtypes:Gid" substitutionGroup="Pk"/>
+<xsd:element name="SellSideShipmentPk" type="otmtypes:Gid" substitutionGroup="Pk"/>
+<xsd:element name="OrderReleasePk" type="otmtypes:Gid" substitutionGroup="Pk"/>
+<xsd:element name="OrderMovementPk" type="otmtypes:Gid" substitutionGroup="Pk"/>
+<xsd:element name="DriverPk" type="otmtypes:Gid" substitutionGroup="Pk"/>
+
+<xsd:complexType name="Processing">
+    <xsd:sequence>
+        <xsd:element name="Mode">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="EXECUTE"/>
+                    <xsd:enumeration value="PUBLISH"/>
+                    <xsd:enumeration value="SCHEDULE"/>
+                    <xsd:enumeration value="WAIT"/>
+                    <xsd:enumeration value="QUERY"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="Results" minOccurs="0">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="RESULTS_NONE"/>
+                    <xsd:enumeration value="RESULTS_BASE"/>
+                    <xsd:enumeration value="RESULTS_FULL"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:element>
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="ServiceReplyMessageType">
+   <xsd:sequence>
+      <xsd:element name="ServiceResults">
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+               <xsd:enumeration value="SUCCESS"/>
+               <xsd:enumeration value="ERROR"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="GenericMessage" minOccurs="0" maxOccurs="unbounded" type="xsd:string"/>
+      <xsd:element name="ObjectMessage" type="ObjectMessageType" minOccurs="0" maxOccurs="unbounded"/>
+   </xsd:sequence>
+   <xsd:attribute name="schemaVersion" type="xsd:string" use="optional"/>
+</xsd:complexType>
+
+<xsd:complexType name="ObjectMessageType">
+   <xsd:sequence>
+      <xsd:element name="ObjectPk" type="otmtypes:Gid"/>
+      <xsd:element name="Message" type="xsd:string"/>
+   </xsd:sequence>
+</xsd:complexType>
+
+<xsd:element name="ServiceReplyMessage" type="ServiceReplyMessageType"/>
+
+</xsd:schema>

@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - REPORT_SYSTEM</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - REPORT_SYSTEM</H1>
+Definition of an external report generation system<P>
+<DL>
+<DT><A NAME="REPORT_SYSTEM_GID">REPORT_SYSTEM_GID</A><DD>Report System ID
+<DT><A NAME="REPORT_SYSTEM_XID">REPORT_SYSTEM_XID</A><DD>Report System XID
+<DT><A NAME="REPORT_SYSTEM_TYPE">REPORT_SYSTEM_TYPE</A><DD>Report System domain
+<DT><A NAME="BIP_HOST">BIP_HOST</A><DD>Host name for remote BI Publisher server
+<DT><A NAME="BIP_PORT">BIP_PORT</A><DD>Port number for remote BI Publisher server. Defaults to 9704 if left blank.
+<DT><A NAME="BIP_USER">BIP_USER</A><DD>BI Publisher user
+<DT><A NAME="BIP_PASSWORD">BIP_PASSWORD</A><DD>BI Publisher password
+<DT><A NAME="REPORT_PATH_PREFIX">REPORT_PATH_PREFIX</A><DD>Optional path prefix for remote reports. The REPORT.REPORT_PATH field is concatenated to the report path prefix to determine the full path name of the remote report.
+<DT><A NAME="HTTP_URL">HTTP_URL</A><DD>For external system supporting a simple HTTP request (i.e. not BI Publisher), the URL for the report. The URL should have a {report} macro that will be replaced with the full report path request.
+<DT><A NAME="PROTOCOL">PROTOCOL</A><DD>The protocol we want to use to connect to BI Publisher
+</DL>
+</BODY>
+</HTML>

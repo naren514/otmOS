@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - EXTERNAL_SYSTEM</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - EXTERNAL_SYSTEM</H1>
+<DL>
+<DT><A NAME="EXTERNAL_SYSTEM_GID">EXTERNAL_SYSTEM_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="EXTERNAL_SYSTEM_XID">EXTERNAL_SYSTEM_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="EXPECTED_RESPONSE_TIME">EXPECTED_RESPONSE_TIME</A><DD>Used in notify as guaranteed delivery.  Set the expected response time in second from receiving external system.
+<DT><A NAME="IS_GUARANTEED_DELIVERY">IS_GUARANTEED_DELIVERY</A><DD>Flag that indicates whether the notification is a guaranteed delivery.  A guaranteed delivery is a special type of notification where the receiver sends response back to the sender indicating whether the received message can be /or has been processed.
+<DT><A NAME="SOCKET_TIMEOUT">SOCKET_TIMEOUT</A><DD>HTTP read/write timeount in seconds. A value of 0 means no timeout.
+<DT><A NAME="ACTIVE_MODE">ACTIVE_MODE</A><DD>Used to enable or disable sending to the external system.  When set to Enabled it will generate and send the xml (default mode); Disable Send will generate and store the xml without sending; Disable Build will log an entry in the i_transmission and i_transaction tables without generating the xml blob; and Disabled will not log, generate, or send.
+<DT><A NAME="IS_ENABLE_DEBUG">IS_ENABLE_DEBUG</A><DD>Specifies if debugging is enabled for the external system.
+<DT><A NAME="IS_LOG_RESPONSE_MSG">IS_LOG_RESPONSE_MSG</A><DD>Specifies if the response received should be logged.
+<DT><A NAME="REATTEMPT_MODE">REATTEMPT_MODE</A><DD>Specifies the type of logic used to setup reattempts to send to the external system.  If None, no reattempts are made.  If Redo, then the status of the transmission will be set to REDO when an error occurs and the REDO transmission processing will manage a resend.  If Delay, then the reattempt_delay field is used to indicate how long to wait before the next attempt.
+<DT><A NAME="REATTEMPT_MAX">REATTEMPT_MAX</A><DD>Specifies the max number of attempts to send the transmission to the external system.
+<DT><A NAME="REATTEMPT_DELAY">REATTEMPT_DELAY</A><DD>Specifies the amount of time to wait before another attempt to send can be made.
+<DT><A NAME="REATTEMPT_DEADLINE">REATTEMPT_DEADLINE</A><DD>Specifies the max time from when the transmission is created that an attempt will be made to send the transmission.
+<DT><A NAME="MAX_THREADS">MAX_THREADS</A><DD>Specifies the max number of threads that should be used for this external system.  This should help limit a bad destination taking up all the threads.
+<DT><A NAME="FTP_APPEND_FILE">FTP_APPEND_FILE</A><DD>Specifies if the FTP protocol should use the append file mode to send the data to the FTP server in batches, or should use the put mode where the whole transmission is sent at once.
+<DT><A NAME="HTTP_ACK_EXPECTED">HTTP_ACK_EXPECTED</A><DD>Specifies if the Transmission Ack is expected to be received when sending via synchronous protocol.
+<DT><A NAME="HTTP_USE_ACK_STATUS">HTTP_USE_ACK_STATUS</A><DD>Specifies if the Transmission Ack status should be used as the status of the Transmission
+<DT><A NAME="HTTP_READ_RESPONSE">HTTP_READ_RESPONSE</A><DD>Specifies if the HTTP response conde should be validated.
+<DT><A NAME="SERVICE_ACK_EXPECTED">SERVICE_ACK_EXPECTED</A><DD>Specifies if the Transmission Ack is expected to be received when sending via synchronous protocol.
+<DT><A NAME="SERVICE_USE_ACK_STATUS">SERVICE_USE_ACK_STATUS</A><DD>Specifies if the Transmission Ack status should be used as the status of the Transmission
+<DT><A NAME="BPEL_ACK_EXPECTED">BPEL_ACK_EXPECTED</A><DD>Specifies if the Transmission Ack is expected to be received when sending via synchronous protocol.
+<DT><A NAME="BPEL_USE_ACK_STATUS">BPEL_USE_ACK_STATUS</A><DD>Specifies if the Transmission Ack status should be used as the status of the Transmission
+<DT><A NAME="BPEL_DOMAIN_PW">BPEL_DOMAIN_PW</A><DD>Specifies the password for the BPEL domain.
+<DT><A NAME="BPEL_JNS_USER">BPEL_JNS_USER</A><DD>Specifies the java.naming.security.principal property for connecting to the BPEL instance using RMI.
+<DT><A NAME="BPEL_JNS_PW">BPEL_JNS_PW</A><DD>Specifies the java.naming.security.credentials property for connecting to the BPEL instance using RMI.
+<DT><A NAME="BPEL_MODE">BPEL_MODE</A><DD>Specifies if the BPEL notify method should use RMI or SERVICE to send to the BPEL server.
+<DT><A NAME="HTTP_CLOSE_CONNECTION">HTTP_CLOSE_CONNECTION</A><DD>If it is "Y", close the HTTPPOST connection
+<DT><A NAME="DELAYED_STREAM_TRANSPORT">DELAYED_STREAM_TRANSPORT</A><DD>If it is "Y", the XML is loaded before sending out and transported through data stream
+<DT><A NAME="USE_PROXY_SERVER">USE_PROXY_SERVER</A><DD>Determines whether the messages or request should be passed through the proxy server or not.
+<DT><A NAME="INCLUDE_NAMESPACE">INCLUDE_NAMESPACE</A><DD>NULL, NONE, DEFAULT and STRICT to be allowable values
+<DT><A NAME="FTP_PORT">FTP_PORT</A><DD>Port # when external system is used for FTP or FTPS
+<DT><A NAME="TARGET_NAMESPACE">TARGET_NAMESPACE</A><DD>Indicates which version of the Transmission should be sent to this external system
+</DL>
+</BODY>
+</HTML>

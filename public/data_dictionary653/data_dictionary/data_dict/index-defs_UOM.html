@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - UOM</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - UOM</H1>
+This table stores the various Unit Of Measures that can be used in the calculations in GC3. Some examples of UOM are: Speed - Mile Per Hour, Kilometer Per Hour etc, Duration - Days, Minutes, Hour etc.<P>
+<DL>
+<DT><A NAME="TYPE">TYPE</A><DD>TYPE contains the type for the unit of measure. Examples include: DISTANCE DURATION LENGTH SPEED TEMPERATURE VOLUME WEIGHT
+<DT><A NAME="UOM_CODE">UOM_CODE</A><DD>UOM_CODE contains an abbreviation for the unit of measure. Examples include CUFT, LB and YD.
+<DT><A NAME="UOM_SHORT_DESCRIPTION">UOM_SHORT_DESCRIPTION</A><DD>UOM_SHORT_DESCRIPTION contains an abbreviated name for the unit of measure. Examples include CAN GAL, KPH and NAUT MI.
+<DT><A NAME="UOM_LONG_DESCRIPTION">UOM_LONG_DESCRIPTION</A><DD>UOM_LONG_DESCRIPTION contains the full name for the unit of measure. Examples include METRIC TONS, POUNDS and YARDS.
+<DT><A NAME="IS_STORAGE_DEFAULT">IS_STORAGE_DEFAULT</A><DD>The IS_STORAGE_DEFAULT column, when set to Y, indicates that the given uom_code is the
+storage default for all database columns of the given type.  For example, LB is the
+default code for all WEIGHT related columns.
+<DT><A NAME="IS_DISPLAY_DEFAULT">IS_DISPLAY_DEFAULT</A><DD>The IS_DISPLAY_DEFAULT column, when set to Y, indicates that the given uom_code is the
+display default for all display fields of the given type.
+</DL>
+</BODY>
+</HTML>

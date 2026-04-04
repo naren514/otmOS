@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ITINERARY</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ITINERARY</H1>
+This table defines the path between two locations. The itinerary is described in terms of the legs. An itinerary can have one or more legs. The itinerary table consists of the constraints on the weight allowed for shipment for each path. The itinerary can be used by a corporation or can specify additional constraints using the calendar GID like Monday-Friday Itinerary, Weekend Itinerary etc.<P>
+<DL>
+<DT><A NAME="ITINERARY_GID">ITINERARY_GID</A><DD>ITINERARY_GID contains the unique identifier for the intinerary.
+<DT><A NAME="ITINERARY_XID">ITINERARY_XID</A><DD>ITINERARY_XID contains the unique external identifier for the itinerary.
+<DT><A NAME="ITINERARY_NAME">ITINERARY_NAME</A><DD>ITINERARY_NAME contains the name for the itinerary.
+<DT><A NAME="DESCRIPTION">DESCRIPTION</A><DD>DESCRIPTION contains text describing the itinerary.
+<DT><A NAME="MIN_WEIGHT">MIN_WEIGHT</A><DD>MIN_WEIGHT contains the minimum weight  for the shipment on the itinerary.
+<DT><A NAME="MIN_WEIGHT_UOM_CODE">MIN_WEIGHT_UOM_CODE</A><DD>Unit of measure for MIN_WEIGHT column.
+<DT><A NAME="MIN_WEIGHT_BASE">MIN_WEIGHT_BASE</A><DD>MIN_WEIGHT in base units.
+<DT><A NAME="MAX_WEIGHT">MAX_WEIGHT</A><DD>MAX_WEIGHT contains the maximum weight for the shipment on the itinerary.
+<DT><A NAME="MAX_WEIGHT_UOM_CODE">MAX_WEIGHT_UOM_CODE</A><DD>Unit of measure for MAX_WEIGHT column.
+<DT><A NAME="MAX_WEIGHT_BASE">MAX_WEIGHT_BASE</A><DD>MAX_WEIGHT in base units.
+<DT><A NAME="MIN_VOLUME">MIN_VOLUME</A><DD>MIN_VOLUME contains the minimum volume for the shipment on the itinerary.
+<DT><A NAME="MIN_VOLUME_UOM_CODE">MIN_VOLUME_UOM_CODE</A><DD>Unit of measure for MIN_VOLUME column.
+<DT><A NAME="MIN_VOLUME_BASE">MIN_VOLUME_BASE</A><DD>MIN_VOLUME in base units.
+<DT><A NAME="MAX_VOLUME">MAX_VOLUME</A><DD>MAX_VOLUME contains the maximum volume for the shipment on the itinerary.
+<DT><A NAME="MAX_VOLUME_UOM_CODE">MAX_VOLUME_UOM_CODE</A><DD>Unit of measure for MAX_VOLUME column.
+<DT><A NAME="MAX_VOLUME_BASE">MAX_VOLUME_BASE</A><DD>MAX_VOLUME in base units.
+<DT><A NAME="CORPORATION_PROFILE_GID">CORPORATION_PROFILE_GID</A><DD>CORPORATION_PROFILE_GID contains the unique identifier for the corporation profile used for the itinerary.
+<DT><A NAME="CALENDAR_GID">CALENDAR_GID</A><DD>CALENDAR_GID contains the unique identifier for the calendar.
+<DT><A NAME="X_LANE_GID">X_LANE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="IS_MULTI_STOP">IS_MULTI_STOP</A><DD>IS_MULTI_STOP describes whether the itinerary contains more than one stop. IF so, this column contains a Y for yes; if not it contains an N for no.
+<DT><A NAME="TOTAL_COST_GID">TOTAL_COST_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="TOTAL_COST_BASE">TOTAL_COST_BASE</A><DD>TOTAL_COST in base units.
+<DT><A NAME="TOTAL_TRANSIT_TIME_BASE">TOTAL_TRANSIT_TIME_BASE</A><DD>TOTAL_TRANSIT_TIME in base units.
+<DT><A NAME="USE_DECONSOLIDATION_POOL">USE_DECONSOLIDATION_POOL</A><DD>Orders matched to this itinerary may use a de-consolidation pool on the destination.
+<DT><A NAME="USE_CONSOLIDATION_POOL">USE_CONSOLIDATION_POOL</A><DD>: Orders matched to this itinerary may use a consolidation pool on the src.
+<DT><A NAME="MIN_STOPOFF_WEIGHT">MIN_STOPOFF_WEIGHT</A><DD>order bundles less than this weight will always go through a pool if the orgin/dest of the order bundles fall into consolidation/de-consolidation pools
+<DT><A NAME="MIN_STOPOFF_WEIGHT_UOM_CODE">MIN_STOPOFF_WEIGHT_UOM_CODE</A><DD>Unit of measure for MIN_STOPOFF_WEIGHT column.
+<DT><A NAME="MIN_STOPOFF_WEIGHT_BASE">MIN_STOPOFF_WEIGHT_BASE</A><DD>MIN_STOPOFF_WEIGHT in base units.
+<DT><A NAME="MAX_POOL_WEIGHT_BASE">MAX_POOL_WEIGHT_BASE</A><DD>MAX_POOL_WEIGHT in base units.
+<DT><A NAME="TOTAL_STOPS_CONSTRAINT">TOTAL_STOPS_CONSTRAINT</A><DD>: it specifies the maximum number of stops on a multi-stop shipment derived from this itinerary.
+<DT><A NAME="MIN_TL_WEIGHT">MIN_TL_WEIGHT</A><DD>: This is the minimum weight to make up a nice truckload. It is also used as the minimum weight to go through a pool
+<DT><A NAME="MIN_TL_WEIGHT_UOM_CODE">MIN_TL_WEIGHT_UOM_CODE</A><DD>Unit of measure for MIN_TL_WEIGHT column.
+<DT><A NAME="MIN_TL_WEIGHT_BASE">MIN_TL_WEIGHT_BASE</A><DD>MIN_TL_WEIGHT in base units.
+<DT><A NAME="MIN_STOPOFF_VOLUME">MIN_STOPOFF_VOLUME</A><DD>Order bundles less than this volume will always go through a pool if the origin/dest of the order bundles fall into consolidation/de-consolidation pools.  When doing pool drop swapping, only pool drop shipments whose volume is bigger than this value are tried.
+<DT><A NAME="MIN_STOPOFF_VOLUME_UOM_CODE">MIN_STOPOFF_VOLUME_UOM_CODE</A><DD>Unit of measure for the min_stopoff_volume.
+<DT><A NAME="MIN_STOPOFF_VOLUME_BASE">MIN_STOPOFF_VOLUME_BASE</A><DD>Stopoff volume in base units.
+<DT><A NAME="MAX_POOL_VOLUME">MAX_POOL_VOLUME</A><DD>This is the maximum volume to go through a pool.
+<DT><A NAME="MAX_POOL_VOLUME_UOM_CODE">MAX_POOL_VOLUME_UOM_CODE</A><DD>Unit of measure for the maximum pool volume.
+<DT><A NAME="MAX_POOL_VOLUME_BASE">MAX_POOL_VOLUME_BASE</A><DD>Maximum volume to go through a pool in base units.
+<DT><A NAME="MAX_SMALL_DIRECT_VOLUME">MAX_SMALL_DIRECT_VOLUME</A><DD>After pool swapping, we try to pull off the orders that are close to parcel weight and ship direct, if the overall solution is cheaper.  This volume guides the algorithm to only pull of the one that is smaller than this volume.
+<DT><A NAME="MAX_SMALL_DIRECT_VOL_UOM_CODE">MAX_SMALL_DIRECT_VOL_UOM_CODE</A><DD>Unit of measure for the small direct volume.
+<DT><A NAME="MAX_SMALL_DIRECT_VOLUME_BASE">MAX_SMALL_DIRECT_VOLUME_BASE</A><DD>Small direct volume in base units.
+<DT><A NAME="MAX_SMALL_DIRECT_WEIGHT">MAX_SMALL_DIRECT_WEIGHT</A><DD>After pool swapping, we try to pull off the orders that are close to parcel weight and ship direct, if the overall solution is cheaper.  This weight guides the algorithm to only pull of the one that is smaller than this weight.
+<DT><A NAME="MAX_SMALL_DIRECT_WGHT_UOM_CODE">MAX_SMALL_DIRECT_WGHT_UOM_CODE</A><DD>Unit of measure for small direct weight.
+<DT><A NAME="MAX_SMALL_DIRECT_WEIGHT_BASE">MAX_SMALL_DIRECT_WEIGHT_BASE</A><DD>Small direct weight in base units.
+<DT><A NAME="MIN_TL_USAGE_PERCENTAGE">MIN_TL_USAGE_PERCENTAGE</A><DD>The percentage of usage to be used to determine whether a TL is full in bulk plan.  This will guide whether direct shipment be kept without routing to pool.  It also determines whether pool shipments be kept without routing to xdock.
+<DT><A NAME="IS_DEST_BUNDLE_PREFERED">IS_DEST_BUNDLE_PREFERED</A><DD>If this flag is set, when going through the de-consolidation pool process, if there is a x-dock on this itinerary, two or more order bundles have the same destination will not route to the de-consolidation pool. It will route to x-dock later for consolidation at x-dock and direct go to the destination
+<DT><A NAME="HAZMAT_MODE_GID">HAZMAT_MODE_GID</A><DD>A unique identifier to define the transportation modes. (includes the domain name as part of the key)
+<DT><A NAME="ITINERARY_TYPE">ITINERARY_TYPE</A><DD>When 'N', indicates itinerary is inactive and should not be used by the algorithm.
+<DT><A NAME="PICKUP_STOPS_CONSTRAINTS">PICKUP_STOPS_CONSTRAINTS</A><DD>total # of pickup stops for a multistop shipment. It is usually set to be the max of PICKUP_STOPS_CONSTRAINTS of all valid rate offering. This help multistop performance
+<DT><A NAME="DELIVERY_STOPS_CONSTRAINTS">DELIVERY_STOPS_CONSTRAINTS</A><DD>total # of pickup stops for a multistop shipment. It is usually set to be the max of DELIVERY_STOPS_CONSTRAINTS of all valid rate offering. This help multistop performance
+<DT><A NAME="MAX_DIST_BTW_PICKUPS">MAX_DIST_BTW_PICKUPS</A><DD>if distance between 2 pickup stops is beyond this, don't pair 2 shipments in multistop
+<DT><A NAME="RADIUS_FOR_PICKUPS">RADIUS_FOR_PICKUPS</A><DD>the distance from any pickup stop to the root bundle's source location can not exceed this field.
+<DT><A NAME="RADIUS_PERCENTAGE_FOR_PICKUPS">RADIUS_PERCENTAGE_FOR_PICKUPS</A><DD>distance from any pickup to the root source divided by the root distance can not exceed this planning parameter.
+<DT><A NAME="PAYMENT_METHOD_PROFILE_GID">PAYMENT_METHOD_PROFILE_GID</A><DD>List of compatible payment methods for the itinerary
+</DL>
+</BODY>
+</HTML>

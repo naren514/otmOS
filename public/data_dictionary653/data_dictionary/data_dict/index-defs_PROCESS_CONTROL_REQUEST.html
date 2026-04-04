@@ -1,0 +1,15 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - PROCESS_CONTROL_REQUEST</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - PROCESS_CONTROL_REQUEST</H1>
+Contains an entry for each process request.  An entry could indicate a one-time kickoff of a workflow, or could be an ongoing job, with a specified interval. For example, a process could be Print Invoices (topic_alias_gid), which is run every day at 6am (next_process_time).  If the number_of_cycles equals "-1", then the process will resubmit itself indefinitely for another run.  If the TOPIC_ALIAS_GID is null, then GC3 will look at the TOPIC_CLASS_NAME, the java class, to know what workflow to run.<P>
+<DL>
+<DT><A NAME="TOPIC_ALIAS_GID">TOPIC_ALIAS_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="TIME_WINDOW_GID">TIME_WINDOW_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="CYCLE_DURATION_BASE">CYCLE_DURATION_BASE</A><DD>CYCLE_DURATION in base units.
+<DT><A NAME="CYCLE_DURATION_GID">CYCLE_DURATION_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+</DL>
+</BODY>
+</HTML>

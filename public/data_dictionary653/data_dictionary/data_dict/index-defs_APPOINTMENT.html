@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - APPOINTMENT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - APPOINTMENT</H1>
+Storing information of shipment appointment, including fixed appointments, feasible appointments and infeasible appointments.  It also stores any blocked appointment time.<P>
+<DL>
+<DT><A NAME="APPOINTMENT_GID">APPOINTMENT_GID</A><DD>The unique identifier.
+<DT><A NAME="APPOINTMENT_XID">APPOINTMENT_XID</A><DD>The ID of the location resource appointment.
+<DT><A NAME="LOCATION_RESOURCE_GID">LOCATION_RESOURCE_GID</A><DD>The GID of the location resource.
+<DT><A NAME="STOP_NUM">STOP_NUM</A><DD>The stop number of the shipment.
+<DT><A NAME="APPOINTMENT_START_TIME">APPOINTMENT_START_TIME</A><DD>Appointment start time.
+<DT><A NAME="APPOINTMENT_END_TIME">APPOINTMENT_END_TIME</A><DD>Appointment end time.
+<DT><A NAME="IS_FEASIBLE">IS_FEASIBLE</A><DD>Whether or not the appointment is feasible.
+<DT><A NAME="IS_FIXED">IS_FIXED</A><DD>If the shipment has arrived at the stop, the appointment will be fixed.
+<DT><A NAME="IS_BLOCKED">IS_BLOCKED</A><DD>Whether or not the appointment time is blocked.
+<DT><A NAME="CONFIRMATION_NUMBER">CONFIRMATION_NUMBER</A><DD>The appointment confirmation number.
+<DT><A NAME="INFEASIBLE_REASON">INFEASIBLE_REASON</A><DD>If the IS_FEASIBLE is false, the INFESIBLE_REASON will provide the reason for it.
+<DT><A NAME="DATA_QUERY_TYPE_GID">DATA_QUERY_TYPE_GID</A><DD>The Gid of Data_Query_Type. Current valid values in this column will either be SHIPMENT or SHIPMENT GROUP
+<DT><A NAME="MARKED_FOR_PURGE">MARKED_FOR_PURGE</A><DD>A boolean field.  When it is set to "Y", this row and its child data will be purged.
+<DT><A NAME="DOMAIN_NAME">DOMAIN_NAME</A><DD>The domain of the user.
+</DL>
+</BODY>
+</HTML>

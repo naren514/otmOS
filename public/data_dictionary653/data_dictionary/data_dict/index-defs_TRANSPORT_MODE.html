@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - TRANSPORT_MODE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - TRANSPORT_MODE</H1>
+This is the master table that stores the various transportation modes that can be used for shipping the goods. Some examples include: Air Train Truck Ship etc.<P>
+<DL>
+<DT><A NAME="TRANSPORT_MODE_GID">TRANSPORT_MODE_GID</A><DD>A unique identifier to define the transportation modes. (includes the domain name as part of the key)
+<DT><A NAME="TRANSPORT_MODE_XID">TRANSPORT_MODE_XID</A><DD>A unique identifier to define the transportation modes. (does not include the domain name as part of the key)
+<DT><A NAME="TRANSPORT_MODE_NAME">TRANSPORT_MODE_NAME</A><DD>The name/description of the transportation mode.  For example:  Air,  Barge,  Drayage,  Truckload,  Rail etc.
+<DT><A NAME="TRANSPORT_MODE_QUALIFIER">TRANSPORT_MODE_QUALIFIER</A><DD>DISTINGUISHES THE TRANSPORTATION MODE AS EITHER A STANDARD TRANSPORT MODE, A HAZARDOUS TRANSPORT MODE OR BOTH.  VALUES: B=BOTH, S=STANDARD TRANSPORT MODE, H=HAZARDOUS TRANSPORT MODE.
+<DT><A NAME="IS_MASTER_CARR_REF_REM_VISIBLE">IS_MASTER_CARR_REF_REM_VISIBLE</A><DD>Identifies whether the master carrier reference remark is displayed on the 'View Related Remarks' screen for this particular transportation mode.
+<DT><A NAME="IS_CONSIDER_COST">IS_CONSIDER_COST</A><DD>Indicate if cost should be considered (therefore rating is invoked) during ship unit building (packing).
+<DT><A NAME="THU_PROFILE_GID">THU_PROFILE_GID</A><DD>Specifies all compatible  THUs that can be used during ship unit building (packing).
+</DL>
+</BODY>
+</HTML>

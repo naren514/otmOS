@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - TRACKING_LOCATION_RT_D</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - TRACKING_LOCATION_RT_D</H1>
+<DL>
+<DT><A NAME="TRACKING_LOCATION_RT_GID">TRACKING_LOCATION_RT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.Refers column TRACKING_LOCATION_RT. TRACKING_LOCATION_RT_GID.
+<DT><A NAME="SEQ_NO">SEQ_NO</A><DD>Indicates the sequence of the tracking locations within the tracking location route template.
+<DT><A NAME="TRACKING_LOCATION_GID">TRACKING_LOCATION_GID</A><DD>This should refer LOCTION Table and the column to refer is LOCATION.LOCATION_GID.
+<DT><A NAME="WHERE_TO">WHERE_TO</A><DD>Specifies where to insert tracking location. User has to select either of these Before Source, Between Source and Destination, After Destination.
+<DT><A NAME="CARRIER_SCAC_GID">CARRIER_SCAC_GID</A><DD>Carrier for this part of leg i.e between the previous stop/tracking location tol this tracking location.
+<DT><A NAME="PRIMARY_RATE_SERVICE_GID">PRIMARY_RATE_SERVICE_GID</A><DD>A unique identifier to define the primary rate service withing GC3. The gid contains the domain portion.Refers column Rate_Service.Rate_Service_gid.
+<DT><A NAME="SECONDARY_RATE_SERVICE_GID">SECONDARY_RATE_SERVICE_GID</A><DD>A unique identifier to define the secondary rate service withing GC3. The gid contains the domain portion. This is useful when the primary rate service is unavailableRefers column rate_service.rate_service_gid.
+<DT><A NAME="SPECIAL_SERVICE_GID">SPECIAL_SERVICE_GID</A><DD>When build shipment stops (as shipment tracking location), this special service will be added to the stop.Refers column special_service.special_service_gid.
+<DT><A NAME="IS_MOTHER_VESSEL">IS_MOTHER_VESSEL</A><DD>Designating the service provider as the 'Mother Vessel'. This leg service provider will be automatically being populated as the header information.
+</DL>
+</BODY>
+</HTML>

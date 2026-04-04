@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - S_SHIP_UNIT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - S_SHIP_UNIT</H1>
+This table stores the shipment ship unit information. This table was added to identify the actual shipment ship unit as opposed to order release ship unit (in earlier versions of GC3).<P>
+<DL>
+<DT><A NAME="S_SHIP_UNIT_GID">S_SHIP_UNIT_GID</A><DD>A unique pointer to define the shipment ship unit. The gid contains the domain portion.
+<DT><A NAME="S_SHIP_UNIT_XID">S_SHIP_UNIT_XID</A><DD>Similar to the gid except for the domain portion.
+<DT><A NAME="UNIT_LENGTH">UNIT_LENGTH</A><DD>The length of each s_ship unit. If this row represents 20 same ship units, total length is 20 x UNIT_LENGTH.
+<DT><A NAME="UNIT_LENGTH_UOM_CODE">UNIT_LENGTH_UOM_CODE</A><DD>Unit of measure for UNIT_LENGTH column.
+<DT><A NAME="UNIT_LENGTH_BASE">UNIT_LENGTH_BASE</A><DD>UNIT_LENGTH in base units.
+<DT><A NAME="UNIT_WIDTH">UNIT_WIDTH</A><DD>: it is the weight of each s_ship_unit (each row may represent SHIP_UNIT_COUNT number of same ship units). If this field is null, or is 0, the weight of this s_ship_unit is computed as the total of container weight from its ship_unit_spec and the weight of its s_ship_unit_lines mutilply.
+<DT><A NAME="UNIT_WIDTH_UOM_CODE">UNIT_WIDTH_UOM_CODE</A><DD>Unit of measure for UNIT_WIDTH column.
+<DT><A NAME="UNIT_WIDTH_BASE">UNIT_WIDTH_BASE</A><DD>UNIT_WIDTH in base units.
+<DT><A NAME="UNIT_HEIGHT">UNIT_HEIGHT</A><DD>The height of each s_ship unit. If this row represents 20 same ship units, total height is 20 x UNIT_HEIGHT.
+<DT><A NAME="UNIT_HEIGHT_UOM_CODE">UNIT_HEIGHT_UOM_CODE</A><DD>Unit of measure for UNIT_HEIGHT column.
+<DT><A NAME="UNIT_HEIGHT_BASE">UNIT_HEIGHT_BASE</A><DD>UNIT_HEIGHT in base units.
+<DT><A NAME="UNIT_WEIGHT">UNIT_WEIGHT</A><DD>The weight of the ship unit.
+<DT><A NAME="UNIT_WEIGHT_UOM_CODE">UNIT_WEIGHT_UOM_CODE</A><DD>Unit of measure for UNIT_WEIGHT column.
+<DT><A NAME="UNIT_WEIGHT_BASE">UNIT_WEIGHT_BASE</A><DD>UNIT_WEIGHT in base units.
+<DT><A NAME="UNIT_VOLUME">UNIT_VOLUME</A><DD>it is the volume of each s_ship_unit unit (each row may represent SHIP_UNIT_COUNT number of same ship units). If this field is null, or is 0, the volume of this s_ship_unit is computed as the total of container volume from its ship_unit_spec and the volume of its s_ship_unit_lines.
+<DT><A NAME="UNIT_VOLUME_UOM_CODE">UNIT_VOLUME_UOM_CODE</A><DD>Unit of measure for UNIT_VOLUME column.
+<DT><A NAME="UNIT_VOLUME_BASE">UNIT_VOLUME_BASE</A><DD>UNIT_VOLUME in base units.
+<DT><A NAME="FLEX_COMMODITY_CODE">FLEX_COMMODITY_CODE</A><DD>The user defined commodity code for the item. For example HTS, SITC, STCC, NMFC etc.
+<DT><A NAME="FLEX_COMMODITY_QUAL_GID">FLEX_COMMODITY_QUAL_GID</A><DD>A unique identifier to define the tyoe of teh commodity code. For example HTS, SITC, STCC, NMFC etc.
+<DT><A NAME="IS_SPLITABLE">IS_SPLITABLE</A><DD>A true or false value to define whether the ship unit can  be splitted when creating the shipments.
+<DT><A NAME="SHIP_UNIT_COUNT">SHIP_UNIT_COUNT</A><DD>Ship units that have the same demension/weight and contents are represented as one row in the SHIP_UNIT table. SHIP_UNIT_COUNT is the number of these ship units.
+<DT><A NAME="RECEIVED_WEIGHT_BASE">RECEIVED_WEIGHT_BASE</A><DD>RECEIVED_WEIGHT in base units.
+<DT><A NAME="RECEIVED_VOLUME_BASE">RECEIVED_VOLUME_BASE</A><DD>RECEIVED_VOLUME in base units.
+<DT><A NAME="CORE_DIAMETER">CORE_DIAMETER</A><DD>For cylindrical objects, this defines the diameter of the core
+<DT><A NAME="CORE_DIAMETER_UOM_CODE">CORE_DIAMETER_UOM_CODE</A><DD>For cylindrical objects, unit of measure for the diameter of the core
+<DT><A NAME="CORE_DIAMETER_BASE">CORE_DIAMETER_BASE</A><DD>For cylindrical objects, the base value of the diameter of the core.  For cylindrical objects, the base value of the diameter of the core
+<DT><A NAME="T_SHIP_UNIT_GID">T_SHIP_UNIT_GID</A><DD>This is used as a non-foreign key reference to the order release ship unit.
+<DT><A NAME="IS_COUNT_SPLITTABLE">IS_COUNT_SPLITTABLE</A><DD>Indicates whether the ship unit can be split on the count boundaries when planning during container optimization.
+<DT><A NAME="MARKED_FOR_PURGE">MARKED_FOR_PURGE</A><DD>A boolean field.  When it is set to "Y", this row and its child data will be purged.
+<DT><A NAME="IS_ALLOW_REPACK">IS_ALLOW_REPACK</A><DD>If this flag is set to false, when planning order movement that contains this ship unit or combine shipments that contains this s ship unit, the shipment ship unit building process will not repack this ship unit. 
+<DT><A NAME="PRIORITY">PRIORITY</A><DD>This column defines the priority associated with ship unit
+</DL>
+</BODY>
+</HTML>

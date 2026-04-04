@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>Data Dictionary</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Data Dictionary</H1>
+<TABLE BORDER="0">
+<TR><TD COLSPAN="5"><A NAME="GL_USER"><STRONG><FONT SIZE="+1">GL_USER</FONT></STRONG></A>&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A></TD>
+<TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>GL_USER_GID&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#GL_USER_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>GL_USER_XID&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#GL_USER_XID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>GL_PASSWORD</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DOMAIN_NAME</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LAST_LOGIN_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>GL_ACCOUNT_POLICY_GID&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#GL_ACCOUNT_POLICY_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>PW_EXPIRATION_DATE&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#PW_EXPIRATION_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ACCOUNT_LOCKOUT_TIME&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#ACCOUNT_LOCKOUT_TIME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>USERNAME</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DEFAULT_USER_ROLE_GID&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_USER_ROLE.html">USER_ROLE</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_EXTERNAL</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DEFAULT_AA_REPORT</TD><TD NOWRAP>VARCHAR2(100)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>BI_ROLE_GID</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DOCUMENT_USE_PROFILE_GID&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#DOCUMENT_USE_PROFILE_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_RESERVED&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#IS_RESERVED" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>FORCE_PASSWORD_RESET&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#FORCE_PASSWORD_RESET" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>AUTO_APPROVE_RULE_PROFILE_GID&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#AUTO_APPROVE_RULE_PROFILE_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UNSUCCESSFUL_LOGIN_ATTEMPTS</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>SALT&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#SALT" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>HASH_ALG&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#HASH_ALG" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(10)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ITERATION_COUNT</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>EFFECTIVE_DATE&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#EFFECTIVE_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>EXPIRATION_DATE&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#EXPIRATION_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_OBIEE&nbsp;&nbsp;<A HREF="index-defs_GL_USER.html#IS_OBIEE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/ N</TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Tables that FK into this one:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_USER_ACCESS.html">USER_ACCESS</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_USER_ASSOCIATION.html">USER_ASSOCIATION</A></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Indices:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4">IX_GL_USER_XID (GL_USER_XID)</TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4">UK_GL_USER (USERNAME)</TD></TR>
+</TABLE></BODY>
+</HTML>

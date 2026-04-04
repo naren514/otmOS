@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - GL_LOGIN_HISTORY</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - GL_LOGIN_HISTORY</H1>
+Contains the history of attempted GC3 logins.<P>
+<DL>
+<DT><A NAME="LOGIN_SEQUENCE">LOGIN_SEQUENCE</A><DD>A sequence number used as primary key.
+<DT><A NAME="GL_USER_LOGIN_ATTEMPT">GL_USER_LOGIN_ATTEMPT</A><DD>The attempted GL_USER.
+<DT><A NAME="LOGIN_STATUS">LOGIN_STATUS</A><DD>Whether the attempt was successful, and if not, what was the reason.
+<DT><A NAME="LOGIN_MODE">LOGIN_MODE</A><DD>Whether this was interactive or batch.
+<DT><A NAME="IP_ADDRESS">IP_ADDRESS</A><DD>The IP address of the client.  It is the IP address of the machine which has the web browser.
+<DT><A NAME="LOGIN_TIME">LOGIN_TIME</A><DD>Time of the login attempt.
+<DT><A NAME="PARTITION_KEY">PARTITION_KEY</A><DD>A key (from 1-4) based upon the insert_date which helps purge data periodically.
+</DL>
+</BODY>
+</HTML>

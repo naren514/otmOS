@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4"
+            xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified" elementFormDefault="qualified">
+
+   <xsd:annotation>
+      <xsd:documentation>
+         Last modified .
+
+         This file pulls in all other schemas which define one or more Transaction interfaces.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:include schemaLocation="TransmissionCommon.xsd"/>
+   <xsd:include schemaLocation="LocationContact.xsd"/>
+   <xsd:include schemaLocation="Item.xsd"/>
+   <xsd:include schemaLocation="Planning.xsd"/>
+   <xsd:include schemaLocation="Configuration.xsd"/>
+   <xsd:include schemaLocation="ShipUnit.xsd"/>
+   <xsd:include schemaLocation="Rate.xsd"/>
+   <xsd:include schemaLocation="Order.xsd"/>
+   <xsd:include schemaLocation="Shipment.xsd"/>
+   <xsd:include schemaLocation="GenericTransaction.xsd"/>
+   <xsd:include schemaLocation="Finance.xsd"/>
+   <xsd:include schemaLocation="Job.xsd"/>
+   <xsd:include schemaLocation="Document.xsd"/>
+   <xsd:import namespace="http://xmlns.oracle.com/apps/gtm/transmission/v6.4" schemaLocation="GTM.xsd"/>
+
+</xsd:schema>

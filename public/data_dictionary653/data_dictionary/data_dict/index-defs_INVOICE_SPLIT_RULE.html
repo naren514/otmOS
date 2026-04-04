@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - INVOICE_SPLIT_RULE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - INVOICE_SPLIT_RULE</H1>
+Invoice_Split_Rule table contains the rules which are used to split Invoices/Bills into multiple invoices or bills for a single shipment. Invoice_Split_Rule table will define one of the valid ways that we can look at a shipment (buy or sell) and generate multiple bills or invoices from it based on the split rule that is being used.<P>
+<DL>
+<DT><A NAME="INVOICE_SPLIT_RULE_GID">INVOICE_SPLIT_RULE_GID</A><DD>INVOICE_SPLIT_RULE_GID is the unique identifier for the INVOICE_SPLIT_RULE
+<DT><A NAME="INVOICE_SPLIT_RULE_XID">INVOICE_SPLIT_RULE_XID</A><DD>INVOICE_SPLIT_RULE_XID is the unique external identifier for the INVOICE_SPLIT_RULE
+<DT><A NAME="INVOICE_SPLIT_RULE_NAME">INVOICE_SPLIT_RULE_NAME</A><DD>INVOICE_SPLIT_RULE_NAME contains the name of the rule for splitting invoice.
+<DT><A NAME="INVOICE_SPLIT_RULE_DESC">INVOICE_SPLIT_RULE_DESC</A><DD>INVOICE_SPLIT_RULE_DESC contains the description about split rule.
+<DT><A NAME="INVOICE_SPLIT_RULE_TYPE">INVOICE_SPLIT_RULE_TYPE</A><DD>INVOICE_SPLIT_RULE_TYPE indicates whether this RULE is applicable for a bill or an invoice (valid values are I or B)
+<DT><A NAME="INVOICE_SPLIT_RULE_CRITERIA">INVOICE_SPLIT_RULE_CRITERIA</A><DD>invoice_split_rule_criteria will define the criteria which is base for splitting the invoice. Valid Inputs are:L,T,A,S; L represents - PER COST LINE, T represents -  PER COST TYPE, A represents - PER ACCESORIAL.
+</DL>
+</BODY>
+</HTML>

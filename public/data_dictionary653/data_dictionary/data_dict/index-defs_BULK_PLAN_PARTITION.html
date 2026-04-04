@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - BULK_PLAN_PARTITION</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - BULK_PLAN_PARTITION</H1>
+<DL>
+<DT><A NAME="TOTAL_NUM_STOPS">TOTAL_NUM_STOPS</A><DD>average # of stops of all shipments in this partition
+<DT><A NAME="TOTAL_COST">TOTAL_COST</A><DD>total cost of all shipments built in this partition
+<DT><A NAME="STATE">STATE</A><DD>Execution state of the bulkplan partition. INTERRUPTED when a user has requested termination but the partition is still running. TERMINATED when the partition completes termination.
+<DT><A NAME="SINCE">SINCE</A><DD>Time of last state change
+<DT><A NAME="APP_MACHINE_GID">APP_MACHINE_GID</A><DD>If scaled, the application machine running the partition
+<DT><A NAME="TOTAL_SHIPMENT_TIME_SECS">TOTAL_SHIPMENT_TIME_SECS</A><DD>Sum of all shipments times (end-start) in seconds
+<DT><A NAME="TOTAL_WEIGHT_CAPACITY">TOTAL_WEIGHT_CAPACITY</A><DD>Sum of all shipment weight capacities (based on equipment used)
+<DT><A NAME="TOTAL_VOLUME_CAPACITY">TOTAL_VOLUME_CAPACITY</A><DD>Sum of all shipment volume capacities (based on equipment used)
+<DT><A NAME="NUM_OF_ORDERS_THRU_POOL">NUM_OF_ORDERS_THRU_POOL</A><DD>Number of orders that went through a pool point
+<DT><A NAME="NUM_OF_ORDERS_THRU_XDOCK">NUM_OF_ORDERS_THRU_XDOCK</A><DD>Number of orders that went through a crossdock
+<DT><A NAME="TOTAL_BEST_DIRECT_COST">TOTAL_BEST_DIRECT_COST</A><DD>Total best direct cost of planned orders
+<DT><A NAME="NUM_OF_WA_CREATED">NUM_OF_WA_CREATED</A><DD>Number of Work assignments created during the Bulk plan partition process. 
+</DL>
+</BODY>
+</HTML>

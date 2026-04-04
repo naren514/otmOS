@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4" xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4" attributeFormDefault="unqualified" elementFormDefault="qualified"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:annotation>
+      <xsd:documentation>
+         Last modified .
+
+         Contains element, attribute and types definitions common to all Document interfaces.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:include schemaLocation="TransmissionCommon.xsd"/>
+   <xsd:include schemaLocation="LocationContact.xsd"/>
+
+   <xsd:element name="Document" type="DocumentType" substitutionGroup="GLogXMLTransaction" >
+      <xsd:annotation>
+         <xsd:documentation>
+            Specifies a business document within GC3.
+            This interface gives user a consistent way to send and receive documents.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:complexType name="DocumentType" >
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="DocumentGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Document ID
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0"/>
+               <xsd:element name="DocumentDefinitionGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Document Definition ID. 
+                        This may be omitted for ad-hoc documents.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ContentManagementSystemGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (inbound) Content Management System ID for where the document should be stored.
+                        Specifying DATABASE will store the document contents in the OTM schema.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="DocumentOwner" type="DocumentOwnerType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The business object owning the document.
+                        This may be omitted for ad-hoc documents or when the document is embedded
+                        within an owner type e.g. TrackingEvent and so will be determined implicitly.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Indicator" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The document indicator: R, Y, G or W.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="AddNewRevision" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (inbound) If true, and the document represents a standard document (i.e. a predefined list of 
+                        document types associated with an OTM business object), a new revision is added for the 
+                        standard document. Otherwise, the latest revision of the standard document is overwritten.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Annotation" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (inbound) If the document represents a standard document, the annotation to place on the new
+                        or updated revision.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Status" type="StatusType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        A list of document statuses.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Location" type="LocationType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (outbound) Consolidated Location
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="DocumentContent" type="DocumentContentType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Document content to be stored in the Content Management System.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="DocumentContentParam" type="DocumentContentParamType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Content Management System parameters to store along with the document content.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UsedAs" type="xsd:string" minOccurs="0" >
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Additional classification information for document e.g. to store 
+                        document type as Individual/Link/consolidated etc
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Context" type="ContextType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Context related information for document. May be used to match document to 
+                        associated business objects.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="EffectiveDate" type="GLogDateTimeType" minOccurs="0" >
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Start of validity period for document.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ExpirationDate" type="GLogDateTimeType" minOccurs="0" >
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        End of validity period for document.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="DocumentContentType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Specifies the content of the document.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="DocMimeType" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Multipurpose Internal Mail Extension type of the document content.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:choice minOccurs="0">
+            <xsd:element name="DocumentURL" type="xsd:string" minOccurs="0">
+               <xsd:annotation>
+                  <xsd:documentation>
+                     If the content is stored externally, the external URL returned to content browsers.
+                  </xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="DocumentSecureURL" type="xsd:string" minOccurs="0">
+               <xsd:annotation>
+                  <xsd:documentation>
+                     If the content is stored externally, but OTM is protecting the content with authentication, 
+                     the external URL piped by the system to content browsers.
+                  </xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="DocContentText" type="xsd:string" minOccurs="0">
+               <xsd:annotation>
+                  <xsd:documentation>
+                     Content in plain text.
+                  </xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="DocContentBinary" type="xsd:string" minOccurs="0">
+               <xsd:annotation>
+                  <xsd:documentation>
+                     Content in Base-64 encoded binary
+                  </xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+         </xsd:choice>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="DocumentOwnerType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Specifies the owner of the document.
+            A document may be owned by a GC3 business object such as an order or a shipment.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="DataQueryTypeGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The Data Query Type of the GC3 business object owning the document.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ObjectGid" type="GLogXMLGidType" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The ID of the GC3 business object owning the document.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="DocumentContentParamType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Specifies a set of parameters used by external content management systems to store and
+            search for the document. These parameters are in addition to any parameters generated by the system for a
+            specific content management system or document type.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ParamName" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The name of the Content Management System parameter.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ParamValue" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The value of the Content Management System parameter.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name="ContextType">
+      <xsd:annotation>
+         <xsd:documentation>
+              Stores context value for a document (DOCUMENT_CONTEXT table)
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ContextQualifier" type="GLogXMLGidType"/>
+         <xsd:element name="ContextValue" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+</xsd:schema>

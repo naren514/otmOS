@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - TOPIC_ALIAS</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - TOPIC_ALIAS</H1>
+Contains a user-friendly alias for a java class associated with a workflow.  Was mainly created so that a workflow could be kicked off by inserting a SQL statement into the PROCESS_CONTROL_REQUEST table through SQL*Plus, rather than having to insert it into GC3 (for testing purposes).  Someone kicking it off through SQL*Plus would just need to know the alias, rather than having to type in the whole Java class in the TOPIC_CLASS_NAME column.  A workflow will be kicked off whether the TOPIC_CLASS_NAME or the TOPIC_ALIAS_GID is populated within the PROCESS_CONTROL_REQUEST table.<P>
+<DL>
+<DT><A NAME="TOPIC_ALIAS_GID">TOPIC_ALIAS_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="TOPIC_ALIAS_XID">TOPIC_ALIAS_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="IS_FOR_PROCESS_CONTROL">IS_FOR_PROCESS_CONTROL</A><DD>Specifies if the topic alias is available for use as a process control request.
+<DT><A NAME="PROCESS_CONTROL_MENU">PROCESS_CONTROL_MENU</A><DD>Specifies the hierarchy for the process control menu.
+<DT><A NAME="IS_PROCESS_SYNC">IS_PROCESS_SYNC</A><DD>Specifies whether the process is executed or published.  Topics which take more than 30 seconds or so should be published to avoid browser timeout.  Others should be executed to allow for immediate error reporting.
+<DT><A NAME="PROCESS_CONTROL_HELP">PROCESS_CONTROL_HELP</A><DD>Specifies the online help file for the process topic.
+<DT><A NAME="IS_FOR_BATCH_PROCESS">IS_FOR_BATCH_PROCESS</A><DD>Specifies if the topic alias is available for use in batch
+<DT><A NAME="IS_LONG_RUNNING_TASK">IS_LONG_RUNNING_TASK</A><DD>If Y, this topic is a long running task and should be monitored in the LONG_RUNNING_TASK table.
+<DT><A NAME="LRT_INTERRUPTABILITY">LRT_INTERRUPTABILITY</A><DD>Interruptability support: NONE = task cannot be interrupted; INTERRUPTIBLE = task can be interrupted, likely ending in a failure state; RESUBMITTABLE: task can be resubmitted into it's origin queue for handling by another machine 
+<DT><A NAME="LRT_SCA_REQUIREMENTS">LRT_SCA_REQUIREMENTS</A><DD>For long running tasks, determines if the task should be pulled out of the PROCESS_CONTROL_REQUEST table only when resources are available to process it. NONE=task is pulled regardless of resources; THREAD=task is pulled only if an event thread in the queue is available; MEDIATOR=task is pulled only if an event thread is available and the task will not be blocked by the mediator.
+<DT><A NAME="LRT_INTERRUPT_ON_SQL">LRT_INTERRUPT_ON_SQL</A><DD>If 'Y', a task interruption will force the next SQL statement to fail.
+</DL>
+</BODY>
+</HTML>

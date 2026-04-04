@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - HAZMAT_ITEM</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - HAZMAT_ITEM</H1>
+THIS TABLE STORES THE HAZARDOUS MATERIALS INFORMATION THAT IS ITEM CENTRIC.  ALL THE TABLE ATTRIBUTES ARE RELATED TO AN ITEM.  THIS TABLE ALONG WITH THE HAZMAT_GENERIC TABLE AND OTHER ASSOCIATED TABLES MAKE UP THE HAZARDOUS MATERIALS DATABASE.<P>
+<DL>
+<DT><A NAME="HAZMAT_ITEM_GID">HAZMAT_ITEM_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="HAZMAT_ITEM_XID">HAZMAT_ITEM_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="REGION_GID">REGION_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="HAZMODE_GID">HAZMODE_GID</A><DD>Reference to the transportaion mode.  I.e.) AIR, TRUCK, RAIL etc. 
+<DT><A NAME="HAZMAT_GENERIC_GID">HAZMAT_GENERIC_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="HAZMAT_INDICATOR">HAZMAT_INDICATOR</A><DD>Y/N, INDICATES IF HAZARDOUS MATERIAL.
+<DT><A NAME="HOT_INDICATOR">HOT_INDICATOR</A><DD>Y/N, INDICATES HOT TEMPERATURE.
+<DT><A NAME="RESIDUE_INDICATOR">RESIDUE_INDICATOR</A><DD>Y/N, INDICATES LEFT OVER PRODUCT.
+<DT><A NAME="DOT_EXEMPTION_GID">DOT_EXEMPTION_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="ADDITIONAL_TRANSPORT_MSG_GID_1">ADDITIONAL_TRANSPORT_MSG_GID_1</A><DD>Reference to additional transport message instruction. 
+<DT><A NAME="ADDITIONAL_TRANSPORT_MSG_GID_2">ADDITIONAL_TRANSPORT_MSG_GID_2</A><DD>Reference to additional transport message instruction. 
+<DT><A NAME="STCC_49_CODE_GID">STCC_49_CODE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="COMPETENT_AUTHORITY_CODE_GID">COMPETENT_AUTHORITY_CODE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="IS_ALL_PACKED">IS_ALL_PACKED</A><DD>Flag to indicate the pkg is 'All packed in one'
+<DT><A NAME="AUTHORIZATION">AUTHORIZATION</A><DD>The authorization for the Dangerous Goods shipment.The authorization field is only required to state special governmental authorizations that are required because of the provisions or packing materials shipped with. 
+<DT><A NAME="CHEMICAL_FORMULA">CHEMICAL_FORMULA</A><DD>The basic chemical description of the substance
+<DT><A NAME="CONCENTRATION_PERCENT">CONCENTRATION_PERCENT</A><DD>Required if the Dangerous Goods UN Number is 2031, 1796, 1826, or 1873. Enter the percentage of DG concentration if the above condition applies.
+<DT><A NAME="CRIT_SAFETY_INDEX">CRIT_SAFETY_INDEX</A><DD>A measurement for packages containing fissile material that is determined by dividing the number 50 by the smaller of the numbers determined using the rules in section 10.6.2.4.3 of the DG Regulation Guide
+<DT><A NAME="IDG_ADD_DESC_INFO">IDG_ADD_DESC_INFO</A><DD>Hazmat IDG additional description information
+<DT><A NAME="MAX_QUANTITY">MAX_QUANTITY</A><DD>Maximum passenger volume or the Maximum cargo volume for the item (Used in Q- Value calculation)
+<DT><A NAME="OUTER_PACKAGING_TYPE">OUTER_PACKAGING_TYPE</A><DD>Outer packaging type if packing type = All packed in one
+<DT><A NAME="OUTER_PACKING_COUNT">OUTER_PACKING_COUNT</A><DD>Outer Packing count
+<DT><A NAME="IS_OVERPACK">IS_OVERPACK</A><DD>Flag to indicate the pkg is an 'overpack'
+<DT><A NAME="PACKAGE_TYPE">PACKAGE_TYPE</A><DD>Hazmat Package type of the Dangerous Goods shipment.
+<DT><A NAME="PACKING_COUNT">PACKING_COUNT</A><DD>Packing Count (number of packaged units) 
+<DT><A NAME="PACKING_INSTRUCTIONS">PACKING_INSTRUCTIONS</A><DD>Required for dangerous goods shipments, unless the DG class is radioactive or Not Restricted.See Table 4.2 columns G, I, or K of the IATA DG Regulations.
+<DT><A NAME="PHYSICAL_FORM">PHYSICAL_FORM</A><DD>A description of the physical form of the radioactive substance :                                                                                                              S(p)ecial (S)olid (L)iquid (G)as
+<DT><A NAME="Q_VALUE">Q_VALUE</A><DD>Ratio used to indicate that the combined quantities in 'all packed in one' package are within the maximum allowable limits. 
+<DT><A NAME="HAZ_QUANTITY">HAZ_QUANTITY</A><DD>Hazmat item quantity
+<DT><A NAME="RADIOACTIVE_LABEL">RADIOACTIVE_LABEL</A><DD>The type of label on the shipment.     W1 (White I) Y2 (Yellow II) Y3 (Yellow III)
+<DT><A NAME="RAD_PACKAGING">RAD_PACKAGING</A><DD>A description of the type of packaging the substance is contained in.  Acceptable package types are listed in section 10.5 of the DG Regulations Guide:             Expected  ( Expected ) Industrial ip1  ( Industrial Type 1(IP-1) ) Industrial ip2  ( Industrial Type 2(IP-2) ) Industrial ip3  ( Industrial Type 3(IP-3) ) Type a   ( Type A  )    Type b(m)  ( Type B(M) ) Type b(u)  ( Type B(U) )  Type c   ( Type C )
+<DT><A NAME="RADIOACTIVITY">RADIOACTIVITY</A><DD>A measurement of the activity of the shipment. For fissile material, the weight of the material in grams or kilograms may be substituted for the activity measurement
+<DT><A NAME="RADIOACTIVITY_UNITS">RADIOACTIVITY_UNITS</A><DD>The units that the activity were mesaured in.  This must be in becquerel units (or multiples thereof) :                                                               Bq (becquerel) kBq (kilobecquerel) MBq (megabecquerel) GBq (gigabecquerel) TBq (terabecquerel) PBq (petabecquerel)
+<DT><A NAME="RADIONUCLIDE">RADIONUCLIDE</A><DD>The radionuclide assigned to the substance being shipped.  A table of basic radionuclides is available in the DG Regulation Guide section 10.4.A.  For example, Aluminium (13) has a radionuclide Al-26
+<DT><A NAME="SUBSTANCE_NUMBER">SUBSTANCE_NUMBER</A><DD>Hazardous Materials substance number. 
+<DT><A NAME="SURFACE_READING">SURFACE_READING</A><DD>The surface reading of the radiation exposure for the package.  This reading must be measured in mrem/h
+<DT><A NAME="TRANSPORT_INDEX">TRANSPORT_INDEX</A><DD>A number based on the radiation exposure of a package. This is determined based on the maximum measurement of the radiation in mrem/h at a distance of 1 meter from the package surface
+<DT><A NAME="MATERIALS_TYPE">MATERIALS_TYPE</A><DD>Hazardous Materials Type.  Valid values are: l = Limited Quantities e = 500 KG Exemption f = Fully Regulated (Purolater)
+<DT><A NAME="UNITS">UNITS</A><DD>IATA units for Non UPS shipments (L=>Liters g=>Grams kg=>Kilograms kg G=>Kilograms Gross).
+<DT><A NAME="EXTERNAL_CODE">EXTERNAL_CODE</A><DD>Item Hazmat code as configured in the TNT EM. (For carrier TNT)
+<DT><A NAME="USER_DEFINED1_ICON_GID">USER_DEFINED1_ICON_GID</A><DD>Store a user-defined icon that will apear within the user interface to help visually identify attributes for the item
+<DT><A NAME="USER_DEFINED2_ICON_GID">USER_DEFINED2_ICON_GID</A><DD>Store a user-defined icon that will apear within the user interface to help visually identify attributes for the item
+<DT><A NAME="USER_DEFINED3_ICON_GID">USER_DEFINED3_ICON_GID</A><DD>Store a user-defined icon that will apear within the user interface to help visually identify attributes for the item
+</DL>
+</BODY>
+</HTML>

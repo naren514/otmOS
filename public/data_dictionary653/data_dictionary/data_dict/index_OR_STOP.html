@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Data Dictionary</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Data Dictionary</H1>
+<TABLE BORDER="0">
+<TR><TD COLSPAN="5"><A NAME="OR_STOP"><STRONG><FONT SIZE="+1">OR_STOP</FONT></STRONG></A>&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A></TD>
+<TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>OR_STOP_GID&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html#OR_STOP_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>OR_STOP_XID</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ORDER_RELEASE_GID&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_ORDER_RELEASE.html">ORDER_RELEASE</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>OR_STOP_SEQ&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html#OR_STOP_SEQ" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LOCATION_GID&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html#LOCATION_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_LOCATION.html">LOCATION</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>EARLY_ARRIVAL_TIME&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html#EARLY_ARRIVAL_TIME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LATE_ARRIVAL_TIME&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html#LATE_ARRIVAL_TIME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_APPT&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html#IS_APPT" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_APPT_REQUIRED&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html#IS_APPT_REQUIRED" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_APPT_CONFIRM_REQUIRED&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html#IS_APPT_CONFIRM_REQUIRED" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_APPT_CONFIRMED&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html#IS_APPT_CONFIRMED" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LEG_POSITION&nbsp;&nbsp;<A HREF="index-defs_OR_STOP.html#LEG_POSITION" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP>L/F</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DOMAIN_NAME</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Tables that FK into this one:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_OR_STOP_REMARK.html">OR_STOP_REMARK</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_OR_STOP_SPECIAL_SERVICE.html">OR_STOP_SPECIAL_SERVICE</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_SHIP_UNIT.html">SHIP_UNIT</A></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Indices:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4">IX_OR_STOP_LOCATION_GID (LOCATION_GID)</TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4">IX_OR_STOP_ORD_REL_GID (ORDER_RELEASE_GID)</TD></TR>
+</TABLE></BODY>
+</HTML>

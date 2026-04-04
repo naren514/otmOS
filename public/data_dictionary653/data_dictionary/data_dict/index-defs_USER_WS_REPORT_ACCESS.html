@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - USER_WS_REPORT_ACCESS</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - USER_WS_REPORT_ACCESS</H1>
+Records the reports that a user wants in their workspace.<P>
+<DL>
+<DT><A NAME="USER_ACCESS_GID">USER_ACCESS_GID</A><DD>Defines the visibility of the workspace records.  What this means is that a user_access_gid may be associated with a specific user, a gl_level, or an entire domain.  The UI will choose the most granular level of user_access to show to the user.  So, if a user wants to create his own workspace, the user_access_gid will have the GL_USER populated, and the user_ws_report_access table will define the list of reports for this workspace.  If the user does not create his own workspace, the UI will search at the GL_LEVEL or DOMAIN level to see if a report workspace has been created.
+<DT><A NAME="REPORT_GID">REPORT_GID</A><DD>Defines a report within the user's workspace.
+<DT><A NAME="ICON_GID">ICON_GID</A><DD>The icon, or image, associated with the report (foreign keys to ICON table).  The image will appear in the user's workspace.
+<DT><A NAME="DOMAIN_NAME">DOMAIN_NAME</A><DD>Domain of the User. Is used for creating the GID.
+<DT><A NAME="INSERT_USER">INSERT_USER</A><DD>For audit trail purposes. This field stores the id of the user who first entered the record.
+<DT><A NAME="INSERT_DATE">INSERT_DATE</A><DD>For audit trail purposes. This field stores the date and time when the record was first entered in the database.
+<DT><A NAME="UPDATE_USER">UPDATE_USER</A><DD>For audit trail purposes. This field stores the id of the user who last updated the record.
+<DT><A NAME="UPDATE_DATE">UPDATE_DATE</A><DD>For audit trail purposes. This field stores the date and time when the record was updated in the database.
+</DL>
+</BODY>
+</HTML>

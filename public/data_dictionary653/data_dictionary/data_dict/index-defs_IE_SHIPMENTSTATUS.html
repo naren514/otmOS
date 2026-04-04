@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - IE_SHIPMENTSTATUS</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - IE_SHIPMENTSTATUS</H1>
+The IE series of tables is a method to store the EDI information from a Blob into a more relational format. However these may change in ver 3.0.<P>
+<DL>
+<DT><A NAME="SERVPROV_ALIAS_QUAL_GID">SERVPROV_ALIAS_QUAL_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="COUNTRY_CODE3_GID">COUNTRY_CODE3_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="VESSEL_GID">VESSEL_GID</A><DD>Id for the vessel
+<DT><A NAME="WEIGHT_VALUE_BASE">WEIGHT_VALUE_BASE</A><DD>WEIGHT_VALUE in base units.
+<DT><A NAME="VOLUME_VALUE_BASE">VOLUME_VALUE_BASE</A><DD>VOLUME_VALUE in base units.
+<DT><A NAME="OB_REFNUM_QUAL_GID">OB_REFNUM_QUAL_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="STATUS_CODE_GID">STATUS_CODE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="TIME_ZONE_GID">TIME_ZONE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="STATUS_REASON_CODE_GID">STATUS_REASON_CODE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="PARTITION_KEY">PARTITION_KEY</A><DD>Populated through a trigger, this key is used to determine into which partition this record should be inserted.  The formula is based upon the insert_date column and the frequency in which this table is associated (weekly, monthly, quarterly).  Valid values are 1-4.
+<DT><A NAME="RAIL_ROAD_REPORTING_SCAC">RAIL_ROAD_REPORTING_SCAC</A><DD>SCAC for the rail road service provider that is providing the shipment status message or CLM
+<DT><A NAME="IS_CAR_LOADED">IS_CAR_LOADED</A><DD>CLM field to indicate whether the rail car is loaded or empty
+<DT><A NAME="CAR_DESTINATION_CITY">CAR_DESTINATION_CITY</A><DD>Destination city indicated on the CLM
+<DT><A NAME="CAR_DESTINATION_STATE">CAR_DESTINATION_STATE</A><DD>Destination state indicated on the CLM
+<DT><A NAME="CAR_DESTINATION_SPLC_CODE">CAR_DESTINATION_SPLC_CODE</A><DD>Destination SPLC code indicated on the CLM
+<DT><A NAME="CAR_DESTINATION_ETA_DATE">CAR_DESTINATION_ETA_DATE</A><DD>Destination ETA date and time
+<DT><A NAME="ORIG_TRANSACTION_NO">ORIG_TRANSACTION_NO</A><DD>Specifies the original i_transaction_no in the i_transaction table for this ShipmentStatus record.
+<DT><A NAME="EVENT_RECEIVED_DATE">EVENT_RECEIVED_DATE</A><DD>Time the event is received by OTM
+<DT><A NAME="PU_REFNUM_QUAL_GID">PU_REFNUM_QUAL_GID</A><DD>Power unit reference number qualifier id
+<DT><A NAME="PU_REFNUM_VALUE">PU_REFNUM_VALUE</A><DD>Power unit reference number value
+<DT><A NAME="EXTERNAL_EVENT_REFERENCE">EXTERNAL_EVENT_REFERENCE</A><DD>reference number of the event used by the external system sending the event
+<DT><A NAME="EXTERNAL_DATA_SOURCE">EXTERNAL_DATA_SOURCE</A><DD>type of the external data source of the event
+<DT><A NAME="MARKED_FOR_PURGE">MARKED_FOR_PURGE</A><DD>A boolean field.  When it is set to "Y", this row and its child data will be purged.
+<DT><A NAME="FILING_RESPONSE_TYPE">FILING_RESPONSE_TYPE</A><DD>'RESPONSE', 'REMINDER'
+<DT><A NAME="NEXT_JUNCTION_SPLC">NEXT_JUNCTION_SPLC</A><DD>This field will specify the interchange junction code. ETA for this junction will be Interchange ETI Date.
+</DL>
+</BODY>
+</HTML>

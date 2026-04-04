@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ORDER_RELEASE_LINE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ORDER_RELEASE_LINE</H1>
+ORDER_RELEASE_LINE contains the individual line items for an order release. (See also OB_LINE.) For example, if the order base contains: 500 Nike shoes from Philadelphia to N.Y. at the latest by Jan. 1, 2001, the order release may contain a release of 400 Nike shoes by Dec. 1, 2000 and the line item for the order release may contain 400 Nike shoes from Philadelphia to N.Y. and 400 socks from Nashville to N.Y.<P>
+<DL>
+<DT><A NAME="ORDER_RELEASE_LINE_GID">ORDER_RELEASE_LINE_GID</A><DD>A unique identifier to define the multiple order release lines per order release. The gid has the domain portion.
+<DT><A NAME="ORDER_RELEASE_LINE_XID">ORDER_RELEASE_LINE_XID</A><DD>Similar to the gid except for the domain.
+<DT><A NAME="ORDER_RELEASE_GID">ORDER_RELEASE_GID</A><DD>A unique identifier created by the system for the order release. the gid contains the domain portion.
+<DT><A NAME="WEIGHT">WEIGHT</A><DD>The weight of the item.
+<DT><A NAME="WEIGHT_UOM_CODE">WEIGHT_UOM_CODE</A><DD>Unit of measure for WEIGHT column.
+<DT><A NAME="WEIGHT_BASE">WEIGHT_BASE</A><DD>WEIGHT in base units.
+<DT><A NAME="VOLUME">VOLUME</A><DD>Th volume of the item if applicable.
+<DT><A NAME="VOLUME_UOM_CODE">VOLUME_UOM_CODE</A><DD>Unit of measure for VOLUME column.
+<DT><A NAME="VOLUME_BASE">VOLUME_BASE</A><DD>VOLUME in base units.
+<DT><A NAME="TAG1">TAG1</A><DD>Additional information about the item. Like the SPLC code.
+<DT><A NAME="TAG2">TAG2</A><DD>Additional information about the item. Like the SPLC code.
+<DT><A NAME="TAG3">TAG3</A><DD>Additional information about the item. Like the SPLC code.
+<DT><A NAME="TAG4">TAG4</A><DD>Additional information about the item. Like the SPLC code.
+<DT><A NAME="DECLARED_VALUE">DECLARED_VALUE</A><DD>The declared cost of the item.
+<DT><A NAME="DECLARED_VALUE_BASE">DECLARED_VALUE_BASE</A><DD>DECLARED_VALUE in base units.
+<DT><A NAME="DECLARED_VALUE_CURRENCY_GID">DECLARED_VALUE_CURRENCY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="PACKAGED_ITEM_GID">PACKAGED_ITEM_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="BUY_GENERAL_LEDGER_GID">BUY_GENERAL_LEDGER_GID</A><DD>General Ledger code for order release line.
+<DT><A NAME="HAZ_SUBSIDIARY_HAZARD">HAZ_SUBSIDIARY_HAZARD</A><DD>Hazmat subrisk class
+<DT><A NAME="PRICE_PER_UNIT_UOM_CODE">PRICE_PER_UNIT_UOM_CODE</A><DD>The Unit of Measurement this Unit Price is based on.
+<DT><A NAME="PACKAGE_LENGTH">PACKAGE_LENGTH</A><DD>package length for order release line; overrides length on packaged item
+<DT><A NAME="PACKAGE_WIDTH">PACKAGE_WIDTH</A><DD>package width for order release line; overrides width on packaged item
+<DT><A NAME="PACKAGE_HEIGHT">PACKAGE_HEIGHT</A><DD>package height for order release line; overrides height on packaged item
+<DT><A NAME="PACKAGE_DIAMETER">PACKAGE_DIAMETER</A><DD>package diameter for order release line; overrides diameter on packaged item
+<DT><A NAME="PACKAGE_CORE_DIAMETER">PACKAGE_CORE_DIAMETER</A><DD>package core diameter for order release line; overrides core diameter on packaged item
+<DT><A NAME="ORDER_BASE_GID">ORDER_BASE_GID</A><DD>The Order Base from which this Order Release Line was built.
+<DT><A NAME="OB_LINE_GID">OB_LINE_GID</A><DD>The Order Base Line from which this Order Release Line was built.
+<DT><A NAME="HAZ_ALL_PACKED">HAZ_ALL_PACKED</A><DD>Flag to indicate the pkg is 'All packed in one'
+<DT><A NAME="HAZ_AUTHORIZATION">HAZ_AUTHORIZATION</A><DD>The authorization for the Dangerous Goods shipment.The authorization field is only required to state special governmental authorizations that are required because of the provisions or packing materials shipped with. 
+<DT><A NAME="HAZ_CHEMICAL_FORMULA">HAZ_CHEMICAL_FORMULA</A><DD>The basic chemical description of the substance
+<DT><A NAME="HAZ_CONCENTRATION_PERCENT">HAZ_CONCENTRATION_PERCENT</A><DD>Required if the Dangerous Goods UN Number is 2031, 1796, 1826, or 1873. Enter the percentage of DG concentration if the above condition applies.
+<DT><A NAME="HAZ_CRIT_SAFETY_INDEX">HAZ_CRIT_SAFETY_INDEX</A><DD>A measurement for packages containing fissile material that is determined by dividing the number 50 by the smaller of the numbers determined using the rules in section 10.6.2.4.3 of the DG Regulation Guide
+<DT><A NAME="HAZ_IDG_ADD_DESC_INFO">HAZ_IDG_ADD_DESC_INFO</A><DD>Hazmat IDG additional description information
+<DT><A NAME="HAZ_MAX_QUANTITY">HAZ_MAX_QUANTITY</A><DD>Maximum passenger volume or the Maximum cargo volume for the item (Used in Q- Value calculation)
+<DT><A NAME="HAZ_OUTER_PACKAGING_TYPE">HAZ_OUTER_PACKAGING_TYPE</A><DD>Outer packaging type if packing type = All packed in one
+<DT><A NAME="HAZ_OUTER_PACKING_COUNT">HAZ_OUTER_PACKING_COUNT</A><DD>Outer Packing count
+<DT><A NAME="HAZ_IS_OVERPACK">HAZ_IS_OVERPACK</A><DD>Flag to indicate the pkg is an 'overpack'
+<DT><A NAME="HAZ_PACKAGE_TYPE">HAZ_PACKAGE_TYPE</A><DD>Hazmat Package type of the Dangerous Goods shipment.
+<DT><A NAME="HAZ_PACKING_COUNT">HAZ_PACKING_COUNT</A><DD>Packing Count (number of packaged units) 
+<DT><A NAME="HAZ_PACKING_INSTRUCTIONS">HAZ_PACKING_INSTRUCTIONS</A><DD>Required for dangerous goods shipments, unless the DG class is radioactive or Not Restricted.See Table 4.2 columns G, I, or K of the IATA DG Regulations.
+<DT><A NAME="HAZ_PHYSICAL_FORM">HAZ_PHYSICAL_FORM</A><DD>A description of the physical form of the radioactive substance :                                                                                                              S(p)ecial (S)olid (L)iquid (G)as
+<DT><A NAME="HAZ_Q_VALUE">HAZ_Q_VALUE</A><DD>Ratio used to indicate that the combined quantities in 'all packed in one' package are within the maximum allowable limits. 
+<DT><A NAME="HAZ_QUANTITY">HAZ_QUANTITY</A><DD>Hazmat item quantity
+<DT><A NAME="HAZ_RADIOACTIVE_LABEL">HAZ_RADIOACTIVE_LABEL</A><DD>The type of label on the shipment.     W1 (White I) Y2 (Yellow II) Y3 (Yellow III)
+<DT><A NAME="HAZ_RAD_PACKAGING">HAZ_RAD_PACKAGING</A><DD>A description of the type of packaging the substance is contained in.  Acceptable package types are listed in section 10.5 of the DG Regulations Guide:             Expected  ( Expected ) Industrial ip1  ( Industrial Type 1(IP-1) ) Industrial ip2  ( Industrial Type 2(IP-2) ) Industrial ip3  ( Industrial Type 3(IP-3) ) Type a   ( Type A  )    Type b(m)  ( Type B(M) ) Type b(u)  ( Type B(U) )  Type c   ( Type C )
+<DT><A NAME="HAZ_RADIOACTIVITY">HAZ_RADIOACTIVITY</A><DD>A measurement of the activity of the shipment. For fissile material, the weight of the material in grams or kilograms may be substituted for the activity measurement
+<DT><A NAME="HAZ_RADIOACTIVITY_UNITS">HAZ_RADIOACTIVITY_UNITS</A><DD>The units that the activity were mesaured in.  This must be in becquerel units (or multiples thereof) :                                                               Bq (becquerel) kBq (kilobecquerel) MBq (megabecquerel) GBq (gigabecquerel) TBq (terabecquerel) PBq (petabecquerel)
+<DT><A NAME="HAZ_RADIONUCLIDE">HAZ_RADIONUCLIDE</A><DD>The radionuclide assigned to the substance being shipped.  A table of basic radionuclides is available in the DG Regulation Guide section 10.4.A.  For example, Aluminium (13) has a radionuclide Al-26
+<DT><A NAME="HAZ_SPECIAL_PROVISIONS">HAZ_SPECIAL_PROVISIONS</A><DD>Indicates Dangerous Goods (DG) are being shipped under one of the special provisions listed in the IATA Dangerous Goods Regulation Guide, section 4.4.  There appear to be 146 different provisions, and multiple provisions may apply to a single item in some cases. 
+<DT><A NAME="HAZ_SUBSTANCE_NUMBER">HAZ_SUBSTANCE_NUMBER</A><DD>Hazardous Materials substance number. 
+<DT><A NAME="HAZ_SURFACE_READING">HAZ_SURFACE_READING</A><DD>The surface reading of the radiation exposure for the package.  This reading must be measured in mrem/h
+<DT><A NAME="HAZ_TRANSPORT_INDEX">HAZ_TRANSPORT_INDEX</A><DD>A number based on the radiation exposure of a package. This is determined based on the maximum measurement of the radiation in mrem/h at a distance of 1 meter from the package surface
+<DT><A NAME="HAZ_TYPE">HAZ_TYPE</A><DD>Hazardous Materials Type.  Valid values are: l = Limited Quantities e = 500 KG Exemption f = Fully Regulated (Purolater)
+<DT><A NAME="HAZ_UNITS">HAZ_UNITS</A><DD>IATA units for Non UPS shipments (L=>Liters g=>Grams kg=>Kilograms kg G=>Kilograms Gross).
+<DT><A NAME="HAZ_EXT_CODE">HAZ_EXT_CODE</A><DD>Item Hazmat code as configured in the TNT EM. (For carrier TNT)
+<DT><A NAME="OB_LINE_REL_INSTR_SEQ">OB_LINE_REL_INSTR_SEQ</A><DD>Order Base Line Release Instruction Sequence number, carried over from column OB_RELEASE_INSTRUCTION_SEQ in table OB_RELEASE_INSTRUCTION when Order Release Line is created from Order Base Line.
+<DT><A NAME="IS_SPLIT_ALLOWED">IS_SPLIT_ALLOWED</A><DD>Indicates if the order release ship units that are created can be split into multiple pieces of equipment
+<DT><A NAME="ATTRIBUTE_NUMBER11">ATTRIBUTE_NUMBER11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER12">ATTRIBUTE_NUMBER12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER13">ATTRIBUTE_NUMBER13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER14">ATTRIBUTE_NUMBER14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER15">ATTRIBUTE_NUMBER15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER16">ATTRIBUTE_NUMBER16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER17">ATTRIBUTE_NUMBER17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER18">ATTRIBUTE_NUMBER18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER19">ATTRIBUTE_NUMBER19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_NUMBER20">ATTRIBUTE_NUMBER20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type NUMBER.
+<DT><A NAME="ATTRIBUTE_DATE11">ATTRIBUTE_DATE11</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE12">ATTRIBUTE_DATE12</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE13">ATTRIBUTE_DATE13</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE14">ATTRIBUTE_DATE14</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE15">ATTRIBUTE_DATE15</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE16">ATTRIBUTE_DATE16</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE17">ATTRIBUTE_DATE17</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE18">ATTRIBUTE_DATE18</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE19">ATTRIBUTE_DATE19</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+<DT><A NAME="ATTRIBUTE_DATE20">ATTRIBUTE_DATE20</A><DD>Attribute fields (flexfields) allow you to add additional information about an object. Data type DATE.
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,15 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - NOTIFY_SUBJECT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - NOTIFY_SUBJECT</H1>
+List of valid entries for workflow events that a person might want to subscribe to.  Each subject (event) is mapped to a notify_function_gid, which ultimately identifies the email (fax, etc.) contents to send when that event occurs.   For example, an event (notify_subject_gid) might include "SHIPMENT STATUS - DELAYED" or "SHIPMENT STATUS - COMPLETED".  Each of these subjects are associated with the notify_function_gid of "SHIPMENT_STATUS".  A person interested in knowing about these events would subscribe to the subject, and receive in an email (fax, etc.) that might include the shipment_gid, shipment status, date of shipment, etc. (content fields identified through out the notify_function_gid).<P>
+<DL>
+<DT><A NAME="NOTIFY_SUBJECT_GID">NOTIFY_SUBJECT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="NOTIFY_SUBJECT_XID">NOTIFY_SUBJECT_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="NOTIFY_FUNCTION_GID">NOTIFY_FUNCTION_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="HELP_DESCRIPTION">HELP_DESCRIPTION</A><DD>Non-editable help for the notify subject that is delivered as part of GC3.
+</DL>
+</BODY>
+</HTML>

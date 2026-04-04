@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - BN_RANGE_NUMBER</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - BN_RANGE_NUMBER</H1>
+Keeps track of all the numbers generated from a range instance number if audit is on.<P>
+<DL>
+<DT><A NAME="BN_RANGE_GID">BN_RANGE_GID</A><DD>The range from which this number is generated.
+<DT><A NAME="RANGE_NUMBER">RANGE_NUMBER</A><DD>The number generated.
+<DT><A NAME="BN_TYPE_GID">BN_TYPE_GID</A><DD>The business number type to which the  BN number belongs.  This is part of a back reference from a BN number to a range number.
+<DT><A NAME="OBJECT_GID">OBJECT_GID</A><DD>The primary object for which the range number is used.  For example, the shipment_gid is the object_gid when a shipment_refnum uses range number.
+<DT><A NAME="BN_RULE_GID">BN_RULE_GID</A><DD>The Business Rule used to generate the range number, if any.
+<DT><A NAME="BN_CONTEXT">BN_CONTEXT</A><DD>Contains the context used for the business number generation.
+<DT><A NAME="STATE">STATE</A><DD>The state of the number.  Numbers are pooled, generated, assigned, and destroyed.
+</DL>
+</BODY>
+</HTML>

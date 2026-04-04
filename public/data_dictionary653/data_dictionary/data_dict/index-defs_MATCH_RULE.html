@@ -1,0 +1,16 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - MATCH_RULE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - MATCH_RULE</H1>
+<DL>
+<DT><A NAME="MATCH_RULE_GID">MATCH_RULE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="MATCH_RULE_XID">MATCH_RULE_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="MATCH_RULE_TYPE">MATCH_RULE_TYPE</A><DD>This field identifies if the match rules is for matching invoice or invoice tracking number.
+<DT><A NAME="MATCH_RULE_OUTCOME">MATCH_RULE_OUTCOME</A><DD>match rule outcome indicate with which entity business object it should be matched with. Possible values are shipment, ship unit and ship unit line.
+<DT><A NAME="REFNUM_QUALS_MATCH_ALL">REFNUM_QUALS_MATCH_ALL</A><DD>This columns specifies if we have to match all of the refnum qualifiers provided or not. Y specifies that we have to match all and Value 'N' means match any one of the qualifier.
+<DT><A NAME="SERVPROV_EXACT_MATCH">SERVPROV_EXACT_MATCH</A><DD>This columns specifies if we have to match the alias qualifer and alias value of the invoice service provider with that of shipment service provider or not. If the value is 'N' it means that the shipments service provider tshould match one of the service provider provided in the table MATCH_RULE_SERVPOV for this match rule.
+</DL>
+</BODY>
+</HTML>

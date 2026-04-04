@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SHIPMENT_STOP_REFNUM_QUAL</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SHIPMENT_STOP_REFNUM_QUAL</H1>
+<DL>
+<DT><A NAME="SHIPMENT_STOP_REFNUM_QUAL_GID">SHIPMENT_STOP_REFNUM_QUAL_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SHIPMENT_STOP_REFNUM_QUAL_XID">SHIPMENT_STOP_REFNUM_QUAL_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID.
+<DT><A NAME="DESCRIPTION">DESCRIPTION</A><DD>Description of the reference number qualifier.
+<DT><A NAME="IS_VISIBLE_IF_MASTER_CARR">IS_VISIBLE_IF_MASTER_CARR</A><DD>Identifies whether the reference numbers with this qualifier should display on related shipments.Possible Values are Y/N.
+<DT><A NAME="UPDATE_FLAG">UPDATE_FLAG</A><DD>Specifies if the refnum qualifier can exist on the business object multiple times, or is restricted to occur only once and whether the value is allowed to be updated. If the value is MANY, then the object can have multiple values for the same qualifier. If the value is either UPDATE_OK or UPDATE_NOT_OK, then the rule is in effect, meaning only one value is allowed for a given qualifier. In the case of UPDATE_NOT_OK, the value may not be modified. Possible values are: UPDATE_OK/UPDATE_NOT_OK/MANY.
+<DT><A NAME="REFNUM_SEQUENCE_NO">REFNUM_SEQUENCE_NO</A><DD>The sequence number for Refnum Qualifier, to determine the sequence of Refnum Qualifiers on the Shipment stop Manager.
+<DT><A NAME="IS_REMOVE_ON_SERVPROV_CHANGE">IS_REMOVE_ON_SERVPROV_CHANGE</A><DD>Whether to remove a refnum of this type when a shipment has its servprov changed.Possible Values are Y/N.
+<DT><A NAME="DEFAULT_REFNUM_BN_TYPE_GID">DEFAULT_REFNUM_BN_TYPE_GID</A><DD>The BN type used to generate a refnum when the refnum field for a record in the corresponding refnum table is not populated.
+</DL>
+</BODY>
+</HTML>

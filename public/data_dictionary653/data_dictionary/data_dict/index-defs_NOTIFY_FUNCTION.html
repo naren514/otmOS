@@ -1,0 +1,13 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - NOTIFY_FUNCTION</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - NOTIFY_FUNCTION</H1>
+Contains the valid list of entries of notification content types.   In other words, it a unique identifier for each group of contents that might be in the email (or fax, etc.). For example, a function might be "SHIPMENT_STATUS".  A shipment status" email contents would include the shipment_gid, shipment status, date of shipment, etc.  These contents that relate to the function is stored in the LOCATION_COM_MAPPING table.  A function is then associated with a specific event (like "SHIPMENT STATUS - DELAYED" or "SHIPMENT STATUS - COMPLETED") within the NOTIFY_SUBJECT table.  People can then subscribe to an event that they are interested in, and then receive an email notification (or another communication method) when that event occurs.<P>
+<DL>
+<DT><A NAME="NOTIFY_FUNCTION_GID">NOTIFY_FUNCTION_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="NOTIFY_FUNCTION_XID">NOTIFY_FUNCTION_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+</DL>
+</BODY>
+</HTML>

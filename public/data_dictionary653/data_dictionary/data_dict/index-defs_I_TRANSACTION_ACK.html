@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - I_TRANSACTION_ACK</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - I_TRANSACTION_ACK</H1>
+The table contains the Transaction Ack that are received for outbound Transmissions.<P>
+<DL>
+<DT><A NAME="I_TRANSACTION_NO">I_TRANSACTION_NO</A><DD>The Transaction numer referring to the Transaction for the Ack.
+<DT><A NAME="SEQUENCE_NO">SEQUENCE_NO</A><DD>Sequence number to uniquely identify the Transaction Ack for the Transaction.
+<DT><A NAME="ACK_STATUS">ACK_STATUS</A><DD>Specifies the status provided in the Transaction Ack.
+<DT><A NAME="ACK_REASON">ACK_REASON</A><DD>Specifies the reason for the status provided within the Transaction Ack.
+<DT><A NAME="REF_TRANSACTION_ID">REF_TRANSACTION_ID</A><DD>Represents a Transaction ID assigned for the Transaction from the external system.
+<DT><A NAME="REF_TRANSACTION_NO">REF_TRANSACTION_NO</A><DD>Represents the Transaction record containing the xml for this Transaction Ack.
+<DT><A NAME="PARTITION_KEY">PARTITION_KEY</A><DD>Populated through a trigger, this key is used to determine into which partition this record should be inserted. The formula is based upon the insert_date column and the frequency in which this table is associated (weekly, monthly, quarterly). Valid values are 1-4.
+</DL>
+</BODY>
+</HTML>

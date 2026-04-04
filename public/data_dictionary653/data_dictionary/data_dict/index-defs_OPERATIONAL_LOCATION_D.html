@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - OPERATIONAL_LOCATION_D</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - OPERATIONAL_LOCATION_D</H1>
+Detail info for operational locations. Used as a lookup so that operational location may be automatically assigned.<P>
+<DL>
+<DT><A NAME="OPERATIONAL_LOCATION_GID">OPERATIONAL_LOCATION_GID</A><DD>Id for sub location
+<DT><A NAME="SEQ_NO">SEQ_NO</A><DD>Sequence to allow multiple data records for the same operational location
+<DT><A NAME="PRIMARY_LEG_SERVPROV_GID">PRIMARY_LEG_SERVPROV_GID</A><DD>Required; service provider of the main leg which will help indicate which operational location applies
+<DT><A NAME="PRIMARY_LEG_LOC_PROFILE_GID">PRIMARY_LEG_LOC_PROFILE_GID</A><DD>Optional; location on the main leg which will help indicate which operational location applies; usually Port of Exit or Port of Discharge
+<DT><A NAME="INBOUND_OUTBOUND_TYPE">INBOUND_OUTBOUND_TYPE</A><DD>Indicates whether this operational location for the mapping of the service provider and location profile is used for importing (I), exporting (E), or both (B).
+<DT><A NAME="INCLUSION_REGION_GID">INCLUSION_REGION_GID</A><DD>If set, this operational location is applicable only when the opposite endpoint of the shipment is within the region.
+<DT><A NAME="EXCLUSION_REGION_GID">EXCLUSION_REGION_GID</A><DD>If set, this operational location is not applicable when the opposite endpoint of the shipment is within the region.
+</DL>
+</BODY>
+</HTML>

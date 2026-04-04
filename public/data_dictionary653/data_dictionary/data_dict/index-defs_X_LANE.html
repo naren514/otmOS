@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - X_LANE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - X_LANE</H1>
+This table defines the lanes between any two points. The two points can be: - predefined locations (from the Location table),   - predefined regions (from the Region and Region Detail tables), - Hierarchical locations (from Geo_hierarchy table), or - a combination of any part of the address that includes City,   Province, Postal Code, Country or Zone(s). The zones can be any user defined entries including SPLC (Standard Point Location Codes)<P>
+<DL>
+<DT><A NAME="X_LANE_GID">X_LANE_GID</A><DD>A unique identifier to define the X lanes in the GC3. The gid contains the domain portion. The X-Lane is the user interface in GC3 to define all the lanes.
+<DT><A NAME="X_LANE_XID">X_LANE_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="SOURCE_LOCATION_GID">SOURCE_LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="SOURCE_CITY">SOURCE_CITY</A><DD>The city of the source portion of the location.
+<DT><A NAME="SOURCE_PROVINCE_CODE">SOURCE_PROVINCE_CODE</A><DD>The state code for teh source portion of the X-Lane.
+<DT><A NAME="SOURCE_POSTAL_CODE">SOURCE_POSTAL_CODE</A><DD>The zip code of the source location portion of the X-Lane.
+<DT><A NAME="SOURCE_COUNTRY_CODE3_GID">SOURCE_COUNTRY_CODE3_GID</A><DD>A pointer to the three digit country code for teh source portion of the X-Lane.
+<DT><A NAME="SOURCE_ZONE4">SOURCE_ZONE4</A><DD>The Zones for the source location portion of the X-Lane.
+<DT><A NAME="SOURCE_ZONE1">SOURCE_ZONE1</A><DD>The Zones for the source location portion of the X-Lane.
+<DT><A NAME="SOURCE_ZONE2">SOURCE_ZONE2</A><DD>The Zones for the source location portion of the X-Lane.
+<DT><A NAME="SOURCE_ZONE3">SOURCE_ZONE3</A><DD>The Zones for the source location portion of the X-Lane.
+<DT><A NAME="SOURCE_GEO_HIERARCHY_GID">SOURCE_GEO_HIERARCHY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="DEST_LOCATION_GID">DEST_LOCATION_GID</A><DD>A unique identifier to define the locations withing GC3. The gid contains the domain portion.
+<DT><A NAME="DEST_CITY">DEST_CITY</A><DD>The city of the destination portion of the location.
+<DT><A NAME="DEST_PROVINCE_CODE">DEST_PROVINCE_CODE</A><DD>The state code for the destination portion of the X-Lane.
+<DT><A NAME="DEST_POSTAL_CODE">DEST_POSTAL_CODE</A><DD>The zip code of the destination location portion of the X-Lane.
+<DT><A NAME="DEST_COUNTRY_CODE3_GID">DEST_COUNTRY_CODE3_GID</A><DD>A pointer to the three digit country code for the destination portion of the X-Lane.
+<DT><A NAME="DEST_ZONE4">DEST_ZONE4</A><DD>The Zones for the destination location portion of the X-Lane.
+<DT><A NAME="DEST_ZONE1">DEST_ZONE1</A><DD>The Zones for the destination location portion of the X-Lane.
+<DT><A NAME="DEST_ZONE2">DEST_ZONE2</A><DD>The Zones for the destination location portion of the X-Lane.
+<DT><A NAME="DEST_ZONE3">DEST_ZONE3</A><DD>The Zones for the destination location portion of the X-Lane.
+<DT><A NAME="DEST_GEO_HIERARCHY_GID">DEST_GEO_HIERARCHY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SOURCE_REGION_GID">SOURCE_REGION_GID</A><DD>A unique identifier to define the region code for the source portion of the X-Lane. This is a way to define the X-Lane from a region to another region (or any combination)
+<DT><A NAME="DEST_REGION_GID">DEST_REGION_GID</A><DD>A unique identifier to define the region code for the destination portion of the X-Lane. This is a way to define the X-Lane from a region to another region (or any combination)
+<DT><A NAME="SOURCE_RAIL_SPLC_GID">SOURCE_RAIL_SPLC_GID</A><DD>The Rail Splc for the source location portion of the X-Lane.
+<DT><A NAME="DEST_RAIL_SPLC_GID">DEST_RAIL_SPLC_GID</A><DD>The Rail Splc for the destination location portion of the X-Lane.
+<DT><A NAME="SOURCE_RAIL_STATION_CODE_GID">SOURCE_RAIL_STATION_CODE_GID</A><DD>The Rail Station Code for the source location portion of the X-Lane.
+<DT><A NAME="DEST_RAIL_STATION_CODE_GID">DEST_RAIL_STATION_CODE_GID</A><DD>The Rail Station Code for the destination location portion of the X-Lane.
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - VISIBILITY_EVENT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - VISIBILITY_EVENT</H1>
+The data queue for shipment events<P>
+<DL>
+<DT><A NAME="Q_EVENT_SEQ">Q_EVENT_SEQ</A><DD>Queue sequence for the shipment event. Sequence name is VISIBILITY_EVENT_SEQUENCE.
+<DT><A NAME="Q_PREEMPTION_PRIORITY">Q_PREEMPTION_PRIORITY</A><DD>A negative sequence used for queue preemption
+<DT><A NAME="Q_START">Q_START</A><DD>Time the event was last queued. If the event is scheduled, this will equal the scheduled time. If resubmitted, the resubmit time. Otherwise it matches the insert date.
+<DT><A NAME="Q_STATE">Q_STATE</A><DD>Queue state of the event (QUEUED, ACTIVE, CANCELED, PROCESSED, FAILED)
+<DT><A NAME="Q_TIME">Q_TIME</A><DD>Time the event spent in queue
+<DT><A NAME="Q_PROCESS_START">Q_PROCESS_START</A><DD>Time the event was last dequeued and passed to the executor for processing
+<DT><A NAME="Q_PROCESS_TIME">Q_PROCESS_TIME</A><DD>Time the shipment event took to execute
+<DT><A NAME="Q_LOG_PROCESS_ID">Q_LOG_PROCESS_ID</A><DD>ID linking the shipment event execution to the system logs
+<DT><A NAME="Q_PROCESS_MACHINE_GID">Q_PROCESS_MACHINE_GID</A><DD>The application machine that polled and executed the shipment event
+<DT><A NAME="Q_RELATED_QUEUE_SEQ">Q_RELATED_QUEUE_SEQ</A><DD>Sequence of the parent queue event that populated this event
+<DT><A NAME="P_QUEUE_START_KEY">P_QUEUE_START_KEY</A><DD>Index for date-based partitioning
+<DT><A NAME="VISIBILITY_EVENT_TYPE_GID">VISIBILITY_EVENT_TYPE_GID</A><DD>Event type ID
+<DT><A NAME="EVENT_DATE">EVENT_DATE</A><DD>Event date
+<DT><A NAME="AVAILABLE_DATE">AVAILABLE_DATE</A><DD>Available date
+<DT><A NAME="SEND_DATE">SEND_DATE</A><DD>Send date
+<DT><A NAME="EVENT_REMARK">EVENT_REMARK</A><DD>Remark for the event
+<DT><A NAME="EVENT_REASON">EVENT_REASON</A><DD>Event reason
+<DT><A NAME="PIECES">PIECES</A><DD>Number of package items
+<DT><A NAME="EVENT_LOCATION">EVENT_LOCATION</A><DD>location generates the event
+<DT><A NAME="ORIG_LOCATION">ORIG_LOCATION</A><DD>Original Location for the shipment
+<DT><A NAME="DEST_LOCATION">DEST_LOCATION</A><DD>Destination location for the shipment
+<DT><A NAME="EVENT_DATE_OFFSET">EVENT_DATE_OFFSET</A><DD>Represents the UTC offset for the EVENT_DATE column
+<DT><A NAME="EVENT_FACILITY">EVENT_FACILITY</A><DD>Facility where the event occured
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4" xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4" attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:annotation>
+      <xsd:documentation>
+         Last modified .
+
+         Contains element, attribute and types definitions common to all Ship Units.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:include schemaLocation="TransmissionCommon.xsd"/>
+   <xsd:include schemaLocation="LocationContact.xsd"/>
+   <xsd:include schemaLocation="Item.xsd"/>
+
+   <xsd:complexType name="ShipUnitType">
+      <xsd:annotation>
+         <xsd:documentation>
+            A ShipUnit represents a pallet, container, crate, box, etc. It has a defined source and
+            destination, and delivery timing requirements. You can optionally specify the contents in terms of items.
+
+            The ShipUnit element is a shared element within the TransOrder, Release, and Shipment.
+            The multiple or'ed option is used to specify the fields that are relevant when within the appropriate
+            parent element. The first branch specifies the elements relevant within the TransOrder.ShipUnitDetail
+            element (e.g. IsShippable, ReleaseCount, etc.). The second branch specifies the elements relevant within
+            the Release element (e.g. TransOrderShipUnitGid). The third branch specifies the elements relevant within
+            the Shipment element (e.g. SEquipmentGid, ReleaseShipUnitGid, etc.).
+            
+            When a ReplaceChildren operation is being requested on an ActualShipment interface, if ManagedChild is 
+            set as ShipUnit, then the corresponding SEquipment information must also be provided as part of the 
+            payload for the ReplaceChildren operation.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ShipUnitGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                   ShipUnitGid is a unique identifier for a ShipUnit in the database. It can be optional
+                   when, for example, it is contained within an SShipUnit element that uses an Integration Saved Query.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+         <xsd:element name="TransportHandlingUnitRef" type="GLogXMLShipUnitSpecRefType" minOccurs="0"/>
+         <xsd:element name="ShipFromLocationRef" type="GLogXMLLocRefType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  ShipFromLocationRef specifies the ship-from location for the ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ShipFromLoadPoint" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the load point for the ship-from or source location. References the LOAD_UNLOAD_POINT table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ShipToLocationRef" type="GLogXMLLocRefType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  ShipToLocationRef specifies the ship-to location for the ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ShipToUnloadPoint" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the unload point for the ship-to or destination location. References the LOAD_UNLOAD_POINT table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TimeWindow" type="TimeWindowType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  TimeWindow is a group of fields for specifying early/late pickup, early/late delivery.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="WeightVolume" type="WeightVolumeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Weight, volume of the ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="UnitNetWeightVolume" type="WeightVolumeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  unit weight and volume of the ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="LengthWidthHeight" type="LengthWidthHeightType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Length, width, height of the ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TotalGrossWeightVolume" type="WeightVolumeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Total gross weight/volume of the ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Diameter" type="DiameterType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Diameter of the ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CoreDiameter" type="GLogXMLDiameterType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the diameter of the core.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ShipUnitSeal" minOccurs="0" maxOccurs="unbounded">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="SealNumber" type="xsd:string">
+                     <xsd:annotation>
+                        <xsd:documentation>
+                           Seal number for a ship unit.DataType: A30
+                        </xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="ShipUnitContent" type="ShipUnitContentType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="DeclaredValue" type="GLogXMLFinancialAmountType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  DeclaredValue is the declared value of a ship unit, item quantity, or release.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="FlexCommodityQualifierGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  FlexCommodityQualifierGid.Validation: References FLEX_COMMODITY_QUAL table.Example: xid = FAK or STCC or HTS or SITC
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="FlexCommodityValue" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  FlexCommodityValue is the value of either a STCC code, or a SITC code, or an HTS code,or an NMFCclass,
+                  or a user-defined commodity.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsSplitAllowed" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y, N. Specifies if ship unit may be split or not.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsCountSplittable" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y, N. Specifies whether the ship unit can be split on the count boundaries when planning during container optimization.
+                  Default value is Y.
+                  This is available when the ShipUnit is in the Release and Shipment interfaces.
+                  Ignored if ShipUnit is through TransOrder
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="ShipUnitCount" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  ShipUnitCount is the number of items in terms of the shipping units
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TagInfo" type="TagInfoType" minOccurs="0"/>
+         <xsd:choice minOccurs="0">
+            <xsd:sequence minOccurs="0">
+               <xsd:element name="IsShippable" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Y, N. Specifies if a transportation order line or ship unit is ready to be shipped.
+                        Within the TransOrder.TransOrderLineDetail.TransOrderLine.ItemQuantity element:
+                        - set this element to Y to indicate that a release instruction should be automatically generated for a
+                        TransOrderLine.
+                        - Defaults to N to when not specified.
+                        Within the TransOrder.ShipUnitDetail.ShipUnit element:
+                        - set this element to Y to indicate that the ship unit can be automatically released.
+                        - Defaults to Y when not specified.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PlanFromLocationGid" type="GLogXMLLocGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Indicates an alternative location from which an order will be sourced for transportation purposes.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PlanFromLoadPoint" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the load point for the plan from location. References the LOAD_UNLOAD_POINT table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PlanToLocationGid" type="GLogXMLLocGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Indicates an alternative location from which an order will be destined for transportation purposes.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PlanToUnloadPoint" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the unload point for the plan to location. References the LOAD_UNLOAD_POINT table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReleasedCount" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the number of items or ship units released.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="BufferLocationGid" type="GLogXMLLocGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the buffer location to be used during the releasing process if the release process supports buffering.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SplittableBy" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Bulk, Count, Individual. Indicates how the resulting order release ship unit may be split across equipment.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="AccessorialCodeGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        AccessorialCodeGid specifies something extra, such as a piece of equipment,required when servicing a particular
+                        location. Examples: (AP = Air Pump, AD = Air Dryer, PU = pump).
+                        Validation: References ACCESSORIAL_CODE table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="OBShipUnitSpecialService" type="SpecialServiceType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Special service for ob ship unit.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+            </xsd:sequence>
+            <xsd:sequence minOccurs="0">
+               <xsd:element name="TransOrderShipUnitGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        TransOrderShipUnitGid is a unique identifier for a TransOrder.ShipUnit in the database.
+                        Validation: References OB_SHIP_UNIT table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReleaseInstrSeq" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the release instruction sequence number.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="REquipmentSequence" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        REquipmentSequence identifies a particular equipment associated with an order release.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SecondaryUnitWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Secondary unit net weight volume.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SecondaryUnitNetWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Secondary unit net weight volume.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="LoadConfigSetupRef" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        A LoadConfigSetupRef is a reference to a load config setup, which may be either a load config setup
+                        global identifier or a new load config setup definition.
+                     </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:choice>
+                        <xsd:element name="LoadConfigSetupGid" type="GLogXMLGidType">
+                           <xsd:annotation>
+                              <xsd:documentation>
+                                 A LoadConfigSetupGid uniquely identifies a Load Config Setup.
+                                 alidation: Reference toLOAD_CONFIG_SETUP table.
+                              </xsd:documentation>
+                           </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="LoadConfigSetup" type="LoadConfigSetupType">
+                           <xsd:annotation>
+                              <xsd:documentation>
+                                 Specifies the load configuration set up
+                              </xsd:documentation>
+                           </xsd:annotation>
+                        </xsd:element>
+                     </xsd:choice>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="ShipUnitSpecialService" type="SpecialServiceType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Text" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:sequence minOccurs="0">
+               <xsd:choice minOccurs="0">
+                  <xsd:element name="SEquipmentGid" type="GLogXMLGidType">
+                     <xsd:annotation>
+                        <xsd:documentation>
+                           Global identifier for the Shipment Equipment. References the S_EQUIPMENT table.
+                           Note: This element is required in the ShipUnit when the ShipUnit is an element in the Shipment.
+                           Each ShipUnit must be assigned to an equipment.
+                        </xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="SEquipmentGidQuery" type="SEquipmentGidQueryType"/>
+                  <xsd:element name="SEquipmentSShipUnitInfo" type="SEquipmentSShipUnitInfoType"/>
+               </xsd:choice>
+               <xsd:element name="ReleaseShipUnitGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        ReleaseShipUnitGid is a unique identifier for a Release.ShipUnit in the database.
+                        Validation: References SHIP_UNIT table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReceivedWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        ReceivedWeightVolume is a group of elements for identifying the weight and volume that is received.
+                        Can be used for comparisons between the amounts ordered, booked, shipped, versus received.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReceivedNetWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        ReceivedNetWeightVolume is a group of elements for identifying the net weight and net volume that is received.
+                        Can be used for comparisons between the amounts ordered, booked, shipped, versus received.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReceivedShipUnitCount" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the actual number of ship units received.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="RangeStart" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Start range number of the s ship unit corresponding to its ship unit.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="RangeEnd" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        End range number of the s ship unit corresponding to its ship unit.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReleaseMethodGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the type of releasing logic to be used. References RELEASE_METHOD table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SShipUnitSpecialService" type="SpecialServiceType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="ShipUnitPiece" type="ShipUnitPieceType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:choice>
+         <xsd:element name="Status" type="StatusType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="InvolvedParty" type="InvolvedPartyType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="OBShipUnitEquipRefUnit" type="EquipmentRefUnitType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Used to specify Ship Unit reference unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ShipUnitRefnum" type="ShipUnitRefnumType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="PickupOrStopGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The Pick up or Stop Gid used to specify the ship unit is going to be picked up at this stop.
+                  If this field is empty, this ship unit is picked up at the order's source location.
+                  References the OR_STOP_GID in OR_STOP table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="DropoffOrStopGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The Pick up or Stop Gid used to specify the ship unit is going to be picked up at this stop.
+                  If this field is empty, this ship unit is picked up at the order's source location.
+                  References the OR_STOP_GID in OR_STOP table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SUEquipRefUnit" type="EquipmentRefUnitType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Used to specify Ship Unit reference unit of a Order Release.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsRepackAllowed" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y, N. Specifies if repacking is allowed or not
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsFixedEruCount" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y, N. Indicates whether the ERU defined on shipment ship unit is used or the ERU is derived from the order
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SShipUnitEquipRefUnit" type="EquipmentRefUnitType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Used to specify Ship Unit reference unit of a Shipment.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ShipUnitLoadingSplit" type="ShipUnitLoadingSplitType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+         <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+         <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+         <xsd:element name="IsExclusiveUse" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y, N. whether exclusive
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Priority" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Specifies the Priority of the Ship Unit. Valid values are 1-999. The specified priority is used in conopt while packing the equipment.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PackageRefUnittype">
+      <xsd:annotation>
+         <xsd:documentation>Used to specify Packaging Reference Unit information.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="PackageRefUnitGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A Gid that uniquely identifies an packaging reference unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NumReferenceUnits" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the number of reference units taken by the shipment.
+                  Within the ShipmentOrderRelease element, it is the quantity with respect to the Order Release.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TotalNumReferenceUnits" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the total number of reference units taken by the package.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShipUnitPieceType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the load configuration result for each piece of the ship unit.
+            This is only applicable when the ShipUnit is in the Shipment.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="PieceNumber" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A unique number given to a piece of SSU for the same S_SHIP_UNIT_GID with multiple counts
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="LoadingSequence" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the loading sequence.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="StackingLayer" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Stacking layers of the unit. If multiple units are underneath, this is the maximum number of layers
+                  underneath added by 1.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="OrientationGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the orientation.Validation: Reference to ORIENTATION table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="XOrdinate" type="GLogXMLLengthType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The x ordinate of the unit using container's front lower left corner as the origin.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="YOrdinate" type="GLogXMLLengthType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The y ordinate of the unit using container's front lower left corner as the origin.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ZOrdinate" type="GLogXMLLengthType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The z ordinate of the unit using container's front lower left corner as the origin.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="LoadConfig3DPatternGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Corresponding user defined 3d pattern. If the piece is placed using user defined 3d pattern, this indicates the pattern used.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PatternInstanceCount" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Instance of the user defined pattern.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShipUnitContentType">
+      <xsd:annotation>
+         <xsd:documentation>ShipUnitContent specifies what is inside a particular ship unit in terms of items and quantity.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="PackagedItemRef" type="PackagedItemRefType" minOccurs="0"/>
+         <xsd:element name="HazmatItemRef" type="HazmatItemRefType" minOccurs="0"/>
+         <xsd:choice>
+            <xsd:element name="IntSavedQuery" type="IntSavedQueryType"/>
+            <xsd:element name="LineNumber" type="xsd:string"/>
+         </xsd:choice>
+         <xsd:element name="ItemQuantity" type="ItemQuantityType" minOccurs="0"/>
+         <xsd:element name="PackagedItemSpecRef" type="GLogXMLShipUnitSpecRefType" minOccurs="0"/>
+         <xsd:element name="PackagedItemSpecCount" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the count of the PackagedItemSpec.
+                  For example, if the PackagedItemSpecRef referred to CASE,then this count would correspond to the number of cases.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="WeightVolumePerShipUnit" type="WeightVolumeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Weight and volume per ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CountPerShipUnit" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Count of packaged items per ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ReleaseGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  ReleaseGid uniquely identifies a release within the database.
+                  Validation: References ORDER_RELEASE table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ReleaseLineGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Validation: References ORDER_RELEASE_LINE table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TransOrderGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Global unique identifier for a transportation order.
+                  Validation: Reference to OB_ORDER_BASE table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:choice minOccurs="0">
+            <xsd:sequence minOccurs="0">
+               <xsd:element name="InitialItemGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        InitialItemGid can be used in lieue of specifying the PackagedItem, and allowing GC3 to automatically assign
+                        the PackagedItem using the automated data assignment functionality based on defined assignment rules.
+                        Validation: References ITEM table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ItemAttributes" type="ItemAttributeType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="InvolvedParty" type="InvolvedPartyType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:sequence minOccurs="0">
+               <xsd:element name="TransOrderLineGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        TransOrderLineGid uniquely identifies a TransOrderLine within the database.
+                        Validation: References OB_LINE.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReleaseInstrSeq" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the release instruction sequence number.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="NetWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Net weight and volume.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SecondaryWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Secondary weight and volume.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SecondaryNetWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Secondary net weight and volume.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+            </xsd:sequence>
+            <xsd:sequence minOccurs="0">
+               <xsd:element name="ReleaseShipUnitGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        ReleaseShipUnitGid is a unique identifier for a Release.ShipUnit in the database.
+                        Validation: References SHIP_UNIT table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReleaseShipUnitLineNumber" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used in conjunction with the ReleaseShipUnitGid to uniquely identify a Release.ShipUnit.ShipUnitLine
+                        in the database.
+                        Validation: References the SHIP_UNIT_LINE table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReceivedWeightVolume" type="WeightVolumeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Receive weight and volume.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReceivedPackageItemCount" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the actual number of packages received.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UserDefinedCommodityGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        UserDefinedCommodityGid. Validation: Reference to USER_DEFINED_COMMODITY table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:choice>
+         <xsd:element name="ShipUnitLineRefnum" type="ShipUnitLineRefnumType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="Status" type="StatusType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="IsHazardous" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y, N. Indicate whether it is hazardous.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+         <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+         <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+         <xsd:element name="SSulAccessorial" type="SSulAccessorialType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Accessorials required at the shipment ship unit line level.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShipUnitLoadingSplitType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Used to specify Ob Ship Unit of an Order Base or Ship Unit of an Order Release.
+            References OB_SHIP_UNIT_LOADING_SPLIT when child of TransOrder.
+            References SHIP_UNIT_LOADING_SPLIT when child of Release.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ShipUnitGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  ShipUnitGid is a unique identifier for a ShipUnit in the database.
+                  Validation: References OB_SHIP_UNIT table when child of TransOrder.
+                  Validation: References SHIP_UNIT table when child of Release.
+                  Validation: References S_SHIP_UNIT table when child of Shipment.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SplitNumber" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>Specifies the split number for ship unit loading.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Length" type="LengthType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Length for ship unit loading.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Width" type="WidthType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Width for ship unit loading.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Height" type="HeightType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Height for ship unit loading.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Weight" type="WeightType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Weight for ship unit loading.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Volume" type="VolumeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Volume for ship unit loading.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="SEquipmentSShipUnitInfoType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the association between the SEquipment and the Shipment ShipUnit.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:choice>
+            <xsd:element name="SEquipmentGid" type="GLogXMLGidType">
+               <xsd:annotation>
+                  <xsd:documentation>Specifies the split number for ship unit loading.</xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="SEquipmentGidQuery" type="SEquipmentGidQueryType"/>
+         </xsd:choice>
+         <xsd:element name="CompartmentNum" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Compartment number.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="LoadingSequence" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Specifies loading sequence.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="LoadingPatternGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A LoadingPatternGid uniquely identifies a Loading Pattern.Validation:
+                  Reference to LOADING_PATTERN table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NumStackingLayers" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Number of stacking layers.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NumLoadingRows" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Number of loading rows.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LoadConfigSetupType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the load configuration set up</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="LoadConfigSetupGid" type="GLogXMLGidType"/>
+         <xsd:element name="StackingIndex" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the stacking index of the ship unit spec. Units with higher stacking index should not be loaded on
+                  top of units with lower stacking index.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MaxStackingHeight" type="GLogXMLHeightType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Defines the height this unit can not be stacked above since unloading would be difficult otherwise.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MaxStackingLayers" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Number of layers this unit can be stacked all by itself.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsStackableAbove" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Y, N. Specifies if anything can be stacked above it. Default value is N.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsStackableBelow" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Y, N. Specifies if anything can be stacked below it. Default value is N.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MaxUnsupportedAreaPercent" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>The area as a percent of the base area that can be unsupported from below.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PatternConfigProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="StackingRule" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Stacking Rule has values of Like, Same and null</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="LoadConfigSetupOrientation" type="LoadConfigSetupOrientationType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LoadConfigSetupOrientationType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the load configuration set up orientation</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="LoadConfigSetupGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A LoadConfigSetupGid uniquely identifies a Load Config Setup.
+                  Validation: Reference to LOAD_CONFIG_SETUP table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="OrientationGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the orientation.Validation: Reference to ORIENTATION table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsPreferred" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y/N. Indicate whether the load config setup orientation is preferred.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsFloorCompatible" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Y/N. Used in LoadConfigSetup Orientation to indicate if it is floor compatible.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MaxTopWeight" type="GLogXMLWeightType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Maximum allowable weight can be loaded on top of this type of unit when loaded with the orientation.
+                  This is only checked for non-like units. It does not apply when stacking like units.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MaxLengthOverhang" type="GLogXMLLengthType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  When loaded in the given orientation, maximum unsupported overhang along the length of the unit itself.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MaxWidthOverhang" type="GLogXMLWidthType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  When loaded in the given orientation, maximum unsupported overhang along the width of the unit itself.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="EquipmentRefUnitType">
+      <xsd:sequence>
+         <xsd:element name="EquipmentRefUnitGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A Gid that uniquely identifies an equipment reference unit (equipment group's capacity in reference units).
+                  References EQUIPMENT_REFERENCE_UNIT table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NumReferenceUnits" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the number of reference units taken by the shipment. Within the ShipmentOrderRelease element,
+                  it is the quantity with respect to the Order Release.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TotalNumReferenceUnits" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Specifies the total number of reference units.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShipUnitRefnumType">
+      <xsd:annotation>
+         <xsd:documentation>
+            ShipUnitRefnum is an alternate method for identifying an ShipUnit in a Shipment. It consists of a qualifier and a value.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ShipUnitRefnumQualifierGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  ShipUnitRefnumQualifierGid is the qualifier portion of ShipUnitRefnum.
+                  Validation: References S_SHIP_UNIT_REFNUM_QUAL table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ShipUnitRefnumValue" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Value portion of ShipUnitRefnum. Validation: References S_SHIP_UNIT table, but only when qualifier = 'GLOG'"
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShipUnitLineRefnumType">
+      <xsd:annotation>
+         <xsd:documentation>
+            ShipUnitLineRefnum is an alternate method for identifying an ShipUnitLine (ShipUnitContent) in a ShipUnit.
+            It consists of a qualifier and a value.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ShipUnitLineRefnumQualifierGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  ShipUnitLineRefnumQualifierGid is the qualifier portion of ShipUnitLineRefnum.
+                  Validation: References S_SUL_REFNUM_QUAL table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ShipUnitLineRefnumValue" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>Value portion of ShipUnitLineRefnum."</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name="SSulAccessorialType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Accessorials required at the shipment ship unit line level.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SShipUnitGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) The unique identifier for the ship unit associated with the shipment.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SShipUnitLineNo" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) The unique identifier for the accessorial code.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="AccessorialCodeGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Contains the unique identifier for the accessorial code.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+</xsd:schema>

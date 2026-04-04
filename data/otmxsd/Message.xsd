@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://xmlns.oracle.com/apps/otm/msg/v1" 
+            targetNamespace="http://xmlns.oracle.com/apps/otm/msg/v1" 
+            xmlns:types="http://xmlns.oracle.com/apps/otm/types/v1" 
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+            jaxb:version="2.0" 
+            version="1.0">
+        
+<xsd:import namespace="http://xmlns.oracle.com/apps/otm/types/v1" schemaLocation="Common.xsd"/>
+
+<!-- The following types are defined here so that they are in the Message namespace -->
+<xsd:complexType name="Gid">
+    <xsd:complexContent>
+        <xsd:extension base="types:Gid"/>
+    </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:complexType name="GLogDateTimeType">
+    <xsd:complexContent>
+        <xsd:extension base="types:GLogDateTimeType"/>
+    </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:complexType name="PasswordType">
+    <xsd:complexContent>
+        <xsd:extension base="types:PasswordType"/>
+    </xsd:complexContent>
+</xsd:complexType>
+
+<!-- End of overrides -->
+
+<xsd:complexType name="BaseMessageType">
+    <xsd:sequence>
+        <xsd:element ref="BaseMessageHeader"/>
+        <xsd:element ref="BaseMessageBody" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="schemaVersion" use="required" type="xsd:string"/>
+</xsd:complexType>
+
+<xsd:element name="BaseMessageHeader" type="BaseMessageHeaderType"/>
+<xsd:element name="BaseMessageBody" type="xsd:anyType"/>
+
+<xsd:complexType name="BaseMessageHeaderType">
+    <xsd:sequence>
+        <xsd:element name="Username" type="xsd:string"/>
+		<xsd:element name="Password" type = "PasswordType" minOccurs="0"/>
+        <xsd:element name="MessageGid" type="Gid" minOccurs="0"/>
+        <xsd:element name="MessageTitle" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="MessageDate" type="GLogDateTimeType" minOccurs="0"/>
+        <xsd:element name="SenderMessageId" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="ReferenceMessageId" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="SenderLocale" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="Priority" type="xsd:integer" minOccurs="0"/>
+        <xsd:element name="MessageTypeGid" type="Gid" minOccurs="0"/>
+        <xsd:element name="MessageProfileGid" type="Gid" minOccurs="0"/>
+        <xsd:element name="StylesheetProfileGid" type="Gid" minOccurs="0"/>
+        <xsd:element name="AckSpec" type="AckSpecType" minOccurs="0"/>
+    </xsd:sequence>
+</xsd:complexType>
+
+<!-- Would like to get this to be accepted by codegen 
+&lt;xsd:complexType name=&quot;BaseMessageBodyType&quot;&gt;
+    &lt;xsd:complexContent&gt;
+	    &lt;xsd:extension base=&quot;xsd:anyType&quot;/&gt;
+	&lt;/xsd:complexContent&gt;
+&lt;/xsd:complexType&gt;
+-->
+
+<xsd:complexType name="BaseMessageAckType">
+    <xsd:sequence>
+        <xsd:element name="Username" type="xsd:string" minOccurs="0"/>
+		<xsd:element name="Password" type="PasswordType" minOccurs="0"/>
+        <xsd:element name="SenderMessageId" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="ReferenceMessageId" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="AckStatus" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="AckReason" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="AckDateTime" type="GLogDateTimeType" minOccurs="0"/>
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:element name="Message">
+	<xsd:complexType>
+	    <xsd:sequence>
+	        <xsd:element name="MessageHeader" type="MessageHeaderType"/>
+	        <xsd:element ref="MessageBody"/>
+	    </xsd:sequence>
+	    <xsd:attribute name="schemaVersion" use="required" type="xsd:string"/>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:complexType name="MessageHeaderType">
+    <xsd:complexContent>
+	    <xsd:extension base="BaseMessageHeaderType">
+			<xsd:sequence>
+			    <xsd:element name="DeviceGid" type="Gid" minOccurs="0"/>
+			    <xsd:element name="ContactGid" type="Gid" minOccurs="0"/>
+			    <xsd:element name="CellPhone" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="EmailAddress" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="ExternalDeviceId" type="xsd:string" minOccurs="0"/>
+			    <xsd:element name="Latitude" type="xsd:double" minOccurs="0"/>
+			    <xsd:element name="Longitude" type="xsd:double" minOccurs="0"/>
+			    <xsd:choice>
+			        <xsd:element name="LocationName" type="xsd:string" minOccurs="0"/>
+			        <xsd:element name="LocationGid" type="Gid" minOccurs="0"/>
+			    </xsd:choice>
+			    <xsd:element name="DriverGid" type="Gid" minOccurs="0"/>
+			    <xsd:element name="PowerUnitGid" type="Gid" minOccurs="0"/>
+			    <xsd:element name="EquipmentGid" type="Gid" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:extension>
+    </xsd:complexContent>
+</xsd:complexType>
+
+<xsd:element name="MessageBody" type="xsd:anyType"/>
+
+<xsd:element name="TextContent" substitutionGroup="MessageBody" type="xsd:string"/>
+<xsd:element name="XMLContent" substitutionGroup="MessageBody">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:any namespace="##other" processContents="lax"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:element>
+
+
+<xsd:element name="MessageAck">
+   <xsd:complexType>
+       <xsd:complexContent>
+           <xsd:extension base="BaseMessageAckType"/>
+       </xsd:complexContent>
+   </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="MessageReport">
+   <xsd:complexType>
+      <xsd:sequence>
+          <xsd:element name="Username" minOccurs="0" type="xsd:string"/>
+          <xsd:element name="Password" type="PasswordType" minOccurs="0"/>				
+          <xsd:element name="MessageStatus" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="ProcessingErrorCodeGid" type="Gid" minOccurs="0"/>
+          <xsd:element name="EchoedMessageHeader" minOccurs="0" type="MessageHeaderType"/>
+          <xsd:element name="IntegrationLogMessage" type="types:IntegrationLogMessageType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="MessageReportBody"/>
+      </xsd:sequence>
+   </xsd:complexType>
+</xsd:element>
+
+ <!--&lt;xsd:element name=&quot;MessageReportBody&quot; type=&quot;xsd:anyType&quot;/&gt;-->
+<xsd:element name="MessageReportBody">
+   <xsd:complexType>
+       <xsd:sequence>
+           <xsd:any namespace="##other" processContents="lax"/>
+       </xsd:sequence>
+   </xsd:complexType>
+</xsd:element>
+ 
+<xsd:complexType name="AckSpecType">
+   <xsd:sequence>
+      <xsd:element name="ComMethodGid" type="Gid"/>
+      <xsd:element name="AckOption" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ContactGid" type="Gid" minOccurs="0"/>
+   </xsd:sequence>
+ </xsd:complexType>
+
+</xsd:schema>

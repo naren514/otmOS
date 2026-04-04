@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - VAT_PROVINCIAL_CNFG_PERSP_D</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - VAT_PROVINCIAL_CNFG_PERSP_D</H1>
+Indicates the ordered set of VAT codes that should be applied given the source and destination provinces<P>
+<DL>
+<DT><A NAME="VAT_CONFIGURATION_GID">VAT_CONFIGURATION_GID</A><DD>Together with PERSPECTIVE and COUNTRY_CODE3_GID, indicates the VAT_PROVINCIAL_CNFG_PERSP that this rule detail belongs to
+<DT><A NAME="PERSPECTIVE">PERSPECTIVE</A><DD>Together with VAT_CONFIGURATION_GID and COUNTRY_CODE3_GID, indicates the VAT_PROVINCIAL_CNFG_PERSP that this rule detail belongs to
+<DT><A NAME="COUNTRY_CODE3_GID">COUNTRY_CODE3_GID</A><DD>Together with VAT_CONFIGURATION_GID and PERSPECTIVE, indicates the VAT_PROVINCIAL_CNFG_PERSP that this rule detail belongs to
+<DT><A NAME="SRC_PROVINCE_CODE_PROFILE_GID">SRC_PROVINCE_CODE_PROFILE_GID</A><DD>Tax calculation logic will use this field to determine if the source location of the order or shipment fits this province profile; helps determine the VAT_PROVINCIAL_CNFG_PERSP_D record that applies
+<DT><A NAME="DEST_PROVINCE_CODE_PROFILE_GID">DEST_PROVINCE_CODE_PROFILE_GID</A><DD>Tax calculation logic will use this field to determine if the destination location of the order or shipment fits this province profile; helps determine the VAT_PROVINCIAL_CNFG_PERSP_D record that applies
+<DT><A NAME="VAT_CODE_ORDERED_SET_GID">VAT_CODE_ORDERED_SET_GID</A><DD>Set of VAT codes to be applied if this VAT_PROVINCIAL_CNFG_PERSP_D record applies applies
+</DL>
+</BODY>
+</HTML>

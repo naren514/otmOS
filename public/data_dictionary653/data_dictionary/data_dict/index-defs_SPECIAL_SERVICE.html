@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SPECIAL_SERVICE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SPECIAL_SERVICE</H1>
+This is the master table that holds various special services required for transportation, pickup and delivery. A special service differs from an accessory in that the customer does not have to pay for using the special service. An example of a special service can be a pump required to pull the chemicals from a delivery truck.  The special services defined can be linked at the item level or at the location level in GC3. The logic in GC3 checks to see if a special service is required and thus, schedules the pick-up or delivery accordingly.<P>
+<DL>
+<DT><A NAME="SPECIAL_SERVICE_GID">SPECIAL_SERVICE_GID</A><DD>SPECIAL_SERVICE_GID contains the unique identifier for the special service for the item being shipped.
+<DT><A NAME="SPECIAL_SERVICE_XID">SPECIAL_SERVICE_XID</A><DD>SPECIAL_SERVICE_XID contains the unique exterbak identifier for the special service for the item being shipped.
+<DT><A NAME="PAYABLE_INDICATOR_GID">PAYABLE_INDICATOR_GID</A><DD>indicates the default payable status  of this special service
+<DT><A NAME="BILLABLE_INDICATOR_GID">BILLABLE_INDICATOR_GID</A><DD>indicates the default billable status of this special service
+<DT><A NAME="SPECIAL_SERVICE_DESC">SPECIAL_SERVICE_DESC</A><DD>SPECIAL_SERVICE_DESC contains the description for the special service for the item being shipped.
+<DT><A NAME="MODE_PROFILE_GID">MODE_PROFILE_GID</A><DD>MODE_PROFILE_GID contains the unique identifier for the mode profile for the item being shipped.
+<DT><A NAME="IS_ARBITRARY">IS_ARBITRARY</A><DD>Designates whether or not a special service is an arbitrary type special service.
+<DT><A NAME="SPECL_SRV_GROUP_GID">SPECL_SRV_GROUP_GID</A><DD>Allow user to organize special services by group
+<DT><A NAME="IS_FOR_DRIVER_CHK">IS_FOR_DRIVER_CHK</A><DD>Designates this special service is to be checked during driver assignment.
+<DT><A NAME="IS_FOR_PU_CHK">IS_FOR_PU_CHK</A><DD>Designates this special service is to be checked during power unit assignment.
+<DT><A NAME="IS_FOR_EQUIP_CHK">IS_FOR_EQUIP_CHK</A><DD>Designates this special service is to be checked during equipment assignment.
+<DT><A NAME="DRIVER_LEVEL">DRIVER_LEVEL</A><DD>Designates this special service is to apply at the driver or driver type level.
+<DT><A NAME="EQUIP_LEVEL">EQUIP_LEVEL</A><DD>Designates this special service is to apply at the equipment or equipment type level.
+<DT><A NAME="PU_LEVEL">PU_LEVEL</A><DD>Designates this special service is to apply at the power unit or power unit level.
+<DT><A NAME="IS_FOR_RATING">IS_FOR_RATING</A><DD>Designates this special service is to be used for rating.
+<DT><A NAME="ACTIVITY_TYPE_GID">ACTIVITY_TYPE_GID</A><DD>Hard coded list of stop activities that have internal OTM logic tied to it. This field is the one that maps the hard coded logic to the user definable notion of special service.
+<DT><A NAME="FOR_SOURCE_DEST">FOR_SOURCE_DEST</A><DD>The default stop which this special service will be on
+<DT><A NAME="SEQ_NUM">SEQ_NUM</A><DD>Define this special service happens 1-before loading, 2-between unloading and loading, 3-after loading
+<DT><A NAME="DRIVER_TIME_TYPE">DRIVER_TIME_TYPE</A><DD>Indicates if the time associated with this special service is considered work time, drive time, rest time, or wait time for a driver, or does not count as driver time (when the value is null).
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - P_SHIPMENT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - P_SHIPMENT</H1>
+Procurement shipment - a light weight version of the gc3 shipment with minimal information<P>
+<DL>
+<DT><A NAME="SOURCE_LOCATION_GID">SOURCE_LOCATION_GID</A><DD>first stop
+<DT><A NAME="DEST_LOCATION_GID">DEST_LOCATION_GID</A><DD>last stop
+<DT><A NAME="START_TIME">START_TIME</A><DD>start time at first stop
+<DT><A NAME="END_TIME">END_TIME</A><DD>end time at last stop
+<DT><A NAME="WEIGHT">WEIGHT</A><DD>gross weight
+<DT><A NAME="VOLUME">VOLUME</A><DD>gross volume
+<DT><A NAME="NUM_STOPS">NUM_STOPS</A><DD>total number of stops on the shipment
+<DT><A NAME="COST">COST</A><DD>does not include accessorials
+<DT><A NAME="IS_GC3_SHIPMENT">IS_GC3_SHIPMENT</A><DD>Y if this shipment came from gc3, N otherwise
+<DT><A NAME="COMMODITY_GID">COMMODITY_GID</A><DD>Commodity for shipment (only one allowed)
+<DT><A NAME="SHIPMENT_CATEGORY">SHIPMENT_CATEGORY</A><DD>Optional user-defined shipment category text.
+<DT><A NAME="MARKED_FOR_PURGE">MARKED_FOR_PURGE</A><DD>Identifies the p_shipments that can be purged with the next purge schedule
+</DL>
+</BODY>
+</HTML>

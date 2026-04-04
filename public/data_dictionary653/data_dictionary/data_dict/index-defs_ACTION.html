@@ -1,0 +1,16 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ACTION</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ACTION</H1>
+This table holds the list of all possible user interface actions that can be run in GC3.<P>
+<DL>
+<DT><A NAME="DISPLAY_IGNORE_CRITERIA">DISPLAY_IGNORE_CRITERIA</A><DD>If 'Y', UI will display "Ignore Criteria" screen.
+<DT><A NAME="IS_LONG_RUNNING_TASK">IS_LONG_RUNNING_TASK</A><DD>If Y, this action is a long running task and should be monitored in the LONG_RUNNING_TASK table.
+<DT><A NAME="LRT_INTERRUPTABILITY">LRT_INTERRUPTABILITY</A><DD>Interruptability support: NONE = task cannot be interrupted; INTERRUPTIBLE = task can be interrupted, likely ending in a failure state; RESUBMITTABLE: task can be resubmitted into it's origin queue for handling by another machine 
+<DT><A NAME="LRT_INTERRUPT_ON_SQL">LRT_INTERRUPT_ON_SQL</A><DD>If 'Y', a task interruption will force the next SQL statement to fail.
+<DT><A NAME="LRT_OBJECT_COUNT_THRESHOLD">LRT_OBJECT_COUNT_THRESHOLD</A><DD>The action is only tracked as a Long Running Task if IS_LONG_RUNNING_TASK='Y' and the # of objects passed to the UI action exceeds this threshold.
+</DL>
+</BODY>
+</HTML>

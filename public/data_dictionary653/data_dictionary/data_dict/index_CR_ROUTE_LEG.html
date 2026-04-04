@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<TITLE>Data Dictionary</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Data Dictionary</H1>
+<TABLE BORDER="0">
+<TR><TD COLSPAN="5"><A NAME="CR_ROUTE_LEG"><STRONG><FONT SIZE="+1">CR_ROUTE_LEG</FONT></STRONG></A>&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A></TD>
+<TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>CR_ROUTE_GID&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_CR_ROUTE.html">CR_ROUTE</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>LEG_NUM</TD><TD NOWRAP>NUMBER(3)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_FORECAST_GID&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#CR_FORECAST_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_CR_FORECAST.html">CR_FORECAST</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>START_DAY&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#START_DAY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>START_DOW</TD><TD NOWRAP>NUMBER(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>START_TIME&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#START_TIME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>START_PERIOD</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>START_REGION_GID&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#START_REGION_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_REGION.html">REGION</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>START_LOCATION_GID&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#START_LOCATION_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_LOCATION.html">LOCATION</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>END_DAY&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#END_DAY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>END_DOW</TD><TD NOWRAP>NUMBER(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>END_TIME&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#END_TIME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>END_PERIOD</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>END_REGION_GID&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#END_REGION_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_REGION.html">REGION</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>END_LOCATION_GID&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#END_LOCATION_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_LOCATION.html">LOCATION</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>NEXT_LEG_DEADHEAD&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#NEXT_LEG_DEADHEAD" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>NEXT_LEG_DEADHEAD_UOM_CODE</TD><TD NOWRAP>VARCHAR2(64)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>NEXT_LEG_DEADHEAD_BASE</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ALLOCATED_COST&nbsp;&nbsp;<A HREF="index-defs_CR_ROUTE_LEG.html#ALLOCATED_COST" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ALLOCATED_COST_CURRENCY_GID&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_CURRENCY.html">CURRENCY</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ALLOCATED_COST_BASE</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DOMAIN_NAME</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+</TABLE></BODY>
+</HTML>

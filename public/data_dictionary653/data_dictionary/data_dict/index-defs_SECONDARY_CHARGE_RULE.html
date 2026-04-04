@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SECONDARY_CHARGE_RULE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SECONDARY_CHARGE_RULE</H1>
+<DL>
+<DT><A NAME="SPECIAL_SERVICE_PROFILE_GID">SPECIAL_SERVICE_PROFILE_GID</A><DD>for a shipment special service or stop special service rule type, any profile specified here must be validated for the rule to be used
+<DT><A NAME="LOCATION_PROFILE_GID">LOCATION_PROFILE_GID</A><DD>applies to Stop Special Service rules; if specified, the location for the stop must be compatible with the profile
+<DT><A NAME="ROUTE_CODE_PROFILE_GID">ROUTE_CODE_PROFILE_GID</A><DD>ROUTE_CODE_PROFILE_GID contains the unique identifier for the route code profile which is used to handle REBATE scenario.
+<DT><A NAME="CRITERIA_SERVPROV_GID">CRITERIA_SERVPROV_GID</A><DD>CRITERIA_SERVPROV_GID contains the unique identifier for the service provider which is used to handle REBATE scenario.
+<DT><A NAME="PORT_OF_LOAD_LOC_PROFILE_GID">PORT_OF_LOAD_LOC_PROFILE_GID</A><DD>If set, shipments must match this port of load for secondary charge to apply
+<DT><A NAME="PORT_OF_DIS_LOC_PROFILE_GID">PORT_OF_DIS_LOC_PROFILE_GID</A><DD>If set, shipments must match this port of discharge for secondary charge to apply
+<DT><A NAME="LOCATION_TYPE">LOCATION_TYPE</A><DD>How to set the location on the secondary charge shipment
+<DT><A NAME="QUANTITY_TYPE">QUANTITY_TYPE</A><DD>Use quantities planned, actual quantity picked up, or actual quantity dropped off
+<DT><A NAME="PAYMENT_METHOD_CODE_GID">PAYMENT_METHOD_CODE_GID</A><DD>Payment method code to be copied to the secondary charge shipment.
+<DT><A NAME="CRITERIA_RATE_OFFERING_GID">CRITERIA_RATE_OFFERING_GID</A><DD>This field is for matching the RO of the shipment against which the rule is being run.
+<DT><A NAME="INVOLVED_PARTY_QUAL_GID">INVOLVED_PARTY_QUAL_GID</A><DD>This field is for matching the Involved Party Qualifier with the involved party qualifier on involved party contact record of the shipment against which the rule is being run.
+<DT><A NAME="CONTACT_PROFILE_GID">CONTACT_PROFILE_GID</A><DD>This field is for checking the compatibility of the contact profile with the contact on the involved party contact record of the shipment against which the rule is being run.
+<DT><A NAME="CALCULATE_SHIP_UNIT_DURATION">CALCULATE_SHIP_UNIT_DURATION</A><DD>The flag determines if we have to calculate the ship unit dwell time for the ship units of the secondary charge created as a result of this rule. 
+<DT><A NAME="PERSPECTIVE">PERSPECTIVE</A><DD>This field is for specifying if the rule is meant for buy or sell shipments or both.
+<DT><A NAME="CRITERIA_RATE_GEO_GID">CRITERIA_RATE_GEO_GID</A><DD>This field is for matching the RR of the shipment against which the rule is being run.
+<DT><A NAME="SHIPMENT_TYPE_GID">SHIPMENT_TYPE_GID</A><DD>This field is for matching the Shipment type of the shipment against which the rule is being run.
+</DL>
+</BODY>
+</HTML>

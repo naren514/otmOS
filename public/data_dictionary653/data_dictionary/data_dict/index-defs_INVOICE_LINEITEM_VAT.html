@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - INVOICE_LINEITEM_VAT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - INVOICE_LINEITEM_VAT</H1>
+The CUMULATIVE and PROVINCE_CODE fields are included for future Canadian tax, and are *not* implemented as of VAT50<P>
+<DL>
+<DT><A NAME="VAT_COUNTRY_CODE3_GID">VAT_COUNTRY_CODE3_GID</A><DD>Country for which this VAT item applies
+<DT><A NAME="VAT_PROVINCE_CODE">VAT_PROVINCE_CODE</A><DD>Province for which this VAT item applies (used for Canada)
+<DT><A NAME="VAT_AMOUNT">VAT_AMOUNT</A><DD>This is the actual VAT amount
+<DT><A NAME="VAT_CALC_AMT">VAT_CALC_AMT</A><DD>This is the VAT amount calculated from the rate and base value
+<DT><A NAME="VAT_OVERRIDE_AMT">VAT_OVERRIDE_AMT</A><DD>This is a manually entered amount to set the VAT regardless of rate
+<DT><A NAME="IS_CUMULATIVE">IS_CUMULATIVE</A><DD>If 'Y', the amount of this tax is based on the base cost plus the previously-calculated taxes.
+<DT><A NAME="EXCHANGE_RATE_DATE">EXCHANGE_RATE_DATE</A><DD>Indicates the date to be used for any currency conversions; if null, the latest conversion should be used.
+<DT><A NAME="EXCHANGE_RATE_GID">EXCHANGE_RATE_GID</A><DD>Indicates the set of exchange rates to use for currency conversions; if null, the default set should be used
+<DT><A NAME="VAT_AMOUNT_FN">VAT_AMOUNT_FN</A><DD>functional currency amount for vat_amount
+<DT><A NAME="VAT_CALC_AMT_FN">VAT_CALC_AMT_FN</A><DD>functional currency amount for vat_calc_amt
+<DT><A NAME="VAT_OVERRIDE_A_FN">VAT_OVERRIDE_A_FN</A><DD>functional currency amount for vat_override_amt
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4" xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4" attributeFormDefault="unqualified"
+            elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:annotation>
+      <xsd:documentation>
+         Last modified .
+
+         Contains element, attribute and types definitions for Location and Contact data.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:include schemaLocation="TransmissionCommon.xsd"/>
+
+   <xsd:element name="Location" type="LocationType" substitutionGroup="GLogXMLTransaction"/>
+
+   <xsd:element name="Contact" type="ContactType" substitutionGroup="GLogXMLTransaction"/>
+
+   <xsd:element name="ContactGroup" type="ContactGroupType" substitutionGroup="GLogXMLTransaction"/>
+
+   <xsd:element name="Corporation" type="CorporationType" substitutionGroup="GLogXMLTransaction"/>
+
+   <xsd:element name="ActivityTimeDef" type="ActivityTimeDefType" substitutionGroup="GLogXMLTransaction"/>
+   
+   <xsd:element name="PartySite" type="PartySiteType" substitutionGroup="GLogXMLTransaction"/>
+
+   <xsd:complexType name="LocationType">
+      <xsd:annotation>
+         <xsd:documentation>
+            A Location is a place where transportation related activities occur, such as loading and unloading freight.
+            In addition, a location may represent a corporation, and/or a service provider.
+
+            Note: The ChildOpreationalLocations element is supported on the outbound only.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0"/>
+               <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0"/>
+               <xsd:element name="LocationGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="LocationName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsTemplate" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Address" type="AddressType"/>
+               <xsd:element name="PostalSPLCGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="RailSPLCGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="RailStationCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="RailJunctionCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="ERPCGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="ServingServprovProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="RegionRef" type="RegionRefType" minOccurs="0"/>
+               <xsd:element name="LocationGroupGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="LocationRefnum" type="LocationRefnumType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="LocationSpecialService" type="SpecialServiceType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="IsTemporary" type="xsd:string" minOccurs="0"/>
+               <xsd:choice minOccurs="0">
+                  <xsd:element name="ContactGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+                  <xsd:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
+               </xsd:choice>
+               <xsd:element name="LocationRole" type="LocationRoleType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="AccessorialCodeGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="IsMakeAppointmentBeforePlan" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Corporation" type="CorporationType" minOccurs="0"/>
+               <xsd:element name="ServiceProvider" type="ServiceProviderType" minOccurs="0"/>
+               <xsd:element name="RateClassificationGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="IsShipperKnown" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="SubstituteLocation" type="GLogXMLLocRefType" minOccurs="0"/>
+               <xsd:element name="ServiceProviderProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="EquipmentGroupProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="IsAddressValid" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumRowsInYard" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="NumSlotsPerRowInYard" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsLTLSplitable" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="ApptObjectType" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="ApptActivityType" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="ApptSearchDays" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="ApptShowNumOfOptions" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="StandingApptCutoffWindow" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="SlotTimeInterval" type="GLogXMLDurationType" minOccurs="0"/>
+               <xsd:element name="ExcludeFromRouteExec" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="UseApptPriority" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="SchedLowPriorityAppt" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="EnforceTimeWindowAppt" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="SchedInfeasibleAppt" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="AppointDisplayStartTime" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>Specifies the start time in seconds from midnight for which appointment information will be displayed on the schedule board.
+                        For example, to indicate a start of 1 AM, specify a value fo 3600 (1 hour after midnight).
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="AppointDisplayDuration" type="GLogXMLDurationType" minOccurs="0"/>
+               <xsd:element name="PickupRoutingSeqGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="DropoffRoutingSeqGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="OperationalLocation" type="OperationalLocationType" minOccurs="0"/>
+               <xsd:element name="ChildOperationalLocations" minOccurs="0">
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="Location" type="LocationType" minOccurs="0" maxOccurs="unbounded"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="LoadUnloadPoint" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>Represents an actual load/unload point as it relates to a location along with data that is associated with that relationship.
+                     </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="LoadUnloadPointName" type="xsd:string"/>
+                        <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+                        <xsd:element name="EquipmentGroupProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+                        <xsd:element name="IsLoad" type="xsd:string" minOccurs="0"/>
+                        <xsd:element name="LoadSequence" type="xsd:string" minOccurs="0"/>
+                        <xsd:element name="IsUnload" type="xsd:string" minOccurs="0"/>
+                        <xsd:element name="UnloadSequence" type="xsd:string" minOccurs="0">
+                           <xsd:annotation>
+                              <xsd:documentation>Specifies where the dock should be in an unload sequence.</xsd:documentation>
+                           </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="LocationCapacityGroupInfo" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>Associates location capacity groups with locations.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="LocationCapacityGroupGid" type="GLogXMLGidType"/>
+                        <xsd:element name="EffectiveDate" type="GLogDateTimeType"/>
+                        <xsd:element name="ExpirationDate" type="GLogDateTimeType"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="LocationResourceType" type="LocationResourceTypeType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Status" type="StatusType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="LocationServProvPref" type="LocationServProvPrefType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="AssetParentLocation" type="AssetParentLocationType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="AllowDriverRest" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsFixedAddress" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="PrimaryAddressLineSeq" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>If the address is multiple lines long, this field will specify the sequence number of the address line that has the house and street in the
+                        LOCATION_ADDRESS table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+               <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+               <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+               <xsd:element name="IsActive" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsWMSFacility" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>Indicates if the location is a warehouse management system facility. Default value is N.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="EruGrouping" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>Indicates orders going to this location will be grouped together for ERU grouping.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ApptCutoffHours" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>Service provider appointment cutoff time of day, in seconds after midnight. 
+                       For example, to indicate a cutoff time of 8AM, specify a value of 8 x 3600 = 28800. If set to a fraction of an hour, the fraction will be ignored in logic.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ApptBeforeCutoff" type="GLogXMLDurationType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>Service provider appointment duration before cutoff (Should be in Days only).</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ApptAfterCutoff" type="GLogXMLDurationType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>Service provider appointment duration after cutoff (Should be in Days only).</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="ContactType">
+      <xsd:annotation>
+         <xsd:documentation>Contact is a structure for specifying contact information for a location.
+            A location may have multiple contacts.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="ContactGid" type="GLogXMLGidType" minOccurs="0">
+                   <xsd:annotation>
+                       <xsd:documentation>ContactGid is only optional when the Contact element is contained within
+                           a GtmContact interface containing an IntSavedQuery.
+                       </xsd:documentation>
+                   </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Inbound) Integration Saved Query to identify the relevant party to be updated.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0"/>
+               <xsd:element name="EmailAddress" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="FirstName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="MiddleName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="LastName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="JobTitle" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Phone1" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Phone2" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Fax" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="LanguageSpoken" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsPrimaryContact" type="xsd:string" minOccurs="0"/>
+               <xsd:choice minOccurs="0">
+                  <xsd:element name="ExternalSystem">
+                     <xsd:annotation>
+                        <xsd:documentation>ExternalSystem contains identifying information for communicating via HTTP Post.</xsd:documentation>
+                     </xsd:annotation>
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="ExternalSystemGid" type="GLogXMLGidType"/>
+                           <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+                           <xsd:element name="URL" type="xsd:string" minOccurs="0"/>
+                           <xsd:element name="IntQueueName" type="xsd:string" minOccurs="0">
+                              <xsd:annotation>
+                                 <xsd:documentation>
+                                     Deprecated (21A): Functionality removed. Value will be ignored and field will be removed in a future release.
+                                 </xsd:documentation>
+                              </xsd:annotation>
+                           </xsd:element>
+                           <xsd:element name="UserName" type="xsd:string" minOccurs="0"/>
+                           <xsd:element name="Password" type="PasswordType" minOccurs="0"/>
+                           <xsd:element name="UseGlcredential" type="xsd:string" minOccurs="0">
+                              <xsd:annotation>
+                                 <xsd:documentation>Y/N. UseGlcredential should be set to 'Y' if the user is transferring data to other
+                                    GC3 instances within the same organization where the user has a unique username and
+                                    password, and desires to use it for the http posting.
+                                 </xsd:documentation>
+                              </xsd:annotation>
+                           </xsd:element>
+                           <xsd:element name="MaxBytesPerTransmission" type="xsd:string" minOccurs="0">
+                              <xsd:annotation>
+                                 <xsd:documentation>MaxBytesPerTransmission is used to limit the number of bytes in a given
+                                    Transmission element sent to the recipient system at any given time.
+                                 </xsd:documentation>
+                              </xsd:annotation>
+                           </xsd:element>
+                           <xsd:element name="MaxTransactsPerTransmission" type="xsd:string" minOccurs="0">
+                              <xsd:annotation>
+                                 <xsd:documentation>MaxTransactsPerTransmission is used to limit the number of transactions in a given
+                                    Transmission element sent to the recipient system at any given time.
+                                 </xsd:documentation>
+                              </xsd:annotation>
+                           </xsd:element>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element name="ExternalSystemGid" type="GLogXMLGidType"/>
+               </xsd:choice>
+               <xsd:element name="Remark" type="RemarkType" minOccurs="0"/>
+               <xsd:element name="CommunicationMethod" type="CommunicationMethodType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="GlUserGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="RecipientDomainName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="LocationGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:choice minOccurs="0">
+                  <xsd:element name="ConsolidationProfile">
+                     <xsd:annotation>
+                        <xsd:documentation>A Consolidation Profile specifies when and how to best batch or consolidate messages.</xsd:documentation>
+                     </xsd:annotation>
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="ConsolidationProfileGid" type="GLogXMLGidType"/>
+                           <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+                           <xsd:element name="TimeWindowGid" type="GLogXMLGidType"/>
+                           <xsd:element name="StylesheetProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+                           <xsd:element name="BatchSize" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element name="ConsolidationProfileGid" type="GLogXMLGidType"/>
+               </xsd:choice>
+               <xsd:element name="ConsolidatedNotifyOnly" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsNotificationOn" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Preference" type="PreferenceType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="ContactCorporation" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>Used to specify an association of the Contact to a Corporation for tender notifications.
+                        The tender notifications will be sent to this Contact for the Service Provider for Shipments that are in the
+                        same domain as this Corporation where the Corporation is the primary of the domain.
+                        The criteria for the logic is as follows:
+                        - the Contact must belong to the Service Provider location
+                        - the Corporation must be the primary Corporation for the domain
+                     </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="CorporationGid" type="GLogXMLGidType"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="IsFromAddress" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="FromAddrContactGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="AlternateName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="CompanyName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Status" type="StatusType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="RemarkWithQual" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Telex" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TimeZoneGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="CellPhone" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="UseMessageHub" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="MessageProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="PrinterGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+               <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+               <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+               <xsd:element name="Indicator" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="ContactGroupType">
+      <xsd:annotation>
+         <xsd:documentation>A Contact Group represents a list of contacts used for notification.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionIn">
+            <xsd:sequence>
+               <xsd:element name="ContactGid" type="GLogXMLGidType"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0"/>
+               <xsd:element name="LanguageSpoken" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsBroadcast" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="GroupSavedQueryGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="CommunicationMethod" type="CommunicationMethodType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Preference" type="PreferenceType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="IncludeContact" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>Specifies the child Contact(s) within a Contact Group.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:choice>
+                        <xsd:element name="ContactGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+                        <xsd:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
+                     </xsd:choice>
+                  </xsd:complexType>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="InvolvedPartyType">
+      <xsd:annotation>
+         <xsd:documentation>An InvolvedParty specifies a contact that is in some way involved with a TransOrder, Shipment, or Release.
+            Either the ContactRef is required to be specified, or the InvolvedPartyLocationRef is required and the contact will be
+            selected as the primary contact for the location.
+            The LocationOverrideInfo element is only applicable when the InvolvedParty is in the Shipment.ShipmentHeader or the Release elements.
+            The TransactionCode in the InvolvedParty is only supported in the Driver interface in 6.0.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+         <xsd:element name="InvolvedPartyQualifierGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>An InvolvedPartyQualifierGid specifies the role that the InvolvedParty plays in the order.
+                  Examples: LOGISTICS, SHIPPER, CONSIGNEE, ORDEROWNER
+                  Validation: References INVOLVED_PARTY_QUAL table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="InvolvedPartyLocationRef" type="GLogXMLLocRefType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>InvolvedParty's LocationRef element will only contain the LocationGid.</xsd:documentation>
+             </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ContactRef" type="ContactRefType" minOccurs="0"/>
+         <xsd:element name="ComMethodGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="LocationOverrideInfo" type="LocationOverrideInfoType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="CorporationType">
+      <xsd:annotation>
+         <xsd:documentation>Corporation element supports both inbound and outbound integration. Corporation interface is supported such that Corporation can be sent in and out as
+            an independent transaction.CorporationGid can be left blank, if corporation is being sent as part of Location element. Otherwise, if Corporation is being sent as a
+            separate transaction, CorproationGid is mandatory.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0"/>
+               <xsd:element name="CorporationGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0"/>
+               <xsd:element name="CorporationName" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="PickupRoutingSeqGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="DropoffRoutingSeqGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="VatRegistration" type="VatRegistrationType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="VatProvincialRegistration" type="VatProvincialRegistrationType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="IsDomainMaster" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsShippingAgentsActive" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsAllowHouseCollect" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="MaxHouseCollectAmount" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+               <xsd:element name="InvolvedParty" type="InvolvedPartyType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="ServiceProviderType">
+      <xsd:annotation>
+         <xsd:documentation>ServiceProvider is an optional structure specified only if a location represents a service provider.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ScacGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ServiceProviderAlias" type="ServiceProviderAliasType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="ConditionalBookingProfile" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>Specifies the service provider conditional booking profile Gid for a specific Transport Mode</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="TransportModeGid" type="GLogXMLGidType" minOccurs="0"/>
+                  <xsd:element name="ConditionalBookingProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="ModeProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="TenderResponseTime" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="MatchRuleProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="MatchValidRuleProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="AutoApproveRuleProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="AutoPaymentFlag" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="AllocationRuleProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="IsAllowTender" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsDispatchByRegion" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RateServiceGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="OutXmlProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="IsAcceptSpotBids" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsAcceptBroadcastTenders" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsAcceptCondBooking" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsLocalizeBroadcastSpotContact" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SpotRateAdjustmentFactor" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="InvoicingProcess" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsCopyInvDeltaToShipment" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsAcceptByShipUnit" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsInternalNVOCC" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NVOCCDomainName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LineApproveTolProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="IsMinority" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Incumbent" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Tier" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ScorecardValue" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EpaIndexValue" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="BroadcastSpotContact" type="GLogXMLContactRefType" minOccurs="0"/>
+         <xsd:element name="EquipMarkList" type="EquipMarkListType" minOccurs="0"/>
+         <xsd:element name="ServprovService" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>ServprovService provides a link between the service provider, their locations and
+                  the rates they provide at those locations.
+               </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="LocationGid" type="GLogXMLGidType"/>
+                  <xsd:element name="RateServiceGid" type="GLogXMLGidType"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="ServprovModeInfo" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>Specifies details about the mode profile for the Service Provider.
+                  The TransportModeGid is retrieved from the MODE_PROFILE_DETAIL table using the ServiceProvider.ModeProfileGid.
+                  The EquipmentGroupGid(s) are retrieved from the EQUIPMENT_GROUP_PROFILE_D table using the TransportModeGid to identify the Rate Offering(s) for
+                  the Service Provider, and then using the Equipment Group Profile specified on those Rate Offering(s).
+                  Note: The element is supported on the outbound only.
+               </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="TransportModeGid" type="GLogXMLGidType"/>
+                  <xsd:element name="EquipmentGroupGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="ServprovPolicy" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>Specifies the service provider insurance policy information.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0"/>
+                  <xsd:element name="PolicyType" type="xsd:string">
+                     <xsd:annotation>
+                        <xsd:documentation>Specifies the type of policy.</xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="EffectiveDate" type="GLogDateTimeType"/>
+                  <xsd:element name="ExpirationDate" type="GLogDateTimeType"/>
+                  <xsd:element name="Issuer" type="xsd:string" minOccurs="0">
+                     <xsd:annotation>
+                        <xsd:documentation>Issuer of the Policy.</xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="PolicyNumber" type="xsd:string" minOccurs="0">
+                     <xsd:annotation>
+                        <xsd:documentation>Policy number.</xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="CoverageAmount" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="IsFleet" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="AllowSpotRating" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsActive" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+         <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+         <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="EquipMarkListType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies a list of equipment marks.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="EquipMarkListGid" type="GLogXMLGidType"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EquipMarkGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="AddressType">
+      <xsd:annotation>
+         <xsd:documentation>Address is a group of address related elements. The AddressLines element povides an unlimited number of address lines.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="AddressLine1" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="AddressLine2" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="AddressLines" type="AddressLinesType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="City" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Province" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ProvinceCode" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PostalCode" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CountryCode3Gid" type="GLogXMLGidType"/>
+         <xsd:element name="CountryCode" type="CountryCodeType" minOccurs="0"/>
+         <xsd:element name="Zone1" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Zone2" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Zone3" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Zone4" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TimeZoneGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="Latitude" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Used to specify the Latitude for location Coordinates.
+               
+                  A minus sign is used to identify a south latitude i.e. south of the Equator
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Longitude" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Used to specify the Longitude for location Coordinates.
+               
+                  A minus sign is used to identify a western longitude i.e. west of the prime meridian
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CountyQualifier" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PostalCodeRangeType">
+      <xsd:annotation>
+         <xsd:documentation>PostalCodeRange is a range of postal codes.
+            Example: 191 to 195.
+            In this case the HnameComponentGid would be USZIP3.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="HnameComponentGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>HnameComponentGid is used to specify the type of range being specified.
+                  Example: USZIP3, USZIP5.
+                  This is used to determine how many characters from the postal code should be utilized when
+                  searching for a lane. For example, if USZIP3 is specified, then only the first three characters
+                  of the postal code are utilized when searching for a lane.
+                  Validation: Reference to HNAME_COMPONENT table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="LowRangeValue" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>LowRangeValue is the postal code for the low end of a range.
+                  DataType: A15
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="HighRangeValue" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>HighRangeValue is the postal code for high end of range.
+                  DataType: A15
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+   <xsd:complexType name="LocationRefnumType">
+      <xsd:annotation>
+         <xsd:documentation>LocationRefnum is a location reference number,
+            which provides an alternate means for identifying a location.
+            It consists of a qualifier and a value.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="LocationRefnumQualifierGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>LocationRefnumQualifierGid is a location reference number qualifier global identifier.
+                  Validation: References LOCATION_REFNUM_QUAL table.
+                  Example: Gid.Xid = DUNS
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="LocationRefnumValue" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>LocationRefnumValue is the value portion of location reference number. Example: a DUNS number, when the qualifier xid = DUNS.
+                  DataType: A30
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+   <xsd:complexType name="LocationActivityTimeDefType">
+      <xsd:choice>
+         <xsd:element name="ActivityTimeDefGid" type="GLogXMLGidType"/>
+         <xsd:element name="ActivityTimeDef" type="ActivityTimeDefType"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="ActivityTimeDefType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies fields for allowing multiple fixed and variable stop times for each location role based on transport handling unit and commodity.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0"/>
+               <xsd:element name="ActivityTimeDefGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+               <xsd:element name="SpecialServiceGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="ShipUnitSpecProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="FlexCommodityProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="ServprovProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="EquipmentGroupProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="FixedStopTime" type="GLogXMLDurationType" minOccurs="0"/>
+               <xsd:element name="VariableStopTime" type="GLogXMLDurationType" minOccurs="0"/>
+               <xsd:element name="VarStopQuantity" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="VarStopWeightVolume" type="WeightVolumeType" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="AddressLinesType">
+      <xsd:annotation>
+         <xsd:documentation>Contains the sequence number and address line.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string"/>
+         <xsd:element name="AddressLine" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="CommunicationMethodType">
+      <xsd:annotation>
+         <xsd:documentation>CommunicationMethod is a structure for describing when and how to communicate
+            with a business partner.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ComMethodRank" type="xsd:string"/>
+         <xsd:element name="ComMethodGid" type="GLogXMLGidType"/>
+         <xsd:element name="CalendarGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ExpectedResponseTime" type="GLogXMLDurationType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="OperationalLocationType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies a sub location, such as terminals at a port. When the element is specified in the Location, it indicates that the
+            Location is a sub location of another Location.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ParentLocationGid" type="GLogXMLLocGidType"/>
+         <xsd:element name="OperLocDetail" type="OperLocDetailType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="OperLocDetailType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies detail info for operational locations. Used as a lookup so that operational location may be automatically assigned.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PriLegServProv" type="PriLegServProvType">
+            <xsd:annotation>
+               <xsd:documentation>Specifies the service provider of the main leg which will help indicate which operational location applies.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PriLegLocProfileGid" type="GLogXMLLocProfileType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Specifies the location on the main leg which will help indicate which operational location applies;
+                  usually Port of Exit or Port of Discharge.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ImportExportType" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>When ImportExportType is within the OperLocDetail element, it specifies whether this operational location for the
+                  mapping of the service provider and location profile is used for importing (I), exporting (E), or both (B).
+                  Possible values are I, E, or B. Default value is B.
+
+                  When ImportExportType is within the ReleaseLineIntlClassification element,
+                  Possible values are IMPORT or EXPORT. Default value is (null).
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="InclusionRegionGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ExclusionRegionGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PriLegServProvType">
+      <xsd:choice>
+         <xsd:element name="ServiceProviderGid" type="GLogXMLGidType"/>
+         <xsd:element name="ServiceProviderAlias" type="ServiceProviderAliasType"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="AssetParentLocationType">
+      <xsd:annotation>
+         <xsd:documentation>Used to keep a track of asset inventory at locations as opposed to the Packaged Item inventory.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ParentLocationGid" type="GLogXMLLocGidType"/>
+         <xsd:element name="AssetType" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LocationServProvPrefType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies time window preferences for appointment on a location for a service provider.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="LocationServProvPrefGid" type="GLogXMLGidType"/>
+         <xsd:element name="LocationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ServiceLocationGid" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Identifies the service location Gid. References the LOCATION table.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="LocationGid" type="GLogXMLGidType"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="ServiceProviderGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="MaxSlotsPerDay" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LocationServProvPrefDetail" type="LocationServProvPrefDetailType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LocationServProvPrefDetailType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies time window preferences for appointment on a location for a service provider.
+            When adding a new LocationServProvPrefDetail, set the TransactionCode = I to auto generate a new sequence.
+            When updating a LocationServProfPrefDetail, use the IntSavedQuery to search for the sequence to update.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0"/>
+         <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+         <xsd:element name="DayofWeek" type="xsd:string"/>
+         <xsd:element name="BeginTime" type="xsd:string"/>
+         <xsd:element name="MaxSlot" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PreferenceLevel" type="xsd:string"/>
+         <xsd:element name="DoorDuration" type="xsd:string"/>
+         <xsd:element name="IsStanding" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LocationResourceGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LocationResourceType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies a resource defined for a location resource type.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0"/>
+         <xsd:element name="LocationResourceGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="LocationResourceName" type="xsd:string"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CalendarGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="FlexCommodityProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="EquipmentGroupProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ModeProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ServiceProviderProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ContactProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="FlexCommodityCheckOption" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ApptActivityType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LocationResourceGroupGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ApptRuleSet" type="ApptRuleSetType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ApptRuleSetType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies an Appt Rule Set defined for a location resource. This is for outbound xml.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ApptRuleSetGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ApptRuleSetName" type="xsd:string"/>
+         <xsd:element name="EffectiveDt" type="GLogDateTimeType"/>
+         <xsd:element name="ExpiryDt" type="GLogDateTimeType"/>
+         <xsd:element name="FlexCommodityProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="EquipmentGroupProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ModeProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ServiceProviderProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ContactProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="FlexCommodityCheckOption" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsTemperatureControl" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsHazardous" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SourceRegionGid" type="GLogXMLRegionGidType" minOccurs="0"/>
+         <xsd:element name="DestinationRegionGid" type="GLogXMLRegionGidType" minOccurs="0"/>
+         <xsd:element name="ApptSsActivityProfGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ApptActivityType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="MaximumShipUnitsAllowed" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ApptCutoffHours" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Service provider appointment cutoff in hours.For example, to indicate a cutoff hour of 1 hour, specify a value for 3600 (1 hour after midnight).
+               </xsd:documentation>
+             </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ApptBeforeCutoff" type="GLogXMLDurationType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Service provider appointment duration before cutoff.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ApptAfterCutoff" type="GLogXMLDurationType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>Service provider appointment duration after cutoff.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LocationResourceTypeType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the resource type defined for the location.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ResourceTypeGid" type="GLogXMLGidType"/>
+         <xsd:element name="CalendarGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="AutoScheduleAppt" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ConstraintAppt" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LocationResource" type="LocationResourceType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PreferenceType">
+      <xsd:annotation>
+         <xsd:documentation>Used to specify preferred settings.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="PreferenceGid" type="GLogXMLGidType"/>
+         <xsd:element name="Value" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GLogXMLLocOverrideRefType">
+      <xsd:sequence>
+         <xsd:element name="LocationOverrideRef" type="LocationOverrideRefType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LocationOverrideRefType">
+      <xsd:annotation>
+         <xsd:documentation>Location override reference.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="LocationOverrideGid" type="GLogXMLGidType"/>
+         <xsd:element name="LocationOverride">
+            <xsd:annotation>
+               <xsd:documentation>Location override.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="LocationOverrideGid" type="GLogXMLGidType"/>
+                  <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+                  <xsd:element name="LocationGid" type="GLogXMLGidType"/>
+                  <xsd:element name="LocationOverrideInfo" type="LocationOverrideInfoType" minOccurs="0"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="LocationOverrideInfoType">
+      <xsd:annotation>
+         <xsd:documentation>Location override information. The foreign key restriction for the CountryCode3Gid element has been removed.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="LocationName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="City" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Province" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ProvinceCode" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PostalCode" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CountryCode3Gid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="AddressLines" type="AddressLinesType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GLogXMLLocGidType">
+      <xsd:sequence>
+         <xsd:element name="LocationGid" type="GLogXMLGidType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GLogXMLLocRefType">
+      <xsd:sequence>
+         <xsd:element name="LocationRef" type="LocationRefType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LocationRefType">
+      <xsd:annotation>
+         <xsd:documentation>A LocationRef is a reference to a location, which may be either a location global identifier or a new location definition.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="LocationGid" type="GLogXMLGidType"/>
+         <xsd:element name="Location" type="LocationType"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="RegionRefType">
+      <xsd:annotation>
+         <xsd:documentation>RegionRef is a reference to a region - either a region gid or a region definition.
+            It may be used in the context of a Location to specify a region for the location.
+            It may also be used in the context of an XLaneNode to reference an existing region, or define a new region on-the-fly.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="RegionGid" type="GLogXMLGidType"/>
+         <xsd:element name="RegionHeader">
+            <xsd:annotation>
+               <xsd:documentation>RegionHeader is a structure for describing a geographic region -
+                  a mixed set of addresses and postal code ranges.
+               </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="RegionGid" type="GLogXMLGidType"/>
+                  <xsd:element name="RegionDesc" type="xsd:string" minOccurs="0">
+                     <xsd:annotation>
+                        <xsd:documentation>RegionDesc is free-form text describing a region.
+                           DataType: A30
+                        </xsd:documentation>
+                     </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="RegionComponent" maxOccurs="unbounded">
+                     <xsd:annotation>
+                        <xsd:documentation>RegionComponent is a structure describing a component of a region.
+                           You may specify a mileage address, and optionally, a postal code range.
+                           If a postal code range is specified, the postal code in the mileage address is ignored.
+                        </xsd:documentation>
+                     </xsd:annotation>
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="MileageAddress" type="MileageAddressType"/>
+                           <xsd:element name="PostalCodeRange" type="PostalCodeRangeType" minOccurs="0"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="MileageAddressType">
+      <xsd:annotation>
+         <xsd:documentation>MilageAddress is a grouping of address fields similar to the normal address, but with the address lines removed.
+            The RailSPLCGid and RailStationCodeGid elements are used in the RIQQuery interface.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="City" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ProvinceCode" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PostalCode" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CountryCode3Gid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="Zone1" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Zone2" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Zone3" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Zone4" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LocationGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="GeoHierarchyGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="CountyQualifier" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="RailSPLCGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="RailStationCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GLogXMLContactRefType">
+      <xsd:sequence>
+         <xsd:element name="ContactRef" type="ContactRefType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ContactRefType">
+      <xsd:annotation>
+         <xsd:documentation>ContactRef may be used to reference an existing contact or define a new one.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="ContactGid" type="GLogXMLGidType"/>
+         <xsd:element name="Contact" type="ContactType"/>
+         <xsd:element name="ContactGroup" type="ContactGroupType"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="LocationRoleType">
+      <xsd:annotation>
+         <xsd:documentation>LocationRole is a structure specifying a location role.
+            Locations may play multiple roles.
+            Examples of location roles include warehouse, crossdock, loading dock, etc.
+            A calendar may be associated with a location role, to limit the times when a particular activity (such as loading) may occur.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="LocationRoleGid" type="GLogXMLGidType"/>
+         <xsd:element name="CalendarGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="XDockIsInboundBias" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="FixedHandlingTime" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="VarHandlingTime" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="VarHandlingWeight" type="GLogXMLWeightType" minOccurs="0"/>
+         <xsd:element name="MaxFreightIdleTime" type="GLogXMLDurationType" minOccurs="0"/>
+         <xsd:element name="CreatePoolHandlingShipment" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CreateXDockHandlingShipment" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="LocationActivityTimeDef" type="LocationActivityTimeDefType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="PctActivityBeforeLocOpen" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PctActivityAfterLocClose" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsMixedFreightTHUAllowed" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ShipUnitSpecProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="LocationTHUCapacity" type="LocationTHUCapacityType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="VarHandlingCostPerVolume" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="VarHandlingVolume" type="GLogXMLVolumeType" minOccurs="0"/>
+         <xsd:element name="RegionalHandlingTime" type="RegionalHandlingTimeType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="LocationTHUCapacityType">
+      <xsd:annotation>
+         <xsd:documentation>The Location THU capacity is a structure specifying the capacity that a transport handling unit may hold when it is being delivered to this location for
+            this role. If defined the maximum values here override those that are specified on the Ship Unit Specification table that defines the transport handling unit.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="TransportHandlingUnitGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="MaxLength" type="GLogXMLLengthType" minOccurs="0"/>
+         <xsd:element name="MaxWidth" type="GLogXMLWidthType" minOccurs="0"/>
+         <xsd:element name="MaxHeight" type="GLogXMLHeightType" minOccurs="0"/>
+         <xsd:element name="MaxWeight" type="GLogXMLWeightType" minOccurs="0"/>
+         <xsd:element name="MaxVolume" type="GLogXMLVolumeType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="RegionalHandlingTimeType">
+      <xsd:sequence>
+         <xsd:element name="FixedHandlingTime" type="GLogXMLDurationType"/>
+         <xsd:element name="SourceRegionGid" type="GLogXMLRegionGidType" minOccurs="0"/>
+         <xsd:element name="DestRegionGid" type="GLogXMLRegionGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="VatRegistrationType">
+      <xsd:annotation>
+         <xsd:documentation>Spefies the Value Added Tax Registration ID for the Corporation.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="VatRegistrationGid" type="GLogXMLGidType"/>
+         <xsd:element name="CountryCode3Gid" type="GLogXMLGidType"/>
+         <xsd:element name="IsPrimaryRegistration" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CustVatRegCountryCode3Gid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="DefaultIntraEUVatCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="VatProvincialRegistrationType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the provincial vat registrations.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="VatProvincialRegGid" type="GLogXMLGidType"/>
+         <xsd:element name="CountryCode3Gid" type="GLogXMLGidType"/>
+         <xsd:element name="ProvinceCode" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="CountryCodeType">
+      <xsd:annotation>
+         <xsd:documentation>(Both) For inbound messages only one of the elements should be populated.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="CountryCode3Gid" type="GLogXMLGidType" minOccurs="0" />
+         <xsd:element name="CountryCode2" type="xsd:string" minOccurs="0" />
+      </xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name="PartySiteType">
+      <xsd:annotation>
+         <xsd:documentation>(Both) Defines the association between a Party (Contact) and a Site (Location).</xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+             <xsd:element name="PartySiteGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                   <xsd:documentation>(Both) Unique Identifier of the Party Site.</xsd:documentation>
+                </xsd:annotation>
+             </xsd:element>
+             <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+             <xsd:element name="PartyGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                   <xsd:documentation>(Both) Unique Identifier of the Party.</xsd:documentation>
+                </xsd:annotation>
+             </xsd:element>
+             <xsd:element name="LocationGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                   <xsd:documentation>(Both) Unique Identifier of the Site Location.</xsd:documentation>
+                </xsd:annotation>
+             </xsd:element>
+             <xsd:element name="PartySiteName" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>(Both) Name of the Party Site.</xsd:documentation>
+                </xsd:annotation>
+             </xsd:element>
+          </xsd:sequence>
+       </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+</xsd:schema>

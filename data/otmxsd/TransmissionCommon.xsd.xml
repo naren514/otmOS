@@ -1,0 +1,2169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4" attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:annotation>
+        <xsd:documentation>
+            Last modified .
+
+            This schema will contain all element, attribute and types definitions common to all Transmission XML
+            schemas.
+        </xsd:documentation>
+    </xsd:annotation>
+
+<!--    <xsd:include schemaLocation="LocationContact.xsd"/>-->
+<!--    <xsd:include schemaLocation="Shipment.xsd"/>-->
+<!--    <xsd:include schemaLocation="Order.xsd"/>-->
+<!--    <xsd:include schemaLocation="Finance.xsd"/>-->
+<!--    <xsd:include schemaLocation="Item.xsd"/>-->
+<!--    <xsd:include schemaLocation="ShipUnit.xsd"/>-->
+<!--    <xsd:include schemaLocation="GenericTransaction.xsd"/>-->
+<!--    <xsd:include schemaLocation="Planning.xsd"/>-->
+<!--    <xsd:include schemaLocation="Rate.xsd"/>-->
+<!--    <xsd:include schemaLocation="Configuration.xsd"/>-->
+<!--    <xsd:include schemaLocation="Job.xsd"/>-->
+<!--    <xsd:include schemaLocation="Document.xsd"/>-->
+<!--    <xsd:import namespace="http://xmlns.oracle.com/apps/gtm/transmission/v6.4" schemaLocation="GTM.xsd"/>-->
+
+    <!-- This needs to be here while we support schema validation of TransmissionReport as a Transaction. -->
+    <!-- Ideally we should be allowing it as a root document similar to how inbound TransmissionAck works. -->
+    <xsd:element name="TransmissionReport" type="TransmissionReportType" substitutionGroup="GLogXMLTransaction">
+        <xsd:annotation>
+            <xsd:documentation>
+                OTM can send or receive TransmissionReport messages to record the completion status of a message.
+
+                Deprecated 6.4.3: Sending as a GLogXMLTransaction is deprecated and will be removed in the next release
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="TransactionHeader" type="TransactionHeaderType">
+        <xsd:annotation>
+            <xsd:documentation>
+                The global element definition is needed because the TransactionHeader element can be parsed from
+                an XML fragment. Therefore, in order to pass schema validation it must be a recognised global element.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="IntSavedQuery" type="IntSavedQueryType">
+        <xsd:annotation>
+            <xsd:documentation>
+                The global element definition is needed because the IntSavedQuery element can be parsed from
+                an XML fragment. Therefore, in order to pass schema validation it must be a recognised global element.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="TransmissionDocumentType" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation>
+                This type is essentially a 'marker' type used to identify the top level XML documents that can be sent
+                to, or received
+                from OTM and GTM.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:complexType>
+
+    <xsd:complexType name="TransmissionReportType">
+        <xsd:annotation>
+            <xsd:documentation>
+                TransmissionReport consists of a TransmissionNo followed by 0 or more IntegrationLogMessage elements,
+                followed by a TransmissionSummary element.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="OTMTransactionInOut">
+                <xsd:sequence>
+                    <xsd:element name="UserName" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="Password" type="PasswordType" minOccurs="0"/>
+                    <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+                    <xsd:element name="TransmissionNo" type="xsd:string"/>
+                    <xsd:element name="SenderTransmissionNo" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="ReportStatus" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                (inbound) Refnum is a reference number for an object. It consists of a qualifier and a value.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="IntegrationLogMessage" type="IntegrationLogMessageType" minOccurs="0"
+                                 maxOccurs="unbounded"/>
+                    <xsd:element name="TransmissionSummary" type="TransmissionSummaryType" minOccurs="0"/>
+                    <xsd:element name="QueryResultInfo" type="QueryResultInfoType" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="TransactionReportType">
+        <xsd:annotation>
+            <xsd:documentation>A TransactionReport contains a transaction number followed by 0 or more integration log
+                messages.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ITransactionNo" type="xsd:string"/>
+            <xsd:element name="IntegrationLogMessage" type="IntegrationLogMessageType" minOccurs="0"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TransmissionSummaryType">
+        <xsd:annotation>
+            <xsd:documentation>TransmissionSummary is the summary component of a TransmissionReport.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="TransmissionNo" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="FirstTransactionNo" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="LastTransactionNo" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ApplicationReport" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        The ApplicationReport summarizes the activity associated with a given GLog integration
+                        application
+                        during the processing of a given transmission.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ApplicationName" type="xsd:string"/>
+                        <xsd:element name="InsertCount" type="xsd:string"/>
+                        <xsd:element name="UpdateCount" type="xsd:string"/>
+                        <xsd:element name="InsertUpdateCount" type="xsd:string"/>
+                        <xsd:element name="DeleteCount" type="xsd:string"/>
+                        <xsd:element name="ErrorCount" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLElementType">
+        <xsd:annotation>
+            <xsd:documentation>
+                A GLogXMLElement represents an OTM or GTM Integration transaction.
+                The GLogXMLTransaction element is used as a Substitution Group head element. All valid Transaction
+                interface elements will declare that they can substitute for the GLogXMLTransaction. For example, the TransOrder interface is a
+                valid inbound and outbound transaction and can be used in place of the GLogXMLTransaction element:
+
+                GLogXMLElement start tag
+                   TransactionHeader (optional)
+                   TransOrder
+                GLogXMLElement end tag
+
+                Some 3rd party tools are unable to support Substitution Groups. Therefore the option is available to modify a copy
+                of this schema file so that it can be used for such tools.
+
+                The change to be made is to explicitly declare that the required interface names can appear as a 'choice'.
+
+                Simply execute the following steps:
+
+                - comment out the "GLogXMLTransaction" element reference and uncomment the full choice definition or just for limited set of interfaces.
+                - uncomment the xsd:include definitions at the top of this schema to include the specific schema file where each interface is defined.
+                - if also using GTM interfaces, add namespace declaration to the root xsd:schema element of this schema:
+
+                xmlns:gtm="http://xmlns.oracle.com/apps/gtm/transmission/v6.4"
+
+                For example, if only the Release, Location and ActualShipment interfaces are used, the following includes would be needed
+                (note that the XML entities &lt; and &gt; are only used here for documentation purposes to avoid clashing with reserved XML tags):
+
+                &lt;xsd:include schemaLocation="LocationContact.xsd"/&gt;
+                &lt;xsd:include schemaLocation="Shipment.xsd"/&gt;
+                &lt;xsd:include schemaLocation="Order.xsd"/&gt;
+
+                The xsd:choice below would then only need to contain the following:
+
+                &lt;xsd:choice&gt;
+                   &lt;xsd:element ref="Location" /&gt;
+                   &lt;xsd:element ref="Release" /&gt;
+                   &lt;xsd:element ref="ActualShipment" /&gt;
+                &lt;/xsd:choice&gt;
+
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="TransactionHeader" type="TransactionHeaderType" minOccurs="0"/>
+            <xsd:element ref="GLogXMLTransaction"/>
+<!--            <xsd:choice>-->
+<!--                <xsd:element ref="User"/>-->
+<!--                <xsd:element ref="CSVDataLoad"/>-->
+<!--                <xsd:element ref="Document"/>-->
+<!--                <xsd:element ref="Accrual"/>-->
+<!--                <xsd:element ref="Billing"/>-->
+<!--                <xsd:element ref="AllocationBase"/>-->
+<!--                <xsd:element ref="Invoice"/>-->
+<!--                <xsd:element ref="Voucher"/>-->
+<!--                <xsd:element ref="FinancialSystemFeed"/>-->
+<!--                <xsd:element ref="Claim"/>-->
+<!--                <xsd:element ref="ExchangeRate"/>-->
+<!--                <xsd:element ref="WorkInvoice"/>-->
+<!--                <xsd:element ref="Topic"/>-->
+<!--                <xsd:element ref="GenericStatusUpdate"/>-->
+<!--                <xsd:element ref="RemoteQuery"/>-->
+<!--                <xsd:element ref="RemoteQueryReply"/>-->
+<!--                <xsd:element ref="DataQuerySummary"/>-->
+<!--                <xsd:element ref="TransactionAck"/>-->
+<!--                <xsd:element ref="ItemMaster"/>-->
+<!--                <xsd:element ref="Item"/>-->
+<!--                <xsd:element ref="HazmatItem"/>-->
+<!--                <xsd:element ref="HazmatGeneric"/>-->
+<!--                <xsd:element ref="Sku"/>-->
+<!--                <xsd:element ref="SkuTransaction"/>-->
+<!--                <xsd:element ref="SkuEvent"/>-->
+<!--                <xsd:element ref="PartnerItem"/>-->
+<!--                <xsd:element ref="Job"/>-->
+<!--                <xsd:element ref="Location"/>-->
+<!--                <xsd:element ref="Contact"/>-->
+<!--                <xsd:element ref="ContactGroup"/>-->
+<!--                <xsd:element ref="Corporation"/>-->
+<!--                <xsd:element ref="ActivityTimeDef"/>-->
+<!--                <xsd:element ref="PartySite"/>-->
+<!--                <xsd:element ref="TransOrder"/>-->
+<!--                <xsd:element ref="TransOrderLink"/>-->
+<!--                <xsd:element ref="TransOrderStatus"/>-->
+<!--                <xsd:element ref="Release"/>-->
+<!--                <xsd:element ref="ReleaseInstruction"/>-->
+<!--                <xsd:element ref="OBShipUnit"/>-->
+<!--                <xsd:element ref="OBLine"/>-->
+<!--                <xsd:element ref="OrderMovement"/>-->
+<!--                <xsd:element ref="Quote"/>-->
+<!--                <xsd:element ref="Itinerary"/>-->
+<!--                <xsd:element ref="XLane"/>-->
+<!--                <xsd:element ref="Mileage"/>-->
+<!--                <xsd:element ref="RouteTemplate"/>-->
+<!--                <xsd:element ref="BulkPlan"/>-->
+<!--                <xsd:element ref="BulkRating"/>-->
+<!--                <xsd:element ref="BulkContMove"/>-->
+<!--                <xsd:element ref="BulkTrailerBuild"/>-->
+<!--                <xsd:element ref="FleetBulkPlan"/>-->
+<!--                <xsd:element ref="ServiceTime"/>-->
+<!--                <xsd:element ref="RATE_OFFERING"/>-->
+<!--                <xsd:element ref="RATE_GEO"/>-->
+<!--                <xsd:element ref="PlannedShipment"/>-->
+<!--                <xsd:element ref="ActualShipment"/>-->
+<!--                <xsd:element ref="ShipmentStatus"/>-->
+<!--                <xsd:element ref="SShipUnit"/>-->
+<!--                <xsd:element ref="ShipmentLink"/>-->
+<!--                <xsd:element ref="ShipStop"/>-->
+<!--                <xsd:element ref="Equipment"/>-->
+<!--                <xsd:element ref="ShipmentGroup"/>-->
+<!--                <xsd:element ref="TenderOffer"/>-->
+<!--                <xsd:element ref="TenderResponse"/>-->
+<!--                <xsd:element ref="ShipmentGroupTenderOffer"/>-->
+<!--                <xsd:element ref="BookingLineAmendment"/>-->
+<!--                <xsd:element ref="Voyage"/>-->
+<!--                <xsd:element ref="DemurrageTransaction"/>-->
+<!--                <xsd:element ref="CharterVoyage"/>-->
+<!--                <xsd:element ref="Consol"/>-->
+<!--                <xsd:element ref="Driver"/>-->
+<!--                <xsd:element ref="PowerUnit"/>-->
+<!--                <xsd:element ref="Device"/>-->
+<!--                <xsd:element ref="DriverCalendarEvent"/>-->
+<!--                <xsd:element ref="gtm:GtmContact" />-->
+<!--                <xsd:element ref="gtm:GtmRegistration" />-->
+<!--                <xsd:element ref="gtm:GtmTransaction" />-->
+<!--                <xsd:element ref="gtm:GtmTransactionLine" />-->
+<!--                <xsd:element ref="gtm:GtmStructure" />-->
+<!--                <xsd:element ref="gtm:GtmDeclaration" />-->
+<!--                <xsd:element ref="gtm:GtmDeclarationMessage" />-->
+<!--                <xsd:element ref="gtm:GtmBond" />-->
+<!--                <xsd:element ref="gtm:ServiceRequest" />-->
+<!--                <xsd:element ref="gtm:ServiceResponse" />-->
+<!--                <xsd:element ref="ShipGroupTenderOffer"/>-->
+
+<!--            </xsd:choice>-->
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="GLogXMLTransaction" type="GLogXMLTransactionType" abstract="true"/>
+
+    <xsd:complexType name="GLogXMLTransactionType" abstract="true">
+        <xsd:complexContent>
+            <xsd:extension base="TransmissionDocumentType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="OTMTransactionIn" abstract="true">
+        <xsd:complexContent>
+            <xsd:extension base="GLogXMLTransactionType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="OTMTransactionOut" abstract="true">
+        <xsd:complexContent>
+            <xsd:extension base="GLogXMLTransactionType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="OTMTransactionInOut" abstract="true">
+        <xsd:complexContent>
+            <xsd:extension base="GLogXMLTransactionType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="TransactionHeaderType">
+        <xsd:annotation>
+            <xsd:documentation>
+                TransactionHeader contains the header level information for the Transaction (GLogXMLElement).
+                The TimeZoneGid is used as an overide for the times specified in that Transaction.
+                Typically, the times are assumed to be in the time zone of the corresponding location.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="SenderTransactionId" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Specifies the sender transaction id. Used as a reference for the Transaction (GLogXMLElement).
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ProcessInfo" type="ProcessInfoType" minOccurs="0"/>
+            <xsd:element name="TimeZoneGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="ObjectModInfo" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        (Outbound) Specifies the attributes for when the object was created of updated.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="InsertDt" type="GLogDateTimeType" minOccurs="0"/>
+                        <xsd:element name="UpdateDt" type="GLogDateTimeType" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+            <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ProcessInfoType">
+        <xsd:annotation>
+            <xsd:documentation>
+                ProcessInfo specifies information pertaining to the processing of GLogXMLElements.
+                Refer to the comments for the individual elements for more information.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ProcessGroup" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Name used in defining a group of transactions for processing. Each group can be processed
+                        sequentially or in parallel.
+                        If not specified, it defaults to the i_transmission_no assigned to the GLogXMLElement when it is
+                        persisted to the
+                        i_transaction table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ProcessSequence" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        The ProcessSequence defaults to the i_transaction_no assigned to the GLogXMLElement when it is
+                        persisted to the
+                        i_transaction table. You may override this default value if desired.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogDateTimeType">
+        <xsd:sequence>
+            <xsd:element name="GLogDate" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>GLogDates are of the format YYYYMMDDHHMMSS.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TZId" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Time Zone ID.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TZOffset" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Time Zone Offset.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLGidType">
+        <xsd:sequence>
+            <xsd:element name="Gid" type="GidType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GidType">
+        <xsd:annotation>
+            <xsd:documentation>Gid stands for global identifier.
+                Components of a gid include the DomainName and Xid.
+                The DomainName and Xid are combined to form a globally unique identifier.
+                Examples: Given a domain name of MYCOMPANY, and an xid of MYORDER,
+                the gid would be formed as MYCOMPANY.MYORDER.
+                Given a domain name of PUBLIC and an xid of PORT, the gid would be just PORT.
+                Thus, when referring to PUBLIC data, the domain name may be omitted.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="DomainName" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>The DomainName is combined with the Xid to form a globally unique identifier.
+                        DataType: A50
+                        Validation: Must be a DomainName that has been previously created.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Xid" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>The Xid is combined with a DomainName to form a globally unique identifier.
+                        DataType: A50
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="UOMContextType">
+        <xsd:sequence>
+            <xsd:element name="UOMType" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="UOM" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLLengthType">
+        <xsd:sequence>
+            <xsd:element name="Length" type="LengthType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="LengthType">
+        <xsd:annotation>
+            <xsd:documentation>Length contains sub-elements for length value and length unit of measure.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="LengthValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>LengthValue is a number specifying length in a particular unit of measure.
+                    </xsd:documentation>
+                    <xsd:documentation>DataType: N10.2</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="LengthUOMGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>LengthUOMGid is the length unit of measure global identifier.
+                        Validation: References UOM table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLWidthType">
+        <xsd:sequence>
+            <xsd:element name="Width" type="WidthType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WidthType">
+        <xsd:annotation>
+            <xsd:documentation>Width contains sub-elements for width unit of measture and value.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="WidthValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>WeigthValue is a number specifying width in a particular unit of measure.
+                        DataType: N10.2
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="WidthUOMGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>WidthUOMGid is the width unit of measure global identifier.
+                        Validation: References UOM table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLHeightType">
+        <xsd:sequence>
+            <xsd:element name="Height" type="HeightType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="HeightType">
+        <xsd:annotation>
+            <xsd:documentation>Height contains sub-elements for height unit of measure and value.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="HeightValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>HeightValue is a number specifying height in a particular unit of measure.
+                        DataType: N10.2
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="HeightUOMGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>HeightUOMGid is the height unit of measure global identifier.
+                        Validation: References UOM table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLLWHType">
+        <xsd:sequence>
+            <xsd:element name="LengthWidthHeight" type="LengthWidthHeightType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="LengthWidthHeightType">
+        <xsd:sequence>
+            <xsd:element name="Length" type="LengthType" minOccurs="0"/>
+            <xsd:element name="Width" type="WidthType" minOccurs="0"/>
+            <xsd:element name="Height" type="HeightType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLWeightVolumeType">
+        <xsd:sequence>
+            <xsd:element name="WeightVolume" type="WeightVolumeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WeightVolumeType">
+        <xsd:annotation>
+            <xsd:documentation>WeightVolume is a group of elements for specifying weight and volume.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="Weight" type="WeightType" minOccurs="0"/>
+            <xsd:element name="Volume" type="VolumeType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLWeightType">
+        <xsd:sequence>
+            <xsd:element name="Weight" type="WeightType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WeightType">
+        <xsd:annotation>
+            <xsd:documentation>Weight is a group of fields for specifying weight.
+                It includes sub-elements for weight value and unit of measure.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="WeightValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>WeightValue is a number specifying how much something weights in a particular
+                        unit of measure.
+                        DataType: N10.2
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="WeightUOMGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>WeightUOMGid is the weight unit of measture global identifier.
+                        It specifies the unit of measure for the WeightValue element.
+                        Validation: References UOM table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLVolumeType">
+        <xsd:sequence>
+            <xsd:element name="Volume" type="VolumeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="VolumeType">
+        <xsd:annotation>
+            <xsd:documentation>Volume is a group of fields for specifying volume.
+                It includes sub-elements for specifying unit of measure and a volume value.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="VolumeValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>VolumeValue is a number specifying how much space something fills in a particular
+                        unit of measure.
+                        DataType: N10.2
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="VolumeUOMGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>VolumeUOMGid is the volume unit of measure global identifier.
+                        Validation: References UOM table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLDurationType">
+        <xsd:sequence>
+            <xsd:element name="Duration" type="DurationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="DurationType">
+        <xsd:annotation>
+            <xsd:documentation>Duration is the amount of time spent doing an activity, such as a stop.
+                Includes a duration value and unit of measure.
+                Example: To specify 30 seconds you would specify DurationValue=30 and DurationUOMGid=S.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="DurationValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>DurationValue is an amount of time in a particular unit of measure.
+                        DataType: N10.2
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="DurationUOMGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>DurationUOMGid stands for duration unit of measure global identifier.
+                        Validation: References UOM table.
+                        Example: xid = S for seconds.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLDistanceType">
+        <xsd:sequence>
+            <xsd:element name="Distance" type="DistanceType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="DistanceType">
+        <xsd:annotation>
+            <xsd:documentation>Distance is a structure for describing distance.
+                It includes unit of measure and value.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="DistanceValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>DistanceValue is the value component of Distance element.
+                        DataType: N10.2
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="DistanceUOMGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>DistanceUOMGid is the distance unit of measure global identifier.
+                        Validation: References UOM table. Example: MI = miles.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLTemperatureType">
+        <xsd:sequence>
+            <xsd:element name="Temperature" type="TemperatureType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TemperatureType">
+        <xsd:annotation>
+            <xsd:documentation>Temperature is a structure for specifying temperature in a particular unit of measure.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="TemperatureValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>TemperatureValue specifies the value component of temperature.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TemperatureUOMGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>TemperatureUOMGid stands for temperature unit of measure global identifier.
+                        Its used to specify the unit of measure for an associated temperature value.
+                        Validation: References UOM table where type = TEMPERATURE.
+                        Example: C = celcius, K = Kelvin, F = Farenheit
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLDiameterType">
+        <xsd:sequence>
+            <xsd:element name="Diameter" type="DiameterType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="DiameterType">
+        <xsd:annotation>
+            <xsd:documentation>Specifies the diameter. It includes sub-elements for diameter value and unit of
+                measure.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="DiameterValue" type="xsd:string"/>
+            <xsd:element name="UOMGid" type="GLogXMLGidType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLFinancialAmountType">
+        <xsd:sequence>
+            <xsd:element name="FinancialAmount" type="FinancialAmountType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="FinancialAmountType">
+        <xsd:annotation>
+            <xsd:documentation>FinancialAmount includes a currency code and an amount of money in that currency.
+                Note: Functional currency will only be set for a domain if and when the exchange rate gid/date is set.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="GlobalCurrencyCode" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>GlobalCurrencyCode specifies the currency type for a FinancialAmount.
+                        Validation: Reference to CURRENCY table.
+                        DataType: A30
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="MonetaryAmount" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>MonetaryAmount is an amount of money in a given currency.
+                        DataType: N10.2
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="RateToBase" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Specifies the exchange rate used to convert the financial amount to the GC3 base
+                        amount. The element is supported on the outbound only.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="FuncCurrencyCode" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>A functional currency gid selected for the domain setting. References the
+                        CURRENCY table
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="FuncCurrencyAmount" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>The functional currency amount.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CurrencyCodeType">
+        <xsd:sequence>
+            <xsd:element name="GlobalCurrencyCode" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLFlexQuantityType">
+        <xsd:sequence>
+            <xsd:element name="FlexQuantity" type="FlexQuantityType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="FlexQuantityType">
+        <xsd:annotation>
+            <xsd:documentation>Used to indicate the quantity.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="UOM" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Unit of measure.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="UOMType" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Unit of Measure type.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Quantity" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Quantity value.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLLocProfileType">
+        <xsd:sequence>
+            <xsd:element name="LocationProfileGid" type="GLogXMLGidType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLLocRoleType">
+        <xsd:sequence>
+            <xsd:element name="LocationRoleGid" type="GLogXMLGidType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLRegionGidType">
+        <xsd:sequence>
+            <xsd:element name="RegionGid" type="GLogXMLGidType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ExchangeRateInfoType">
+        <xsd:annotation>
+            <xsd:documentation>Specifies the set of exchange rate information to use for currency conversions. This
+                element is supported on the outbound only, except in the
+                CommercialInvoice.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ExchangeRateGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="ExchangeRateDt" type="GLogDateTimeType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CommercialTermsType">
+        <xsd:annotation>
+            <xsd:documentation>CommercialTerms specifies how the freight charges for the TransOrder will be paid.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="PaymentMethodCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="IncoTermGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="TermLocationText" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PricePerUnitType">
+        <xsd:annotation>
+            <xsd:documentation>Price per unit.
+                Note: The UOM is only valid when the PricePerUnit is in the ReleaseLine element.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="FinancialAmount" type="FinancialAmountType"/>
+            <xsd:element name="UOM" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CommercialInvoiceTermsType">
+        <xsd:sequence>
+            <xsd:element name="PaymentMethodCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PasswordType">
+        <xsd:annotation>
+            <xsd:documentation>GLog Password.
+                DataType: A128
+                Must contain plain text value. Optional 'Type' attribute, if present, must be "#PasswordText".
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="Type" type="xsd:anyURI" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLCostPerUOM">
+        <xsd:sequence>
+            <xsd:element name="CostPerWeightVolumeUOM" type="CostPerWeightVolumeUOMType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CostPerWeightVolumeUOMType">
+        <xsd:annotation>
+            <xsd:documentation>Indicates the cost per result i.e 100 USD PER KILO</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="FinancialAmount" type="FinancialAmountType" minOccurs="0"/>
+            <xsd:element name="WeightUOMGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="VolumeUOMGid" type="GLogXMLGidType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLShipUnitSpecRefType">
+        <xsd:sequence>
+            <xsd:element name="ShipUnitSpecRef" type="ShipUnitSpecRefType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ShipUnitSpecRefType">
+        <xsd:annotation>
+            <xsd:documentation>ShipUnitSpecRef may be used to reference an existing ship unit spec, or define a new
+                one.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice>
+            <xsd:element name="ShipUnitSpecGid" type="GLogXMLGidType"/>
+            <xsd:element name="ShipUnitSpec" type="ShipUnitSpecType"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:complexType name="ShipUnitSpecType">
+        <xsd:annotation>
+            <xsd:documentation>ShipUnitSpec is an element containing information about ship unit.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ShipUnitSpecGid" type="GLogXMLGidType"/>
+            <xsd:element name="ShipUnitSpecName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="UnitType" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="IsInOnMax" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="TareWeight" type="GLogXMLWeightType" minOccurs="0"/>
+            <xsd:element name="MaxWeight" type="GLogXMLWeightType" minOccurs="0"/>
+            <xsd:element name="Volume" type="VolumeType" minOccurs="0"/>
+            <xsd:element name="MaxVolume" type="GLogXMLVolumeType" minOccurs="0"/>
+            <xsd:element name="Length" type="LengthType" minOccurs="0"/>
+            <xsd:element name="Width" type="WidthType" minOccurs="0"/>
+            <xsd:element name="Height" type="HeightType" minOccurs="0"/>
+            <xsd:element name="Diameter" type="DiameterType" minOccurs="0"/>
+            <xsd:element name="CoreDiameter" type="GLogXMLDiameterType" minOccurs="0"/>
+            <xsd:element name="IsCylindrical" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="PackagingFormCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="IsNestable" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="MaxNestingCount" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="NestingVolume" type="GLogXMLVolumeType" minOccurs="0"/>
+            <xsd:element name="MaxOnLength" type="GLogXMLLengthType" minOccurs="0"/>
+            <xsd:element name="MaxOnWidth" type="GLogXMLWidthType" minOccurs="0"/>
+            <xsd:element name="MaxOnHeight" type="GLogXMLHeightType" minOccurs="0"/>
+            <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="THUCapacityPackageRefUnit" type="THUCapacityPackageRefUnitType" minOccurs="0"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="Priority" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        (Both) Specifies the Priority of the Ship Unit Spec. Valid values are 1-999. The specified
+                        priority is used in conopt while packing the equipment.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ShipUnitSpecAcc" type="ShipUnitSpecAccType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="THUCapacityPackageRefUnitType">
+        <xsd:annotation>
+            <xsd:documentation>Used to specify Packaging Reference Unit capacity.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="PackageRefUnitGid" type="GLogXMLGidType"/>
+            <xsd:element name="NumReferenceUnits" type="xsd:string"/>
+            <xsd:element name="TotalNumReferenceUnits" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="THUCapacityEquipRefUnitType">
+        <xsd:annotation>
+            <xsd:documentation>Used to specify Ship Unit reference unit capacity.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="EquipmentRefUnitGid" type="GLogXMLGidType"/>
+            <xsd:element name="NumReferenceUnits" type="xsd:string"/>
+            <xsd:element name="TotalNumReferenceUnits" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PackageDimensionsType">
+        <xsd:annotation>
+            <xsd:documentation>Specifies the package dimensions on the order release line that are used to override the
+                corresponding fields on the packaged item.
+                For example, if the packaged item has dimensions of 3x3x3, but the height could vary, users can set the
+                height for the order line.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="Length" type="LengthType" minOccurs="0"/>
+            <xsd:element name="Width" type="WidthType" minOccurs="0"/>
+            <xsd:element name="Height" type="HeightType" minOccurs="0"/>
+            <xsd:element name="Diameter" type="DiameterType" minOccurs="0"/>
+            <xsd:element name="CoreDiameter" type="GLogXMLDiameterType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="EquipmentSealType">
+        <xsd:annotation>
+            <xsd:documentation>EquipmentSeal consists of a SealNumber.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="SealNumber" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="TransactionCodeType">
+        <xsd:annotation>
+            <xsd:documentation>TransactionCode specifies how the xml transaction should be processed.
+                Specify I to add new data. Specify U to update existing data. Specify IU to update if present, insert
+                otherwise.
+                Specify D to delete.
+
+                Specify RC to replace children. RC deletes all the child data corresponding to the top level parent,
+                updates the top
+                level parent data, and inserts the new incoming child data. The child elements to be replaced can be
+                specified by the
+                ReplaceChildren element. If the ReplaceChildren element is not specified in the object, then all of the
+                child elements
+                are replaced - this is somewhat similar to performing a Delete transaction followed by an Insert/Update
+                of the object.
+                The processing of new elements are handled using the IU transaction code, such that if the object does
+                not exist within
+                GC3 it will be added.
+
+                Specify RP to replace the primary object. RP will null out all values on the parent object for fields
+                that are not passed
+                in the xml, and will perform Insert/Update on all child data.
+
+                Specify R to replace the object. This is a combination of the RC and RP transaction codes which results
+                in nulling out data
+                in the primary object when fields are not passed in, and also deleting child data when not in the xml.
+
+                Specify II for insert ignore. II will attempt to do an insert if the object does not exist, and will not
+                do an update
+                if the object exists. It suppresses the duplicate key error so that if the object exists, no error is
+                generated.
+                This transaction is only supported in the Location and ItemMaster interfaces.
+
+                Specify DR for delete reference. The DR transaction code is only applicable in the Shipment.ShipUnit.
+                When used,
+                it removes the Shipment.ShipUnit from the Shipment. It does not delete the ShipUnit from the database,
+                since the
+                object may be used in other Shipments. This is an alternative to using the
+                ShipmentHeader.TransactionCode = RC and
+                having the ManagedChild = ShipmentStopDetail to remove the ShipUnits from the Shipment.
+
+                DataType: A2
+                Validation: in (I,U,IU,UI,D,RC,RP,R,II,DR,NP)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="I"/>
+            <xsd:enumeration value="U"/>
+            <xsd:enumeration value="IU"/>
+            <xsd:enumeration value="UI"/>
+            <xsd:enumeration value="D"/>
+            <xsd:enumeration value="RC"/>
+            <xsd:enumeration value="RP"/>
+            <xsd:enumeration value="R"/>
+            <xsd:enumeration value="II"/>
+            <xsd:enumeration value="DR"/>
+            <xsd:enumeration value="NP"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="SendReasonType">
+        <xsd:annotation>
+            <xsd:documentation>SendReason is used to indicate the reason the notification/data/information is being sent
+                to the external system.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="ProcessControlRequestID" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>A unique Id used to identify the Transaction for Notification Guaranteed
+                        Delivery.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="SendReasonGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>SendReasonGid provides a code indicating the reason the
+                        notification/data/information is being sent to the external system.
+                        SendReasonGid references the SEND_REASON_CODE table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ObjectType" type="xsd:string"/>
+            <xsd:element name="EventReason" type="EventReasonType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="RefnumType">
+        <xsd:annotation>
+            <xsd:documentation>Refnum is a reference number for an object. It consists of a qualifier and a value.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="RefnumQualifierGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>RefnumQualifierGid is the qualifier portion of Refnum. Validation: References
+                        appropriate {object}_REFNUM_QUAL table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="RefnumValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Value portion of Refnum.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="RemarkType">
+        <xsd:annotation>
+            <xsd:documentation>Remark allows one to specify structured or unstructured remarks.
+                Structured remarks may have a RemarkSequence,RemarkQualifierGid, and RemarkText.
+                Unstructured remarks may have just RemarkText.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+            <xsd:element name="RemarkSequence" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="RemarkQualifierGid" type="GLogXMLGidType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>RemarkQualifierGid is used to specify the type of remark.
+                        Validation: References REMARK_QUAL table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="RemarkLevel" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="RemarkText" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ReplaceChildrenType">
+        <xsd:annotation>
+            <xsd:documentation>Contains a list of child elements to be replaced when using the RC TransactionCode. If
+                this element is not
+                specified within the object when the TransactionCode is RC, then all of the child objects will be
+                replaced.
+                Refer to TransactionCode element.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ManagedChild" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Specifies the child element that is managed by this parent object. This is used
+                        to indicate the
+                        element to be replaced using the RC transaction code. For a complete list of all elements that
+                        are supported, refer to the Managed Children Map UI which can be found at the following menu:
+                        Business Process Automation -&gt; Power Data -&gt; Integration -&gt; Managed Children Map.
+
+                        Within the TransOrder interface, some of the values that are supported:
+                        - SpecialService
+                        - Remark or TransOrderRemark
+                        - Refnum or TransOrderRefnum
+                        - InvolvedParty
+                        - AccessorialCodeGid
+                        - TransOrderLine
+                        - TransOrderLineRemark
+                        - TransOrderLineRefnum
+                        - ItemAttributes
+                        - ShipUnit
+                        - ShipUnitContent
+                        - ShipUnitSeal
+                        - ShipUnitRemark
+                        - ShipUnitRefnum
+                        - ShipUnitContentRefnum
+                        - ShipUnitContentRemark
+
+                        Within the Release interface, some of the values that are supported:
+                        - ReleaseLine
+                        - ReleaseLineItemAttributes
+                        - ShipUnit
+                        - Remark or ReleaseRemark
+                        - ShipUnitContent
+                        - InvolvedParty
+                        - ReleaseLineRefnum
+                        - ReleaseLineRemark
+                        - ShipUnitContentRefnum
+                        - ShipUnitContentRemark
+                        - ShipUnitRefnum
+                        - ShipUnitRemark
+                        - ShipUnitSeal
+
+
+                        Within the Shipment interface, some of the values that are supported:
+                        - Refnum or ShipmentRefnum
+                        - InvolvedParty
+                        - Remark or ShipmentRemark
+                        - ShipmentCost
+                        - SpecialService
+                        - AccessorialCodeGid
+                        - ShipmentStop
+                        - ShipmentStopDetail
+                        Note: To remove the Ship Unit(s) from a Shipment, the references listed in the
+                        ShipmentStopDetail must be removed.
+                        This can be done using a ManagedChild of
+                        ShipmentStop or ShipmentStopDetail. When the reference(s) to the
+                        Ship Unit(s) are removed, the Integration logic will remove the ShipUnit(s) from the
+                        SEquipment on the Shipment.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="EventReasonType">
+        <xsd:sequence>
+            <xsd:element name="QuickCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="ResponsiblePartyGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="StatusGroup" type="StatusGroupType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Specifies the Status Group for the Event Reason.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ReasonGroup" type="ReasonGroupType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Specifies the Reason Group for the Event Reason.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="StatusCode" type="StatusCodeType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Specifies the Status Code for the Event Reason.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ReasonCode" type="ReasonCodeType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Specifies the Reason Code for the Event Reason.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ReasonComment" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ReasonGroupType">
+        <xsd:sequence>
+            <xsd:element name="ReasonGroupGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>The ReasonGroupGid indicates the status group.
+                        Validation: References BS_REASON_GROUP table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ReasonGroupDescription" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StatusGroupType">
+        <xsd:sequence>
+            <xsd:element name="StatusGroupGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>The StatusGroupGid indicates the status group.
+                        Validation: References BS_STATUS_GROUP table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="StatusGroupDescription" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Status Group Description.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StatusCodeType">
+        <xsd:sequence>
+            <xsd:element name="StatusCodeGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>StatusCodeGid is a standard EDI status code.
+                        Validation: References BS_STATUS_CODE table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="StatusCodeDescription" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Status Code Description.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReasonCodeType">
+        <xsd:sequence>
+            <xsd:element name="ReasonCodeGid" type="GLogXMLGidType"/>
+            <xsd:element name="ReasonCodeDescription" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="EventGroupType">
+        <xsd:sequence>
+            <xsd:element name="EventGroupGid" type="GLogXMLGidType"/>
+            <xsd:element name="EventGroupDescription" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="StatusType">
+        <xsd:annotation>
+            <xsd:documentation>Indicates the status type and value for an object (eg. Shipment, TransOrder).
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="StatusTypeGid" type="GLogXMLGidType"/>
+            <xsd:element name="StatusValueGid" type="GLogXMLGidType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="IntSavedQueryType">
+        <xsd:annotation>
+            <xsd:documentation>Integration Saved Queries provide a means to query for Gid(s) using a combination of SQL
+                and XPath
+                expressions referencing information in the XML. A basic example of an Integration Saved Query that
+                uses the ShipUnit Content Tracking Tag number in the XML to lookup the Gid in the database would
+                resemble the following:
+
+                select distinct s_ship_unit_gid from s_ship_unit_line where tracking_tag1 =
+                '{ShipUnit/ShipUnitContent[1]/ItemQuantity/ItemTag1}'
+
+                The Xpath expression in the braces, which referes to the ItemQuantity/ItemTag element in the first
+                ShipUnitContent element of the ShipUnit, will be replaced with the value in the XML document before
+                the query is initiated.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="IntSavedQueryGid" type="GLogXMLGidType"/>
+            <xsd:element name="IntSavedQueryArg" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Integration Saved Query Arguments provide a means to pass in arbitrary arguments
+                        and values for use in the Integration saved queries.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ArgName" type="xsd:string"/>
+                        <xsd:element name="ArgValue" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="IsMultiMatch" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Y, N. Default value = N. Indicates if multiple Gids returned from the Integration
+                        Saved Query are allowed.
+                        If Y, all records returned from the query will be updated. If N, an error will occur if multiple
+                        records are returned.
+
+                        Note: The IsMultiMatch flag is generally not supported when only one Gid is expected to be
+                        returned for the
+                        Integration Saved Query, such as when the IntSavedQuery element is in the ParentInvoice or
+                        SEquipmentGidQuery
+                        elements. Support for the flag has been enabled in the primary interface elements, such as the
+                        TransOrder,
+                        Location, ActualShipment, ShipmentStatus, etc.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="MaximumMatch" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Specifies the maximum number of records that should be matched for the query.
+                        This element only applies when the IsMultiMatch element is set to 'Y'.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="NoDataFoundAction" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Specifies the action to take when the Integration Saved Query returns no
+                        data/gid. Possible values are:
+                        - Insert - process the transaction as an insert
+                        - NP - not persisted and no error is thrown
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="IntCommandType">
+        <xsd:annotation>
+            <xsd:documentation>Integration Command.
+                When the IntCommandName = "PropagateShipUnitChanges", IntArg would support ArgName field "Type" and
+                ArgValue with the following values:
+                None, Upstream, Downstream, UpAndDownstream
+                For backward compatibility, the default value for Type will be Downstream.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="IntCommandName" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Integration Command Name. Possible values are:
+                        - DetermineShipUnitDropoff - specifies that the drop off stop should be determined by GC3 for a
+                        ShipUnit being added
+                        to a Shipment where the pickup stop has been specified within a ShipmentStop. The destination
+                        location will be based on the Order Release that the new ShipUnit refers.
+                        - PropagateShipUnitChanges - specifies that any Ship Unit(s) that are added or removed from the
+                        Shipment should be
+                        propagated to downstream shipments. The pick up stop must be specified within the ShipmentStop.
+                        If the drop off stop is not specified within the Shipment, GC3 will determine as indicated by
+                        by the DetermineShipUnitDropoff option above.
+                        - RemoveAllShipUnits - specifies that all the ShipUnits assigned to the Shipment should be
+                        removed from the Shipment.
+                        The assignment of a ShipUnit to the Shipment is denoted by the reference to the ShipUnitGid in
+                        the
+                        ShipmentStop.ShipmentStopDetail.ShipUnitGid element. As a result, all of the ShipmentStopDetail
+                        records will be removed, regardless of the ShipmentStopDetail.IsPermanent value.
+                        - RemoveNonPermanentShipUnits - specifies that all of the non-permanent ShipUnits assigned to
+                        the Shipment should be
+                        removed from the Shipment. The assignment of a ShipUnit to the Shipment is denoted by the
+                        reference to the ShipUnitGid in the ShipmentStop.ShipmentStopDetail.ShipUnitGid element.
+                        As a result, all of the ShipmentStopDetail records with the ShipmentStopDetail.IsPermanent
+                        flag set to N will be removed.
+                        - DeleteOrphanedShipUnits - specifies that the ShipUnits that have been removed from the
+                        Shipment via the DR transaction
+                        code should be deleted if no other Shipments refer to them. Without this command, those
+                        ShipUnits are left in the system and can later be added to other Shipments.
+                        - MapTempReferences - specifies that the references from the Shipment to the Order Release in
+                        the Shipment.ShipUnit and
+                        Shipment.ShipUnit.ShipUnitContent should be checked to see if they exist. If they do not exist,
+                        the values should be stored in temporary fields that do not foreign key to the order release.
+                        This will eliminate the foreign key errors if the Shipment is received for orders that have
+                        not been processed.
+
+                        - RemoveShipmentRefForRC - For the Release interface. When specified and the TransactionCode =
+                        RC, the logic will determine
+                        the order release lines and order release ship units that are to be deleted and will remove
+                        (null-out)
+                        the foreign keys on the s_ship_unit and s_ship_unit_line tables. This will prevent a foreign key
+                        error
+                        when the release line or ship unit is deleted. This is used for the scenario where the update to
+                        the
+                        order release should not be propagated to the shipment via OTM planning, and the client will be
+                        sending
+                        an update to the shipment via the ActualShipment interface.
+                        
+                        When the IntCommandName = "RemoveOrderFromParallelShipments", IntArg would support ArgName field "Value" and
+                        ArgValue would be False, TrueRemove or TrueRetain with default being False. This is used when adding an order to a shipment
+                        using shipment actual. When it is trueRemove or trueRetain, order will be removed from parallel shipments of the actual shipment. 
+                        "TrueRemove" will also remove order from up and/or downstream shipments according to the propagation flag.
+                        "TrueRetain" will not remove order on up or downstream shipments.  
+                        When the value is "True", it will be interpreted as "TrueRetain" to be backwards compatible with 24c.                     
+                        Note that scenarios with reuse SEquipment is not supported.
+                        
+                        When the IntCommandName = "SyncWithOrder", IntArg would support ArgName field "Value" and ArgValue would be TrueRemove or TrueRetain
+                        with default being TrueRemove.
+
+                        The IntCommand will be used to determine up and downstream propagation when an order release or part of an order release is removed from a shipment
+                        and an unplanned Order Movement needs to be created to sync the shipment's ship unit count with order's ship unit count.
+
+                        TrueRemove will delete the up and downstream shipments.
+                        TrueRetain will keep the up and downstream shipments.
+                        When undefined, it will behave as TrueRemove.
+
+                        This intCommand is applicable only when planning parameter SMD SYNC WITH ORDER is true. If planning parameter SMD SYNC WITH ORDER is false, both order
+                        movement and shipment will be deleted if no shipment ship units are left. 
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IntArg" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Integration argument.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ArgName" type="xsd:string"/>
+                        <xsd:element name="ArgValue" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="FinalCommercialTermsType">
+        <xsd:annotation>
+            <xsd:documentation>FinalCommercialTerms specifies the Final Terms of Sale the Commercial Invoice is based
+                on.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="IncoTermGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="TermLocationText" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TagInfoType">
+        <xsd:annotation>
+            <xsd:documentation>The TagInfo element is used to specify tagging information for tracing purposes. When an
+                TransOrder is created with the
+                tag information, the fields will be copied when the release is created. Similarly if the fields are on
+                the Release,
+                they will be copied to the Shipment when it is created.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ItemTag1" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ItemTag2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ItemTag3" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ItemTag4" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GLogXMLStationType">
+        <xsd:sequence>
+            <xsd:element name="Station" type="StationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="StationType">
+        <xsd:annotation>
+            <xsd:documentation>Station is an element of OriginStation or DestinationStation used to
+                specify the geographic location of a rail station on a rail specific invoice.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="SPLCCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="FSACCode" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>FSACCode is an element of Station which specifies the Freight Station
+                        Accounting Code of the rail carrier. DataType:A5.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="City" type="xsd:string"/>
+            <xsd:element name="ProvinceCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CountryCode3Gid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="PostalCode" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SEquipmentGidQueryType">
+        <xsd:annotation>
+            <xsd:documentation>Used to query for SEquipmentGid to assign the Shipment.ShipUnit.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice>
+            <xsd:element name="SEquipGidMatchOption" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Specifies the logic to use for selecting the SEquipment on the Shipment.
+                        Currently support the following values:
+                        Any - Select any of the original SEquipment on the Shipment
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IntSavedQuery" type="IntSavedQueryType"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:complexType name="StopRefnumType">
+        <xsd:annotation>
+            <xsd:documentation>StopRefnum is a qualifier/value pair used to refer to a particular stop.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="StopRefnumQualifierGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>StopRefnumQualifierGid is a component of a StopRefnum used to qualify the
+                        associated StopRefnumValue. Validation:References INVOICE_STOP_REFNUM_QUAL table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="StopRefnumValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>StopRefnumValue is the value portion of a StopRefnum. DataType:A30.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ServiceProviderAliasType">
+        <xsd:annotation>
+            <xsd:documentation>ServiceProviderAlias is an alternate identifier for a service provider.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ServiceProviderAliasQualifierGid" type="GLogXMLGidType">
+                <xsd:annotation>
+                    <xsd:documentation>ServiceProviderAliasQualifierGid indicates the type of value in the
+                        ServiceProviderAliasValue element.
+                        Validation: References SERVPROV_ALIAS_QUAL table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ServiceProviderAliasValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>ServiceProviderAliasValue is an alternate identifier for a service provider.
+                        DataType: A101.
+                        Validation: References SERVPROV table, but only if when the qualifier is 'GLOG'.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TimeWindowType">
+        <xsd:annotation>
+            <xsd:documentation>TimeWindow is a group of fields for specifying early/late pickup, early/late delivery,
+                and pickup/delivery appointments.
+                The PickupIsAppt and DeliveryIsAppt elements are only applicable when the TimeWindow is in the
+                TransOrderLine,
+                TransOrder.ShipUnitDetail.ShipUnit, and Release elements.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="EarlyPickupDt" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="LatePickupDt" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="EarlyDeliveryDt" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="LateDeliveryDt" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="PickupIsAppt" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="DeliveryIsAppt" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ItemQuantityType">
+        <xsd:annotation>
+            <xsd:documentation>ItemQuantity is a grouping of item related fields.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ItemTag1" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ItemTag2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ItemTag3" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ItemTag4" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="IsShippable" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="IsSplitAllowed" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="WeightVolume" type="WeightVolumeType" minOccurs="0"/>
+            <xsd:element name="PackagedItemCount" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="DeclaredValue" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="UserDefIconInfoType">
+        <xsd:annotation>
+            <xsd:documentation>Specifies the user defined icon info. Validation: References ICON table.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="UserDef1IconGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="UserDef2IconGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="UserDef3IconGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="UserDef4IconGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="UserDef5IconGid" type="GLogXMLGidType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SpecialServiceType">
+        <xsd:choice>
+            <xsd:element name="SpclService" type="SpclServiceType"/>
+            <xsd:element name="SpecialServiceGid" type="GLogXMLGidType"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:complexType name="SpclServiceType">
+        <xsd:annotation>
+            <xsd:documentation>Indicates the special services required to make a delivery. Used to deprecate
+                SpecialService element
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0"/>
+            <xsd:element name="SpecialServiceGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+            <xsd:element name="SpecialServiceDesc" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="SpclServiceGroupGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="ModeProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="IsArbitrary" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="IsForDriverChk" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Designates this special service is to be checked during driver assignment.Default
+                        : N
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IsForEquipChk" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Designates this special service is to be checked during equipment assignment.
+                        Default : N
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IsForPUChk" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Designates this special service is to be checked during power unit assignment.
+                        Default : N
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IsForRating" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Designates this special service is to be used for rating. Default : N
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="PULevel" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Designates this special service is to apply at the power unit or power unit type
+                        level.Validation : POWER_UNIT,POWER_UNIT_TYPE
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="DriverLevel" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Designates this special service is to apply at the driver or driver type
+                        level.Validation : DRIVER,DRIVER_TYPE
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="EquipLevel" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Designates this special service is to apply at the equipment or equipment type
+                        level.Validation : EQUIPMENT,EQUIPMENT_TYPE
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ForSourceDest" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Define if this special service is required for source and/or destination location
+                        of this order
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ActivityTypeGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="IsTimeBased" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Specify if planning needs to get/calculate the time duration for this special
+                        service. Default : N
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IsIgnorable" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Specify if this special service will be ignored. Default : N</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="PayableIndicatorGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="BillableIndicatorGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="DriverTimeType" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Indicates the type of time associated with this special service or does not count
+                        as driver time (when the value is null).Validation: DRIVER_WORK,
+                        DRIVER_DRIVE,
+                        DRIVER_REST, DRIVER_WAIT
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="FlexFieldStringType">
+        <xsd:annotation>
+            <xsd:documentation>Common type for tables which contain Flex Field columns for VARCHAR2 data type
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="Attribute1" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute3" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute4" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute5" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute6" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute7" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute8" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute9" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute10" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute11" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute12" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute13" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute14" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute15" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute16" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute17" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute18" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute19" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Attribute20" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="FlexFieldNumberType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Common type for tables which contain Flex Field columns for NUMBER data type.
+                Note: Some tables may not have all the available columns. These types just
+                define the maximum number of allowed elements.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="AttributeNumber1" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber3" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber4" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber5" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber6" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber7" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber8" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber9" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber10" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber11" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber12" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber13" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber14" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber15" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber16" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber17" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber18" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber19" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="AttributeNumber20" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="FlexFieldDateType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Common type for tables which contain Flex Field columns for DATE data type.
+                Note: Some tables may not have all the available columns. These types just
+                define the maximum number of allowed elements.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="AttributeDate1" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate2" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate3" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate4" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate5" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate6" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate7" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate8" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate9" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate10" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate11" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate12" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate13" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate14" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate15" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate16" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate17" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate18" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate19" type="GLogDateTimeType" minOccurs="0"/>
+            <xsd:element name="AttributeDate20" type="GLogDateTimeType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="FlexFieldCurrencyType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Common type for tables which contain Flex Field columns for CURRENCY data type
+                Note: Some tables may not have all the available columns. These types just
+                define the maximum number of allowed elements.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="AttributeCurrency1" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+            <xsd:element name="AttributeCurrency2" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+            <xsd:element name="AttributeCurrency3" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+            <xsd:element name="AttributeCurrency4" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+            <xsd:element name="AttributeCurrency5" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+            <xsd:element name="AttributeCurrency6" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+            <xsd:element name="AttributeCurrency7" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+            <xsd:element name="AttributeCurrency8" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+            <xsd:element name="AttributeCurrency9" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+            <xsd:element name="AttributeCurrency10" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="IntegrationLogMessageType">
+        <xsd:annotation>
+            <xsd:documentation>An IntegrationLogMessage describes an error found in a transmission, transaction or any
+                other type (like Message).
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ILogSeqNo" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>ILogSeqNo is a unique identifier for GLog Integration log message.
+                        Validation: References I_LOG table.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ITransactionNo" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ObjectGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="WrittenBy" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>WrittenBy specifies the GLog integration application that wrote the log message
+                        to the I_LOG table.
+                        DataType: A30
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IMessageClass" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>IMessageClass specifies if the log message is an (E)rror, and (I)nformational
+                        message, or a (W)arning message.
+                        DataType: A1
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IMessageCode" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>IMessageCode specifies the short name of the message.
+                        DataType: A30 Example: PK_NOT_FOUND_ERROR
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IMessageText" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>IMessageText specifies the text of the log message.
+                        DataType: LONG (Text)
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ProcessingErrorCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="DateTimeStamp" type="GLogDateTimeType"/>
+            <xsd:element name="DomainName" type="xsd:string"/>
+            <xsd:element name="IntegrationLogDetail" type="IntegrationLogDetailType" minOccurs="0"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="IntegrationLogDetailType">
+        <xsd:annotation>
+            <xsd:documentation>IntegrationLogDetail is a structure containing the details of the log message - a
+                qualifier/value pair
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ILogDetailQualGid" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>ILogDetailQualGid is reserved for future use.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ILogDetailValue" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>ILogDetailValue is reserved for future use.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TextType">
+        <xsd:annotation>
+            <xsd:documentation>Used to specify the use of a text template.
+                On inbound, either TextTemplateGid or TextTemplate can be specified.
+                On outbound, only TextTemplateGid is provided.
+                TextPatternOverride is inbound only.
+                TextInstance is outbound only.
+                TextPatternOverride and TextItem are currently applicable only to Documents.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:choice minOccurs="0">
+                <xsd:element name="TextTemplateGid" type="GLogXMLGidType" minOccurs="0"/>
+                <xsd:element name="TextTemplate" type="TextTemplateType" minOccurs="0"/>
+            </xsd:choice>
+            <xsd:element name="TextDocumentDefinition" type="TextDocumentDefinitionType" minOccurs="0"/>
+            <xsd:element name="TextPatternOverride" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>The text pattern for a document, which overrides the text pattern of the
+                        containing text template.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TextItem" type="TextItemType" minOccurs="0"/>
+            <xsd:element name="TextInstance" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Represents the result of applying the business object to the text pattern.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TextTemplateType">
+        <xsd:annotation>
+            <xsd:documentation>Used to specify a pre-formatted selection of text.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="TextTemplateGid" type="GLogXMLGidType"/>
+            <xsd:element name="TextTemplatePattern" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>The text pattern for a text template, possibly containing embedded parameters.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="DataQueryTypeGid" type="GLogXMLGidType" minOccurs="0"/>
+            <xsd:element name="TextTemplateIsModifiable" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>If Y, the text template can be overridden by a document user.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TextTemplateDocumentDef" type="TextTemplateDocumentDefType" minOccurs="0"
+                         maxOccurs="unbounded"/>
+            <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TextItemType">
+        <xsd:annotation>
+            <xsd:documentation>If the text was retrieved from an item-level template, this represents item context
+                information needed by downstream systems.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="TextItemContextType" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Defines the type of item specifying the template (e.g. order release line).
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TextItemContextGid" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Based on the context type, a GID which identifies the line item (e.g. OR_LINE
+                        gid).
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TextItemContextSeq" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Based on the context type, a sequence # which identifies the line item.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TextTemplateDocumentDefType">
+        <xsd:annotation>
+            <xsd:documentation>Represents the use of a text template for a particular document type.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="DocumentDefinitionGid" type="GLogXMLGidType"/>
+            <xsd:element name="TextTemplateIsMandatory" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>If Y, the text template must be included with the document type. Otherwise,
+                        it is only included if on the transaction. Defaults to N.In 6.3, this element has been
+                        deprecated. In may be removed in future releases.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TextDocumentDefinitionType">
+        <xsd:annotation>
+            <xsd:documentation>Specifies which documents should include a text template..</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="DocumentDefinitionGid" type="GLogXMLGidType"/>
+            <xsd:element name="TextPatternOverride" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ProtectiveSvcType">
+        <xsd:annotation>
+            <xsd:documentation>ProtectiveSvc is an element of RailDetail used to specify protective service
+                and ventilation instructions on a rail specific invoice.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ProtectiveSvcCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ProtectiveSvcRuleCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Temperature" type="TemperatureType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="EquipMarksType">
+        <xsd:annotation>
+            <xsd:documentation>Specifies the list of equipment marks.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="EquipMarkGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="MarksType">
+        <xsd:annotation>
+            <xsd:documentation>Marks is a repeating structure containing MarksNumberQualifierGid and MarksNumber
+                elements
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="MarksNumberQualifier" type="xsd:string"/>
+            <xsd:element name="MarksNumber" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SSContactType">
+        <xsd:annotation>
+            <xsd:documentation>SSContact is a structure containing various contact elements, such as Contact Function
+                Code, Contact Name, Remarks.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="SSContactFunctionCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="SSContactName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PortType">
+        <xsd:annotation>
+            <xsd:documentation>port associated with an ocean stop.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="PortName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="PortLocationFunctionCode" type="xsd:string"/>
+            <xsd:element name="PortIdentifier" type="PortIdentifierType" minOccurs="0"/>
+            <xsd:element name="ProvinceCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CountryCode3Gid" type="GLogXMLGidType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PortIdentifierType">
+        <xsd:annotation>
+            <xsd:documentation>Used to identify the location of a port.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="PortIdentifierValue" type="xsd:string"/>
+            <xsd:element name="PortIdentifierQualifier" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ShipUnitCriteriaType">
+        <xsd:annotation>
+            <xsd:documentation>Refers to either a ShipUnit or a ObShipUnit for the Trans Order Status events.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:element name="IntSavedQuery" type="IntSavedQueryType"/>
+                <xsd:element name="ShipUnitGid" type="GLogXMLGidType"/>
+            </xsd:choice>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="QueryResultInfoType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Specifies the results of the query when the inbound Transmission is RemoteQuery.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="GLogXMLElement" type="GLogXMLElementType" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ShipUnitSpecAccType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Accessorials required at the ship unit specification level.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ShipUnitSpecGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Contains the unique identifier for the ship unit specification.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="AccessorialCodeGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Contains the unique identifier for the accessorial code.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+</xsd:schema>

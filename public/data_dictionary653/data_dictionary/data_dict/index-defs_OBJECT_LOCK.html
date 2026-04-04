@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - OBJECT_LOCK</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - OBJECT_LOCK</H1>
+Holds cross-machine object locks. These include business object locks along with other coordination. Note that these locks span multiple transactions and multiple threads of execution.<P>
+<DL>
+<DT><A NAME="LOCK_TYPE">LOCK_TYPE</A><DD>Type of lock. May be a DATA_QUERY_TYPE or some other coordination type.
+<DT><A NAME="OBJECT_ID">OBJECT_ID</A><DD>Lock ID. May be a business object GID or some other coordination key.
+<DT><A NAME="OWNER_MACHINE_GID">OWNER_MACHINE_GID</A><DD>Machine currently owning the lock
+<DT><A NAME="OWNED_SINCE">OWNED_SINCE</A><DD>Time the lock was grabbed
+<DT><A NAME="ACTIVITY">ACTIVITY</A><DD>Activity currently using the lock
+<DT><A NAME="LOG_PROCESS_ID">LOG_PROCESS_ID</A><DD>A link to the System log entries for the lock owner
+</DL>
+</BODY>
+</HTML>

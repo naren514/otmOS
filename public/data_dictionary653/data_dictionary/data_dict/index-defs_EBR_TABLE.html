@@ -1,0 +1,14 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - EBR_TABLE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - EBR_TABLE</H1>
+This table associates table name used by application to underlying base table name. <P>
+<DL>
+<DT><A NAME="TABLE_NAME">TABLE_NAME</A><DD>This column represents table name used by application.  This table is actually Editioning view on the database.  Application always uses this name to interact with database.
+<DT><A NAME="BASE_TABLE_NAME">BASE_TABLE_NAME</A><DD>This column represents base table name associated with Editioning view.  Application should not interact with base table name.
+<DT><A NAME="IS_MODIFIED">IS_MODIFIED</A><DD>This flag represents that underlying base table has been modified and it requires update of the corresponding Editioning view.  Migration keeps track of modified tables using this flag.  This flag should be reset for all tables to N before starting of the migration or installation of the OTM, GTM, and FTI schemas.
+</DL>
+</BODY>
+</HTML>

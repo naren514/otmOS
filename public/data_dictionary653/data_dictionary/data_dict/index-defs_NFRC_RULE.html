@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - NFRC_RULE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - NFRC_RULE</H1>
+<DL>
+<DT><A NAME="NFRC_RULE_GID">NFRC_RULE_GID</A><DD>Unique identifier for NFRC_RULE
+<DT><A NAME="CHARGE_RULE_TYPE">CHARGE_RULE_TYPE</A><DD>Determines which sets of fields are displayed in the GUI and checked during charge rule application.  J = Job, O = Order, B = Buy Shipment, S = Sell Shipment, A = All
+<DT><A NAME="EFFECTIVE_DATE">EFFECTIVE_DATE</A><DD>Compared against the start time of the primary leg shipment in the job.  Used for all charge types.
+<DT><A NAME="EXPIRATION_DATE">EXPIRATION_DATE</A><DD>Compared against the start time of the primary leg shipment in the job.  Used for all charge types.
+<DT><A NAME="JOB_INVOLVED_PARTY_QUAL_GID">JOB_INVOLVED_PARTY_QUAL_GID</A><DD>Compared against the list of associated involved parties for the job.  Used for all charge types.
+<DT><A NAME="JOB_LOCATION_PROFILE_GID">JOB_LOCATION_PROFILE_GID</A><DD>Compared against the contact locations for the involved parties of a job.  Used for all charge types.
+<DT><A NAME="OR_ORIGIN_REGION_GID">OR_ORIGIN_REGION_GID</A><DD>Compared against the order source location of all orders in a job.  Used for O charge type.
+<DT><A NAME="OR_DESTINATION_REGION_GID">OR_DESTINATION_REGION_GID</A><DD>Compared against the order destination location of all orders in a job.  Used for O charge type.
+<DT><A NAME="OR_ORDER_RELEASE_TYPE_GID">OR_ORDER_RELEASE_TYPE_GID</A><DD>Compared against the order release type of all orders in a job.  Used for O charge type.
+<DT><A NAME="OR_MIN_TOTAL_WEIGHT">OR_MIN_TOTAL_WEIGHT</A><DD>Compared against the summed total weight of all orders in a job.  Used for O charge type.
+<DT><A NAME="OR_MAX_TOTAL_WEIGHT">OR_MAX_TOTAL_WEIGHT</A><DD>Compared against the summed total weight of all orders in a job.  Used for O charge type.
+<DT><A NAME="OR_MIN_TOTAL_VOLUME">OR_MIN_TOTAL_VOLUME</A><DD>Compared against the summed total volume of all orders in a job.  Used for O charge type.
+<DT><A NAME="OR_MAX_TOTAL_VOLUME">OR_MAX_TOTAL_VOLUME</A><DD>Compared against the summed total volume of all orders in a job.  Used for O charge type.
+<DT><A NAME="OR_TRANS_HANDLING_UNIT_GID">OR_TRANS_HANDLING_UNIT_GID</A><DD>Compared against the transport handling units (ship unit specs) for all orders in a job.  Used for O charge type.
+<DT><A NAME="BUY_LOCATION_PROFILE_GID">BUY_LOCATION_PROFILE_GID</A><DD>Compared against all buy shipment stop locations for all shipments in a job.  Used for B charge type.
+<DT><A NAME="BUY_MODE_PROFILE_GID">BUY_MODE_PROFILE_GID</A><DD>Compared against the transportation mode of the primary leg buy shipment.  Used for B charge type.
+<DT><A NAME="BUY_PORT_OF_LOAD_LOC_PROF_GID">BUY_PORT_OF_LOAD_LOC_PROF_GID</A><DD>Compared against the port of load on the primary leg buy shipment.  Used for B charge type.
+<DT><A NAME="BUY_PORT_OF_DSCH_LOC_PROF_GID">BUY_PORT_OF_DSCH_LOC_PROF_GID</A><DD>Compared against the port of discharge on the primary leg buy shipment.  Used for B charge type.
+<DT><A NAME="SELL_LOCATION_PROFILE_GID">SELL_LOCATION_PROFILE_GID</A><DD>Compared against all sell shipment stop locations for all shipments in a job.  Used for S charge type.
+<DT><A NAME="SELL_MODE_PROFILE_GID">SELL_MODE_PROFILE_GID</A><DD>Compared against the transportation mode of the primary leg sell shipment.  Used for S charge type.
+<DT><A NAME="SELL_SERVPROV_PROFILE_GID">SELL_SERVPROV_PROFILE_GID</A><DD>Compared against the service provider of the primary leg sell shipment.  Used for S charge type.
+<DT><A NAME="SELL_PORT_OF_LOAD_LOC_PROF_GID">SELL_PORT_OF_LOAD_LOC_PROF_GID</A><DD>Compared against the port of load on the primary leg sell shipment.  Used for S charge type.
+<DT><A NAME="SELL_PORT_OF_DSCH_LOC_PROF_GID">SELL_PORT_OF_DSCH_LOC_PROF_GID</A><DD>Compared against the port of discharged on the primary leg sell shipment.  Used for S charge type.
+<DT><A NAME="ACCESSORIAL_CODE_GID">ACCESSORIAL_CODE_GID</A><DD>Assigned to the shipment(s) as a shipment_accessorial.  Also, copied to the shipment_name field of the shipment(s).
+<DT><A NAME="PERSPECTIVE">PERSPECTIVE</A><DD>Perspective of the resulting shipment(s).  B = Buy, S = Sell, null = both (2 shipments, one Buy, one Sell)
+<DT><A NAME="IS_CALCULATE_COST">IS_CALCULATE_COST</A><DD>Boolean indicator for whether or not to attemnpt to calculate the cost.  If true, the user interface will require a rate record id.
+<DT><A NAME="BUY_RATE_GEO_GID">BUY_RATE_GEO_GID</A><DD>The rate record used to calculate the buy shipment charge.
+<DT><A NAME="BUY_PAYMENT_METHOD_CODE_GID">BUY_PAYMENT_METHOD_CODE_GID</A><DD>The payment method code used with the buy shipment charge.
+<DT><A NAME="BUY_SERVPROV_GID">BUY_SERVPROV_GID</A><DD>The service provider associated with the buy shipment charge.  Overrides the servprov specfied on the rate specified in buy_rate_geo_gid.
+<DT><A NAME="SELL_RATE_GEO_GID">SELL_RATE_GEO_GID</A><DD>The rate record used to calculate the sell shipment charge.
+<DT><A NAME="SELL_PAYMENT_METHOD_CODE_GID">SELL_PAYMENT_METHOD_CODE_GID</A><DD>The payment method code used with the sell shipment charge
+<DT><A NAME="SELL_SERVPROV_GID">SELL_SERVPROV_GID</A><DD>The service provider associated with the sell shipment charge.  Overrides the servprov specified on the rate specified in sell_rate_geo_gid
+<DT><A NAME="BUY_GENERAL_LEDGER_CODE_GID">BUY_GENERAL_LEDGER_CODE_GID</A><DD>Code ID for the resulting buy shipments
+<DT><A NAME="SELL_GENERAL_LEDGER_CODE_GID">SELL_GENERAL_LEDGER_CODE_GID</A><DD>Code ID for the resulting sell shipments
+<DT><A NAME="GENERATION_TYPE">GENERATION_TYPE</A><DD>Defines if the rule should be considered by the NFRC rule engine or not
+<DT><A NAME="CONSOLIDATION_TYPE_PROF_GID">CONSOLIDATION_TYPE_PROF_GID</A><DD>Consolidation type profile of matching jobs.  NULL means consolidation type doesn't matter.
+<DT><A NAME="IS_PROFIT_SPLIT">IS_PROFIT_SPLIT</A><DD>Indicates the created NFRC shipment will be profit split or not.
+</DL>
+</BODY>
+</HTML>

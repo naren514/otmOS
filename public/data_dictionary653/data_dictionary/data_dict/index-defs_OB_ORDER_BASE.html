@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - OB_ORDER_BASE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - OB_ORDER_BASE</H1>
+This is the base table that defines the orders. An order base can have multiple origins, destinations, different times etc. Multiple order releases can be created against one order base. In the XML side, the TransOrder(Transportation Order) is similar to Order base.<P>
+<DL>
+<DT><A NAME="ORDER_BASE_GID">ORDER_BASE_GID</A><DD>ORDER_BASE_GID contains the unique identifier for the order base.
+<DT><A NAME="ORDER_BASE_XID">ORDER_BASE_XID</A><DD>ORDER_BASE_XID contains the unique external identifier for the order base.
+<DT><A NAME="EXTERNAL_SYSTEM_ID">EXTERNAL_SYSTEM_ID</A><DD>The identifier for the external system that provided the base order. For example a users SAP or JDEdward system could be providing the order ids.
+<DT><A NAME="PAYMENT_METHOD_CODE_GID">PAYMENT_METHOD_CODE_GID</A><DD>PAYMENT_METHOD_CODE_GID contains the unique identifier for the payment method code for the order. Examples of payment method include electronic fund transfer and cash on delivery.
+<DT><A NAME="INCO_TERM_GID">INCO_TERM_GID</A><DD>INCO_TERM_GID contains the unique identifier for the incoterms associated with the order base.
+<DT><A NAME="TERM_LOCATION_TEXT">TERM_LOCATION_TEXT</A><DD>TERM_LOCATION_TEXT contains additional information related to the incoterms for the order.
+<DT><A NAME="PLANNING_GROUP_GID">PLANNING_GROUP_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="FIXED_ITINERARY_GID">FIXED_ITINERARY_GID</A><DD>FIXED_ITINERARY_GID contains the unique identifier for the fixed itinerary for the order base, if a specific itinerary must be used.
+<DT><A NAME="ORDER_TYPE_GID">ORDER_TYPE_GID</A><DD>ORDER_TYPE_GID contains the unique identifier for the order type. Examples of order types include: CUSTOMER_ORDERS INTERFACILITY RETURNS INTEGRATION WEB
+<DT><A NAME="TIME_WINDOW_EMPHASIS_GID">TIME_WINDOW_EMPHASIS_GID</A><DD>TIME_WINDOW_EMPHASIS_GID contains the unique identifier to tell the planning engine whether early or late (or both) pickup and delivery times are important when creating a shipment.
+<DT><A NAME="RATE_SERVICE_PROFILE_GID">RATE_SERVICE_PROFILE_GID</A><DD>A unique identifier to define the rate servoce profile for the order. The rating engine uses it as a deafult if one is specified.
+<DT><A NAME="SERVPROV_GID">SERVPROV_GID</A><DD>SERVPROV_GID contains the unique identifier for the carrier for the order base. The system uses it as a default, if specified.
+<DT><A NAME="SERVPROV_PROFILE_GID">SERVPROV_PROFILE_GID</A><DD>SERVPROV_PROFILE_GID contains the unique identifier for the group of service providers that belong in the profile. The system will attempt to select a service provider from the group if a profile is specified.
+<DT><A NAME="TRANSPORT_MODE_GID">TRANSPORT_MODE_GID</A><DD>TRANSPORT_MODE_GID contains the unique identifier for the transportation mode for the order base. Examples of transportation modes include: AIR LTL PARCEL RAIL TL
+<DT><A NAME="MODE_PROFILE_GID">MODE_PROFILE_GID</A><DD>MODE_PROFILE_GID contains the unique identifier for the transportation mode profile that the order can use. The system tries to pick one from the group if provided here. Examples of modes include:  AIR LTL RAIL TL VESSEL
+<DT><A NAME="EQUIPMENT_GROUP_GID">EQUIPMENT_GROUP_GID</A><DD>EQUIPMENT_GROUP_GID contains the unique identifier for the equipment group for the order base.
+<DT><A NAME="EQUIPMENT_GROUP_PROFILE_GID">EQUIPMENT_GROUP_PROFILE_GID</A><DD>EQUIPMENT_GROUP_PROFILE_GID contains the unique identifier for the equipment group profile for the order base.
+<DT><A NAME="PROCESSING_CODE_GID">PROCESSING_CODE_GID</A><DD>A unique pointer to define the processing codes in the system. Currently GC3 has only one processing code "PLN" which means to plan the shipment from the order release.
+<DT><A NAME="SHIP_WITH_GROUP">SHIP_WITH_GROUP</A><DD>Not used.
+<DT><A NAME="EFFECTIVE_DATE">EFFECTIVE_DATE</A><DD>Effective date of the order.
+<DT><A NAME="EXPIRATION_DATE">EXPIRATION_DATE</A><DD>The expiration date of the order.
+<DT><A NAME="IS_TEMPLATE">IS_TEMPLATE</A><DD>A tru/false flag to identify if this order is just a template and order release(s) can be created out of it.
+<DT><A NAME="RATE_OFFERING_GID">RATE_OFFERING_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RATE_GEO_GID">RATE_GEO_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SELL_RATE_OFFERING_GID">SELL_RATE_OFFERING_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SELL_RATE_GEO_GID">SELL_RATE_GEO_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="FIXED_SELL_ITINERARY_GID">FIXED_SELL_ITINERARY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="TOTAL_WEIGHT_BASE">TOTAL_WEIGHT_BASE</A><DD>TOTAL_WEIGHT in base units.
+<DT><A NAME="TOTAL_VOLUME_BASE">TOTAL_VOLUME_BASE</A><DD>TOTAL_VOLUME in base units.
+<DT><A NAME="DIM_RATE_FACTOR_GID">DIM_RATE_FACTOR_GID</A><DD>The dim factor to be used when allocating by dimensional weight for a business unit.
+<DT><A NAME="USER_DEFINED1_ICON_GID">USER_DEFINED1_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the order base.
+<DT><A NAME="USER_DEFINED2_ICON_GID">USER_DEFINED2_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the order base.
+<DT><A NAME="USER_DEFINED3_ICON_GID">USER_DEFINED3_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the order base.
+<DT><A NAME="USER_DEFINED4_ICON_GID">USER_DEFINED4_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the order base.
+<DT><A NAME="USER_DEFINED5_ICON_GID">USER_DEFINED5_ICON_GID</A><DD>Can store a user-defined icon that will appear within the user interface to help visually identify attributes of the order base.
+<DT><A NAME="BUNDLING_TYPE">BUNDLING_TYPE</A><DD>AUTOMATIC or MANUAL ONLY allow bundling; they are distinguished only by user defined queries.  DO NOT BUNDLE means order will never be bundled with other orders.
+<DT><A NAME="TOTAL_DECLARED_VALUE">TOTAL_DECLARED_VALUE</A><DD>Sum of declared value on each OB_LINE and/or OB_SHIP_UNIT. Does not include declared value from OB_SHIP_UNIT_CONTENT.
+<DT><A NAME="SELL_SERVPROV_GID">SELL_SERVPROV_GID</A><DD>indicates the sell side servprov to use for this order base
+<DT><A NAME="SELL_SERVPROV_PROFILE_GID">SELL_SERVPROV_PROFILE_GID</A><DD>indicates the sell side servprov profile to use for this order base
+<DT><A NAME="RATE_SERVICE_GID">RATE_SERVICE_GID</A><DD>Rate service constraint for the order
+<DT><A NAME="PRIORITY">PRIORITY</A><DD>This column defines the priority associated with an Order Base
+<DT><A NAME="MARKED_FOR_PURGE">MARKED_FOR_PURGE</A><DD>A boolean field.  When it is set to "Y", this row and its child data will be purged.
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - LONG_RUNNING_TASK</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - LONG_RUNNING_TASK</H1>
+Long Running Task - provides visibility and control to long-running tasks<P>
+<DL>
+<DT><A NAME="TASK_SEQUENCE">TASK_SEQUENCE</A><DD>Unique sequence number for the LRT
+<DT><A NAME="START_TIME">START_TIME</A><DD>Time the LRT was submitted. This may reflect the time it was placed in the workflow mediator or queues.
+<DT><A NAME="END_TIME">END_TIME</A><DD>The time the LRT completed.
+<DT><A NAME="STATE">STATE</A><DD>State of the LRT: MEDIATING = in the workflow mediator, QUEUED = in an event queue, RUNNING = in an active process, COMPLETED = fully completed, RESUBMITTED = resubmitted to the Process Control or Data Queue table, INTERRUPTED = interrupted, ABORTED = stopped by a server shutdown. (Note that RUNNING LRTs are automatically changed to ABORTED LRTs on server startup.)
+<DT><A NAME="IS_RESUBMITTABLE">IS_RESUBMITTABLE</A><DD>if Y, the LRT can be resubmitted to its original Process Control or Data Queue. (E.g. Bulk Plan before shipment modifications)
+<DT><A NAME="IS_INTERRUPTIBLE">IS_INTERRUPTIBLE</A><DD>if Y, the LRT supports clean interruption (e.g. Bulkplan Termination)
+<DT><A NAME="APP_MACHINE_GID">APP_MACHINE_GID</A><DD>The application server running the LRT. 
+<DT><A NAME="LOG_PROCESS_ID">LOG_PROCESS_ID</A><DD>The log process ID of the LRT. This may not be unique across server runs, but corresponds to the Logging ID of the LRT during its runtime.
+<DT><A NAME="BUSINESS_PROCESS_PID">BUSINESS_PROCESS_PID</A><DD>Business process ID of the LRT. This links to the Open Processes diagnostics as long as the LRT is still running on the server. Note on startup, this process ID is cleared. It can be used as an indicator of current vs. historical tasks.
+<DT><A NAME="SUBMITTED_BY_USER_GID">SUBMITTED_BY_USER_GID</A><DD>For User actions, the user that initiate the LRT. For Integrations, the user submitted on the transmission. For Process Control tasks and agent actions, the user associated with the workflow.
+<DT><A NAME="TASK_SOURCE">TASK_SOURCE</A><DD>Type of LRT
+<DT><A NAME="ACTION_GID">ACTION_GID</A><DD>If TASK_SOURCE='ACTION', the name of the User Action corresponding to the LRT.
+<DT><A NAME="AGENT_GID">AGENT_GID</A><DD>If TASK_SOURCE='AGENT ACTION', the name of the Agent invoking the LRT.
+<DT><A NAME="AGENT_ACTION_GID">AGENT_ACTION_GID</A><DD>If TASK_SOURCE='AGENT ACTION', the name of the Agent Action corresponding to the LRT
+<DT><A NAME="TOPIC_ALIAS_GID">TOPIC_ALIAS_GID</A><DD>If TASK_SOURCE='PROCESS CONTROL', the name of the Process corresponding to the LRT.
+<DT><A NAME="I_TRANSMISSION_NO">I_TRANSMISSION_NO</A><DD>If TASK_SOURCE='INTEGRATION', the transmission corresponding to the LRT.
+<DT><A NAME="PROCESS_CONTROL_HISTORY_ID">PROCESS_CONTROL_HISTORY_ID</A><DD>If TASK_SOURCE='PROCESS CONTROL', the unique Process Control History instance for this task request.
+<DT><A NAME="Q_INTEGRATION_IN_SEQ">Q_INTEGRATION_IN_SEQ</A><DD>If task came from Q_INTEGRATION_IN, a sequence for the queue record
+<DT><A NAME="TASK_DETAIL_NAME">TASK_DETAIL_NAME</A><DD>If additional details are available for this task, a displayable name for the details (e.g. Bulk Plan Results).
+<DT><A NAME="TASK_DETAIL_URL">TASK_DETAIL_URL</A><DD>If additional details are available for this task, a URL to the additional details (e.g. the Bulk Plan Results screen).
+<DT><A NAME="TASK_DETAIL_PK">TASK_DETAIL_PK</A><DD>If additional details are available for this task, and table-driven, a string representation of the detail's primary key
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - REPETITION_SCHEDULE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - REPETITION_SCHEDULE</H1>
+<DL>
+<DT><A NAME="SCHEDULE_TYPE">SCHEDULE_TYPE</A><DD>Determines whether the repetition schedulel is a consol or not.  Valid values are DYNAMIC TRIP, STATIC TRIP, FLIGHT, VESSEL, GROUND SERVICE, DETACHABLE TRIP.  When this field is populated, it is a consol.
+<DT><A NAME="FLIGHT_GID">FLIGHT_GID</A><DD>Should be populated if the schedule type is a FLIGHT.
+<DT><A NAME="VOYAGE_GID">VOYAGE_GID</A><DD>Should be populated when the schedule type is a TRIP.
+<DT><A NAME="EQUIPMENT_GROUP_GID">EQUIPMENT_GROUP_GID</A><DD>Required when the schedule type is a TRIP.
+<DT><A NAME="IS_IGNORE_EQUIPMENT_CAPACITY">IS_IGNORE_EQUIPMENT_CAPACITY</A><DD>Determines whether or not to check the equipment's capacity when adding orders to the trip.
+<DT><A NAME="MAX_WEIGHT">MAX_WEIGHT</A><DD>The weight pre-booked on the specified flight consol.
+<DT><A NAME="MAX_WEIGHT_UOM_CODE">MAX_WEIGHT_UOM_CODE</A><DD>The unit of measure for the max_weight.
+<DT><A NAME="MAX_WEIGHT_BASE">MAX_WEIGHT_BASE</A><DD>The weight pre-booked on the specified flight consol in base units.
+<DT><A NAME="MAX_VOLUME">MAX_VOLUME</A><DD>The volume pre-booked on the specified flight consol.
+<DT><A NAME="MAX_VOLUME_UOM_CODE">MAX_VOLUME_UOM_CODE</A><DD>The unit of measure for the max_volume.
+<DT><A NAME="MAX_VOLUME_BASE">MAX_VOLUME_BASE</A><DD>The volume pre-booked on the specified flight consol in base units.
+<DT><A NAME="START_TIME_ADJ">START_TIME_ADJ</A><DD>Only defined for DYNAMIC TRIP schedule.
+<DT><A NAME="START_TIME_ADJ_UOM_CODE">START_TIME_ADJ_UOM_CODE</A><DD>Unit of measure for start_time_adj.
+<DT><A NAME="CUTOFF_TIME">CUTOFF_TIME</A><DD>Time this schedule is used up to.
+</DL>
+</BODY>
+</HTML>

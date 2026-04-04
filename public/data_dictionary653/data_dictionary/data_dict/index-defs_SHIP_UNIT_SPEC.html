@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SHIP_UNIT_SPEC</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SHIP_UNIT_SPEC</H1>
+SHIP_UNIT_SPEC stores additional specification information for a shipment's ship unit.<P>
+<DL>
+<DT><A NAME="SHIP_UNIT_SPEC_GID">SHIP_UNIT_SPEC_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SHIP_UNIT_SPEC_XID">SHIP_UNIT_SPEC_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+<DT><A NAME="LENGTH_BASE">LENGTH_BASE</A><DD>LENGTH in base units.
+<DT><A NAME="WIDTH_BASE">WIDTH_BASE</A><DD>WIDTH in base units.
+<DT><A NAME="HEIGHT_BASE">HEIGHT_BASE</A><DD>HEIGHT in base units.
+<DT><A NAME="TARE_WEIGHT_BASE">TARE_WEIGHT_BASE</A><DD>TARE_WEIGHT in base units.
+<DT><A NAME="EFFECTIVE_VOLUME_BASE">EFFECTIVE_VOLUME_BASE</A><DD>EFFECTIVE_VOLUME in base units.
+<DT><A NAME="PACKAGING_FORM_CODE_GID">PACKAGING_FORM_CODE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="MAX_WEIGHT_BASE">MAX_WEIGHT_BASE</A><DD>MAX_WEIGHT in base units.
+<DT><A NAME="UNIT_TYPE">UNIT_TYPE</A><DD>Defines whether the ship_unit_spec is of type (P)ackaging Unit, (T)ransport Handling Unit, or (B).
+<DT><A NAME="CORE_DIAMETER">CORE_DIAMETER</A><DD>For cylindrical objects, this defines the diameter of the core
+<DT><A NAME="CORE_DIAMETER_UOM_CODE">CORE_DIAMETER_UOM_CODE</A><DD>For cylindrical objects, unit of measure for the diameter of the core
+<DT><A NAME="CORE_DIAMETER_BASE">CORE_DIAMETER_BASE</A><DD>For cylindrical objects, the base value of the diameter of the core
+<DT><A NAME="IS_CYLINDRICAL">IS_CYLINDRICAL</A><DD>Indicate if the ship unit spec is cylindrial or not.
+<DT><A NAME="IS_NESTABLE">IS_NESTABLE</A><DD>To indicate if this item is nestable or not when doing volume estimation.
+<DT><A NAME="MAX_NESTING_COUNT">MAX_NESTING_COUNT</A><DD>Max number of units nestable to reduce volume consumption.
+<DT><A NAME="NESTING_VOLUME">NESTING_VOLUME</A><DD>The additional volume consumption from nesting a like unit.
+<DT><A NAME="MAX_ON_WIDTH">MAX_ON_WIDTH</A><DD>Max width of items can be placed on the ship unit spec when used as a THU.
+<DT><A NAME="MAX_ON_LENGTH">MAX_ON_LENGTH</A><DD>Max length of items can be placed on the ship unit spec when used as a THU.
+<DT><A NAME="MAX_ON_HEIGHT">MAX_ON_HEIGHT</A><DD>Max height of items can be placed on the ship unit spec when used as a THU.
+<DT><A NAME="PRIORITY">PRIORITY</A><DD>This column defines the priority associated with an Ship Unit Spec
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/types/v1"
+            xmlns="http://xmlns.oracle.com/apps/otm/types/v1" 
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            version="1.0">
+
+   <xsd:complexType name="Gid">
+      <xsd:sequence>
+         <xsd:element name="DomainName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Xid" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name = "Duration">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type">
+   			<xsd:simpleType>
+   				<xsd:restriction base = "xsd:string">
+   					<xsd:enumeration value = "D"/>
+   					<xsd:enumeration value = "H"/>
+   					<xsd:enumeration value = "M"/>
+   					<xsd:enumeration value = "S"/>
+   				</xsd:restriction>
+   			</xsd:simpleType>
+   		</xsd:element>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Distance">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Weight">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Volume">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Length">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Width">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Height">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Diameter">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Speed">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Currency">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Temperature">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name = "Density">
+   	<xsd:sequence>
+   		<xsd:element name = "Value" type = "xsd:double"/>
+   		<xsd:element name = "Type" type = "xsd:string"/>
+   	</xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name = "GLogDateTimeType">
+      <xsd:sequence>
+         <xsd:element name = "GLogDate" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>GLogDates are of the format YYYYMMDDHHMMSS.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name = "TZId" type="xsd:string" minOccurs = "0">
+            <xsd:annotation>
+               <xsd:documentation>Time Zone ID.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name = "TZOffset" type="xsd:string" minOccurs = "0">
+            <xsd:annotation>
+               <xsd:documentation>Time Zone Offset.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name = "PasswordType">
+      <xsd:annotation>
+         <xsd:documentation>GLog Password.
+         DataType: A128  
+         Must contain plain text value. Optional 'Type' attribute, if present, must be "#PasswordText". 
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleContent>
+         <xsd:extension base="xsd:string">
+             <xsd:attribute name="Type" type="xsd:anyURI" use= "optional"/>
+         </xsd:extension>
+      </xsd:simpleContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="IntegrationLogMessageType">
+      <xsd:sequence>
+         <xsd:element name="ILogSeqNo" type="xsd:string"/>
+         <xsd:element name="WrittenBy" type="xsd:string"/>
+         <xsd:element name="IMessageClass" type="xsd:string"/>
+         <xsd:element name="IMessageCode" type="xsd:string"/>
+         <xsd:element name="IMessageText" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ProcessingErrorCodeGid" type="Gid" minOccurs="0"/>
+         <xsd:element name="DateTimeStamp" type="GLogDateTimeType"/>
+         <xsd:element name="DomainName" type="xsd:string"/>
+         <xsd:element name="IntegrationLogDetail" type="IntegrationLogDetailType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name="IntegrationLogDetailType">
+      <xsd:sequence>
+         <xsd:element name="ILogDetailQualGid" type="Gid"/>
+         <xsd:element name="ILogDetailValue" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+</xsd:schema>

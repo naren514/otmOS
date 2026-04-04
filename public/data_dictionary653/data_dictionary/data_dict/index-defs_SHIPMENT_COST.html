@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - SHIPMENT_COST</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - SHIPMENT_COST</H1>
+This table stores the breakdown of the cost associated with the accessorials in the shipment.<P>
+<DL>
+<DT><A NAME="SHIPMENT_COST_SEQNO">SHIPMENT_COST_SEQNO</A><DD>A system generated unique sequence number to define the  shipment costs.
+<DT><A NAME="SHIPMENT_GID">SHIPMENT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="COST_TYPE">COST_TYPE</A><DD>C, A, B
+<DT><A NAME="COST">COST</A><DD>The cost as it releates to the cost type for the shipment.
+<DT><A NAME="COST_GID">COST_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="COST_BASE">COST_BASE</A><DD>COST in base units.
+<DT><A NAME="ACCESSORIAL_CODE_GID">ACCESSORIAL_CODE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="BILLABLE_INDICATOR_GID">BILLABLE_INDICATOR_GID</A><DD>indicates the billable status of this shipment cost (sell shipment only)
+<DT><A NAME="IS_COST_FIXED">IS_COST_FIXED</A><DD>Indicates shipment cost is a fixed cost.
+<DT><A NAME="PROCESS_AS_FLOW_THRU">PROCESS_AS_FLOW_THRU</A><DD>Override for record to be copied to the sell side during rating.
+<DT><A NAME="ADJUSTMENT_REASON_GID">ADJUSTMENT_REASON_GID</A><DD>Reason why this cost was added.
+<DT><A NAME="GENERAL_LEDGER_GID">GENERAL_LEDGER_GID</A><DD>GL code for the shipment cost record.
+<DT><A NAME="PAYMENT_METHOD_CODE_GID">PAYMENT_METHOD_CODE_GID</A><DD>Payment method code for the shipment cost
+<DT><A NAME="EXCHANGE_RATE_DATE">EXCHANGE_RATE_DATE</A><DD>Indicates the date to be used for any currency conversions; if null, the latest conversion should be used.
+<DT><A NAME="EXCHANGE_RATE_GID">EXCHANGE_RATE_GID</A><DD>Indicates the set of exchange rates to use for currency conversions; if null, the default set should be used
+<DT><A NAME="COST_FN">COST_FN</A><DD>functional currency amount for cost
+<DT><A NAME="S_SHIP_UNIT_GID">S_SHIP_UNIT_GID</A><DD>Points to the ship unit (if any) associated with this shipment_cost, as a package
+<DT><A NAME="S_SHIP_UNIT_LINE_NO">S_SHIP_UNIT_LINE_NO</A><DD>Points to the ship unit line (if any) associated with this shipment_cost, as a package
+<DT><A NAME="IS_WEIGHTED">IS_WEIGHTED</A><DD>Whether or not the cost affects the total weighted cost of the shipment only
+<DT><A NAME="TRACKING_NUMBER">TRACKING_NUMBER</A><DD>Denotes the tracking number associated with a specific charge/cost.
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - CLAIM_LINE_ITEM</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - CLAIM_LINE_ITEM</H1>
+Stores line items for a claim<P>
+<DL>
+<DT><A NAME="CLAIM_GID">CLAIM_GID</A><DD>Claim id
+<DT><A NAME="LINE_ITEM_SEQ_NO">LINE_ITEM_SEQ_NO</A><DD>Sequence number to keep claim line items unique; actual line items should start with sequence number 1; 0 is reserved to attach costs that relate to the claim as a whole.
+<DT><A NAME="ORDER_RELEASE_LINE_GID">ORDER_RELEASE_LINE_GID</A><DD>Id for the order release (if applicable) this claim line item applies to
+<DT><A NAME="SERIAL_NUMBER">SERIAL_NUMBER</A><DD>Optional serial number for the claim line item
+<DT><A NAME="DAMAGE_TYPE_GID">DAMAGE_TYPE_GID</A><DD>Type of damage; these values are user defined
+<DT><A NAME="DAMAGED_WEIGHT">DAMAGED_WEIGHT</A><DD>Weight of damaged portion
+<DT><A NAME="DAMAGED_VOLUME">DAMAGED_VOLUME</A><DD>Volume of damaged portion
+<DT><A NAME="DAMAGED_QUANTITY">DAMAGED_QUANTITY</A><DD>Quantity of damaged goods
+<DT><A NAME="DAMAGED_FRACTION">DAMAGED_FRACTION</A><DD>Percentage of damage
+<DT><A NAME="ORIGINAL_WEIGHT">ORIGINAL_WEIGHT</A><DD>Total or original weight for the line item (undamaged + damaged goods)
+<DT><A NAME="ORIGINAL_VOLUME">ORIGINAL_VOLUME</A><DD>Total or original volume for the line item (undamaged + damaged goods)
+<DT><A NAME="ORIGINAL_QUANTITY">ORIGINAL_QUANTITY</A><DD>Total or original quantity for the line item (undamaged + damaged goods)
+<DT><A NAME="NEW_WEIGHT">NEW_WEIGHT</A><DD>New weight after reconditioning activities
+<DT><A NAME="NEW_VOLUME">NEW_VOLUME</A><DD>New volume after reconditioning activities
+<DT><A NAME="NEW_QUANTITY">NEW_QUANTITY</A><DD>New quantity after reconditioning activities
+<DT><A NAME="REMOVED_WEIGHT">REMOVED_WEIGHT</A><DD>Weight of portion that was removed as part of reconditioning
+<DT><A NAME="REMOVED_VOLUME">REMOVED_VOLUME</A><DD>Volume of portion that was removed as part of reconditioning
+<DT><A NAME="REMOVED_QUANTITY">REMOVED_QUANTITY</A><DD>Quantity of goods that were removed as part of reconditioning
+<DT><A NAME="ORIG_CYLINDER_DIAM">ORIG_CYLINDER_DIAM</A><DD>For cylindrical objects, the original diameter prior to damage
+<DT><A NAME="ORIG_CYL_CORE_DIAM">ORIG_CYL_CORE_DIAM</A><DD>For cylindrical objects, the hollow core diameter that should not be counted as damaged product in damage calculations
+<DT><A NAME="REMOVED_CYL_DEPTH">REMOVED_CYL_DEPTH</A><DD>For cylindrical objects, the depth from the outer edge of the cylinder that was removed
+<DT><A NAME="NEW_CYLINDER_DIAM">NEW_CYLINDER_DIAM</A><DD>For cylindrical objects, the new diameter of the object
+<DT><A NAME="REMOVED_FRACTION">REMOVED_FRACTION</A><DD>Percentage of goods removed as part of reconditioning
+<DT><A NAME="DECLARED_VALUE">DECLARED_VALUE</A><DD>Declared value of the entire amount of goods represented on the line; GC3 will populate this when creating a claim from objects in GC3 if the declared value is available
+<DT><A NAME="PACKAGE_STATUS_GID">PACKAGE_STATUS_GID</A><DD>Indicates the status of packages on the claim line item
+<DT><A NAME="TRANSPORT_HANDLING_UNIT_GID">TRANSPORT_HANDLING_UNIT_GID</A><DD>Transport handling unit for the claim line item.
+<DT><A NAME="PRICE_PER_UNIT">PRICE_PER_UNIT</A><DD>Sales value of goods per unit specified (for a $10/lb value, this field represents the $10 part); used in the damage value calculation
+<DT><A NAME="PRICE_PER_UNIT_CURRENCY_GID">PRICE_PER_UNIT_CURRENCY_GID</A><DD>Currency for the price per unit value
+<DT><A NAME="PRICE_PER_UNIT_BASE">PRICE_PER_UNIT_BASE</A><DD>Base amount for the price per unit value
+<DT><A NAME="PRICE_PER_UNIT_UOM_TYPE">PRICE_PER_UNIT_UOM_TYPE</A><DD>UOM type of the unit for which sales value is defined such as 'weight' or 'volume'; used in the damage value calculation
+<DT><A NAME="PRICE_PER_UNIT_UOM_CODE">PRICE_PER_UNIT_UOM_CODE</A><DD>UOM for the per value for size of loss (for a $10/lb value, this field represents the 'lb' part); used in the damage value calculation
+<DT><A NAME="SIZE_OF_LOSS">SIZE_OF_LOSS</A><DD>GC3 calculated total of all claim line item costs for this claim line item
+<DT><A NAME="SIZE_OF_LOSS_CURRENCY_GID">SIZE_OF_LOSS_CURRENCY_GID</A><DD>Currency for the GC3 calculated total of all claim line item costs for this claim line item
+<DT><A NAME="SIZE_OF_LOSS_BASE">SIZE_OF_LOSS_BASE</A><DD>Base amount for the GC3 calculated total of all claim line item costs for this claim line item
+</DL>
+</BODY>
+</HTML>

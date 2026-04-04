@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - ACTIVITY_CALENDAR_OVERRIDE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - ACTIVITY_CALENDAR_OVERRIDE</H1>
+This table is used to store any exceptions to the normal activity and calendar profiles. For e.g., Thanksgiving and Christmas might require extra pickup and delivery activity times than the standard profiles.<P>
+<DL>
+<DT><A NAME="ACTIVITY_CALENDAR_OVERRIDE_ID">ACTIVITY_CALENDAR_OVERRIDE_ID</A><DD>ACTIVITY_CALENDAR_OVERRIDE_ID is a system-generated unique ID associated with an override of a calendar. For example, if a location is open on Wednesdays but during a particular week a holiday falls on Wednesday, a calendar override will define the location as "closed" for all activities on that day.
+<DT><A NAME="CALENDAR_GID">CALENDAR_GID</A><DD>CALENDAR_GID is the unique identifier for a calendar. A calendar entry defines when certain activities can occur.
+<DT><A NAME="ACTIVITY_GID">ACTIVITY_GID</A><DD>ACTIVITY_GID is the unique identifier of an activity. This entry defines an activity with the time(s) when that activity can occur.
+<DT><A NAME="START_DATETIME">START_DATETIME</A><DD>START_DATETIME contains the starting point for a calendar override; the date and time the override becomes effective.
+<DT><A NAME="END_DATETIME">END_DATETIME</A><DD>END_DATETIME contains the endpoint for a calendar override; the date and time the override is no longer in effect.
+<DT><A NAME="OVERRIDE_NAME">OVERRIDE_NAME</A><DD>OVERRIDE_NAME contains text to identify the calendar override. Examples include: Christmas, delivery, lunch, winter, etc.
+<DT><A NAME="IS_WORK_ON">IS_WORK_ON</A><DD>IS_WORK_ON is a flag describing whether a specific activity override calendar is active. (Valid values are Y for yes (the override calendar is active) or N for no (the override calendar is not active).
+</DL>
+</BODY>
+</HTML>

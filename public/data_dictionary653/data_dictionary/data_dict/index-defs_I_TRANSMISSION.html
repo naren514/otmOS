@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - I_TRANSMISSION</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - I_TRANSMISSION</H1>
+The I_TRANSMISSION table stores all XML transmissions which are received by GLog, or sent out of Glog. This table is an audit trail for the XML transmissions sent to the GC3 system. These transmissions can be query transmissions or may contain one or more transactions to be carried out by GC3. The actual transmission is stored as a LONG variable. The details abut the user sending the transmission are also stored.<P>
+<DL>
+<DT><A NAME="I_TRANSMISSION_NO">I_TRANSMISSION_NO</A><DD>The I_TRANSMISSION_NO column uniquely identifies the transmission.
+<DT><A NAME="CREATE_DATE">CREATE_DATE</A><DD>The CREATE_DATE column specifies when the transmission was first created.
+<DT><A NAME="TRANSACTION_COUNT">TRANSACTION_COUNT</A><DD>The TRANSACTION_COUNT column specifies the number of transactions associated with this transmission.
+<DT><A NAME="SENDER_HOST_NAME">SENDER_HOST_NAME</A><DD>The SENDER_HOST_NAME column specifies the name of the machine that sent the transmission.
+<DT><A NAME="RECEIVER_HOST_NAME">RECEIVER_HOST_NAME</A><DD>The SENDER_HOST_NAME column specifies the name of the machine that received the transmission.
+<DT><A NAME="USERNAME">USERNAME</A><DD>The USERNAME column specifies the GLog username used to log into GLog to persist the transmission. This is required when IS_INBOUND is Y.
+<DT><A NAME="PASSWORD">PASSWORD</A><DD>The PASSWORD column specifies the GLog password used to log into GLog to persist the transmission. This is required when IS_INBOUND is Y.
+<DT><A NAME="IS_INBOUND">IS_INBOUND</A><DD>The IS_INBOUND column indicates that a transmission is either inbound (value equals Y) or not (value equals N).
+<DT><A NAME="SENDER_TRANSMISSION_NO">SENDER_TRANSMISSION_NO</A><DD>The SENDER_TRANSMISSION_NO column specifies the transmission number that the sender assigned to the transmission.
+<DT><A NAME="REFERENCE_TRANSMISSION_NO">REFERENCE_TRANSMISSION_NO</A><DD>The REFERENCE_TRANSMISSION_NO column can be used when GLog responds to a prior transmission. In this case, it specifies to which transmission the response belongs.
+<DT><A NAME="STATUS">STATUS</A><DD>The STATUS column is set to FRESH when the transmission is first stored in the I_TRANSMISSION table. Currently, it is never being changed to anything else.
+<DT><A NAME="ACK_COM_METHOD_GID">ACK_COM_METHOD_GID</A><DD>The ACK_COM_METHOD_GID column may be set to EMAIL to request email acknowledgement of a transmission.
+<DT><A NAME="ACK_EMAIL_ADDRESS">ACK_EMAIL_ADDRESS</A><DD>The ACK_EMAIL_ADDRESS column holds the valid email address to which a transmission acknowledgement gets sent if email is set in the ACK_COM_METHOD_GID column.
+<DT><A NAME="ACK_EMAIL_SMTPHOST">ACK_EMAIL_SMTPHOST</A><DD>The ACK_EMAIL_SMTPHOST column specifies the hostname to send an email acknowledegment of receipt of the transmission.
+<DT><A NAME="ACK_SERVLET_URL">ACK_SERVLET_URL</A><DD>The URL for sending teh acknowledgement.
+<DT><A NAME="XML_BLOB">XML_BLOB</A><DD>The XML_BLOB column specifies the entire XML text of the transmission.
+<DT><A NAME="XML_PI">XML_PI</A><DD>This field contains the XML Processing Instructions.
+<DT><A NAME="EXT_SYS_COM_METHOD_GID">EXT_SYS_COM_METHOD_GID</A><DD>Indicates the communication method used for outbound XML Transmissions.
+<DT><A NAME="EXT_SYS_COM_INFO">EXT_SYS_COM_INFO</A><DD>This field specifies the attributes of the external system communication method used for the outbound integration.  For example, when the comm method is FTP, this column would contain the filename.
+<DT><A NAME="PARTITION_KEY">PARTITION_KEY</A><DD>Populated through a trigger, this key is used to determine into which partition this record should be inserted.  The formula is based upon the insert_date column and the frequency in which this table is associated (weekly, monthly, quarterly).  Valid values are 1-4.
+<DT><A NAME="STOP_PROCESS_ON_ERROR">STOP_PROCESS_ON_ERROR</A><DD>Specifies if processing of the Transmission should be stopped when an error occurs in a Transaction.
+<DT><A NAME="LOG_PROCESS_ID">LOG_PROCESS_ID</A><DD>Process ID for the Transmission.
+<DT><A NAME="XML_BLOB_TYPE">XML_BLOB_TYPE</A><DD>Specifies if the contents of the XML_BLOB is the complete Transmission XML(T), the Transmission Header(TH), Message XML(M), Message Header XML(MH), Message Body XML(MB) or is not used (NA).
+<DT><A NAME="ADD_XML_DECLARATION">ADD_XML_DECLARATION</A><DD>Specifies if the XML declaration should be added when sending the XML.
+<DT><A NAME="ADD_TRANSMISSION_WRAPPER">ADD_TRANSMISSION_WRAPPER</A><DD>Specifies if the Transmission XML element should be used to wrap the individual Transaction elements.
+<DT><A NAME="TRANSMISSION_WRAPPER_ELEMENT">TRANSMISSION_WRAPPER_ELEMENT</A><DD>Specifies the element name to wrap the Transmission.
+<DT><A NAME="XML_BLOB_SIZE">XML_BLOB_SIZE</A><DD>Specifies the size of the XML.
+<DT><A NAME="EXTERNAL_STATUS">EXTERNAL_STATUS</A><DD>Specifies the external status for the Transmission.  The external status represents the result of processing at the external system.
+<DT><A NAME="FIRST_ATTEMPT_DATE">FIRST_ATTEMPT_DATE</A><DD>Specifies the first time an attempt is made to process the transmission.
+<DT><A NAME="LAST_ATTEMPT_DATE">LAST_ATTEMPT_DATE</A><DD>Specifies the last time an attempt is made to process the transmission.
+<DT><A NAME="MIME_TYPE">MIME_TYPE</A><DD>Describes the XML_BLOB content.
+<DT><A NAME="VERSION">VERSION</A><DD>Specifies the app version which corresponds to the XML_BLOB.
+</DL>
+</BODY>
+</HTML>

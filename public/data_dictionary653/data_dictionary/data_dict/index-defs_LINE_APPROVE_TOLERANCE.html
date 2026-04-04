@@ -1,0 +1,16 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - LINE_APPROVE_TOLERANCE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - LINE_APPROVE_TOLERANCE</H1>
+Tolerance thresholds for individual shipment cost/invoice lines.  For given shipment cost/invoice line attributes such as cost type and accessorial code, users may specify tolerance thresholds to prevent auto approval of invoice lines that are too much higer or lower than the corresponding shipment cost.<P>
+<DL>
+<DT><A NAME="LINE_APPROVE_TOLERANCE_GID">LINE_APPROVE_TOLERANCE_GID</A><DD>ID for the line approval tolerance rule
+<DT><A NAME="IS_INVOICE_REFNUM_MATCH_ALL">IS_INVOICE_REFNUM_MATCH_ALL</A><DD>If true, all invoice reference numbers in the LINE_APP_TOL_INVOICE_REFNUM table must exist on the invoice to evaluate this rule; if false, only one must exist
+<DT><A NAME="IS_SHIPMENT_REFNUM_MATCH_ALL">IS_SHIPMENT_REFNUM_MATCH_ALL</A><DD>If true, all shipment reference numbers in the LINE_APP_TOL_SHIPMENT_REFNUM table must exist on the shipment to evaluate this rule; if false, only one must exist
+<DT><A NAME="EFFECTIVE_DATE">EFFECTIVE_DATE</A><DD>The Effective Date for this Line Approval Tolerance Rule.
+<DT><A NAME="EXPIRATION_DATE">EXPIRATION_DATE</A><DD>The Expiration Date for this Line Approval Tolerance Rule.
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>Data Dictionary</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Data Dictionary</H1>
+<TABLE BORDER="0">
+<TR><TD COLSPAN="5"><A NAME="DM_RULE"><STRONG><FONT SIZE="+1">DM_RULE</FONT></STRONG></A>&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A></TD>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DOMAIN_NAME</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>DM_RULE_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#DM_RULE_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DM_RULE_XID</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DESCRIPTION&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#DESCRIPTION" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(256)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_ACTIVE&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#IS_ACTIVE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/ N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>EFFECTIVE_DATE&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#EFFECTIVE_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>EXPIRATION_DATE&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#EXPIRATION_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_DM_SCAC_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_DM_SCAC_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_SCAC.html">SCAC</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_START_SCAC_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_START_SCAC_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_SCAC.html">SCAC</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_END_SCAC_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_END_SCAC_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_SCAC.html">SCAC</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_EQUIPMENT_MARK_LIST_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_EQUIPMENT_MARK_LIST_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_EQUIPMENT_MARK_LIST.html">EQUIPMENT_MARK_LIST</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_EQUIPMENT_NUMBER_LOW&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_EQUIPMENT_NUMBER_LOW" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(30)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_EQUIPMENT_NUMBER_HIGH&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_EQUIPMENT_NUMBER_HIGH" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(30)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_EQUIPMENT_GROUP_PROFILE_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_EQUIPMENT_GROUP_PROFILE_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_EQUIPMENT_GROUP_PROFILE.html">EQUIPMENT_GROUP_PROFILE</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_FLEX_COMMODITY_PROFILE_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_FLEX_COMMODITY_PROFILE_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_FLEX_COMMODITY_PROFILE.html">FLEX_COMMODITY_PROFILE</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>RATE_OFFERING_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#RATE_OFFERING_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_RATE_OFFERING.html">RATE_OFFERING</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>RATE_GEO_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#RATE_GEO_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_RATE_GEO.html">RATE_GEO</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_DM_REGION_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_DM_REGION_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_REGION.html">REGION</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_START_REGION_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_START_REGION_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_REGION.html">REGION</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_END_REGION_GID&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_END_REGION_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_REGION.html">REGION</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_CONTRACT_NO</TD><TD NOWRAP>VARCHAR2(240)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_INVOLVED_PARTY_QUAL_GID&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_INVOLVED_PARTY_QUAL.html">INVOLVED_PARTY_QUAL</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_CONTACT_PROFILE_GID&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_CONTACT_PROFILE.html">CONTACT_PROFILE</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_AAR_CAR_TYPE&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_AAR_CAR_TYPE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(10)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CR_EQUIPMENT_OWNER_TYPE&nbsp;&nbsp;<A HREF="index-defs_DM_RULE.html#CR_EQUIPMENT_OWNER_TYPE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP>C/P</TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Tables that FK into this one:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_DM_RULE_D.html">DM_RULE_D</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_DM_TRANSACTION.html">DM_TRANSACTION</A></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Index:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4">IX_DM_RULE_SCAC_REG_GID (CR_DM_SCAC_GIDCR_DM_REGION_GID)</TD></TR>
+</TABLE></BODY>
+</HTML>

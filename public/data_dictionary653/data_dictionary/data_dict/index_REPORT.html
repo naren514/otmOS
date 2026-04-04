@@ -1,0 +1,59 @@
+<HTML>
+<HEAD>
+<TITLE>Data Dictionary</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Data Dictionary</H1>
+<TABLE BORDER="0">
+<TR><TD COLSPAN="5"><A NAME="REPORT"><STRONG><FONT SIZE="+1">REPORT</FONT></STRONG></A>&nbsp;&nbsp;<A HREF="index-defs_REPORT.html" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A></TD>
+<TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>REPORT_GID&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#REPORT_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>REPORT_DESC&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#REPORT_DESC" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(4000)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>REPORT_GROUP_GID&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#REPORT_GROUP_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_REPORT_GROUP.html">REPORT_GROUP</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DOMAIN_NAME&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#DOMAIN_NAME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>REPORT_XID&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#REPORT_XID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>REPORT_DISPLAY_NAME&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#REPORT_DISPLAY_NAME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>REPORT_PHYSICAL_NAME&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#REPORT_PHYSICAL_NAME" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(100)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>SELECT_VIA_UI</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ADDITIONAL_URL_ARGUMENTS&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#ADDITIONAL_URL_ARGUMENTS" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(300)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>CAN_AUTO_GENERATE&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#CAN_AUTO_GENERATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>SECURITY_LEVEL&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#SECURITY_LEVEL" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>REPORT_TYPE</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_RPT_MGR_DISPLAY&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#IS_RPT_MGR_DISPLAY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>USE_HTML_PARAMFORM</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DEFAULT_DESFORMAT</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>REPORT_FROM_DB&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#REPORT_FROM_DB" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(100)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>ICON_GID&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_ICON.html">ICON</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>APP_ACTION_GID&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_APP_ACTION.html">APP_ACTION</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>TRANSACTIONAL_EVENT_GID&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_TRANSACTIONAL_EVENT.html">TRANSACTIONAL_EVENT</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>SEED_DATA&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#SEED_DATA" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_USER&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#INSERT_USER" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_DATE&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#INSERT_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_USER&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#UPDATE_USER" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_DATE&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#UPDATE_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>USE_PARAMS_AS_BIND&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#USE_PARAMS_AS_BIND" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP>Y/ N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>THIRD_PARTY_CONTENT_TYPE&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#THIRD_PARTY_CONTENT_TYPE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(40)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP>EMBEDDED/LINK/BROWSER ONLY/NONE</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>USE_THIRD_PARTY_DISTRIBUTION&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#USE_THIRD_PARTY_DISTRIBUTION" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP>Y/N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>IS_CONSOLIDATED</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP>Y/ N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>REPORT_SYSTEM_GID&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#REPORT_SYSTEM_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_REPORT_SYSTEM.html">REPORT_SYSTEM</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>REPORT_PATH&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#REPORT_PATH" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(2000)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>USE_PARAM_OPERATORS&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#USE_PARAM_OPERATORS" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP>Y/ N</TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DATA_QUERY_TYPE_GID&nbsp;&nbsp;<A HREF="index-defs_REPORT.html#DATA_QUERY_TYPE_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_DATA_QUERY_TYPE.html">DATA_QUERY_TYPE</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Tables that FK into this one:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_BULK_REPORTING.html">BULK_REPORTING</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_DOCUMENT.html">DOCUMENT</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_DOCUMENT_DEF.html">DOCUMENT_DEF</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_IPP_PRINTER_REP.html">IPP_PRINTER_REP</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_REPORT_ADDL_PARAMETER.html">REPORT_ADDL_PARAMETER</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_REPORT_CONTROL.html">REPORT_CONTROL</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_REPORT_EMAIL.html">REPORT_EMAIL</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_REPORT_LOG.html">REPORT_LOG</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_REPORT_PARAMETER.html">REPORT_PARAMETER</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_REPORT_PRINT.html">REPORT_PRINT</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_REPORT_RESTRICT_FROM_LEVEL.html">REPORT_RESTRICT_FROM_LEVEL</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_REPORT_SET_DETAIL.html">REPORT_SET_DETAIL</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_REPORT_TEXT_TEMPLATE.html">REPORT_TEXT_TEMPLATE</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_USER_WS_REPORT_ACCESS.html">USER_WS_REPORT_ACCESS</A></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+</TABLE></BODY>
+</HTML>

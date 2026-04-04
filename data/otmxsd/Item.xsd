@@ -1,0 +1,2552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4"
+            xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4" attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:annotation>
+      <xsd:documentation>
+         Last modified .
+
+         Contains element, attribute and types definitions common to all Item interfaces.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:include schemaLocation="TransmissionCommon.xsd"/>
+   <xsd:include schemaLocation="LocationContact.xsd"/>
+
+   <xsd:element name="ItemMaster" type="ItemMasterType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Transmits item master data to/from Oracle Transportation Management.
+            Item master data represents the freight being shipped and includes :
+            - Item numbers
+            - Descriptions
+            - Packaging details
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="Item" type="ItemType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Transmits item data to/from Oracle Transportation Management.
+            Differs from Item master interface in that it only relates to Item and not Packaging.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="HazmatItem" type="HazmatItemType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Sends and receive records for particular hazardous items.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="HazmatGeneric" type="HazmatGenericType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Transmits hazardous material based on the shipping name for an item.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="Sku" type="SkuType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines a stock keeping unit including what quantities to keep in stock, and the actual amount in the warehouse.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="SkuTransaction" type="SkuTransactionType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Represents a shipment of SKUs arriving or leaving the warehouse.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="SkuEvent" type="SkuEventType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            Specifies a SKU event, which describes activities on SKU's
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   
+   <xsd:element name="PartnerItem" type="PartnerItemType" substitutionGroup="GLogXMLTransaction" >
+      <xsd:annotation>
+         <xsd:documentation>
+            Represents the information of an item as referred in partner external system.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:complexType name="PartnerItemType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Represents the information of an item as referred in partner external system.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="PartnerItemGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) Unique Identifier of the Partner Item.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0"/>
+               <xsd:element name="PartnerType" type="xsd:string">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) Specifies 'Type' of the external party. It can be Supplier or Customer or Manufacturer. 
+                        It is a mandatory field along with PartnerGid.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PartnerGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) Unique Identifier of the Partner. It is a mandatory field as it is essential to know which partner this item belongs to.
+                        If this partner item is used, the corresponding partner could get contacted.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Identifier" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) Unique identifier of the item in external system of the partner. It may not be unique internally.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Name" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) Name of the item in external system of the partner. Need not be unique neither externally nor internally.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Description" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) Description of the item - may contain color, size, charateristics or other related information about the item.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="EffectiveDate" type="GLogDateTimeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) Date from when a partner item will be effective. Partners register items for a specific time period. 
+                        Any selling/buying should be done in this period only. Effective Date states the start date of availablity of the item with the Partner.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ExpirationDate" type="GLogDateTimeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) Date till when the partner item will be effective. Partners register items for a specific time period. 
+                        Any selling/buying should be done in this period only. Effective Date states the last date of availablity of the item with the Partner.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) When additional information related to Partner Item needs to be sent that doesn’t fit in to any of the existing fields, 
+                        these flexible fields can be used. Accepts alpha numeric (VARCHAR2 type) data.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) When additional information related to Partner Item needs to be sent that doesn’t fit in to any of the existing fields, 
+                        these flex fields can be used. Accepts only numeric (NUMBER type) data.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) When additional information related to Partner Item needs to be sent that doesn’t fit in to any of the existing fields, 
+                        these flex fields can be used. Accepts only DATE type data.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>   
+   
+   <xsd:complexType name="ItemType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Item is used to transmit item master data to GLog.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0"/>
+               <xsd:element name="ItemGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        A unique identifier to identify this item.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ItemName" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The name for this item. This is for informational purposes only.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Description" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Provides a description for this item. This is for informational purposes only.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="EffectiveDate" type="GLogDateTimeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Effective date this item can be used.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ExpirationDate" type="GLogDateTimeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Expiration date this item cane be used.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="CommodityGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The commodity gid of this item. Validation: References COMMODITY table.Items may be associated
+                        with a given commodity for rating purposes.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="CommodityName" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (outbound) The commodity name of this item.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="CommodityProtectiveService" type="CommodityProtectiveServiceType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="NMFCArticleGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        NMFCArticleGid specifies an NMFC article code.Validation: References NMFC_ARTICLE Table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="NMFCClassGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        NMFCClassGid specifies an NMFC class code.Validation: References NMFC_CLASS Table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="STCCGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        STCCGid. Validation: References STCC Table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="HTSGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        HTSGid. Validation: References HTS Table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SITCGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        SITCGid. Validation: Reference to SITC table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UserDefinedCommodityGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        UserDefinedCommodityGid. Validation: Reference to USER_DEFINED_COMMODITY table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="UDCClassListGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        User Defined Commodity Classification List specifies a list of user defined commodities for the
+                        item.References the UDC_CLASSIFICATION_LIST table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PreviousItemGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Identifies the item that has been superceded.References ITEM table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="BrandName" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Brand Name is used to provide specific brand information for the item. This is for informational
+                        purposes only.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ManufacturedCountryCode3Gid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the country where the product was manufactured. Validation: References COUNTRY_CODE
+                        table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsDrawback" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Y, N. Specifies if item is drawback.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IATAScrCodeGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Uniquely identifies an IATA SCR Code. Validation: Reference to IATA_SCR_CODE table.This
+                        corresponds to the IATA SCR Item Number that is brought into the IATA TACT rate data staging
+                        table,and defines the commodity description code as detailed in the IATA Specific Commodity
+                        Description Guide and other publications.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="AccessorialCodeGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        AccessorialCodeGid specifies something extra, such as a piece of equipment,required when
+                        servicing a particular location.Examples: (AP = Air Pump, AD = Air Dryer, PU = pump).Validation:
+                        References ACCESSORIAL_CODE table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SpecialServiceGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        SpecialServiceGid specifies a special service.Validation: Reference to SPECIAL_SERVICE table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="ItemFeature" type="ItemFeatureType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Text" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="UnitOfMeasure" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Unit of measure.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PricePerUnit" type="PricePerUnitType" minOccurs="0"/>
+               <xsd:element name="Item" type="ItemType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="ChildItemCount" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Number of Items to be shipped with the parentItem.Refers child_item_count column of ITEM_BOM
+                        table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="GtmItemClassification" type="GtmItemClassificationType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>      
+                        (Both) Product classification code applicable to the item.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="GtmItemDescription" type="GtmItemDescriptionType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>      
+                        (Both) Description of Item in different languages.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="GtmItemCountryOfOrigin" type="GtmItemCountryOfOriginType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Deprecated (20A): GtmItemCountryOfOrigin.
+                        This is deprecated and has been replaced by ItemOrigin in 19B. Any existing integrations using 
+                        this element should be updated as this element will be removed in the next major release.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="GtmItemUomConversion" type="GtmItemUomConversionType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Both) Provides details on item specific conversion.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Priority" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>      
+                        (Both) Specifies the Priority of the Item. Valid values are 1-999. The specified priority is used in conopt while packing the equipment.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>   
+               <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+               <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+               <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+               <xsd:element name="ItemOrigin" type="ItemOriginType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                    <xsd:documentation>
+                        (Both) Contains detail's of an Item's origin which is used to evaluate the Item's qualification for any Trade Agreements.
+                    </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PartnerItemGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                    <xsd:documentation>(Both) Unique Identifier of the Partner Item.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PartnerSiteGid" type="GLogXMLGidType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                    <xsd:documentation>(Both) Unique Identifier of the Partner Site.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ItemTypeGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                    <xsd:documentation>(Both) Item type of this Item.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="CountryOfOriginGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                    <xsd:documentation>(Both) The default country of origin of this item. Validation: References COUNTRY_CODE table.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ItemValueSet" type="ItemValueSetType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>(Both) Item values based on the Inventory Organization, Partner, Partner Site, Packaged Item, and Country of Origin.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="ItemValueSetType">
+      <xsd:sequence>
+         <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0" />
+         <xsd:element name="IntSavedQuery" type="IntSavedQueryType" minOccurs="0" />
+         <xsd:element name="InventoryOrganizationGid" type="GLogXMLGidType" minOccurs="0" />
+         <xsd:element name="PartnerGid" type="GLogXMLGidType" minOccurs="0" />
+         <xsd:element name="PartnerSiteGid" type="GLogXMLGidType" minOccurs="0" />
+         <xsd:element name="PackageItemGid" type="GLogXMLGidType" minOccurs="0" />
+         <xsd:element name="CountryOfOriginGid" type="GLogXMLGidType" minOccurs="0" />
+         <xsd:element name="LotNumber" type="xsd:string" minOccurs="0" />
+         <xsd:element name="SerialNumber" type="xsd:string" minOccurs="0" />
+         <xsd:element name="SeqNumber" type="xsd:string" minOccurs="0" />
+         <xsd:element name="Identifier1" type="xsd:string" minOccurs="0" />
+         <xsd:element name="Identifier2" type="xsd:string" minOccurs="0" />
+         <xsd:element name="Identifier3" type="xsd:string" minOccurs="0" />
+         <xsd:element name="ItemValue" type="ItemValueType" minOccurs="0" maxOccurs="unbounded" />
+         <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+         <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+         <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ItemValueType">
+      <xsd:annotation>
+         <xsd:documentation>Item values based on the item value set table for a given value qualifier.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="GtmValueQualifierGid" type="GLogXMLGidType" />
+         <xsd:element name="Value" type="GLogXMLFinancialAmountType" minOccurs="0" />
+         <xsd:element name="ExchangeRateGid" type="GLogXMLGidType" minOccurs="0" />
+         <xsd:element name="ExchangeRateDate" type="GLogDateTimeType" minOccurs="0" />
+         <xsd:element name="SeqNumber" type="xsd:string" minOccurs="0" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ItemOriginType">
+      <xsd:sequence>
+         <xsd:element name="ItemOriginGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Unique Identifier of the Item Origin.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="InventoryOrganizationGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Unique Identifier of the Item Inventory Organization.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PartnerGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Contact ID of the Supplier or Customer.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PartnerSiteGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Party Site ID of the Supplier or Customer.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CountryOfOrigin" type="CountryCodeType">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Country of Origin for the Item.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CountryOfManufacture" type="CountryCodeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Country of Manufacture for the Item.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="EffectiveDate" type="GLogDateTimeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Effective Date of the Item Origin Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ExpirationDate" type="GLogDateTimeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Expiration Date of the Item Origin Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ItemOriginValues" type="GtmValueType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+                <xsd:documentation>(Both) Item Origin Value Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ItemQualification" type="ItemQualificationType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+         <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+         <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+         <xsd:element name="GtmStructureGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Identifier for the bill of material.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name="ItemQualificationType">
+      <xsd:annotation>
+        <xsd:documentation>
+            (Outbound) Contains details of an Item Origin's qualification for a Trade Agreement.
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ItemQualificationGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Unique Identifier of the Item Qualification.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+                <xsd:documentation>(Outbound) Item Qualification description.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TradeAgreement" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Short name of the Trade Agreement ID.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CountryOfImport" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Identifies the country where the Item is imported from.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="GtmProdClassTypeGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Product Classification Type of the importing country.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+        <xsd:element name="ClassificationCode" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation>(Outbound) Product Classification Code.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="IsQualified" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+                <xsd:documentation>
+                    Deprecated (22C):
+                    This element is deprecated and its value is reflected in QualificationStatus as 'QUALIFIED' or 'NOT QUALIFIED'.
+                    Any existing integrations using this element should be updated as this element will be removed in the next major release.
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="QualPrefCriteriaGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Qualification Preference Criteria ID.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="QualRvcMethodGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Regional Value Content Method ID.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TradeProgram" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Short name of the Tariff Code ID.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Producer" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+                <xsd:documentation>(Outbound) Item Qualification Producer.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="QualificationStatus" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation>
+                    (Outbound) Current status of Item Qualification. Values are restricted to 'NOT STARTED','DISCONTINUED','ELIGIBLE','QUALIFIED','NOT QUALIFIED','REQUIRES REVIEW'.
+                </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="EffectiveDate" type="GLogDateTimeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Effective Date of the Item Qualification Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ExpirationDate" type="GLogDateTimeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Expiration Date of the Item Qualification Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="RVCPercentage" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) The percentage of the regional value content method associated with an item qualification.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MinOpsMet" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) This flag indicates if minimum operations are met under Rules of Origin.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ROOAttribute" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Indicates the attribute description under the product specific rule(suffix/ex) after the Rules ofOrigin Qualification.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="WhollyOriginated" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Indicates if the Item is wholly originating under the trade agreement.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ItemQualificationRefnums" type="RefnumType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+                <xsd:documentation>(Outbound) Item Qualification Refnum Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ItemQualificationRemarks" type="RemarkType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+                <xsd:documentation>(Outbound) Item Qualification Remark Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ItemQualificationValues" type="GtmValueType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+                <xsd:documentation>(Outbound) Item Qualification Value Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ItemQualificationRequiredDocuments" type="ItemQualificationRequiredDocumentType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+                <xsd:documentation>(Outbound) Item Qualification Required Document Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ItemQualificationConditions" type="ItemQualificationConditionType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Contains condition details of an item qualification.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="GtmStructureGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Outbound) Identifier for the bill of material.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+         <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+         <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ItemQualificationConditionType">
+      <xsd:annotation>
+         <xsd:documentation>(Outbound) Contains condition details of an item qualification.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ItemQualificationGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Unique Identifier of the Item Qualification.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ConditionShortName" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) The short name given to rules of origin rule code.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ConditionDescription" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Description of the condition.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsApplied" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Indicates if the condition applied.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name="ItemQualificationRequiredDocumentType">
+      <xsd:annotation>
+         <xsd:documentation>
+            (Outbound) Contains details of the documents required for an Item Qualification.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="DocumentDefGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Document required for the Item Qualification.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="DocumentGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                   (Outbound) Unique Identifier of the required document for the Item Qualification.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Review" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+                <xsd:documentation>
+                    (Outbound) Review state of the required document; restricted to 'PENDING', 'ACCEPTED', 'DENIED'.
+                </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Annotations" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+                <xsd:documentation>(Outbound) Annotations for the required document.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:complexType name="GtmValueType">
+      <xsd:annotation>
+         <xsd:documentation>(Both) Contains Value, Exchange Rate Data for a Business Object and Value Qualifier.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="GtmValueQualifierGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Unique Identifier of the Value Qualifier.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ValueAmount" type="GLogXMLFinancialAmountType">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Value Amount in a specified currency.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ExchangeRateInfo" type="ExchangeRateInfoType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Exchange Rate Information.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GtmItemClassificationType">
+      <xsd:annotation>
+         <xsd:documentation>Holds classification information of the item.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="GtmProdClassTypeGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>Represents product classification type such as Schedule B, HTS-US.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ClassificationCode" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A code to classify this item.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="GtmProdClassPurposeGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The purpose of classification like GENERAL, SPECIAL PROGRAM, PENALTY, EXEMPTION etc.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CustomsDescription" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                       Customs description is a description field available to enter any hints or insights into the item customs reasoning.
+                     </xsd:documentation>
+                  </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ClassificationStatus" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Deprecated 6.4.3 as inbound field</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ClassificationNotes" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ApproverNotes" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Outbound) Represents approver notes provided by the reviewer</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TradeDirection" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                    Deprecated (21A):
+                    This element is deprecated and is not used anymore. Any existing integrations using this 
+                    element should be updated as this element will be removed in the next release.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="GtmItemClassificationGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Represents the GtmItemClassification.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+         <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+         <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+         <xsd:element name="BindingRulingNumber" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Binding Ruling Number of Item Classification Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="BindingRulingEffectiveDate" type="GLogDateTimeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Binding Ruling Effective Date of Item Classification Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="BindingRulingExpirationDate" type="GLogDateTimeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Binding Ruling Expiration Date of Item Classification Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TariffRoiGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>(Both) Represents Tariff Rules of Interpretation of Item Classification Data.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GtmItemDescriptionType">
+      <xsd:annotation>
+         <xsd:documentation>Holds description information of the item.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="GtmLanguageGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GtmItemCountryOfOriginType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Deprecated (20A): GtmItemCountryOfOriginType.
+            This is deprecated and has been replaced by ItemOriginType in 19B. Any existing integrations using 
+            this element should be updated as this element will be removed in the next major release.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SupplierSiteGid" type="GLogXMLGidType"/>
+         <xsd:element name="CountryOfOriginGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="ManufacturingCountryGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="IsDefault" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ManufacturingPartyNo" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ManufacturingDesc" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="GtmItemUomConversionType">
+      <xsd:annotation>
+         <xsd:documentation>Holds item specific uom-to-uom converstion rates.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                    Deprecated (20A):
+                    This element is deprecated and is not used anymore. Any existing integrations using this 
+                    element should be updated as this element will be removed in the next release.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="GtmProdClassTypeGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                    Deprecated (20A):
+                    This element is deprecated and is not used anymore. Any existing integrations using this 
+                    element should be updated as this element will be removed in the next release.
+
+                    Represents product classification type such as Schedule B, HTS-US.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="FromUomCode" type="xsd:string"/>
+         <xsd:element name="ToUomCode" type="xsd:string"/>
+         <xsd:element name="ConversionRate" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="SkuEventType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies a SKU Event.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:choice>
+                  <xsd:element name="IntSavedQuery" type="IntSavedQueryType"/>
+                  <xsd:element name="SkuGid" type="GLogXMLGidType"/>
+               </xsd:choice>
+               <xsd:element name="Description" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Provides the description to the sku event.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="StatusCodeGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        StatusCodeGid is a standard EDI status code.Validation: References BS_STATUS_CODE table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="StatusReasonCodeGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        StatusReasonCodeGid specifies the reason for sending the status message.Validation: References
+                        SS_STATUS_REASON_CODE table when within the ShipmentStatus.References BS_STATUS_REASON_CODE
+                        table when within the TransOrderStatus.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="EventDt" type="GLogDateTimeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        EventDate indicates the date and time when an event occurred.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="StatusGroup" type="StatusGroupType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the Status Group for the Event Reason.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ReasonGroup" type="ReasonGroupType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the Reason Group for the Event Reason.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ResponsiblePartyGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the responsible party for the event reason.Validation: References BS_RESPONSIBLE_PARTY
+                        table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SkuEventQuantity" type="SkuEventQuantityType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="SkuEventQuantityType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies optional quantity change that is attached to the SKU event.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SkuQuantityTypeGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Uniquely identifies a SKU Stock Quantity Type. Validation: Reference to SKU_QUANTITY_TYPE table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Quantity" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Quantity value.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="QuantityUpdateType" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>Specifies how the quantity should be applied to the Sku. Valid values are 'REPLACE',
+                  'INCREMENT', and 'DECREMENT'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="SkuType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Corresponds to the sku table.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="SkuGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Unique identifier for the sku.Suggestion: Form SkuGid by combining
+                        WarehouseLocationGid+PackagedItemGid+...
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0"/>
+               <xsd:choice>
+                  <xsd:sequence>
+                     <xsd:element name="SkuObjectType" type="xsd:string">
+                        <xsd:annotation>
+                           <xsd:documentation>
+                              The Sku Object Type for the SKU. Allowed values are PACKAGED ITEM, EQUIPMENT, POWER UNIT,
+                              and DRIVER.
+                           </xsd:documentation>
+                        </xsd:annotation>
+                     </xsd:element>
+                     <xsd:element name="SkuObjectGid" type="GLogXMLGidType">
+                        <xsd:annotation>
+                           <xsd:documentation>
+                              The SKU Object Gid value is based on the SkuObjectType e.g. if the SkuObjectType is
+                              EQUIPMENT, this value would be the EquipmentTypeGid value like 40 FT GENERAL CONTAINER.
+                           </xsd:documentation>
+                        </xsd:annotation>
+                     </xsd:element>
+                  </xsd:sequence>
+               </xsd:choice>
+               <xsd:element name="WarehouseLocationGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Warehouse location.References LOCATION table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SupplierCorporationGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Corporation that supplied the inventory.References CORPORATION tables.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="OwnerCorporationGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Corporation that currently owns the inventory.Refers CORPORATION table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ShipUnitSpecGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Corporation that currently owns the inventory.Refers CORPORATION table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="LastInventoryDt" type="GLogDateTimeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Date of last physical inventory.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="AverageAge" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Corporation that currently owns the inventory.Refers CORPORATION table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Description" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Description is a free form text for this sku object.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Indicator" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to flag state of object.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SkuQuantity" type="SkuQuantityType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="SkuLevel" type="SkuLevelType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="SkuCost" type="SkuCostType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="SkuDescriptor" type="SkuDescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Status" type="StatusType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="InvolvedParty" type="InvolvedPartyType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="SkuQuantityAsset" type="SkuQuantityAssetType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="SkuDescriptorType">
+      <xsd:annotation>
+         <xsd:documentation>Corresponds to the sku_descriptor table.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SkuDescriptorSeq" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Sequence number for SkuDescriptor or SkuTransactionDescriptor.Starts with 1 for the first descriptor
+                  for a given Sku or SkuTransaction.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SkuDescriptorType" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Type of SkuDescriptor or SkuTranscationDescriptor.Example: batch
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SkuDescriptorValue" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Value associated with a SkuDescriptor or SkuTransactionDescriptor.Example: 001.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SkuDescriptorQuantity" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A numeric value associated with a descriptor.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ParentSkuDescriptorSeq" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Points to the parent sku descriptor, if any.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="UserDefinedXml" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  xml in user-defined format which provides information of arbitrary depth and complexity.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="SkuTransactionType">
+      <xsd:annotation>
+         <xsd:documentation>SkuTransaction is the xml representation of the sku_transaction, sku_transaction_descriptor,
+            and sku_transaction_d_remark
+            tables.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="SkuTransactionGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        A unique identifier for this sku transaction;
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SkuGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        sku gid of this transaction, reference to SKU table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TransactionType" type="xsd:string"/>
+               <xsd:element name="PackagedItemGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Identifies a packaged item in the database.References PACKAGED_ITEM table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="WarehouseLocationGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Warehouse location.References LOCATION table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SupplierCorporationGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Corporation that supplied the inventory.References CORPORATION tables.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="OwnerCorporationGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Corporation that currently owns the inventory.Refers CORPORATION table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Quantity1" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        First quantity associated with a SkuTransaction.Specify a positive number for a receipt or
+                        dispatch.Postive or negative number for an adjustment.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Quantity2" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Second quantity associated with a SkuTransaction.May be used to distinguish quantity ordered vs.
+                        quantity received.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TransactionDt" type="GLogDateTimeType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The date associated with a particular SkuTransaction.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Description" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        A free text describes the sku transaction.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SkuTransactionDescriptor" type="SkuTransactionDescriptorType" minOccurs="0"
+                            maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="SkuTransactionDescriptorType">
+      <xsd:annotation>
+         <xsd:documentation>A SkuTransactionDescriptor provides additional detailed information for a particular
+            SkuTransaction.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SkuDescriptorSeq" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Sequence number for SkuDescriptor or SkuTransactionDescriptor.Starts with 1 for the first descriptor
+                  for a given Sku or SkuTransaction.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SkuDescriptorType" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Type of SkuDescriptor or SkuTranscationDescriptor.Example: batch
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SkuDescriptorValue" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Value associated with a SkuDescriptor or SkuTransactionDescriptor.Example: 001.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Quantity1" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  First quantity associated with a SkuTransactionDescriptor.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Quantity2" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Second quantity associated with a SkuTransactionDescriptor.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ParentSkuDescriptorSeq" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Points to the parent sku descriptor, if any.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="UserDefinedXml" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  xml in user-defined format which provides information of arbitrary depth and complexity.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ItemFeatureType">
+      <xsd:sequence>
+         <xsd:element name="ItemFeatureQualGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Item feature qualifier, reference ITEM_FEATURE_QUAL table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ItemFeatureValue" type="xsd:string"/>
+         <xsd:element name="EffectiveDate" type="GLogDateTimeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Effective date of the item feature can be used.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ExpirationDate" type="GLogDateTimeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Expiration date of this item feature can be used.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="HazmatGenericType">
+      <xsd:annotation>
+         <xsd:documentation>Used to identify hazardous materials information that is proper shipping name centric and
+            thus more generic in nature.
+            Note: Within the HazmatItem, this element is outbound only.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="HazmatGenericGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to identify Hazmat generic information.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="ProperShippingName" type="xsd:string">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        The proper shipping name used for an item.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IdentificationNumber" type="xsd:string">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Hazardous cargo classification number.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="HazardousClass" type="HazardousClassType" minOccurs="0"/>
+               <xsd:element name="PackagingGroup" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        PackingGroup indicates the degree of danger of the item or category.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SubsidiaryHazard" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Similar to HazardClass (class of hazardous material).
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="RegulatoryAgencyDataSource" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Regulatory Agency Data Source.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SpecialProvisions" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Special provisions.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="PSASingaporeGroup" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        PSA Singapore Group.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SymbolExtraMeaning" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Comma delineated values. I.E.G, I woud mean NOS tech name required for international.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ImdgEmsNumber" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        International maritime dangerous goods emergency response number.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsNos" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Y/N. Indicates not otherwise specified. Default value 'N'.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsMarinePollutant" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Y/N. Indicates not otherwise specified.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsToxicInhalation" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Y/N. Default value 'N'.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="InhalationHazardZone" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="IsPassengerAircraftForbid" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Y/N. Indicates not otherwise specified.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsCommercialAircraftForbid" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Y/N. Indicates not otherwise specified.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ERG" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Emergency Response Guidebook.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ERGAir" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Emergency Response Guidebook.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="EMS" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        mergency Medical Service.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="HazCompatGroup" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Specifies the hazamt compatibility group. Possible balues are A,B,C,D,E,F,G,H,J,K,L,N,S.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="HazmatItemType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Used to identify hazardous materials information that is item centric, or related to an item.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="HazmatItemGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Identifies a Hazmat item in the database.References HAZMAT_ITEM table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="PackagedItemGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Identifies a packaged item in the database.References PACKAGED_ITEM table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="RegionGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        RegionGid is a region global identifier, which uniquely identifies a region within the GLog
+                        database.Validation: Reference to REGION table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="HazmatModeGid" type="GLogXMLGidType">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to associate a given mode of transport for hazardous materials.References Transport_Mode
+                        table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="HazmatGenericGid" type="GLogXMLGidType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to identify Hazmat generic information.References HAZMAT_GENERIC table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="HazmatGeneric" type="HazmatGenericType" minOccurs="0"/>
+               <xsd:element name="HazmatIndicator" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to indicate hazardous material. (Y/N)
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="HotIndicator" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to indicate hot temperature. (Y/N)
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="ResidueIndicator" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to indicate left over product. (Y/N)
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="DotExemptionGid" minOccurs="0">
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="HazmatAprovalExemptionGid" type="GLogXMLGidType">
+                           <xsd:annotation>
+                              <xsd:documentation>
+                                 Identifies the Hazmat approval or exception value in the database.References
+                                 HAZMAT_APPROVAL_EXEMPTION table.
+                              </xsd:documentation>
+                           </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="AdditionalTransportMsg1Gid" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to indicate a Hazmat transport message.References HAZMAT_TRANSPORT_MESSAGE table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="HazmatTransportMsgGid" type="GLogXMLGidType"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="AdditionalTransportMsg2Gid" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to indicate a Hazmat transport message.References HAZMAT_TRANSPORT_MESSAGE table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="HazmatTransportMsgGid" type="GLogXMLGidType"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="Stcc49CodeGid">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Used to associate the STCC governmental code for the item.References the STCC table.
+                     </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="STCCGid" type="GLogXMLGidType"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="CompetentAuthorityCodeGid" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        sed to indicate a Hazmat approval or exception value.
+                     </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="HazmatAprovalExemptionGid" type="GLogXMLGidType"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="HazmatCommonInfo" type="HazmatCommonInfoType" minOccurs="0"/>
+               <xsd:element name="ProperShippingNamePrefix" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Proper shipping name for the hazardous material.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="IsPoison" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        Y/N. Default value 'N'.
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="TechnicalNameGidType">
+      <xsd:annotation>
+         <xsd:documentation>Identifies a Hazmat technical name.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="TechnicalNameGid" type="GLogXMLGidType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="CommodityProtectiveServiceType">
+      <xsd:annotation>
+         <xsd:documentation>This element is used to define a Protective Service for a commodity.
+            Protective service is used by the rail industry to communicate temperature
+            requirements and is where the user communicates optimal temperature for the RR.
+
+            In the Item element, this element is only supported on the outbound.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>Sequence number.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ProtectiveSvc" type="ProtectiveSvcType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="SkuQuantityAssetType">
+      <xsd:annotation>
+         <xsd:documentation>Used to keep a track of asset inventory at locations as opposed to the Packaged Item
+            inventory.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Sequence Number.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TransactionCode" type="TransactionCodeType" minOccurs="0"/>
+         <xsd:element name="SkuQuantityTypeGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Uniquely identifies a SKU Stock Quantity Type. Validation: Reference to SKU_QUANTITY_TYPE table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="EquipmentGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  EquipmentGid uniquely identifies an equipment record in the GLog database.Validation: References
+                  EQUIPMENT table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PowerUnitGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The Power Unit Gid. References the POWER_UNIT table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="DriverGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The Driver Gid. References the DRIVER table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="AssocDate" type="GLogDateTimeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the date when the asset got linked to the sku
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PackagingType">
+      <xsd:annotation>
+         <xsd:documentation>This element is used to identify item packaging information.
+
+            Note: When the PackagedItemSpecRef element is specified in the Packaging element, it should not be specified
+            again in the PackagingShipUnit element.
+
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+      	 <xsd:element name="PackagedItemGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Identifies a packaged item in the database.References PACKAGED_ITEM table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="HazmatItemRef" type="HazmatItemRefType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="HazmatPackageTypeGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Identifies the packaging of the hazardous material in the database.References HAZMAT_PACKAGE_TYPE
+                  table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A free text to describe this packaging.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PackagedItemSpecRef" type="GLogXMLShipUnitSpecRefType" minOccurs="0"/>
+         <xsd:element name="InnerPackCount" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Number of inner packs in the package.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PackageShipUnitWeightVolume" type="WeightVolumeType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Weight, Volume of the ship unit package.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PackageShipUnitLWH" type="LengthWidthHeightType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Length, width, and height of the package ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PackageShipUnitDiameter" type="DiameterType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Length, width, and height of the package ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CoreDiameter" type="GLogXMLDiameterType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the diameter of the core.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="InnerPackInfo" type="InnerPackInfoType" minOccurs="0"/>
+         <xsd:element name="IsDefaultPackaging" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y/N, indicates if this is the default packaging for the item.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsHazardous" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  IsHazardous indicates if the object is hazardous or not.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PackageItemTypeGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Identifies the packaging item type.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="LoadConfigRuleRank" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the LoadConfigRuleRank.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ShipUnitSpecProfileGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Uniquely identifies a ship unit specification profile. Validation: References SHIP_UNIT_SPEC_PROFILE
+                  table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="PackagingShipUnit" type="PackagingShipUnitType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="PkgItemEquipRefUnit" type="PkgItemEquipRefUnitType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+         <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+         <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+         <xsd:element name="PackagingInnerPack" type="PackagingInnerPackType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="PkgItemPackageRefUnit" type="PkgItemPackageRefUnitType" minOccurs="0"
+                      maxOccurs="unbounded"/>
+         <xsd:element name="IsAllowMixedFreight" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y/N, indicates if mixed freight is allowed to be packed into the same ship unit. Defaults to 'Y'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="BulkMixingFamilyGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the Mixing Family. In bulk equipment only PI's with same mixing family are mixed.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CompartmentTypeProfileGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the compartment type profile.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Priority" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Specifies the Priority of the Packed Item. Valid values are 1-999. The specified priority is used in conopt while packing the equipment.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CategoryGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Used to group packaged items and to indicate which category this packaged item belongs to.
+                  For example, paper, pencil, eraser are all categorized as office supply.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsNestable" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Y/N, IsNestable indicates if the object is Nestable or not.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IncrementalNestingHeight" type="HeightType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Used to specify Incremental Nesting Height for a Nestable object.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PkgItemAccessorial" type="PkgItemAccessorialType" minOccurs="0" maxOccurs="unbounded">
+			<xsd:annotation>
+				<xsd:documentation>
+					Accessorials required at the packaged item level.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PackagingInnerPackType">
+      <xsd:annotation>
+         <xsd:documentation>Contains Inner Pack count information.
+
+            Note: When the PackagedItemSpecRef element is specified in the Packaging element, it should not be specified
+            again
+            in the PackagingShipUnit element.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="PackagedItemSpecRef" type="GLogXMLShipUnitSpecRefType" minOccurs="0"/>
+         <xsd:element name="InnerPackCount" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Number of inner packs in the package.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PkgItemPackageRefUnitType">
+      <xsd:annotation>
+         <xsd:documentation>Contains packaged item refererence unit usage information.
+
+            Note: When the PackagedItemSpecRef element is specified in the Packaging element, it should not be specified
+            again
+            in the PackagingShipUnit element.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Sequence Number.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:sequence minOccurs="0">
+            <xsd:element name="PackagedItemSpecRef" type="GLogXMLShipUnitSpecRefType" minOccurs="0"/>
+         </xsd:sequence>
+         <xsd:element name="PackageRefUnitGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A Gid that uniquely identifies an packaging reference unit
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NumReferenceUnits" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the number of reference units taken by the shipment. Within the ShipmentOrderRelease
+                  element, it is the quantity with respect to the Order Release.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ItemMasterType">
+      <xsd:annotation>
+         <xsd:documentation>Used to indicate an item and its various packaging(s).</xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="Item" type="ItemType"/>
+               <xsd:element name="Packaging" type="PackagingType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="PackagedItemType">
+      <xsd:annotation>
+         <xsd:documentation>This element is used to identify an item and its packaging information.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="Packaging" type="PackagingType"/>
+         <xsd:element name="Item" type="ItemType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PkgItemEquipRefUnitType">
+      <xsd:annotation>
+         <xsd:documentation>Used to specify Ship Unit reference unit of a Package Item.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="EquipmentRefUnitGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A Gid that uniquely identifies an equipment reference unit (equipment group's capacity in reference
+                  units).References EQUIPMENT_REFERENCE_UNIT table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NumReferenceUnits" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Specifies the number of reference units taken by this packaged item.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PackagingShipUnitType">
+      <xsd:annotation>
+         <xsd:documentation>Contains ship unit capacity information for any packaging/ship unit combination for the
+            item.
+
+            Note: When the PackagedItemSpecRef element is specified in the Packaging element, it should not be specified
+            again
+            in the PackagingShipUnit element.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Sequence Number.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TransportHandlingUnitRef" type="GLogXMLShipUnitSpecRefType"/>
+         <xsd:element name="PackagedItemSpecRef" type="GLogXMLShipUnitSpecRefType" minOccurs="0"/>
+         <xsd:element name="NumLayersPerShipUnit" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Number of layers per ship unit.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="QuantityPerLayer" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Quantity per layer.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ItemRefType">
+      <xsd:annotation>
+         <xsd:documentation>An ItemRef is either a Item or an ItemGid.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="ItemGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  ItemGid is a item global identifier, which uniquely identifies the item within the OTM database.
+                  Validation: References ITEM table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Item" type="ItemType"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="ItemAttributeType">
+      <xsd:annotation>
+         <xsd:documentation>Contains additional information about the the line item.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ItemFeatureQualGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Item feature qualifier gid, Validation: References ITEM_FEATURE_QUAL table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ItemFeatureValue" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Item feature value.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="SkuQuantityType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the SKU stock quantity.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SkuQuantityTypeGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Uniquely identifies a SKU Stock Quantity Type. Validation: Reference to SKU_QUANTITY_TYPE table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Quantity" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Quantity value.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="SkuLevelType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies SKU stock levels.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SkuLevelTypeGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Uniquely identifies a SKU Stock Level Type. Validation: Reference to SKU_LEVEL_TYPE table."
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Level" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Level value.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SkuQuantityTypeGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Uniquely identifies a SKU Stock Quantity Type. Validation: Reference to SKU_QUANTITY_TYPE table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="SkuCostType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies warehousing cost for the SKU.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SkuCostTypeGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Uniquely identifies the type of warehousing cost for the SKU. Validation: Reference to SKU_COST_TYPE
+                  table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Cost" type="GLogXMLFinancialAmountType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="HazmatCommonInfoType">
+      <xsd:annotation>
+         <xsd:documentation>Contains common hazardous materials information.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="HazActivity" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Hazardous activity.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A free text to descrive this sku cost
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NetExplosiveContentWeight" type="GLogXMLWeightType" minOccurs="0"/>
+         <xsd:element name="IsLimitedQuantity" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y, N. Default value is 'N'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsReportableQuantity" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y, N. Default value is 'N'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="RqTechnicalName1Gid" type="TechnicalNameGidType" minOccurs="0"/>
+         <xsd:element name="RqTechnicalName2Gid" type="TechnicalNameGidType" minOccurs="0"/>
+         <xsd:element name="IsNos" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y/N. Indicates not otherwise specified. Default value 'N'."
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="NosTechnicalName1Gid" type="TechnicalNameGidType" minOccurs="0"/>
+         <xsd:element name="NosTechnicalName2Gid" type="TechnicalNameGidType" minOccurs="0"/>
+         <xsd:element name="IsToxicInhalation" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y/N. Default value 'N'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="InhalationHazardZone" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The inhalation zone.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsPassengerAircraftForbid" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y/N. Default value 'N'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsCommercialAircraftForbid" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y/N. Default value 'N'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="FlashPoint" type="GLogXMLTemperatureType" minOccurs="0"/>
+         <xsd:element name="EmergencyTemperature" type="GLogXMLTemperatureType" minOccurs="0"/>
+         <xsd:element name="ControlTemperature" type="GLogXMLTemperatureType" minOccurs="0"/>
+         <xsd:element name="IsMarinePollutant" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y/N. Default value 'N'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MpTechnicalName1Gid" type="TechnicalNameGidType" minOccurs="0"/>
+         <xsd:element name="MpTechnicalName2Gid" type="TechnicalNameGidType" minOccurs="0"/>
+         <xsd:element name="IsOilContained" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Y/N. Default value 'N'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsAllPacked" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Indicates the pkg is 'All packed in one'. Values : 'Y', 'N'. Default 'N'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Authorization" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The authorization for the Dangerous Goods shipment.The authorization field is only required to state
+                  special governmental authorizations that are required because of the provisions or packing materials
+                  shipped with.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ChemicalFormula" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The basic chemical description of the substance.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ConcentrationPercent" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Required if the Dangerous Goods UN Number is 2031, 1796, 1826, or 1873. Enter the percentage of DG
+                  concentration if the above condition applies.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="CritSafetyIndex" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Item feature qualifier gid, Validation: References ITEM_FEATURE_QUAL table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IDGAddDescInfo" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Item feature qualifier gid, Validation: References ITEM_FEATURE_QUAL table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MaxQuantity" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Hazmat IDG additional description information.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="OuterPackagingType" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Outer packaging type if packing type = All packed in one.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="OuterPackingCount" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Outer packaging Count.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="HazmatPackageType" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Hazmat Package type of the Dangerous Goods shipment.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PackingCount" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Number of Packing Units.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PackingInstructions" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Required for dangerous goods shipments, unless the DG class is radioactive or Not Restricted.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="PhysicalForm" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A description of the physical form of the radioactive substance : S(P)ecial (S)olid (L)iquid (G)as.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="QValue" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Ratio used to indicate that the combined quantities in 'all packed in one' package are within the
+                  maximum allowable limits.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="HazQuantity" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Hazmat item quantity.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="RadioactiveLabel" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A measurement of the activity of the shipment. For fissile material, the weight of the material in
+                  grams or kilograms may be substituted for the activity measurement.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="RadPackaging" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A description of the type of packaging the substance is contained in. Values:
+                  '1','2','3','A','B','U','C'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Radioactivity" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The type of label on the shipment. 1 (White I) 2 (Yellow II) 3 (Yellow III)
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="RadioactivityUnits" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The units that the activity were mesaured in. This must be in becquerel units (or multiples
+                  thereof).Values: 'B','K','M','G','T','P'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Radionuclide" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The radionuclide assigned to the substance being shipped. A table of basic radionuclides is available
+                  in the DG Regulation Guide section 10.4.A. For example, Aluminium (13) has a radionuclide Al-26.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SubstanceNumber" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Hazardous Materials substance number.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="SurfaceReading" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The surface reading of the radiation exposure for the package. This reading must be measured in
+                  mrem/h.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="TransportIndex" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A number based on the radiation exposure of a package. This is determined based on the maximum
+                  measurement of the radiation in mrem/h at a distance of 1 meter from the package surface.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="MaterialsType" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Hazardous Materials Type. Valid values are: l = Limited Quantities e = 500 KG Exemption f = Fully
+                  Regulated (Purolater).
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Units" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  IATA units for Non UPS shipments. Values: 'L','G','K','R'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="ExternalCode" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Item Hazmat code as configured in the TNT EM. (For carrier TNT).
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="IsOverpack" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Indicates the pkg is an overpack. Values : 'Y', 'N'. Default 'N'.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="InnerPackInfoType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the information for the inner pack.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="PackagedItemSpecRef" type="GLogXMLShipUnitSpecRefType" minOccurs="0"/>
+         <xsd:element name="InnerPackSize" type="GLogXMLFlexQuantityType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="HazmatItemRefType">
+      <xsd:annotation>
+         <xsd:documentation>An HazmatItemRef is either a HazmatItem or an HazmatItemGid.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="HazmatItemGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Identifies a Hazmat item in the database.References HAZMAT_ITEM table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="HazmatItem" type="HazmatItemType"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="PackagedItemRefType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies packaged item information.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:choice>
+         <xsd:element name="PackagedItem" type="PackagedItemType"/>
+         <xsd:element name="PackagedItemGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Identifies a packaged item in the database.References PACKAGED_ITEM table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:choice>
+   </xsd:complexType>
+
+   <xsd:complexType name="HazardousClassType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the Hazardous Classification.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="HazardousClassGid" type="GLogXMLGidType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Uniquely identifies the Hazardous Classification.Validation: Reference to HAZARDOUS_CLASSIFICATION
+                  table.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A free test to descrive this hazardous class.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="PkgItemAccessorialType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Accessorials required at the packaged item level.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="PackagedItemGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Contains the unique identifier for the packaged item.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="AccessorialCodeGid" type="GLogXMLGidType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  (Both) Contains the unique identifier for the accessorial code.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+</xsd:schema>

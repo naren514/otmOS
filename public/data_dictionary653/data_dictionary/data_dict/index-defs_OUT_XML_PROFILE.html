@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - OUT_XML_PROFILE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - OUT_XML_PROFILE</H1>
+This table and OUT_XMl_PROFILE_D table together specify the outbound xml profiles that can be used to limit the size of xml documents pushed out from gc3 to external systems.  The Out_xml_profile table contains the header record for the profile and defines the "gid" for that profile.  The out_xml_profile_d table provides the details which comprise a given profile.  Each record in the out_xml_profile_d table indicates a specific "chunk" of xml that should be excluded from the outbound document. <P>
+<DL>
+<DT><A NAME="OUT_XML_PROFILE_GID">OUT_XML_PROFILE_GID</A><DD>Globally unique identifier for an outbound xml profile.
+<DT><A NAME="OUT_XML_PROFILE_XID">OUT_XML_PROFILE_XID</A><DD>Domain unique identifier for an outbound xml profile.
+<DT><A NAME="DEFAULT_MODE">DEFAULT_MODE</A><DD>Specifies whether the default mode for generating XML should be MIN or MAX.  When not specified, the property is the default.
+<DT><A NAME="SHOULD_VALIDATE">SHOULD_VALIDATE</A><DD>Specifies if the XML produced should conform to the schema.
+<DT><A NAME="XML_TEMPLATE_GID">XML_TEMPLATE_GID</A><DD>XML template ID
+<DT><A NAME="USE_TEMPLATE">USE_TEMPLATE</A><DD>If it equals "Y", integration will use template to build the XML
+</DL>
+</BODY>
+</HTML>

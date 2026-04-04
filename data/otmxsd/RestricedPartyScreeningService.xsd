@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xsd:schema xmlns:svc="http://xmlns.oracle.com/apps/otm/service/v1" xmlns="http://xmlns.oracle.com/apps/gtm/service/restricted_party_screening/v1" xmlns:otmtypes="http://xmlns.oracle.com/apps/otm/types/v1" targetNamespace="http://xmlns.oracle.com/apps/gtm/service/restricted_party_screening/v1" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="Service.xsd" namespace="http://xmlns.oracle.com/apps/otm/service/v1" />
+  <xsd:import schemaLocation="Common.xsd" namespace="http://xmlns.oracle.com/apps/otm/types/v1" />
+  <xsd:element name="RestrictedPartyScreeningRequestMessage">
+    <xsd:complexType>
+      <xsd:complexContent mixed="false">
+        <xsd:extension base="svc:ServiceMessageType">
+          <xsd:sequence>
+            <xsd:element name="ContactGid" type="otmtypes:Gid" />
+            <xsd:element minOccurs="0" name="ScreenAgain" type="xsd:string" />
+            <xsd:element minOccurs="0" name="FirstName" type="xsd:string" />
+            <xsd:element minOccurs="0" name="LastName" type="xsd:string" />
+            <xsd:element minOccurs="0" name="CompanyName" type="xsd:string" />
+            <xsd:element minOccurs="0" ref="LocationScreeningInfo" />
+            <xsd:element minOccurs="0" name="GtmServicePreferenceId" type="otmtypes:Gid" />
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="LocationScreeningInfo">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="LocationGid" type="otmtypes:Gid" />
+        <xsd:element minOccurs="0" name="AddressLine1" type="xsd:string" />
+        <xsd:element minOccurs="0" name="AddressLine2" type="xsd:string" />
+        <xsd:element minOccurs="0" name="AddressLine3" type="xsd:string" />
+        <xsd:element minOccurs="0" name="City" type="xsd:string" />
+        <xsd:element minOccurs="0" name="Province" type="xsd:string" />
+        <xsd:element minOccurs="0" name="Country" type="xsd:string" />
+        <xsd:element minOccurs="0" name="PostalCode" type="xsd:string" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="RestrictedPartyScreeningReplyMessage">
+    <xsd:complexType>
+      <xsd:complexContent mixed="false">
+        <xsd:extension base="svc:ServiceReplyMessageType">
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="RestrictedPartyResponse" type="RestrictedPartyResponseType" />
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="RestrictedPartyResponseType">
+    <xsd:sequence>
+      <xsd:element name="GtmDeniedPartyGid" type="otmtypes:Gid" />
+      <xsd:element minOccurs="0" name="FirstName" type="xsd:string" />
+      <xsd:element minOccurs="0" name="LastName" type="xsd:string" />
+      <xsd:element minOccurs="0" name="CompanyName" type="xsd:string" />
+      <xsd:element minOccurs="0" name="VesselName" type="xsd:string" />
+      <xsd:element minOccurs="0" name="AddressLine1" type="xsd:string" />
+      <xsd:element minOccurs="0" name="AddressLine2" type="xsd:string" />
+      <xsd:element minOccurs="0" name="AddressLine3" type="xsd:string" />
+      <xsd:element minOccurs="0" name="City" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Province" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Country" type="xsd:string" />
+      <xsd:element minOccurs="0" name="PostalCode" type="xsd:string" />
+      <xsd:element minOccurs="0" name="EffectiveDate" type="xsd:string" />
+      <xsd:element minOccurs="0" name="ExpirationDate" type="xsd:string" />
+      <xsd:element minOccurs="0" name="DateOfBirth" type="xsd:string" />
+      <xsd:element minOccurs="0" name="FederalRegulationUrl" type="xsd:string" />
+      <xsd:element minOccurs="0" name="PlaceOfBirth" type="xsd:string" />
+      <xsd:element minOccurs="0" name="PassportNumber" type="xsd:string" />
+      <xsd:element minOccurs="0" name="PassportIssuingCountry" type="xsd:string" />
+      <xsd:element minOccurs="0" name="PassportIssuingDate" type="xsd:string" />
+      <xsd:element minOccurs="0" name="DriverLicenseNumber" type="xsd:string" />
+      <xsd:element minOccurs="0" name="DriverLicenseAuthority" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Citizenship" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Nationality" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Ssn" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Nit" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Cedula" type="xsd:string" />
+      <xsd:element minOccurs="0" name="DenialCode" type="xsd:string" />
+      <xsd:element minOccurs="0" name="EntryDate" type="xsd:string" />
+      <xsd:element minOccurs="0" name="EntryId" type="xsd:string" />
+      <xsd:element minOccurs="0" name="AgencyCode" type="xsd:string" />
+      <xsd:element minOccurs="0" name="RulingVolume" type="xsd:string" />
+      <xsd:element minOccurs="0" name="RulingPageNumber" type="xsd:string" />
+      <xsd:element minOccurs="0" name="FederalRegulationDate" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Notes" type="xsd:string" />
+      <xsd:element minOccurs="0" name="MatchFactor" type="xsd:string" />
+      <xsd:element minOccurs="0" name="ScreeningStatus" type="xsd:string" />
+      <xsd:element minOccurs="0" name="ApprovedBy" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" ref="ScreeningComment" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ScreeningComment">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="Comment" type="xsd:string" />
+        <xsd:element minOccurs="0" name="CommentBy" type="xsd:string" />
+        <xsd:element minOccurs="0" name="CommentDate" type="xsd:string" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

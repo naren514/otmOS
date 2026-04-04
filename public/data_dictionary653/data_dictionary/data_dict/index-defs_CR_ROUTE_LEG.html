@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - CR_ROUTE_LEG</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - CR_ROUTE_LEG</H1>
+Individual legs for cooperative routes.<P>
+<DL>
+<DT><A NAME="CR_FORECAST_GID">CR_FORECAST_GID</A><DD>Null if this leg represents a depot stop
+<DT><A NAME="START_DAY">START_DAY</A><DD>Start day number (depot arrival day if depot stop)
+<DT><A NAME="START_TIME">START_TIME</A><DD>Start time of day (in seconds).  (Depot arrival time for depot start.)
+<DT><A NAME="START_REGION_GID">START_REGION_GID</A><DD>Start region (null if this leg is a depot stop)
+<DT><A NAME="START_LOCATION_GID">START_LOCATION_GID</A><DD>Depot location ID if this is a depot stop (null otherwise).
+<DT><A NAME="END_DAY">END_DAY</A><DD>End day number (depot departure day if depot stop)
+<DT><A NAME="END_TIME">END_TIME</A><DD>End time of day (in seconds).  (Depot departure time for depot start.)
+<DT><A NAME="END_REGION_GID">END_REGION_GID</A><DD>End region (null if this leg is a depot stop)
+<DT><A NAME="END_LOCATION_GID">END_LOCATION_GID</A><DD>Depot location ID if this is a depot stop (null otherwise).
+<DT><A NAME="NEXT_LEG_DEADHEAD">NEXT_LEG_DEADHEAD</A><DD>Distance from this leg's destination region to the next leg's source region (or to the fleet depot if the next leg is a depot stop).
+<DT><A NAME="ALLOCATED_COST">ALLOCATED_COST</A><DD>Cost allocated to this leg from the CR route cost.
+</DL>
+</BODY>
+</HTML>

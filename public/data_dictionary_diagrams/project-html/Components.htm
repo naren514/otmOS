@@ -1,0 +1,484 @@
+<HTML>
+<HEAD>
+<TITLE>
+Oracle Transportation Management 6.4.3 Data Model
+</TITLE>
+</HEAD>
+<BODY>
+<BODY BGCOLOR=#800000 TEXT=#FFFFFF LINK=#FFFFFF VLINK=#FFFFFF ALINK=#9FCFFF>
+<P><A HREF=http://www.oracle.com TARGET=_blank><IMG src="company.gif"></A>
+<P><TABLE>
+<B><FONT FACE=Arial SIZE=2>Oracle Transportation Management 6.4.3 Data Model </FONT></B></br>
+<FONT FACE=Arial SIZE=1>Copyright &copy; 2003, 2017, Oracle and/or its affiliates. All rights reserved.
+</FONT>
+<P><TABLE>
+<TR><TD ALIGN = LEFT>
+<FONT FACE=Arial SIZE=4><B>&nbsp &nbsp &nbsp Subject Area</B>
+</FONT></TD></TR><TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection150.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Accessory
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection0.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Action
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection1.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Agent
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection2.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Air And Vessel Schedule
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection3.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Allocation
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection4.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>App Server Diagnostics
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection5.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Appointment
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection6.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Audit
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection7.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Auto Approve
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection8.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Automated Data Assignment
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection9.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Batch Balancer
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection10.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Booking
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection11.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Bulk Plan
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection12.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Calendar
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection13.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Capacity
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection14.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Claims
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection15.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Commercial Invoice
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection16.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Configurable Status Display
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection17.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Consolidation
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection18.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Container Optimization
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection140.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Content Management System
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection19.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Continuous Move Shipments
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection20.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Co-Operative Routing
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection21.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Cost
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection22.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Customer Service
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection23.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Demurrage
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection24.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Dock
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection25.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Document
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection26.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Domain
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection27.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Equipment
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection28.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Error Messages
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection29.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Events
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection30.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>External Distance
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection31.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Fleet Driver
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection32.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Fleet Misc
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection33.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Fleet Power Unit
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection34.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Flight/Console
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection35.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>FTI - Operational
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection36.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GL - General Ledger
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection37.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Global Fuel Surcharge
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection153.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Bond
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection38.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Compliance
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection39.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Data Load
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection40.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Item
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection41.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Misc
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection147.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Object
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection48.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Party
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection152.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Procedure
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection42.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Product
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection43.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Registration
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection44.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Service
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection135.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Structure
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection45.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Transaction
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection151.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Transaction Line
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection146.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM Transaction Value
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection46.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM CRule
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection47.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>GTM License
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection49.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Hazmat
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection50.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>ILM - Inventory Management
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection51.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Integration
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection52.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Inventory
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection53.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Invoice
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection54.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Invoice Cont...
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection55.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Item
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection56.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Itinerary
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection57.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Job Management
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection143.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Kewill
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection58.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Lane
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection59.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Load Configuration
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection60.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Localization
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection61.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Location
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection62.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Logistics Guide
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection63.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Management Templates
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection64.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Master Shipments - Equipment
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection65.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Master Shipments - Ship Group
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection66.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Miscellaneous
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection148.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Mobile Action
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection67.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>MobilComm
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection68.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Monitor Profiles
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection69.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Network Execution
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection70.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Network Printer
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection71.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Non Freight Related Charges
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection72.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Number Range - BNG
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection75.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Order Base
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection73.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Order Base Cont...
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection74.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Order Base Tables
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection76.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Order Integration
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection77.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Order Movement
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection80.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Order Release
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection78.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Order Release Conti...
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection79.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Order Release Tables
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection141.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>OTM Properties
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection81.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Package Tracking
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection82.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Planning Parameters
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection83.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Process
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection84.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Procurement
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection139.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Promote to Production
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection85.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Quote
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection86.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Rail
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection87.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Rate Geo
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection88.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Rate Load Configuration
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection145.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Rate Load Management
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection89.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Rate Offering
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection90.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Rate Zone Breaks
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection91.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Rates - Import TACT
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection92.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Rating Engine
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection93.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Report Views - Bill of Lading
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection94.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Report Views - Invoice1
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection95.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Report Views - Invoice2
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection96.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Report Views - Item
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection134.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Report Views - Location
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection97.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Report Views - Order Base
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection98.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Report Views - Service Provider
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection99.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Report Views - Shipment1
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection100.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Report Views - Shipment2
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection101.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Reporting
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection102.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Resource Commitment
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection144.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Resource Schedule
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection103.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Route Execution
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection104.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Scalability
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection105.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Schedule Management
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection142.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Secondary Charge
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection106.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Service Provider
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection107.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Settlement
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection111.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Shipment - Schedule Planning
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection108.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Shipment 1
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection109.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Shipment 2
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection110.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Shipment 3
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection154.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Shipment Group
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection112.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Shipment MultiStop Configuration
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection113.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Shipment Status
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection114.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Shipment Tender Details
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection115.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Shipping Agent
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection116.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Sourcing
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection117.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Sourcing Cont...
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection118.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Text
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection119.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Training - How it all links together
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection120.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Training - Shipment Status
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection121.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Training Order Base Cont.
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection122.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Training1
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection123.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>User_Security
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection124.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Users
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection125.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>USU-General Usability
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection126.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>VAT - Value Added Tax
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection127.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Vessel
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection128.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Views
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection129.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Voucher Interface
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection130.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Voyage
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection131.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>VPD
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection132.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Web Service
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection149.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Work Assignment
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection133.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>Workflow
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection136.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>LC2 Data Rules
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection137.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>LC2 PROJECT AND SCENARIO
+</FONT></TD></TR>
+<TR><TD ALIGN = RIGHT>
+<A HREF = 1Picturesection138.htm TARGET=REPWINDOW><FONT FACE=Arial SIZE=2>LC2 Server Management
+</FONT></TD></TR>
+</TABLE>
+</BODY>
+</HTML>

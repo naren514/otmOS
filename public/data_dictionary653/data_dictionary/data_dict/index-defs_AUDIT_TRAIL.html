@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - AUDIT_TRAIL</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - AUDIT_TRAIL</H1>
+Table used to store Audit data<P>
+<DL>
+<DT><A NAME="AUDIT_TRAIL_GID">AUDIT_TRAIL_GID</A><DD>Unique identifier of Audit_Trail table.
+<DT><A NAME="AUDIT_TRAIL_XID">AUDIT_TRAIL_XID</A><DD>DB Sequence.
+<DT><A NAME="NOTIFY_SUBJECT_GID">NOTIFY_SUBJECT_GID</A><DD>Workflow Notify Subject.  E.g. ORDER - CREATED
+<DT><A NAME="NOTIFY_FUNCTION_GID">NOTIFY_FUNCTION_GID</A><DD>Workflow Notify Function. E.g. ORDER_EVENT.Object GID for which the lifetime event was generated
+<DT><A NAME="GL_USER_GID">GL_USER_GID</A><DD>User who made change to the data.  Do not make GL_USER_GID a Fk.  We need to keep the record in the audit table when the user is no longer a valid glog user
+<DT><A NAME="AUDIT_TIME">AUDIT_TIME</A><DD>Local server time when the audit is recorded
+<DT><A NAME="MARKED_FOR_PURGE">MARKED_FOR_PURGE</A><DD>A boolean field.  When it is set to "Y", this row and its child data will be purged.
+</DL>
+</BODY>
+</HTML>

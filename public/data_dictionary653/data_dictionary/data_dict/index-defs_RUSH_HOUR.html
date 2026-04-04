@@ -1,0 +1,14 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - RUSH_HOUR</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - RUSH_HOUR</H1>
+<DL>
+<DT><A NAME="X_LANE_GID">X_LANE_GID</A><DD>The is the lane for which this rush hour delay is defined.
+<DT><A NAME="CALENDAR_GID">CALENDAR_GID</A><DD>The RUSHHOUR activity on this calendar defines the rush hour period for this rush hour delay to be applied. For exampl, this calendar may defined MORNING 6-9 as the RUSHHOUR, then shipments match to this x-lane that leave a stop between 6-9 in the morning will have a 2 hour delay if the RUSH_HOUR_DELAY_TIME is 2 hour
+<DT><A NAME="IS_APPLY_TO_SRC">IS_APPLY_TO_SRC</A><DD>If this field is true, then if depature time from a stop falls into the calendar rush hour period, apply the rush hour delay time. If this field is false, then apply the rush hour delay when arrival time at the to-stop falls into the rush hour calendar.
+<DT><A NAME="RUSH_HOUR_DELAY_TIME">RUSH_HOUR_DELAY_TIME</A><DD>Define the rush hour delay for the given lane, the rush hour period and whether it is apply to to-stop or from stop
+</DL>
+</BODY>
+</HTML>

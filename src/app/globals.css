@@ -33,17 +33,17 @@ a {
 
 .shell {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 200px 1fr;
   min-height: 100vh;
 }
 
 .sidebar {
   background: #101726;
   color: #fff;
-  padding: 24px 18px;
+  padding: 20px 14px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .brand {

@@ -1,0 +1,14 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - APP_MACHINE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - APP_MACHINE</H1>
+<DL>
+<DT><A NAME="SCHEDULED_SHUTDOWN_TIME">SCHEDULED_SHUTDOWN_TIME</A><DD>Scheduled shutdown time. Null, if no shutdown has been scheduled.
+<DT><A NAME="STATE">STATE</A><DD>Server state:  S_DOWN = server is down, S_STARTING = server is starting, S_UP = server is up, Q_USER_SESSION_DENY = quiescing: deny new user sessions, Q_USER_LRT_WARN = queiscing: warn user on any new long running tasks Q_USER_WARN = quiescing: warn user of imminent shutdown Q_LRT_QUIESCING = quiescing; stop polling any long running tasks, Q_QUIESCING = quiescing: stop new work Q_TERMINATING = quiescing: interrupt existing work, Q_WAITING = quiescing: waiting for server idle 
+<DT><A NAME="NEXT_STATE">NEXT_STATE</A><DD>During shutdown, this is the next expected server state
+<DT><A NAME="NEXT_STATE_TIME">NEXT_STATE_TIME</A><DD>Estimated time of next server state change during shutdown
+</DL>
+</BODY>
+</HTML>

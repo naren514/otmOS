@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - INVOICE_SUMMARY_DETAIL</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - INVOICE_SUMMARY_DETAIL</H1>
+INVOICE_SUMMARY_DETAIL contains accessorial charges that may relate to an invoice as a whole, rather than a specific line item. Examples can include a bunker surcharge or Panama Canal charge. The table also may contain freight charges as a line item.<P>
+<DL>
+<DT><A NAME="INVOICE_GID">INVOICE_GID</A><DD>INVOICE_GID contains the unique identifier for the invoice.
+<DT><A NAME="LINEITEM_SEQ_NO">LINEITEM_SEQ_NO</A><DD>LINEITEM_SEQ_NO contains the sequence number for the line item on the invoice.
+<DT><A NAME="BILLED_AS_QUALIFIER">BILLED_AS_QUALIFIER</A><DD>Billed as qualifier.
+<DT><A NAME="BILLED_AS_QUANTITY">BILLED_AS_QUANTITY</A><DD>Billed as quantity.
+<DT><A NAME="BILLED_AS_QUANTITY_GID">BILLED_AS_QUANTITY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="BILLED_AS_QUANTITY_BASE">BILLED_AS_QUANTITY_BASE</A><DD>Billed as quantity in base units.
+<DT><A NAME="FREIGHT_RATE_QUALIFIER">FREIGHT_RATE_QUALIFIER</A><DD>The freight rate qualifier.
+<DT><A NAME="FREIGHT_RATE_QUANTITY">FREIGHT_RATE_QUANTITY</A><DD>Freight rate quantity.
+<DT><A NAME="FREIGHT_RATE_QUANTITY_GID">FREIGHT_RATE_QUANTITY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="FREIGHT_RATE_QUANTITY_BASE">FREIGHT_RATE_QUANTITY_BASE</A><DD>Freight rate quantity in base units.
+<DT><A NAME="UNIT_COUNT">UNIT_COUNT</A><DD>Unit count.
+<DT><A NAME="WEIGHT">WEIGHT</A><DD>WEIGHT contains the total weight of all items shipped on the invoice.
+<DT><A NAME="VOLUME">VOLUME</A><DD>VOLUME contains the total volume of the items shipped on the invoice.
+<DT><A NAME="WEIGHT_UOM_CODE">WEIGHT_UOM_CODE</A><DD>WEIGHT_UOM_CODE identifies the unit of measure for the WEIGHT.
+<DT><A NAME="VOLUME_UOM_CODE">VOLUME_UOM_CODE</A><DD>VOLUME_UOM_CODE identifies the unit of measure for the VOLUME.
+<DT><A NAME="WEIGHT_BASE">WEIGHT_BASE</A><DD>WEIGHT_BASE contains the total weight of all items shipped on the invoice in the base unit of measure.
+<DT><A NAME="VOLUME_BASE">VOLUME_BASE</A><DD>VOLUME contains the total volume of the items shipped on the invoice in the base unit of measure.
+<DT><A NAME="WEIGHT_QUALIFIER">WEIGHT_QUALIFIER</A><DD>Weight qualifier.
+<DT><A NAME="FREIGHT_CHARGE">FREIGHT_CHARGE</A><DD>FREIGHT_CHARGE contains the total freight charge for shipping all items on the invoice.
+<DT><A NAME="FREIGHT_CHARGE_GID">FREIGHT_CHARGE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="FREIGHT_CHARGE_BASE">FREIGHT_CHARGE_BASE</A><DD>Freight charge in base currency.
+<DT><A NAME="PREPAID_AMOUNT">PREPAID_AMOUNT</A><DD>PREPAID_AMOUNT contains the dollar amount already paid on the invoice.
+<DT><A NAME="PREPAID_AMOUNT_GID">PREPAID_AMOUNT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="PREPAID_AMOUNT_BASE">PREPAID_AMOUNT_BASE</A><DD>Prepaid amount in base currency.
+<DT><A NAME="PAYMENT_METHOD_CODE_GID">PAYMENT_METHOD_CODE_GID</A><DD>PAYMENT_METHOD_CODE_GID contains the unique identifier for the payment method code.
+<DT><A NAME="ACCESSORIAL_CODE_GID">ACCESSORIAL_CODE_GID</A><DD>ACCESSORIAL_CODE_GID contains the unique identifier for the accessorial code on the invoice.
+<DT><A NAME="ACCESSORIAL_DESCRIPTION">ACCESSORIAL_DESCRIPTION</A><DD>ACCESSORIAL_DESCRIPTION contains the text describing the accessorial on the invoice.
+<DT><A NAME="DECLARED_VALUE_QUAL_GID">DECLARED_VALUE_QUAL_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="DECLARED_VALUE">DECLARED_VALUE</A><DD>DECLARED_VALUE contains the declared value of all items on the invoice.
+<DT><A NAME="DECLARED_VALUE_GID">DECLARED_VALUE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="DECLARED_VALUE_BASE">DECLARED_VALUE_BASE</A><DD>DECLARE_VALUE_BASE contains the declared value of all items on the invoice in the base unit of measure.
+<DT><A NAME="EXCHANGE_RATE_DATE">EXCHANGE_RATE_DATE</A><DD>Indicates the date to be used for any currency conversions; if null, the latest conversion should be used.
+<DT><A NAME="EXCHANGE_RATE_GID">EXCHANGE_RATE_GID</A><DD>Indicates the set of exchange rates to use for currency conversions; if null, the default set should be used
+<DT><A NAME="BILLED_AS_QTY_FN">BILLED_AS_QTY_FN</A><DD>functional currency amount for billed_as_quantity
+<DT><A NAME="DECLARED_VALUE_FN">DECLARED_VALUE_FN</A><DD>functional currency amount for declared_value
+<DT><A NAME="FREIGHT_RATE_Q_FN">FREIGHT_RATE_Q_FN</A><DD>functional currency amount for freight_rate_quantity
+<DT><A NAME="FREIGHT_CHARGE_FN">FREIGHT_CHARGE_FN</A><DD>functional currency amount for freight_charge
+<DT><A NAME="PREPAID_AMOUNT_FN">PREPAID_AMOUNT_FN</A><DD>functional currency amount for prepaid_amount
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<TITLE>Data Dictionary</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Data Dictionary</H1>
+<TABLE BORDER="0">
+<TR><TD COLSPAN="5"><A NAME="RATE_LOAD_RR_D"><STRONG><FONT SIZE="+1">RATE_LOAD_RR_D</FONT></STRONG></A><TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>DOMAIN_NAME</TD><TD NOWRAP>VARCHAR2(50)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>INSERT_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_USER</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPDATE_DATE</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center"><STRONG>*</STRONG></TD><TD NOWRAP>RATE_LOAD_RR_D_SEQ</TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>RATE_MGMT_RR_GID&nbsp;&nbsp;<A HREF="index-defs_RATE_LOAD_RR_D.html#RATE_MGMT_RR_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_RATE_GEO.html">RATE_GEO</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>OPERATIONAL_RR_GID&nbsp;&nbsp;<A HREF="index-defs_RATE_LOAD_RR_D.html#OPERATIONAL_RR_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_RATE_GEO.html">RATE_GEO</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>RATE_OFFERING_GID&nbsp;&nbsp;<A HREF="index-defs_RATE_LOAD_RR_D.html#RATE_OFFERING_GID" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_RATE_OFFERING.html">RATE_OFFERING</A></EM>)</SMALL></TD><TD NOWRAP>VARCHAR2(101)</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>RATE_LOAD_RO_D_SEQ&nbsp;&nbsp;<A HREF="index-defs_RATE_LOAD_RR_D.html#RATE_LOAD_RO_D_SEQ" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_RATE_LOAD_RO_D.html">RATE_LOAD_RO_D</A></EM>)</SMALL></TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>RATE_LOAD_SUMMARY_SEQ&nbsp;&nbsp;<A HREF="index-defs_RATE_LOAD_RR_D.html#RATE_LOAD_SUMMARY_SEQ" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;&nbsp;<SMALL>(FK:&nbsp;<EM><A HREF="index_RATE_LOAD_SUMMARY.html">RATE_LOAD_SUMMARY</A></EM>)</SMALL></TD><TD NOWRAP>NUMBER()</TD><TD NOWRAP>NOT&nbsp;NULL&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>RATE_LOAD_WARNING_INDICATOR&nbsp;&nbsp;<A HREF="index-defs_RATE_LOAD_RR_D.html#RATE_LOAD_WARNING_INDICATOR" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(1)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LAST_UPLOADED_DATE&nbsp;&nbsp;<A HREF="index-defs_RATE_LOAD_RR_D.html#LAST_UPLOADED_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>LAST_APPROVAL_DATE&nbsp;&nbsp;<A HREF="index-defs_RATE_LOAD_RR_D.html#LAST_APPROVAL_DATE" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>DATE</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>UPLOADED_BY&nbsp;&nbsp;<A HREF="index-defs_RATE_LOAD_RR_D.html#UPLOADED_BY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD ALIGN="center">&nbsp;</TD><TD NOWRAP>STATUS_CHANGED_BY&nbsp;&nbsp;<A HREF="index-defs_RATE_LOAD_RR_D.html#STATUS_CHANGED_BY" TARGET="DEFS"><IMG SRC="inline025.gif" BORDER="0"></A>&nbsp;&nbsp;</TD><TD NOWRAP>VARCHAR2(128)</TD><TD NOWRAP>&nbsp;</TD><TD NOWRAP></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+<TR><TD COLSPAN="5">Tables that FK into this one:</TD>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_RATE_LOAD_RR_D_STATUS.html">RATE_LOAD_RR_D_STATUS</A></TD></TR>
+<TR><TD>&nbsp;<TD COLSPAN="4"><A HREF="index_RATE_LOAD_RR_D_WARNING.html">RATE_LOAD_RR_D_WARNING</A></TD></TR>
+<TR><TD COLSPAN="5">&nbsp;</TD>
+</TABLE></BODY>
+</HTML>

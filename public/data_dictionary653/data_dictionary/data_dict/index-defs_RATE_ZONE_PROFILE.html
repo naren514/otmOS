@@ -1,0 +1,13 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - RATE_ZONE_PROFILE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - RATE_ZONE_PROFILE</H1>
+A valid list of rate zone groupings.  This is then used within the rate_zone_profile_d table to group lanes together.   Example of purpose in which you might want to group lanes:  You may want to associate a timeframe of delivery for your lanes, so you would like to create groupings of lanes that share similar durations of time for delivery.  If you are associating a delivery timeframe within a day's estimation, then the lane from San Franscisco to Los Angeles = 1 day, and the lane from San Franscisco to Sacramento = 1 day.  Rather than entering 1 day for each, these could be put in one profile, and then the profile could state that the timeframe = 1 day.  Another lane could be from San Francisco to Philadelphia, which obviously has its own duration, and therefore would not share the same profile.  The profile's timeframe would be stored in the table RATE_ZONE_SERVICE_TIME.<P>
+<DL>
+<DT><A NAME="RATE_ZONE_PROFILE_GID">RATE_ZONE_PROFILE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RATE_ZONE_PROFILE_XID">RATE_ZONE_PROFILE_XID</A><DD>GC3 Unique identifier for the entity. Is used for creating the GID
+</DL>
+</BODY>
+</HTML>

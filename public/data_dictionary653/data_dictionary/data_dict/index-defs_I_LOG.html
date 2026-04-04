@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - I_LOG</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - I_LOG</H1>
+This table contains the audit trail information about the XML transmissions and the transactions within them. The status of the transmission and transactions received, processed or in error is stored per record. The status is stored as I-Information, W-Warning, E-Errors. In other words: The I_LOG table store integration log messages, which include errors, warnings, and informational messages.<P>
+<DL>
+<DT><A NAME="I_LOG_SEQNO">I_LOG_SEQNO</A><DD>The I_LOG_SEQNO column uniquely identifies each row in the I_LOG table.
+<DT><A NAME="I_TRANSACTION_NO">I_TRANSACTION_NO</A><DD>The I_TRANSACTION_NO column specifies the transaction to which this log message pertains.
+<DT><A NAME="I_TRANSMISSION_NO">I_TRANSMISSION_NO</A><DD>The I_TRANSMISSION_NO column specifies the transmission to which this log message pertains.
+<DT><A NAME="WRITTEN_BY">WRITTEN_BY</A><DD>The WRITTEN_BY column specifies the application that wrote this log message.
+<DT><A NAME="I_MESSAGE_CLASS">I_MESSAGE_CLASS</A><DD>The I_MESSAGE_CLASS column indicates if the message is an error (E), warning (W) or informational (I) in nature.
+<DT><A NAME="I_MESSAGE_CODE">I_MESSAGE_CODE</A><DD>The I_MESSAGE_CODE column is a textual message code. An example is INVALID_DATE_FORMAT.
+<DT><A NAME="I_MESSAGE_TEXT">I_MESSAGE_TEXT</A><DD>The I_MESSAGE_TEXT column contains the full text of the message.
+<DT><A NAME="TIME_STAMP">TIME_STAMP</A><DD>The TIME_STAMP column indicates the date and time for when the log message was written.
+<DT><A NAME="PARTITION_KEY">PARTITION_KEY</A><DD>Populated through a trigger, this key is used to determine into which partition this record should be inserted.  The formula is based upon the insert_date column and the frequency in which this table is associated (weekly, monthly, quarterly).  Valid values are 1-4.
+<DT><A NAME="LOG_PROCESS_ID">LOG_PROCESS_ID</A><DD>Process ID of process which inserted the log records
+</DL>
+</BODY>
+</HTML>

@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - P_BID</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - P_BID</H1>
+Carrier's bid for work on a lane<P>
+<DL>
+<DT><A NAME="P_BID_GID">P_BID_GID</A><DD>Unique identifier for the bid
+<DT><A NAME="P_BID_ROUND_GID">P_BID_ROUND_GID</A><DD>Bid round to which the bid belongs
+<DT><A NAME="SERVPROV_GID">SERVPROV_GID</A><DD>Service provider who owns the bid
+<DT><A NAME="X_LANE_GID">X_LANE_GID</A><DD>Lane to which the bid applies
+<DT><A NAME="BID_SEQUENCE_NUM">BID_SEQUENCE_NUM</A><DD>Sequence number associated with the bid: 1, 2, 3... Example: The first time a servprov enters a bid against a lane, the bid sequence num is 1.  The second bid against the same lane, the bid sequence is 2, and so on.  In order to enter multiple bids against the same lane in the same round, something "significant" must change, such as the equipment group or transit time
+<DT><A NAME="EQUIPMENT_GROUP_GID">EQUIPMENT_GROUP_GID</A><DD>The equipment group associated with the bid
+<DT><A NAME="TRANSPORT_MODE_GID">TRANSPORT_MODE_GID</A><DD>The transport mode associated with the bid
+<DT><A NAME="TRANSIT_TIME">TRANSIT_TIME</A><DD>The transit time associated with the bid
+<DT><A NAME="MAX_PCT_LOADS_REQUESTED">MAX_PCT_LOADS_REQUESTED</A><DD>The maximum percentage of loads that the service provider is willing to take
+<DT><A NAME="MIN_PCT_LOADS_REQUESTED">MIN_PCT_LOADS_REQUESTED</A><DD>The minimum percentage of loads that the service provider is willing to take
+<DT><A NAME="IS_REFERENCE_BID">IS_REFERENCE_BID</A><DD>This is set to Y if this bid is a "reference" bid.  A reference bid is one that isn't actually entered by a service provider, but is carried over from the operational system to serve as a cost baseline to provide a basis for comparison
+<DT><A NAME="MARKED_FOR_PURGE">MARKED_FOR_PURGE</A><DD>this column will identifies the rows which will be purged
+</DL>
+</BODY>
+</HTML>

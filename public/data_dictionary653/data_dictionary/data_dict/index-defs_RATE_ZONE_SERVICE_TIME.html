@@ -1,0 +1,14 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - RATE_ZONE_SERVICE_TIME</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - RATE_ZONE_SERVICE_TIME</H1>
+Stores a timeframe to a zone profile.  Example of purpose in which you might want to group lanes:  You may want to associate a timeframe of delivery for your lanes, so you would like to create groupings of lanes that share similar durations of time for delivery.  If you are associating a delivery timeframe within a day's estimation, then the lane from San Franscisco to Los Angeles = 1 day, and the lane from San Franscisco to Sacramento = 1 day.  Rather than entering 1 day for each, these could be put in one profile, and then the profile could state that the timeframe = 1 day.  Another lane could be from San Francisco to Philadelphia, which obviously has its own duration, and therefore would not share the same profile.  The profile's timeframe would be stored in the table RATE_ZONE_SERVICE_TIME.<P>
+<DL>
+<DT><A NAME="RATE_ZONE_PROFILE_GID">RATE_ZONE_PROFILE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RATE_SERVICE_GID">RATE_SERVICE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="SERVICE_TIME_VALUE_BASE">SERVICE_TIME_VALUE_BASE</A><DD>SERVICE_TIME_VALUE in base units.
+</DL>
+</BODY>
+</HTML>

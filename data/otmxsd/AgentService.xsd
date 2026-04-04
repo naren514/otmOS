@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/service/agent/v3" 
+            xmlns="http://xmlns.oracle.com/apps/otm/service/agent/v3" 
+            xmlns:agt="http://xmlns.oracle.com/apps/otm/agent/v1" 
+            xmlns:svc="http://xmlns.oracle.com/apps/otm/service/v1" 
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            version="1.0">
+            
+    <xsd:import namespace="http://xmlns.oracle.com/apps/otm/service/v1" schemaLocation="Service.xsd"/>
+    <xsd:import namespace="http://xmlns.oracle.com/apps/otm/agent/v1"  schemaLocation="Agent.xsd"/>
+    
+    <xsd:complexType name="ActionMessageType">
+        <xsd:complexContent>
+            <xsd:extension base="svc:ServiceMessageType">
+                <xsd:sequence>
+                    <xsd:element name="MessageHeader" type="agt:AgentHeaderType" minOccurs="0"/>
+                    <xsd:element ref="agt:AgentAction"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ActionReplyMessageType">
+        <xsd:complexContent>
+            <xsd:extension base="svc:ServiceReplyMessageType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+        
+    <xsd:element name="AgentMessage">
+       <xsd:complexType>
+           <xsd:complexContent>
+               <xsd:extension base="svc:ServiceMessageType">
+                   <xsd:sequence>
+                       <xsd:element ref="agt:Agent"/>
+                   </xsd:sequence>
+               </xsd:extension>
+           </xsd:complexContent>
+       </xsd:complexType>
+    </xsd:element>
+        
+    <xsd:element name="AgentReplyMessage">
+       <xsd:complexType>
+           <xsd:complexContent>
+               <xsd:extension base="svc:ServiceReplyMessageType"/>
+           </xsd:complexContent>
+       </xsd:complexType>
+    </xsd:element>
+    
+</xsd:schema>

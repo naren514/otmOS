@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - FLEX_FIELD_DEF</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - FLEX_FIELD_DEF</H1>
+This table defines ATTRIBUTE fields for OTM object tables. The defined ATTRIBUTE field can be used as PickList, DropList, FixedDropList, FlexPickList or FlexDropList on Manager Layout and Screen Set.<P>
+<DL>
+<DT><A NAME="FLEX_FIELD_DEF_GID">FLEX_FIELD_DEF_GID</A><DD>Primary key of the table. 
+<DT><A NAME="TABLE_NAME">TABLE_NAME</A><DD>a valid OTM table name which has flex fields
+<DT><A NAME="FIELD_NAME">FIELD_NAME</A><DD>FLex field name which this definition is for.
+<DT><A NAME="ML_TYPE">ML_TYPE</A><DD>field type on manager layout, pl(pickList), dl(dropList), fxdl(fixedDropList), flxpl(flexPickList), flxdl(flexDropList)
+<DT><A NAME="ML_QUERY_TABLE_GID">ML_QUERY_TABLE_GID</A><DD>The value will used by PickList or DropList on Manager Layout
+<DT><A NAME="ML_FINDER_SET_GID">ML_FINDER_SET_GID</A><DD>The value will used by PickList on Manager Layout
+<DT><A NAME="ML_VALID_VALUE_TYPE_GID">ML_VALID_VALUE_TYPE_GID</A><DD>Required for fixedDropList type. Valid Values from this ID will be options for this field on Manager Layout
+<DT><A NAME="ML_QUERY">ML_QUERY</A><DD>SQL select statement to be used for this field on Manager Layout
+<DT><A NAME="SS_TYPE">SS_TYPE</A><DD>field type on screen set, pl(pickList), dl(dropList), fxdl(fixedDropList), flxpl(flexPickList), flxdl(flexDropList)
+<DT><A NAME="SS_QUERY_TABLE_GID">SS_QUERY_TABLE_GID</A><DD>The value will used by PickList or DropList on Screen Set
+<DT><A NAME="SS_FINDER_SET_GID">SS_FINDER_SET_GID</A><DD>The value will used by PickList on Screen Set
+<DT><A NAME="SS_VALID_VALUE_TYPE_GID">SS_VALID_VALUE_TYPE_GID</A><DD>Required for fixedDropList type. Valid Values from this ID will be options for this field on Screen Set
+<DT><A NAME="SS_QUERY">SS_QUERY</A><DD>SQL select statement to be used for this field on Screen Set
+</DL>
+</BODY>
+</HTML>

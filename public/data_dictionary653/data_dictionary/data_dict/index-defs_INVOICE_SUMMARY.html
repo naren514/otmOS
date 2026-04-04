@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - INVOICE_SUMMARY</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - INVOICE_SUMMARY</H1>
+INVOICE_SUMMARY contains the summary of the INVOICE_LINEITEM and  INVOICE_SUMMARY_DETAIL tables.<P>
+<DL>
+<DT><A NAME="INVOICE_GID">INVOICE_GID</A><DD>INVOICE_GID contains the unique identifier for the invoice.
+<DT><A NAME="FREIGHT_CHARGE">FREIGHT_CHARGE</A><DD>FREIGHT_CHARGE contains the total freight charge for the invoice.
+<DT><A NAME="FREIGHT_CHARGE_GID">FREIGHT_CHARGE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="FREIGHT_CHARGE_BASE">FREIGHT_CHARGE_BASE</A><DD>FREIGHT_CHARGE_BASE contains the total freight charge for the invoice in the base currency.
+<DT><A NAME="PREPAID_AMOUNT">PREPAID_AMOUNT</A><DD>PREPAID_AMOUNT contains the dollar amount already paid on the invoice.
+<DT><A NAME="PREPAID_AMOUNT_GID">PREPAID_AMOUNT_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="PREPAID_AMOUNT_BASE">PREPAID_AMOUNT_BASE</A><DD>Prepaid amount in base units.
+<DT><A NAME="COMMERCIAL_UNIT_PRICE">COMMERCIAL_UNIT_PRICE</A><DD>Commercial unit price.
+<DT><A NAME="COMMERCIAL_UNIT_PRICE_GID">COMMERCIAL_UNIT_PRICE_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="COMMERCIAL_UNIT_PRICE_BASE">COMMERCIAL_UNIT_PRICE_BASE</A><DD>Commercial unit price in base units.
+<DT><A NAME="UNIT_COUNT">UNIT_COUNT</A><DD>UNIT_COUNT contains the number of units on the invoice.
+<DT><A NAME="WEIGHT">WEIGHT</A><DD>WEIGHT contains the total weight of all items shipped on this invoice.
+<DT><A NAME="VOLUME">VOLUME</A><DD>VOLUME contains the total volume of items shipped for this invoice.
+<DT><A NAME="WEIGHT_UOM_CODE">WEIGHT_UOM_CODE</A><DD>Weight unit of measure.
+<DT><A NAME="VOLUME_UOM_CODE">VOLUME_UOM_CODE</A><DD>Volume unit of measure.
+<DT><A NAME="WEIGHT_BASE">WEIGHT_BASE</A><DD>Weight in base units.
+<DT><A NAME="VOLUME_BASE">VOLUME_BASE</A><DD>Volume in base units.
+<DT><A NAME="WEIGHT_QUALIFIER">WEIGHT_QUALIFIER</A><DD>Weight qualifier.
+<DT><A NAME="INVOICE_TOTAL">INVOICE_TOTAL</A><DD>INVOICE_TOTAL contains the count of the invoice's line_items.
+<DT><A NAME="EXCHANGE_RATE_DATE">EXCHANGE_RATE_DATE</A><DD>Indicates the date to be used for any currency conversions; if null, the latest conversion should be used.
+<DT><A NAME="EXCHANGE_RATE_GID">EXCHANGE_RATE_GID</A><DD>Indicates the set of exchange rates to use for currency conversions; if null, the default set should be used
+<DT><A NAME="FREIGHT_CHARGE_FN">FREIGHT_CHARGE_FN</A><DD>functional currency amount for feeight_charge
+<DT><A NAME="PREPAID_AMOUNT_FN">PREPAID_AMOUNT_FN</A><DD>functional currency amount for prepaid_amount
+<DT><A NAME="INVOICE_SERVICE_CODE_GID">INVOICE_SERVICE_CODE_GID</A><DD>INVOICE_SERVICE_CODE_GID indicates the type of service that was performed. Foreign key to INVOICE_SERVICE_CODE. Summary level charges on invoice for service level. This is generally for air and ground.
+</DL>
+</BODY>
+</HTML>

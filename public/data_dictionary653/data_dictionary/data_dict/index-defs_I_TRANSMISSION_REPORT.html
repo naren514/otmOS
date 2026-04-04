@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - I_TRANSMISSION_REPORT</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - I_TRANSMISSION_REPORT</H1>
+The table contains the Transmission Reports that are received for outbound Transmissions.<P>
+<DL>
+<DT><A NAME="I_TRANSMISSION_NO">I_TRANSMISSION_NO</A><DD>The Transmission number referring to the Transmission for the Report.
+<DT><A NAME="SEQUENCE_NO">SEQUENCE_NO</A><DD>Sequence number to uniquely identify the Transmission Report for the Transmission.
+<DT><A NAME="STATUS">STATUS</A><DD>Specifies the status provided within the Transmission Report.
+<DT><A NAME="REF_TRANSMISSION_ID">REF_TRANSMISSION_ID</A><DD>Represents a Transmission ID assigned for the Transmission from the external system.
+<DT><A NAME="REF_TRANSACTION_NO">REF_TRANSACTION_NO</A><DD>Represents the Transaction record containing the xml for this Transmission Report.
+<DT><A NAME="PARTITION_KEY">PARTITION_KEY</A><DD>Populated through a trigger, this key is used to determine into which partition this record should be inserted. The formula is based upon the insert_date column and the frequency in which this table is associated (weekly, monthly, quarterly). Valid values are 1-4.
+</DL>
+</BODY>
+</HTML>

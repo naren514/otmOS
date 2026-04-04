@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - BULK_CM</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - BULK_CM</H1>
+Table that provides information about what shipments were selected and what shipments were linked during a given run of bulk continous moves.<P>
+<DL>
+<DT><A NAME="BULK_CM_GID">BULK_CM_GID</A><DD>Unique identifier for the bulk continuous move process.
+<DT><A NAME="BULK_CM_XID">BULK_CM_XID</A><DD>External identifier for the bulk continuous move process.
+<DT><A NAME="QUERY_NAME">QUERY_NAME</A><DD>Bulk continuous move input parameter.
+<DT><A NAME="START_TIME">START_TIME</A><DD>Start time of the bulk continuous move.
+<DT><A NAME="END_TIME">END_TIME</A><DD>End time of the bulk continuous move.
+<DT><A NAME="NUM_OF_SHIPMENTS_SELECTED">NUM_OF_SHIPMENTS_SELECTED</A><DD>Number of shipments selected for the bulk continuous move.
+<DT><A NAME="NUM_OF_SHIPMENTS_LINKED">NUM_OF_SHIPMENTS_LINKED</A><DD>Number of shipments successfully linked by the bulk continuous move.
+<DT><A NAME="LOG_PROCESS_ID">LOG_PROCESS_ID</A><DD>The log id for the bulk continuous move process.
+<DT><A NAME="APP_MACHINE_GID">APP_MACHINE_GID</A><DD>Application machine id the process is running on, in order to get the log from the correct machine.
+<DT><A NAME="BULK_PLAN_GID">BULK_PLAN_GID</A><DD>If CM was initiated from a bulkplan, the bulk plan ID
+<DT><A NAME="NUM_SHIPMENTS_CONSIDERED">NUM_SHIPMENTS_CONSIDERED</A><DD>Some selected shipments might be excluded because they are on CM. This number shows the shipments that actually go into the algorithm.
+<DT><A NAME="NUM_OF_CM_CREATED">NUM_OF_CM_CREATED</A><DD>Number of continuous moves created though the bulk cm process.
+<DT><A NAME="TOTAL_EMPTY_DISTANCE">TOTAL_EMPTY_DISTANCE</A><DD>Sum of All Empty Distances in a CM added over all CMs.
+<DT><A NAME="CM_WITH_TWO_SHIPMENTS">CM_WITH_TWO_SHIPMENTS</A><DD>Number of continous move creates with 2 shipments each.
+<DT><A NAME="CM_WITH_THREE_SHIPMENTS">CM_WITH_THREE_SHIPMENTS</A><DD>Number of continous move creates with 3 shipments each.
+<DT><A NAME="CM_WITH_FOUR_SHIPMENTS">CM_WITH_FOUR_SHIPMENTS</A><DD>Number of continous move creates with 4 shipments each.
+<DT><A NAME="CM_WITH_FIVE_SHIPMENTS">CM_WITH_FIVE_SHIPMENTS</A><DD>Number of continous move creates with 5 shipments each.
+<DT><A NAME="CM_WITH_SIX_OR_MORE_SHIPMENTS">CM_WITH_SIX_OR_MORE_SHIPMENTS</A><DD>Number of continous move creates with 6 or more shipments each.
+<DT><A NAME="STATE">STATE</A><DD>Execution state of the bulk continous move. SUBMITTED/RUNNING/COMPLETED. 
+<DT><A NAME="DESCRIPTION">DESCRIPTION</A><DD>A description of the bulkcm used to identify a set of performance or quality conditions. Used to summarize the bulkcm assumptions when comparing multiple plans.
+</DL>
+</BODY>
+</HTML>

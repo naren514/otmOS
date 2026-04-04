@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://xmlns.oracle.com/apps/otm/transmission/v6.4" xmlns="http://xmlns.oracle.com/apps/otm/transmission/v6.4" attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:annotation>
+      <xsd:documentation>
+         Last modified .
+
+         Contains element, attribute and types definitions common to all Job interfaces.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:include schemaLocation="TransmissionCommon.xsd"/>
+   <xsd:include schemaLocation="LocationContact.xsd"/>
+   <xsd:include schemaLocation="Order.xsd"/>
+   <xsd:include schemaLocation="Finance.xsd"/>
+
+   <xsd:element name="Job" type="JobType" substitutionGroup="GLogXMLTransaction">
+      <xsd:annotation>
+         <xsd:documentation>
+            A Job represents a centralized workspace for managing the objects and activities required by logistic service providers.
+         </xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:complexType name="JobType">
+      <xsd:complexContent>
+         <xsd:extension base="OTMTransactionInOut">
+            <xsd:sequence>
+               <xsd:element name="SendReason" type="SendReasonType" minOccurs="0"/>
+               <xsd:element name="JobGid" type="GLogXMLGidType"/>
+               <xsd:element name="TransactionCode" type="TransactionCodeType"/>
+               <xsd:element name="ReplaceChildren" type="ReplaceChildrenType" minOccurs="0"/>
+               <xsd:element name="JobQueryType" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="JobTypeGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="ConsolidationTypeGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="MovePerspectiveGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="JobType" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="ConsolGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="IsMemoBL" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="MemoBLShipmentGid" type="GLogXMLGidType" minOccurs="0"/>
+               <xsd:element name="JobInvolvedParty" type="JobInvolvedPartyType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="ShippingAgentContact" type="ShippingAgentContactType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Outbound)
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Refnum" type="RefnumType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Status" type="StatusType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="Location" type="LocationType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Outbound)
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Release" type="ReleaseType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Outbound)
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="BuySide" type="ShipmentAllocationType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Outbound)
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SellSide" type="ShipmentAllocationType" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Outbound)
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Billing" type="BillingType" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                     <xsd:documentation>
+                        (Outbound)
+                     </xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="Text" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element name="HouseJobs" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>Contains the House Jobs for a master Job.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                     <xsd:sequence>
+                        <xsd:element name="Job" type="JobType" minOccurs="0" maxOccurs="unbounded"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+               </xsd:element>
+               <xsd:element name="FlexFieldStrings" type="FlexFieldStringType" minOccurs="0"/>
+               <xsd:element name="FlexFieldNumbers" type="FlexFieldNumberType" minOccurs="0"/>
+               <xsd:element name="FlexFieldDates" type="FlexFieldDateType" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShipmentAllocationType">
+      <xsd:sequence>
+         <xsd:element name="Shipment" type="ShipmentType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="AllocationBase" type="AllocationBaseType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShippingAgentContactType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the agent contact for a given agent.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ShippingAgentContactGid" type="GLogXMLGidType"/>
+         <xsd:element name="ShippingAgent" type="ShippingAgentType"/>
+         <xsd:element name="ShippingAgentTypeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="InvolvedPartyQualifierGid" type="GLogXMLGidType"/>
+         <xsd:element name="InvolvedPartyLocationRef" type="GLogXMLLocRefType" minOccurs="0"/>
+         <xsd:element name="ContactRef" type="ContactRefType"/>
+         <xsd:element name="ComMethodGid" type="GLogXMLGidType"/>
+         <xsd:element name="IsActive" type="xsd:string"/>
+         <xsd:element name="EffectiveDate" type="GLogDateTimeType"/>
+         <xsd:element name="ExpirationDate" type="GLogDateTimeType"/>
+         <xsd:element name="ModeProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="DestLocationRegionGid" type="GLogXMLRegionGidType" minOccurs="0"/>
+         <xsd:element name="ShipperLocationProfileGid" type="GLogXMLLocProfileType" minOccurs="0"/>
+         <xsd:element name="ConsigneeLocationProfileGid" type="GLogXMLLocProfileType" minOccurs="0"/>
+         <xsd:element name="IsPrimary" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="IsInternal" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NFRCRuleGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="IsAllowHouseCollect" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="MaxHouseCollectAmount" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="MasterBLType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="PaymentMethodCodeGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="MasterBLConsigneeInfo" type="MasterBLConsigneeInfoType" minOccurs="0"/>
+         <xsd:element name="MasterBLNotifyInfo" type="MasterBLNotifyInfoType" minOccurs="0"/>
+         <xsd:element name="MasterBLAlsoNotifyInfo" type="MasterBLNotifyInfoType" minOccurs="0"/>
+         <xsd:element name="ShippingAgentContactNote" type="ShippingAgentContactNoteType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="ShippingAgentContactProfit" type="ShippingAgentContactProfitType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShippingAgentType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies international shipping agents.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ShippingAgentGid" type="GLogXMLGidType"/>
+         <xsd:element name="AccountCode" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Text" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="MasterBLConsigneeInfoType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the Master B/L Consignee information.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="MasterBLConsigneeType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ContactRef" type="ContactRefType" minOccurs="0"/>
+         <xsd:element name="ComMethodGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="MasterBLNotifyInfoType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the master B/L notify information.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="MasterBLNotifyType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ContactRef" type="ContactRefType" minOccurs="0"/>
+         <xsd:element name="ComMethodGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShippingAgentContactNoteType">
+      <xsd:annotation>
+         <xsd:documentation>Speficies notes that are entered to record a history of claim activity.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="SequenceNumber" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="NoteDt" type="GLogDateTimeType" minOccurs="0"/>
+         <xsd:element name="NoteText" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="ShippingAgentContactProfitType">
+      <xsd:annotation>
+         <xsd:documentation>Specifies the profit split for the agent role.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="ShippingAgentContactProfitGid" type="GLogXMLGidType"/>
+         <xsd:element name="ModeProfileGid" type="GLogXMLGidType" minOccurs="0"/>
+         <xsd:element name="JobType" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ShipperLocationProfileGid" type="GLogXMLLocProfileType" minOccurs="0"/>
+         <xsd:element name="ConsigneeLocationProfileGid" type="GLogXMLLocProfileType" minOccurs="0"/>
+         <xsd:element name="ProfitSplitPct" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ProfitSplitAmount" type="GLogXMLFinancialAmountType" minOccurs="0"/>
+         <xsd:element name="ConsolidationTypeProfileGid" type="GLogXMLLocProfileType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="JobInvolvedPartyType">
+      <xsd:sequence>
+         <xsd:element name="InvolvedParty" type="InvolvedPartyType"/>
+         <xsd:element name="ShippingAgentContactGid" type="GLogXMLGidType" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+</xsd:schema>

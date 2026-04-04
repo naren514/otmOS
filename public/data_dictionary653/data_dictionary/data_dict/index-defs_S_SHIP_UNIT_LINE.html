@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<TITLE>Definitions - S_SHIP_UNIT_LINE</TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN="center">Definitions - S_SHIP_UNIT_LINE</H1>
+This table stores the line item entry for each shipment ship unit entry for S_SHIP_UNIT table.<P>
+<DL>
+<DT><A NAME="S_SHIP_UNIT_GID">S_SHIP_UNIT_GID</A><DD>A unique pointer to define the shipment ship unit. The gid contains the domain portion.
+<DT><A NAME="S_SHIP_UNIT_LINE_NO">S_SHIP_UNIT_LINE_NO</A><DD>The unique sequence within the ship unit to define the individual line items.
+<DT><A NAME="WEIGHT">WEIGHT</A><DD>The weight of the item.
+<DT><A NAME="WEIGHT_UOM_CODE">WEIGHT_UOM_CODE</A><DD>Unit of measure for WEIGHT column.
+<DT><A NAME="WEIGHT_BASE">WEIGHT_BASE</A><DD>WEIGHT in base units.
+<DT><A NAME="VOLUME">VOLUME</A><DD>The volume of the item.
+<DT><A NAME="VOLUME_UOM_CODE">VOLUME_UOM_CODE</A><DD>Unit of measure for VOLUME column.
+<DT><A NAME="VOLUME_BASE">VOLUME_BASE</A><DD>VOLUME in base units.
+<DT><A NAME="TRACKING_TAG1">TRACKING_TAG1</A><DD>Additional information about the item. This could be any tracking numbers, SKU codes, SPLC codes etc.
+<DT><A NAME="TRACKING_TAG2">TRACKING_TAG2</A><DD>Additional information about the item. This could be any tracking numbers, SKU codes, SPLC codes etc.
+<DT><A NAME="TRACKING_TAG3">TRACKING_TAG3</A><DD>Additional information about the item. This could be any tracking numbers, SKU codes, SPLC codes etc.
+<DT><A NAME="TRACKING_TAG4">TRACKING_TAG4</A><DD>Additional information about the item. This could be any tracking numbers, SKU codes, SPLC codes etc.
+<DT><A NAME="OR_LINE_GID">OR_LINE_GID</A><DD>A unique identifier to define the multiple order release lines per order release. The gid has the domain portion.
+<DT><A NAME="ORDER_RELEASE_GID">ORDER_RELEASE_GID</A><DD>A unique identifier created by the system for the order release. the gid contains the domain portion.
+<DT><A NAME="ITEM_PACKAGE_COUNT">ITEM_PACKAGE_COUNT</A><DD>the number of packages in this S_SHIP_UNIT_LINE for one ship unit ( its S_SHIP_UNIT may represent more than one same ship units).    (e.g., for 20 ship units that contains 4 cases of 24 cans of coca,  each S_SHIP_UNIT_LINE row will have ITEM_GID: coca, ITEM_COUNT 4x24, ITEM_PACKAGE_SPEC_GID: case-of-24-cans, ITEM_PACKAGE_COUNT: 4.   In the S_SHIP_UNIT table, the SHIP_UNIT_COUNT will be 20)
+<DT><A NAME="DECLARED_VALUE_BASE">DECLARED_VALUE_BASE</A><DD>DECLARED_VALUE in base units.
+<DT><A NAME="DECLARED_VALUE_CURRENCY_GID">DECLARED_VALUE_CURRENCY_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="PACKAGED_ITEM_GID">PACKAGED_ITEM_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="HAZMAT_ITEM_GID">HAZMAT_ITEM_GID</A><DD>GC3 Global identifier for the entity. Is created by concatenating Domain Name,"." and XID.
+<DT><A NAME="RECEIVED_WEIGHT_BASE">RECEIVED_WEIGHT_BASE</A><DD>RECEIVED_WEIGHT in base units.
+<DT><A NAME="RECEIVED_VOLUME_BASE">RECEIVED_VOLUME_BASE</A><DD>RECEIVED_VOLUME in base units.
+<DT><A NAME="RECEIVED_PACKAGING_UNIT_COUNT">RECEIVED_PACKAGING_UNIT_COUNT</A><DD> Packaging Unit Count Recieved
+<DT><A NAME="RECEIVED_COUNT_PER_SHIP_UNIT">RECEIVED_COUNT_PER_SHIP_UNIT</A><DD>Count per Ship Unit Received
+<DT><A NAME="T_ORDER_RELEASE_GID">T_ORDER_RELEASE_GID</A><DD>This is used as a non-foreign key reference to the order release.
+<DT><A NAME="T_OR_LINE_GID">T_OR_LINE_GID</A><DD>This is used as a non-foreign key reference to the order release line.
+<DT><A NAME="T_SHIP_UNIT_GID">T_SHIP_UNIT_GID</A><DD>This is used as a non-foreign key reference to the order release ship unit line.
+<DT><A NAME="T_SHIP_UNIT_LINE_NO">T_SHIP_UNIT_LINE_NO</A><DD>This is used as a non-foreign key reference to the order release ship unit line.
+<DT><A NAME="USER_DEFINED1_ICON_GID">USER_DEFINED1_ICON_GID</A><DD>Store a user-defined icon that will apear within the user interface to help visually identify attributes for the ship unit line
+<DT><A NAME="USER_DEFINED2_ICON_GID">USER_DEFINED2_ICON_GID</A><DD>Store a user-defined icon that will apear within the user interface to help visually identify attributes for the ship unit line
+<DT><A NAME="USER_DEFINED3_ICON_GID">USER_DEFINED3_ICON_GID</A><DD>Store a user-defined icon that will apear within the user interface to help visually identify attributes for the ship unit line
+</DL>
+</BODY>
+</HTML>
