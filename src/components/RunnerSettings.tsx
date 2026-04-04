@@ -30,7 +30,7 @@ export default function RunnerSettings() {
     <section className="card">
       <h2>Runner API</h2>
       <p className="muted" style={{ marginTop: 8 }}>
-        Configure the remote QA runner base URL and optional bearer token. Stored only in your browser.
+        Configure the remote QA runner base URL and bearer token. Stored only in your browser. The default URL now points at the Google Cloud runner.
       </p>
       <div className="formGrid" style={{ marginTop: 16 }}>
         <label>
