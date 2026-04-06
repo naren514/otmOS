@@ -132,24 +132,26 @@ export default function OrdersPage() {
       useGzip,
     };
     const data = await orderPost<{ xml: string; summary: Record<string, string>; templates?: { salesOrdersCsv: string; purchaseOrdersCsv: string }; payloads?: Array<{ humanId: string; shipFrom: string; shipTo: string; lineCount: number }>; zipFiles?: Array<{ name: string; contentBase64: string }>; lastXml?: string }>(ORDERS_API_BASE, "/generate", payload);
-    setPreview(data.xml ?? "");
+    const xml = data.xml ?? "";
+    setPreview(xml);
     setSummary(data.summary ?? null);
     setGeneratedPayloads(data.payloads ?? []);
     setZipFiles(data.zipFiles ?? []);
     setLastXml(data.lastXml ?? "");
     if (data.templates) setTemplates(data.templates);
     setStatus("Preview ready.");
+    return xml;
   }
 
   async function generateAndPost() {
     try {
-      await generatePreview();
+      const xml = await generatePreview();
       if (dryRun) {
-        setPostResult({ id: "dry-run", endpoint, username, status: "dry-run", message: "Dry run enabled — payload generated but not POSTed.", createdAt: new Date().toISOString(), payloadBytes: String(preview.length) });
+        setPostResult({ id: "dry-run", endpoint, username, status: "dry-run", message: "Dry run enabled — payload generated but not POSTed.", createdAt: new Date().toISOString(), payloadBytes: String(xml.length) });
         setStatus("Dry run complete.");
         return;
       }
-      const data = await orderPost<{ result: PostResult }>(ORDERS_API_BASE, "/post", { endpoint, username, password, xml: preview, gzip: useGzip });
+      const data = await orderPost<{ result: PostResult }>(ORDERS_API_BASE, "/post", { endpoint, username, password, xml, gzip: useGzip });
       setPostResult(data.result ?? null);
       setStatus("Post request completed.");
     } catch (e) {
