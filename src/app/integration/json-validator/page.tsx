@@ -66,18 +66,18 @@ export default function JsonValidatorPage() {
       if (obj === null || obj === undefined) return 1;
       if (typeof obj !== 'object') return 1;
       if (Array.isArray(obj)) {
-        return 1 + obj.reduce((sum, item) => sum + countNodes(item), 0);
+        return 1 + obj.reduce((sum: number, item: any) => sum + countNodes(item), 0);
       }
-      return 1 + Object.values(obj).reduce((sum, val) => sum + countNodes(val), 0);
+      return 1 + Object.values(obj as Record<string, any>).reduce((sum: number, val: any) => sum + countNodes(val), 0);
     };
 
     const countArrays = (obj: any): number => {
       if (!obj || typeof obj !== 'object') return 0;
       let count = Array.isArray(obj) ? 1 : 0;
       if (Array.isArray(obj)) {
-        count += obj.reduce((sum, item) => sum + countArrays(item), 0);
+        count += obj.reduce((sum: number, item: any) => sum + countArrays(item), 0);
       } else {
-        count += Object.values(obj).reduce((sum, val) => sum + countArrays(val), 0);
+        count += Object.values(obj as Record<string, any>).reduce((sum: number, val: any) => sum + countArrays(val), 0);
       }
       return count;
     };
@@ -85,10 +85,10 @@ export default function JsonValidatorPage() {
     const depth = (obj: any, level = 0): number => {
       if (!obj || typeof obj !== 'object') return level;
       if (Array.isArray(obj)) {
-        return obj.length === 0 ? level + 1 : Math.max(...obj.map(item => depth(item, level + 1)));
+        return obj.length === 0 ? level + 1 : Math.max(...obj.map((item: any) => depth(item, level + 1)));
       }
-      const values = Object.values(obj);
-      return values.length === 0 ? level + 1 : Math.max(...values.map(val => depth(val, level + 1)));
+      const values = Object.values(obj as Record<string, any>);
+      return values.length === 0 ? level + 1 : Math.max(...values.map((val: any) => depth(val, level + 1)));
     };
 
     return {
