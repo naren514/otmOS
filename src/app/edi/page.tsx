@@ -36,6 +36,110 @@ export default function EDIPage() {
   const [saveMeaning, setSaveMeaning] = useState("");
   const [status, setStatus] = useState("");
 
+  const exportAsCSV = () => {
+    if (rows.length === 0) {
+      setStatus("No explanation to export.");
+      return;
+    }
+
+    const headers = ["Loop/Context", "Segment", "Element", "Segment Element Name", "Value", "Element Description"];
+    const csvRows = [headers.join(",")];
+
+    rows.forEach(row => {
+      const csvRow = [
+        `"${(row as any).loop || "Detail"}"`,
+        `"${row.segment}"`,
+        `"${String(row.pos).padStart(2, "0")}"`,
+        `"${((row as any).elementName || `Element ${row.pos}`).replace(/"/g, '""')}"`,
+        `"${(row.value || "—").replace(/"/g, '""')}"`,
+        `"${((row as any).elementDescription || row.meaning || "No description information found").replace(/"/g, '""')}"`
+      ];
+      csvRows.push(csvRow.join(","));
+    });
+
+    const csvContent = csvRows.join("\n");
+    downloadFile(csvContent, `edi-explanation-${txSet}-${Date.now()}.csv`, "text/csv");
+    setStatus("Exported as CSV.");
+  };
+
+  const exportAsJSON = () => {
+    if (rows.length === 0) {
+      setStatus("No explanation to export.");
+      return;
+    }
+
+    const exportData = {
+      metadata: {
+        version,
+        txSet,
+        carrier,
+        elementSeparator: elementSep,
+        segmentTerminator: segmentTerm,
+        exportedAt: new Date().toISOString()
+      },
+      rows: rows.map(row => ({
+        loopContext: (row as any).loop || "Detail",
+        segment: row.segment,
+        element: row.pos,
+        segmentElementName: (row as any).elementName || `Element ${row.pos}`,
+        value: row.value || "",
+        elementDescription: (row as any).elementDescription || row.meaning || "No description information found"
+      }))
+    };
+
+    const jsonContent = JSON.stringify(exportData, null, 2);
+    downloadFile(jsonContent, `edi-explanation-${txSet}-${Date.now()}.json`, "application/json");
+    setStatus("Exported as JSON.");
+  };
+
+  const exportAsText = () => {
+    if (rows.length === 0) {
+      setStatus("No explanation to export.");
+      return;
+    }
+
+    let textContent = `EDI Explanation Report\n`;
+    textContent += `${"=".repeat(80)}\n\n`;
+    textContent += `Version: ${version}\n`;
+    textContent += `Transaction Set: ${txSet}\n`;
+    textContent += `Carrier/Scope: ${carrier}\n`;
+    textContent += `Element Separator: ${elementSep}\n`;
+    textContent += `Segment Terminator: ${segmentTerm}\n`;
+    textContent += `Generated: ${new Date().toISOString()}\n`;
+    textContent += `\n${"=".repeat(80)}\n\n`;
+
+    let currentLoop = "";
+    rows.forEach((row, idx) => {
+      const loop = (row as any).loop || "Detail";
+      if (loop !== currentLoop) {
+        if (idx > 0) textContent += "\n";
+        textContent += `\n[${loop}]\n${"-".repeat(80)}\n`;
+        currentLoop = loop;
+      }
+
+      textContent += `\nSegment: ${row.segment} | Element: ${String(row.pos).padStart(2, "0")}\n`;
+      textContent += `Field: ${(row as any).elementName || `Element ${row.pos}`}\n`;
+      textContent += `Value: ${row.value || "—"}\n`;
+      const desc = (row as any).elementDescription || row.meaning || "No description information found";
+      textContent += `Description: ${desc}\n`;
+    });
+
+    downloadFile(textContent, `edi-explanation-${txSet}-${Date.now()}.txt`, "text/plain");
+    setStatus("Exported as formatted text.");
+  };
+
+  const downloadFile = (content: string, filename: string, mimeType: string) => {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   const explain = useCallback(async () => {
     setStatus("Explaining...");
     const data = await ediPost<{ rows: EdiExplainRow[] }>(EDI_API_BASE, "/explain", { version, txSet, carrier, elementSep, segmentTerm, x12 });
@@ -138,7 +242,22 @@ export default function EDIPage() {
   return (
     <Shell title="EDI Explainer">
       <section className="card">
-        <SectionIntro title="Explain EDI Message" description="Paste an X12 message and inspect a parsed, mapping-backed row-level view." actions={<button className="btn primary" onClick={explain}>Explain</button>} />
+        <SectionIntro
+          title="Explain EDI Message"
+          description="Paste an X12 message and inspect a parsed, mapping-backed row-level view."
+          actions={
+            <div style={{ display: "flex", gap: 8 }}>
+              <button className="btn primary" onClick={explain}>Explain</button>
+              {rows.length > 0 && (
+                <>
+                  <button className="btn" onClick={exportAsCSV} title="Export as CSV">Export CSV</button>
+                  <button className="btn" onClick={exportAsJSON} title="Export as JSON">Export JSON</button>
+                  <button className="btn" onClick={exportAsText} title="Export as formatted text">Export TXT</button>
+                </>
+              )}
+            </div>
+          }
+        />
         <div className="formGrid">
           <label><span className="label">Version</span><select className="input" value={version} onChange={(e) => setVersion(e.target.value)}><option value="4010">4010</option><option value="5010">5010</option></select></label>
           <label><span className="label">Tx Set</span><select className="input" value={txSet} onChange={(e) => setTxSet(e.target.value)}>{["300", "204", "301", "990", "210", "310", "214", "315"].map((v) => <option key={v} value={v}>{v}</option>)}</select></label>
