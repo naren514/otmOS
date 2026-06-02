@@ -132,6 +132,40 @@ export default function OrdersPage() {
     setStatus("XML copied to clipboard!");
   }
 
+  function formatXml(xml: string): string {
+    if (!xml || xml === "<xml>Preview will appear here after generation.</xml>") return xml;
+    try {
+      const formatted = xml
+        .replace(/(<\w+)/g, '\n$1')
+        .replace(/(<\/\w+>)/g, '$1\n')
+        .replace(/\n\s*\n/g, '\n')
+        .trim();
+      return formatted
+        .split('\n')
+        .map(line => line.trim())
+        .join('\n');
+    } catch {
+      return xml;
+    }
+  }
+
+  function highlightXml(xml: string): string {
+    if (!xml || xml === "<xml>Preview will appear here after generation.</xml>") {
+      return `<span style="color: #6b7280;">${xml}</span>`;
+    }
+
+    return xml
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/(&lt;\?xml.*?\?&gt;)/g, '<span style="color: #6366f1; font-weight: 600;">$1</span>')
+      .replace(/(&lt;!--.*?--&gt;)/g, '<span style="color: #6b7280; font-style: italic;">$1</span>')
+      .replace(/(&lt;\/?)(\w+)/g, '$1<span style="color: #dc2626; font-weight: 600;">$2</span>')
+      .replace(/(&gt;)/g, '<span style="color: #dc2626;">$1</span>')
+      .replace(/(\w+)=/g, '<span style="color: #2563eb;">$1</span>=')
+      .replace(/="([^"]*)"/g, '=<span style="color: #059669;">"$1"</span>');
+  }
+
   async function loadImportFile(file: File) {
     const name = file.name.toLowerCase();
     if (name.endsWith(".csv") || name.endsWith(".txt")) {
@@ -400,9 +434,109 @@ export default function OrdersPage() {
 
       <section className="card" style={{ marginTop: 16 }}>
         <SectionIntro title="Preview &amp; results" description="Generated XML preview and result summary." />
-        {summary ? <div className="kvGrid" style={{ marginBottom: 16 }}><div><span className="muted">Order Kind</span><div>{summary.orderKind}</div></div><div><span className="muted">Mode</span><div>{summary.inputMode}</div></div><div><span className="muted">Domain</span><div>{summary.domain}</div></div><div><span className="muted">Base XID</span><div>{summary.baseXid}</div></div><div><span className="muted">Lines</span><div>{summary.lineCount}</div></div></div> : null}
-        {generatedPayloads.length ? <div style={{ overflowX: 'auto', marginBottom: 16 }}><table className="table"><thead><tr><th>Order ID</th><th>Ship From</th><th>Ship To</th><th># Lines</th></tr></thead><tbody>{generatedPayloads.map((p) => <tr key={p.humanId}><td>{p.humanId}</td><td>{p.shipFrom}</td><td>{p.shipTo}</td><td>{p.lineCount}</td></tr>)}</tbody></table></div> : null}
-        {zipFiles.length ? <div className="toolbar" style={{ marginBottom: 16 }}><button className="btn" onClick={() => zipFiles.forEach((f) => downloadBase64File(f.name, f.contentBase64))}>⬇️ Download all XMLs</button>{lastXml ? <button className="btn" onClick={() => downloadBase64File('last_order.xml', btoa(unescape(encodeURIComponent(lastXml))))}>⬇️ Download last XML</button> : null}</div> : null}
+        {summary && (
+          <div style={{
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            borderRadius: 12,
+            padding: 20,
+            marginBottom: 16,
+            color: "white"
+          }}>
+            <h3 style={{ marginBottom: 16, fontSize: 18, fontWeight: 700, color: "white" }}>
+              Generation Summary
+            </h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 16 }}>
+              <div>
+                <div style={{ fontSize: 12, opacity: 0.9, marginBottom: 4 }}>Order Kind</div>
+                <div style={{ fontSize: 16, fontWeight: 600 }}>{summary.orderKind}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 12, opacity: 0.9, marginBottom: 4 }}>Mode</div>
+                <div style={{ fontSize: 16, fontWeight: 600 }}>{summary.inputMode}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 12, opacity: 0.9, marginBottom: 4 }}>Domain</div>
+                <div style={{ fontSize: 16, fontWeight: 600, fontFamily: "monospace" }}>{summary.domain}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 12, opacity: 0.9, marginBottom: 4 }}>Base XID</div>
+                <div style={{ fontSize: 16, fontWeight: 600, fontFamily: "monospace" }}>{summary.baseXid}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 12, opacity: 0.9, marginBottom: 4 }}>Total Lines</div>
+                <div style={{ fontSize: 20, fontWeight: 700 }}>{summary.lineCount}</div>
+              </div>
+            </div>
+          </div>
+        )}
+        {generatedPayloads.length > 0 && (
+          <div style={{ marginBottom: 16 }}>
+            <h3 style={{ marginBottom: 12, fontSize: 16, fontWeight: 700 }}>
+              Generated Orders ({generatedPayloads.length})
+            </h3>
+            <div style={{ overflowX: 'auto' }}>
+              <table className="table">
+                <thead>
+                  <tr style={{ background: "#f9fafb" }}>
+                    <th>Order ID</th>
+                    <th>Ship From</th>
+                    <th>Ship To</th>
+                    <th style={{ textAlign: "right" }}># Lines</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {generatedPayloads.map((p, idx) => (
+                    <tr key={p.humanId} style={{ background: idx % 2 === 0 ? "#fff" : "#fafbfc" }}>
+                      <td style={{ fontWeight: 600, fontFamily: "monospace" }}>{p.humanId}</td>
+                      <td className="muted">{p.shipFrom}</td>
+                      <td className="muted">{p.shipTo}</td>
+                      <td style={{ textAlign: "right" }}>
+                        <span style={{
+                          background: "#eff6ff",
+                          color: "#1e40af",
+                          padding: "2px 8px",
+                          borderRadius: 4,
+                          fontSize: 12,
+                          fontWeight: 600
+                        }}>
+                          {p.lineCount}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+        {zipFiles.length > 0 && (
+          <div style={{
+            background: "#f9fafb",
+            border: "1px solid #e5e7eb",
+            borderRadius: 10,
+            padding: 16,
+            marginBottom: 16
+          }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+              <div>
+                <div style={{ fontWeight: 700, marginBottom: 4 }}>Download Generated Files</div>
+                <div className="muted" style={{ fontSize: 13 }}>
+                  {zipFiles.length} XML file{zipFiles.length > 1 ? 's' : ''} ready for download
+                </div>
+              </div>
+              <div className="toolbar">
+                <button className="btn primary" onClick={() => zipFiles.forEach((f) => downloadBase64File(f.name, f.contentBase64))}>
+                  📦 Download all XMLs ({zipFiles.length})
+                </button>
+                {lastXml && (
+                  <button className="btn" onClick={() => downloadBase64File('last_order.xml', btoa(unescape(encodeURIComponent(lastXml))))}>
+                    📄 Download last XML
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
         {postResult ? (
           <div className="detailPane" style={{ marginBottom: 16 }}>
             <h3 style={{ marginBottom: 12, fontSize: 16, fontWeight: 700 }}>POST Result</h3>
@@ -421,10 +555,54 @@ export default function OrdersPage() {
           </div>
         ) : null}
         <p className="muted mono" style={{ marginBottom: 12 }}>{status}</p>
-        {preview !== "<xml>Preview will appear here after generation.</xml>" && (
-          <button className="copyBtn" onClick={copyXmlToClipboard}>📋 Copy</button>
-        )}
-        <pre className="pre">{preview}</pre>
+
+        <div style={{ position: "relative" }}>
+          {preview !== "<xml>Preview will appear here after generation.</xml>" && (
+            <button className="copyBtn" onClick={copyXmlToClipboard}>📋 Copy</button>
+          )}
+          <div style={{
+            background: "#0f1720",
+            borderRadius: 10,
+            padding: 16,
+            position: "relative",
+            border: "1px solid #1f2937",
+            maxHeight: 600,
+            overflowY: "auto"
+          }}>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              marginBottom: 12,
+              paddingBottom: 12,
+              borderBottom: "1px solid #374151"
+            }}>
+              <span style={{
+                background: "#374151",
+                padding: "4px 10px",
+                borderRadius: 6,
+                fontSize: 12,
+                color: "#9ca3af",
+                fontWeight: 600
+              }}>XML</span>
+              <span style={{ color: "#6b7280", fontSize: 12 }}>
+                {preview.split('\n').length} lines • {preview.length} characters
+              </span>
+            </div>
+            <pre
+              style={{
+                margin: 0,
+                color: "#dbe5f0",
+                fontFamily: "monospace",
+                fontSize: 13,
+                lineHeight: 1.6,
+                whiteSpace: "pre",
+                overflow: "visible"
+              }}
+              dangerouslySetInnerHTML={{ __html: highlightXml(formatXml(preview)) }}
+            />
+          </div>
+        </div>
       </section>
     </Shell>
   );
