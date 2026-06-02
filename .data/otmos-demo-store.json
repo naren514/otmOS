@@ -1,0 +1,54 @@
+{
+  "qa": {
+    "config": {
+      "baseUrl": "",
+      "username": "",
+      "browser": "chrome"
+    },
+    "tests": [],
+    "runs": [],
+    "cycles": []
+  },
+  "edi": {
+    "mappings": [],
+    "docs": [
+      {
+        "id": "2e9e3ad4-69fa-4c4d-8bec-e855e47b4ad9",
+        "version": "4010",
+        "txSet": "204",
+        "txSets": [
+          "204"
+        ],
+        "carrier": "industry",
+        "sourceName": "TQYL_204.edi",
+        "notes": "",
+        "status": "processed",
+        "chunkCount": 1,
+        "charCount": 1126,
+        "snippetPreview": "ISA*00*          *00*          *ZZ*PATINDPROD     *02*TQYL           *260512*2051*U*00401*000000533*0*P*>~\r\nGS*SM*PATINDPROD*TQYL*20260512*2051*441*X*004010~\r\nST*204*0001~\r\nB2**TQYL**366120**PP~\r\nB2A*00~\r\nL11*1013955*TN~\r\nG62*64*20260513*I*",
+        "createdAt": "2026-05-12T23:35:51.335Z",
+        "detectedTxSets": "204"
+      },
+      {
+        "id": "1778628825557-nqsmrhghx",
+        "version": "4010",
+        "txSet": "204",
+        "txSets": [
+          "204"
+        ],
+        "carrier": "TQYL",
+        "sourceName": "TQYL_204.edi",
+        "notes": "Auto-imported from C:\\Users\\Jdabbara\\Documents\\Oracle\\EDIdocs",
+        "status": "processed",
+        "chunkCount": 1,
+        "charCount": 1126,
+        "snippetPreview": "ISA*00*          *00*          *ZZ*PATINDPROD     *02*TQYL           *260512*2051*U*00401*000000533*0*P*>~\r\nGS*SM*PATINDPROD*TQYL*20260512*2051*441*X*004010~\r\nST*204*0001~\r\nB2**TQYL**366120**PP~\r\nB2A*00~\r\nL11*1013955*TN~\r\nG62*64*20260513*I*",
+        "createdAt": "2026-05-12T23:33:45.557Z",
+        "detectedTxSets": "204"
+      }
+    ]
+  },
+  "orders": {
+    "results": []
+  }
+}

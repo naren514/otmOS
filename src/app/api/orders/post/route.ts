@@ -56,18 +56,43 @@ export async function POST(req: NextRequest) {
     });
 
     const responseText = await response.text();
+
+    // Parse OTM acknowledgment XML to extract status
+    let ackStatus = "UNKNOWN";
+    let ackMessage = responseText.substring(0, 500);
+
+    if (response.ok) {
+      try {
+        // Parse XML response to check for errors/warnings
+        if (responseText.includes("SEVERITY_ERROR") || responseText.includes("ERROR")) {
+          ackStatus = "ERROR";
+          ackMessage = responseText.substring(0, 1000);
+        } else if (responseText.includes("SEVERITY_WARNING") || responseText.includes("WARNING")) {
+          ackStatus = "WARNING";
+          ackMessage = responseText.substring(0, 1000);
+        } else {
+          ackStatus = "OK";
+          ackMessage = `Successfully posted to OTM. HTTP ${response.status}`;
+        }
+      } catch {
+        ackStatus = "OK";
+        ackMessage = `Successfully posted to OTM. HTTP ${response.status}`;
+      }
+    } else {
+      ackStatus = `HTTP_ERROR ${response.status}`;
+      ackMessage = responseText.substring(0, 1000);
+    }
+
     const result = {
       id: randomUUID(),
       endpoint,
       username,
-      status: response.ok ? "success" : "error",
-      message: response.ok
-        ? `Successfully posted to OTM. HTTP ${response.status}`
-        : `OTM returned error. HTTP ${response.status}: ${responseText.substring(0, 200)}`,
+      status: ackStatus,
+      message: ackMessage,
       createdAt: new Date().toISOString(),
       payloadBytes: String(Buffer.byteLength(xml, "utf8")),
       responseStatus: response.status,
-      responseBody: responseText.substring(0, 500), // Include partial response for debugging
+      responseBody: responseText.substring(0, 1000),
     };
 
     return NextResponse.json({ result }, { status: response.ok ? 200 : 500 });
