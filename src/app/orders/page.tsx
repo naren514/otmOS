@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Shell from "@/components/Shell";
 import SectionIntro from "@/components/SectionIntro";
+import StatusBadge from "@/components/StatusBadge";
 import { orderPost } from "@/lib/orderApi";
 import { getDefaultOrdersApiBase } from "@/lib/runtimeConfig";
 
@@ -56,6 +57,9 @@ export default function OrdersPage() {
   const [postResult, setPostResult] = useState<PostResult>(null);
   const [status, setStatus] = useState("");
   const [dragActive, setDragActive] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [isPosting, setIsPosting] = useState(false);
+  const [uploadedFileName, setUploadedFileName] = useState("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const loadTemplates = useCallback(async () => {
@@ -82,14 +86,68 @@ export default function OrdersPage() {
   const itemList = useMemo(() => parseList(itemText), [itemText]);
   const supplierList = useMemo(() => parseList(suppliersText), [suppliersText]);
 
+  const isEndpointValid = useMemo(() => {
+    if (!endpoint) return null;
+    const lower = endpoint.toLowerCase();
+    return lower.includes("dev") || lower.includes("test");
+  }, [endpoint]);
+
+  function loadSampleData() {
+    if (orderKind === "Sales Orders") {
+      setDomain("THG");
+      setBaseXid("SO_09000-1128");
+      setCurrency("USD");
+      setShipFromXid("110");
+      setShipToText("10000000000013\n10000000000027");
+      setItemText("400000002438186\n300000005438196");
+    } else {
+      setDomain("THG");
+      setBaseXid("PO_09000-1128");
+      setCurrency("USD");
+      setSuppliersText("300000016179177\n300000016179200");
+      setShipToText("110");
+      setItemText("400000004438186\n300000005438196");
+    }
+    setReleases(2);
+    setMinLines(2);
+    setMaxLines(3);
+    setMinQty(500);
+    setMaxQty(3000);
+    setMinVal(1000);
+    setMaxVal(15000);
+    setSeed(42);
+    setStatus("Sample data loaded.");
+  }
+
+  function resetToDefaults() {
+    loadSampleData();
+    setUseReleaseSuffixInGid(false);
+    setUseReleaseSuffixInLineIds(false);
+    setUseGzip(false);
+    setStatus("Reset to defaults.");
+  }
+
+  function copyXmlToClipboard() {
+    navigator.clipboard.writeText(preview);
+    setStatus("XML copied to clipboard!");
+  }
+
   async function loadImportFile(file: File) {
     const name = file.name.toLowerCase();
     if (name.endsWith(".csv") || name.endsWith(".txt")) {
       setImportText(await file.text());
+      setUploadedFileName(file.name);
       setStatus(`Loaded ${file.name}`);
       return;
     }
+    setUploadedFileName(file.name);
     setStatus(`Loaded ${file.name}, but CSV/text parsing is currently enabled in-browser. Paste content manually for now.`);
+  }
+
+  function clearUploadedFile() {
+    setImportText("");
+    setUploadedFileName("");
+    setStatus("Cleared uploaded file.");
   }
 
   function downloadTemplate(kind: "sales" | "purchase") {
@@ -104,8 +162,10 @@ export default function OrdersPage() {
   }
 
   async function generatePreview() {
+    setIsGenerating(true);
     setStatus("Generating preview...");
-    const payload = {
+    try {
+      const payload = {
       orderKind,
       inputMode,
       domain,
@@ -137,25 +197,40 @@ export default function OrdersPage() {
     setSummary(data.summary ?? null);
     setGeneratedPayloads(data.payloads ?? []);
     setZipFiles(data.zipFiles ?? []);
-    setLastXml(data.lastXml ?? "");
-    if (data.templates) setTemplates(data.templates);
-    setStatus("Preview ready.");
-    return xml;
+      setLastXml(data.lastXml ?? "");
+      if (data.templates) setTemplates(data.templates);
+      setStatus("Preview ready.");
+      return xml;
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : String(error));
+      return "";
+    } finally {
+      setIsGenerating(false);
+    }
   }
 
   async function generateAndPost() {
     try {
+      setIsPosting(true);
       const xml = await generatePreview();
+      if (!xml) {
+        setIsPosting(false);
+        return;
+      }
       if (dryRun) {
         setPostResult({ id: "dry-run", endpoint, username, status: "dry-run", message: "Dry run enabled — payload generated but not POSTed.", createdAt: new Date().toISOString(), payloadBytes: String(xml.length) });
         setStatus("Dry run complete.");
+        setIsPosting(false);
         return;
       }
+      setStatus("Posting to OTM...");
       const data = await orderPost<{ result: PostResult }>(ORDERS_API_BASE, "/post", { endpoint, username, password, xml, gzip: useGzip });
       setPostResult(data.result ?? null);
       setStatus("Post request completed.");
     } catch (e) {
       setStatus(e instanceof Error ? e.message : String(e));
+    } finally {
+      setIsPosting(false);
     }
   }
 
@@ -193,14 +268,36 @@ export default function OrdersPage() {
           }}>Clear saved</button>
         </div>
         <div className="formGrid">
-          <label><span className="label">OTM Endpoint (must contain &apos;dev&apos; or &apos;test&apos;)</span><input className="input" value={endpoint} onChange={(e) => { setEndpoint(e.target.value); if (rememberSession) window.sessionStorage.setItem(KEY_ENDPOINT, e.target.value); }} placeholder="https://&lt;pod&gt;-dev.gc3.oraclecloud.com/GC3/glog.integration.servlet.WMServlet" /></label>
+          <label style={{ position: "relative" }}>
+            <span className="label">OTM Endpoint (must contain &apos;dev&apos; or &apos;test&apos;)</span>
+            <div style={{ position: "relative" }}>
+              <input className="input" value={endpoint} onChange={(e) => { setEndpoint(e.target.value); if (rememberSession) window.sessionStorage.setItem(KEY_ENDPOINT, e.target.value); }} placeholder="https://&lt;pod&gt;-dev.gc3.oraclecloud.com/GC3/glog.integration.servlet.WMServlet" />
+              {isEndpointValid !== null && (
+                <span className={`validationIcon ${isEndpointValid ? "valid" : "invalid"}`} style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)" }}>
+                  {isEndpointValid ? "✓" : "✕"}
+                </span>
+              )}
+            </div>
+            {isEndpointValid === false && <span className="errorText" style={{ fontSize: 12, display: "block", marginTop: 4 }}>⚠️ Endpoint must contain &apos;dev&apos; or &apos;test&apos;</span>}
+          </label>
           <label><span className="label">OTM Username</span><input className="input" value={username} onChange={(e) => { setUsername(e.target.value); if (rememberSession) window.sessionStorage.setItem(KEY_USERNAME, e.target.value); }} placeholder="integration_user" /></label>
           <label><span className="label">OTM Password</span><input className="input" type="password" value={password} onChange={(e) => { setPassword(e.target.value); if (rememberSession) window.sessionStorage.setItem(KEY_PASSWORD, e.target.value); }} placeholder="••••••••" /></label>
         </div>
       </section>
 
       <section className="card" style={{ marginBottom: 16 }}>
-        <SectionIntro title="OTM Order Generator" description="Closer parity with the original Streamlit layout and field groupings." />
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: 16, flexWrap: "wrap", gap: 12 }}>
+          <div>
+            <h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 4 }}>OTM Order Generator</h2>
+            <p className="muted" style={{ fontSize: 14 }}>Generate Sales or Purchase Orders for Oracle Transportation Management</p>
+          </div>
+          {inputMode === "Manual (builder)" && (
+            <div className="toolbar">
+              <button className="btn" onClick={loadSampleData}>📋 Use Sample Data</button>
+              <button className="btn" onClick={resetToDefaults}>🔄 Reset</button>
+            </div>
+          )}
+        </div>
         <div className="toolbar" style={{ marginBottom: 12 }}>
           <label className="label">What do you want to create?</label>
           <label><input type="radio" checked={orderKind === "Sales Orders"} onChange={() => { setOrderKind("Sales Orders"); if (baseXid.startsWith("PO_")) setBaseXid("SO_09000-1128"); setShipToText("10000000000013\n10000000000027"); }} /> Sales Orders</label>
@@ -233,6 +330,12 @@ export default function OrdersPage() {
               </div>
               <input ref={fileInputRef} type="file" accept=".csv,.txt,.xlsx,.xls" style={{ display: "none" }} onChange={(e) => { const file = e.target.files?.[0]; if (file) void loadImportFile(file); }} />
             </div>
+            {uploadedFileName && (
+              <div className="fileBadge">
+                <span>📄 {uploadedFileName}</span>
+                <button onClick={clearUploadedFile} title="Clear file">✕</button>
+              </div>
+            )}
             <div className="formGrid" style={{ marginTop: 16 }}>
               <label><span className="label">DomainName</span><input className="input" value={domain} onChange={(e) => setDomain(e.target.value)} /></label>
               <label><span className="label">Default Currency (used if not present on a line)</span><input className="input" value={defaultCurrency} onChange={(e) => setDefaultCurrency(e.target.value)} /></label>
@@ -240,8 +343,12 @@ export default function OrdersPage() {
             {orderKind === "Sales Orders" ? <div className="toolbar" style={{ marginTop: 12 }}><label><input type="checkbox" checked={useReleaseSuffixInGid} onChange={(e) => setUseReleaseSuffixInGid(e.target.checked)} /> Add release suffix (_R1) to Release GID (import)</label><label><input type="checkbox" checked={useReleaseSuffixInLineIds} onChange={(e) => setUseReleaseSuffixInLineIds(e.target.checked)} /> Add release suffix (_R1) to SO LINE IDs (import)</label></div> : null}
             <label style={{ display: "block", marginTop: 12 }}><span className="label">Imported content</span><textarea className="textarea" value={importText} onChange={(e) => setImportText(e.target.value)} /></label>
             <div className="toolbar" style={{ marginTop: 16 }}>
-              <button className="btn primary" onClick={generatePreview}>Generate from file</button>
-              <button className="btn" onClick={generateAndPost}>Generate &amp; POST from file</button>
+              <button className="btn primary" onClick={generatePreview} disabled={isGenerating || isPosting}>
+                {isGenerating ? <><span className="spinner"></span> Generating...</> : "Generate from file"}
+              </button>
+              <button className="btn" onClick={generateAndPost} disabled={isGenerating || isPosting}>
+                {isPosting ? <><span className="spinner"></span> Posting...</> : "Generate & POST from file"}
+              </button>
             </div>
           </section>
         </>
@@ -278,8 +385,12 @@ export default function OrdersPage() {
           <section className="card" style={{ marginBottom: 16 }}>
             <SectionIntro title="Run" description="Generate XMLs or Generate &amp; POST to OTM." />
             <div className="toolbar">
-              <button className="btn primary" onClick={generatePreview}>Generate XMLs</button>
-              <button className="btn" onClick={generateAndPost}>Generate &amp; POST to OTM</button>
+              <button className="btn primary" onClick={generatePreview} disabled={isGenerating || isPosting}>
+                {isGenerating ? <><span className="spinner"></span> Generating...</> : "Generate XMLs"}
+              </button>
+              <button className="btn" onClick={generateAndPost} disabled={isGenerating || isPosting}>
+                {isPosting ? <><span className="spinner"></span> Posting...</> : "Generate & POST to OTM"}
+              </button>
             </div>
             {(releases > 1 && !useReleaseSuffixInGid) ? <p className="muted" style={{ marginTop: 12 }}>⚠️ Multiple orders without suffix may create duplicate IDs. Consider enabling _R#.</p> : null}
             <div className="detailPane" style={{ marginTop: 16 }}><div className="kvGrid"><div><span className="muted">ShipTo count</span><div>{shipToList.length}</div></div><div><span className="muted">Item count</span><div>{itemList.length}</div></div><div><span className="muted">Supplier count</span><div>{orderKind === "Purchase Orders" ? supplierList.length : "n/a"}</div></div><div><span className="muted">Posted?</span><div>{dryRun ? "No (dry run)" : "Yes"}</div></div></div></div>
@@ -292,8 +403,27 @@ export default function OrdersPage() {
         {summary ? <div className="kvGrid" style={{ marginBottom: 16 }}><div><span className="muted">Order Kind</span><div>{summary.orderKind}</div></div><div><span className="muted">Mode</span><div>{summary.inputMode}</div></div><div><span className="muted">Domain</span><div>{summary.domain}</div></div><div><span className="muted">Base XID</span><div>{summary.baseXid}</div></div><div><span className="muted">Lines</span><div>{summary.lineCount}</div></div></div> : null}
         {generatedPayloads.length ? <div style={{ overflowX: 'auto', marginBottom: 16 }}><table className="table"><thead><tr><th>Order ID</th><th>Ship From</th><th>Ship To</th><th># Lines</th></tr></thead><tbody>{generatedPayloads.map((p) => <tr key={p.humanId}><td>{p.humanId}</td><td>{p.shipFrom}</td><td>{p.shipTo}</td><td>{p.lineCount}</td></tr>)}</tbody></table></div> : null}
         {zipFiles.length ? <div className="toolbar" style={{ marginBottom: 16 }}><button className="btn" onClick={() => zipFiles.forEach((f) => downloadBase64File(f.name, f.contentBase64))}>⬇️ Download all XMLs</button>{lastXml ? <button className="btn" onClick={() => downloadBase64File('last_order.xml', btoa(unescape(encodeURIComponent(lastXml))))}>⬇️ Download last XML</button> : null}</div> : null}
-        {postResult ? <div className="detailPane" style={{ marginBottom: 16 }}><div className="kvGrid"><div><span className="muted">Status</span><div>{postResult.status}</div></div><div><span className="muted">Endpoint</span><div>{postResult.endpoint || "-"}</div></div><div><span className="muted">Message</span><div>{postResult.message}</div></div><div><span className="muted">Bytes</span><div>{postResult.payloadBytes || "-"}</div></div></div></div> : null}
+        {postResult ? (
+          <div className="detailPane" style={{ marginBottom: 16 }}>
+            <h3 style={{ marginBottom: 12, fontSize: 16, fontWeight: 700 }}>POST Result</h3>
+            <div className="kvGrid">
+              <div><span className="muted">Status</span><div style={{ marginTop: 6 }}><StatusBadge status={postResult.status} /></div></div>
+              <div><span className="muted">Endpoint</span><div style={{ marginTop: 6, fontSize: 13 }}>{postResult.endpoint || "-"}</div></div>
+              <div><span className="muted">Payload Size</span><div style={{ marginTop: 6 }}>{postResult.payloadBytes || "-"} bytes</div></div>
+              <div><span className="muted">Timestamp</span><div style={{ marginTop: 6, fontSize: 13 }}>{new Date(postResult.createdAt).toLocaleString()}</div></div>
+            </div>
+            {postResult.message && (
+              <details style={{ marginTop: 16 }}>
+                <summary style={{ cursor: "pointer", fontWeight: 600, marginBottom: 8 }}>Response Details</summary>
+                <pre style={{ background: "#f3f4f6", padding: 12, borderRadius: 8, fontSize: 12, overflow: "auto" }}>{postResult.message}</pre>
+              </details>
+            )}
+          </div>
+        ) : null}
         <p className="muted mono" style={{ marginBottom: 12 }}>{status}</p>
+        {preview !== "<xml>Preview will appear here after generation.</xml>" && (
+          <button className="copyBtn" onClick={copyXmlToClipboard}>📋 Copy</button>
+        )}
         <pre className="pre">{preview}</pre>
       </section>
     </Shell>
