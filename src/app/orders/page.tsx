@@ -262,7 +262,7 @@ export default function OrdersPage() {
       }
       if (dryRun) {
         setPostResult({ id: "dry-run", endpoint, username, status: "dry-run", message: "Dry run enabled — payload generated but not POSTed.", createdAt: new Date().toISOString(), payloadBytes: String(xml.length) });
-        setStatus("Dry run complete.");
+        setStatus("");
         setIsPosting(false);
         return;
       }
@@ -459,24 +459,24 @@ export default function OrdersPage() {
         </>
       ) : (
         <>
-          <details open className="card" style={{ marginBottom: 16 }}><summary style={{ fontWeight: 700, cursor: "pointer" }}>📄 Header Template</summary><div className="formGrid" style={{ marginTop: 16 }}>
+          <details className="card" style={{ marginBottom: 16 }}><summary style={{ fontWeight: 700, cursor: "pointer" }}>📄 Header Template</summary><div className="formGrid" style={{ marginTop: 16 }}>
             <label><span className="label">DomainName</span><input className="input" value={domain} onChange={(e) => setDomain(e.target.value)} /></label>
             <label><span className="label">Base XID (SO prefix or PO XID)</span><input className="input" value={baseXid} onChange={(e) => setBaseXid(e.target.value)} /></label>
             <label><span className="label">Currency</span><input className="input" value={currency} onChange={(e) => setCurrency(e.target.value)} /></label>
           </div></details>
 
-          <details open className="card" style={{ marginBottom: 16 }}><summary style={{ fontWeight: 700, cursor: "pointer" }}>📍 Locations &amp; Items</summary><div style={{ marginTop: 16 }}>
+          <details className="card" style={{ marginBottom: 16 }}><summary style={{ fontWeight: 700, cursor: "pointer" }}>📍 Locations &amp; Items</summary><div style={{ marginTop: 16 }}>
             {orderKind === "Sales Orders" ? <label style={{ display: "block", marginBottom: 12 }}><span className="label">ShipFrom (Your DC) XID</span><input className="input" value={shipFromXid} onChange={(e) => setShipFromXid(e.target.value)} /></label> : <label style={{ display: "block", marginBottom: 12 }}><span className="label">Supplier ShipFrom XIDs (one per line)</span><textarea className="textarea" value={suppliersText} onChange={(e) => setSuppliersText(e.target.value)} /></label>}
             <label style={{ display: "block", marginBottom: 12 }}><span className="label">{orderKind === "Sales Orders" ? "ShipTo (Customers) XIDs" : "ShipTo (Your DC) XID(s) — first value will be used"}</span><textarea className="textarea" value={shipToText} onChange={(e) => setShipToText(e.target.value)} /></label>
             <label style={{ display: "block" }}><span className="label">PackagedItemGid XIDs (comma/newline)</span><textarea className="textarea" value={itemText} onChange={(e) => setItemText(e.target.value)} /></label>
           </div></details>
 
-          <details open className="card" style={{ marginBottom: 16 }}><summary style={{ fontWeight: 700, cursor: "pointer" }}>🧩 GID &amp; Line-ID Options</summary><div className="toolbar" style={{ marginTop: 16 }}>
+          <details className="card" style={{ marginBottom: 16 }}><summary style={{ fontWeight: 700, cursor: "pointer" }}>🧩 GID &amp; Line-ID Options</summary><div className="toolbar" style={{ marginTop: 16 }}>
             <label><input type="checkbox" checked={useReleaseSuffixInGid} onChange={(e) => setUseReleaseSuffixInGid(e.target.checked)} /> Add release suffix (_R#) to Release/PO XID</label>
             <label><input type="checkbox" checked={useReleaseSuffixInLineIds} onChange={(e) => setUseReleaseSuffixInLineIds(e.target.checked)} /> Add release suffix (_R#) to SO LINE IDs</label>
           </div></details>
 
-          <details open className="card" style={{ marginBottom: 16 }}><summary style={{ fontWeight: 700, cursor: "pointer" }}>🎚️ Generation Controls</summary><div className="formGrid" style={{ marginTop: 16 }}>
+          <details className="card" style={{ marginBottom: 16 }}><summary style={{ fontWeight: 700, cursor: "pointer" }}>🎚️ Generation Controls</summary><div className="formGrid" style={{ marginTop: 16 }}>
             <label><span className="label">How many orders</span><input className="input" type="number" value={releases} onChange={(e) => setReleases(Number(e.target.value || 1))} /></label>
             <label><span className="label">Min lines per order</span><input className="input" type="number" value={minLines} onChange={(e) => setMinLines(Number(e.target.value || 1))} /></label>
             <label><span className="label">Max lines per order</span><input className="input" type="number" value={maxLines} onChange={(e) => setMaxLines(Number(e.target.value || 1))} /></label>
@@ -487,24 +487,79 @@ export default function OrdersPage() {
             <label><span className="label">Random seed</span><input className="input" type="number" value={seed} onChange={(e) => setSeed(Number(e.target.value || 42))} /></label>
           </div><div className="toolbar" style={{ marginTop: 12 }}><label><input type="checkbox" checked={useGzip} onChange={(e) => setUseGzip(e.target.checked)} /> Send gzipped XML (Content-Encoding: gzip)</label></div></details>
 
-          <section className="card" style={{ marginBottom: 16 }}>
-            <SectionIntro title="Run" description="Generate XMLs or Generate &amp; POST to OTM." />
-            <div className="toolbar">
-              <button className="btn primary" onClick={generatePreview} disabled={isGenerating || isPosting}>
-                {isGenerating ? <><span className="spinner"></span> Generating...</> : "Generate XMLs"}
+          <div style={{
+            marginTop: 24,
+            marginBottom: 24,
+            padding: '20px',
+            background: '#f8fafc',
+            borderRadius: 8,
+            border: '1px solid #e2e8f0'
+          }}>
+            <div style={{
+              display: 'flex',
+              gap: 12,
+              justifyContent: 'center',
+              flexWrap: 'wrap'
+            }}>
+              <button
+                style={{
+                  padding: '12px 32px',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  background: '#3b82f6',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: 6,
+                  cursor: isGenerating || isPosting ? 'not-allowed' : 'pointer',
+                  opacity: isGenerating || isPosting ? 0.6 : 1,
+                  transition: 'all 0.2s',
+                  boxShadow: '0 2px 4px rgba(59, 130, 246, 0.3)'
+                }}
+                onClick={generatePreview}
+                disabled={isGenerating || isPosting}
+                onMouseOver={(e) => !isGenerating && !isPosting && (e.currentTarget.style.background = '#2563eb')}
+                onMouseOut={(e) => e.currentTarget.style.background = '#3b82f6'}
+              >
+                {isGenerating ? '⏳ Generating...' : '🎯 Generate XMLs'}
               </button>
-              <button className="btn" onClick={generateAndPost} disabled={isGenerating || isPosting}>
-                {isPosting ? <><span className="spinner"></span> Posting...</> : "Generate & POST to OTM"}
+              <button
+                style={{
+                  padding: '12px 32px',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  background: '#10b981',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: 6,
+                  cursor: isGenerating || isPosting ? 'not-allowed' : 'pointer',
+                  opacity: isGenerating || isPosting ? 0.6 : 1,
+                  transition: 'all 0.2s',
+                  boxShadow: '0 2px 4px rgba(16, 185, 129, 0.3)'
+                }}
+                onClick={generateAndPost}
+                disabled={isGenerating || isPosting}
+                onMouseOver={(e) => !isGenerating && !isPosting && (e.currentTarget.style.background = '#059669')}
+                onMouseOut={(e) => e.currentTarget.style.background = '#10b981'}
+              >
+                {isPosting ? '⏳ Posting...' : '🚀 Generate & POST to OTM'}
               </button>
             </div>
-            {(releases > 1 && !useReleaseSuffixInGid) ? <p className="muted" style={{ marginTop: 12 }}>⚠️ Multiple orders without suffix may create duplicate IDs. Consider enabling _R#.</p> : null}
-            <div className="detailPane" style={{ marginTop: 16 }}><div className="kvGrid"><div><span className="muted">ShipTo count</span><div>{shipToList.length}</div></div><div><span className="muted">Item count</span><div>{itemList.length}</div></div><div><span className="muted">Supplier count</span><div>{orderKind === "Purchase Orders" ? supplierList.length : "n/a"}</div></div><div><span className="muted">Posted?</span><div>{dryRun ? "No (dry run)" : "Yes"}</div></div></div></div>
-          </section>
+            {(releases > 1 && !useReleaseSuffixInGid) && (
+              <p style={{
+                margin: '12px 0 0 0',
+                textAlign: 'center',
+                fontSize: 13,
+                color: '#f59e0b',
+                fontWeight: 500
+              }}>
+                ⚠️ Multiple orders without suffix may create duplicate IDs. Consider enabling _R#.
+              </p>
+            )}
+          </div>
         </>
       )}
 
-      <section className="card" style={{ marginTop: 16 }}>
-        <SectionIntro title="Preview &amp; results" description="Generated XML preview and result summary." />
+      <div style={{ marginTop: 16 }}>
         {summary && (
           <div style={{
             background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
@@ -541,63 +596,118 @@ export default function OrdersPage() {
           </div>
         )}
         {generatedPayloads.length > 0 && (
-          <div style={{ marginBottom: 16 }}>
-            <h3 style={{ marginBottom: 12, fontSize: 16, fontWeight: 700 }}>
-              Generated Orders ({generatedPayloads.length})
-            </h3>
-            <div style={{ overflowX: 'auto', background: '#1e293b', padding: 16, borderRadius: 8 }}>
-              <table className="table" style={{ width: '100%', color: '#e2e8f0' }}>
+          <div style={{ marginBottom: 20 }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: 12,
+              padding: '8px 12px',
+              background: '#f8fafc',
+              borderRadius: 6,
+              border: '1px solid #e2e8f0'
+            }}>
+              <h3 style={{ margin: 0, fontSize: 14, fontWeight: 700, color: '#334155' }}>
+                📋 Generated Orders ({generatedPayloads.length})
+              </h3>
+              <div style={{ fontSize: 12, color: '#64748b' }}>
+                {generatedPayloads.filter(p => p.posted).length > 0 &&
+                  `${generatedPayloads.filter(p => p.posted).length} posted`
+                }
+              </div>
+            </div>
+            <div style={{
+              overflowX: 'auto',
+              background: '#0f172a',
+              border: '1px solid #1e293b',
+              borderRadius: 8,
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+            }}>
+              <table style={{
+                width: '100%',
+                borderCollapse: 'collapse',
+                fontSize: '13px'
+              }}>
                 <thead>
-                  <tr style={{ background: "#334155", borderBottom: '2px solid #475569' }}>
-                    <th style={{ color: '#f1f5f9', padding: '12px 8px' }}>Order Xid</th>
-                    <th style={{ color: '#f1f5f9', padding: '12px 8px' }}>Order ID</th>
-                    <th style={{ color: '#f1f5f9', padding: '12px 8px' }}>Ellig Date</th>
-                    <th style={{ color: '#f1f5f9', padding: '12px 8px' }}>Ship To</th>
-                    <th style={{ color: '#f1f5f9', padding: '12px 8px', textAlign: 'right' }}># Lines</th>
-                    <th style={{ color: '#f1f5f9', padding: '12px 8px', textAlign: 'center' }}>Posted?</th>
-                    <th style={{ color: '#f1f5f9', padding: '12px 8px', textAlign: 'center' }}>Status</th>
-                    <th style={{ color: '#f1f5f9', padding: '12px 8px' }}>Job1 Date</th>
+                  <tr style={{ background: "#1e293b", borderBottom: '2px solid #334155' }}>
+                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'left', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Order Xid</th>
+                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'left', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Order ID</th>
+                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'left', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Ellig Date</th>
+                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'left', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Ship To</th>
+                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'center', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}># Lines</th>
+                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'center', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Posted?</th>
+                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'center', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Status</th>
+                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'left', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Job1 Date</th>
                   </tr>
                 </thead>
                 <tbody>
                   {generatedPayloads.map((p, idx) => (
-                    <tr key={p.humanId} style={{ background: idx % 2 === 0 ? "#1e293b" : "#0f172a", borderBottom: '1px solid #334155' }}>
-                      <td style={{ fontWeight: 600, fontFamily: "monospace", padding: '10px 8px', fontSize: '13px' }}>{p.humanId}</td>
-                      <td style={{ fontFamily: "monospace", padding: '10px 8px', fontSize: '13px', color: '#94a3b8' }}>{p.humanId}</td>
-                      <td style={{ padding: '10px 8px', fontSize: '13px', color: '#94a3b8' }}>
-                        {p.timestamp ? new Date(p.timestamp).toLocaleDateString() : '-'}
+                    <tr key={p.humanId} style={{
+                      background: idx % 2 === 0 ? "#0f172a" : "#1e293b",
+                      borderBottom: '1px solid #1e293b',
+                      transition: 'background 0.15s'
+                    }}>
+                      <td style={{
+                        fontWeight: 600,
+                        fontFamily: "ui-monospace, monospace",
+                        padding: '8px 12px',
+                        color: '#f1f5f9',
+                        whiteSpace: 'nowrap'
+                      }}>{p.humanId}</td>
+                      <td style={{
+                        fontFamily: "ui-monospace, monospace",
+                        padding: '8px 12px',
+                        color: '#cbd5e1',
+                        whiteSpace: 'nowrap'
+                      }}>{p.humanId}</td>
+                      <td style={{
+                        padding: '8px 12px',
+                        color: '#94a3b8',
+                        whiteSpace: 'nowrap'
+                      }}>
+                        {p.timestamp ? new Date(p.timestamp).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: '2-digit' }) : '-'}
                       </td>
-                      <td style={{ padding: '10px 8px', fontSize: '13px', color: '#94a3b8' }}>{p.shipTo}</td>
-                      <td style={{ textAlign: "right", padding: '10px 8px' }}>
+                      <td style={{
+                        padding: '8px 12px',
+                        color: '#cbd5e1',
+                        fontWeight: 500
+                      }}>{p.shipTo}</td>
+                      <td style={{ textAlign: "center", padding: '8px 12px' }}>
                         <span style={{
                           background: "#1e40af",
-                          color: "#bfdbfe",
-                          padding: "4px 10px",
+                          color: "#dbeafe",
+                          padding: "2px 8px",
                           borderRadius: 4,
-                          fontSize: 12,
-                          fontWeight: 600
+                          fontSize: 11,
+                          fontWeight: 700
                         }}>
                           {p.lineCount}
                         </span>
                       </td>
-                      <td style={{ textAlign: 'center', padding: '10px 8px' }}>
+                      <td style={{ textAlign: 'center', padding: '8px 12px' }}>
                         {p.posted ? (
-                          <span style={{ color: '#22c55e', fontSize: '18px' }}>✓</span>
+                          <span style={{ color: '#10b981', fontSize: '16px', fontWeight: 'bold' }}>✓</span>
                         ) : (
-                          <span style={{ color: '#64748b', fontSize: '14px' }}>-</span>
+                          <span style={{ color: '#475569', fontSize: '14px' }}>—</span>
                         )}
                       </td>
-                      <td style={{ textAlign: 'center', padding: '10px 8px' }}>
+                      <td style={{ textAlign: 'center', padding: '8px 12px' }}>
                         {p.status === 'OK' ? (
-                          <span style={{ color: '#22c55e', fontSize: '18px' }}>✓</span>
+                          <span style={{ color: '#10b981', fontSize: '16px', fontWeight: 'bold' }}>✓</span>
                         ) : p.status === 'ERROR' ? (
-                          <span style={{ color: '#ef4444', fontSize: '18px' }}>✗</span>
+                          <span style={{ color: '#ef4444', fontSize: '16px', fontWeight: 'bold' }}>✗</span>
                         ) : (
-                          <span style={{ color: '#64748b', fontSize: '14px' }}>-</span>
+                          <span style={{ color: '#475569', fontSize: '14px' }}>—</span>
                         )}
                       </td>
-                      <td style={{ padding: '10px 8px', fontSize: '13px', color: '#94a3b8', fontFamily: 'monospace' }}>
-                        {p.timestamp || new Date().toLocaleString()}
+                      <td style={{
+                        padding: '8px 12px',
+                        color: '#94a3b8',
+                        fontFamily: 'ui-monospace, monospace',
+                        fontSize: '12px',
+                        whiteSpace: 'nowrap'
+                      }}>
+                        {p.timestamp ? new Date(p.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '-'}
                       </td>
                     </tr>
                   ))}
@@ -700,7 +810,7 @@ export default function OrdersPage() {
             />
           </div>
         </div>
-      </section>
+      </div>
     </Shell>
   );
 }
