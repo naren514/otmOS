@@ -198,6 +198,13 @@ export default function OrdersPage() {
   async function generatePreview() {
     setIsGenerating(true);
     setStatus("");
+
+    // Clear previous generation data
+    setGeneratedPayloads([]);
+    setZipFiles([]);
+    setSummary(null);
+    setPostResult(null);
+
     try {
       const payload = {
       orderKind,
