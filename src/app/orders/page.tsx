@@ -51,7 +51,7 @@ export default function OrdersPage() {
   const [templates, setTemplates] = useState<{ salesOrdersCsv?: string; purchaseOrdersCsv?: string }>({});
   const [preview, setPreview] = useState("<xml>Preview will appear here after generation.</xml>");
   const [summary, setSummary] = useState<Record<string, string> | null>(null);
-  const [generatedPayloads, setGeneratedPayloads] = useState<Array<{ humanId: string; shipFrom: string; shipTo: string; lineCount: number }>>([]);
+  const [generatedPayloads, setGeneratedPayloads] = useState<Array<{ humanId: string; shipFrom: string; shipTo: string; lineCount: number; posted?: boolean; status?: string; timestamp?: string }>>([]);
   const [zipFiles, setZipFiles] = useState<Array<{ name: string; contentBase64: string }>>([]);
   const [lastXml, setLastXml] = useState("");
   const [postResult, setPostResult] = useState<PostResult>(null);
@@ -229,7 +229,16 @@ export default function OrdersPage() {
     const xml = data.xml ?? "";
     setPreview(xml);
     setSummary(data.summary ?? null);
-    setGeneratedPayloads(data.payloads ?? []);
+
+    // Add timestamp and initial status to payloads
+    const timestamp = new Date().toISOString();
+    const payloadsWithStatus = (data.payloads ?? []).map(p => ({
+      ...p,
+      posted: false,
+      status: 'pending',
+      timestamp
+    }));
+    setGeneratedPayloads(payloadsWithStatus);
     setZipFiles(data.zipFiles ?? []);
       setLastXml(data.lastXml ?? "");
       if (data.templates) setTemplates(data.templates);
@@ -257,10 +266,72 @@ export default function OrdersPage() {
         setIsPosting(false);
         return;
       }
-      setStatus("Posting to OTM...");
-      const data = await orderPost<{ result: PostResult }>(ORDERS_API_BASE, "/post", { endpoint, username, password, xml, gzip: useGzip });
-      setPostResult(data.result ?? null);
-      setStatus("Post request completed.");
+
+      // Post ALL generated orders, not just the first one
+      const ordersToPost = zipFiles.length > 0 ? zipFiles : [{ name: 'order.xml', contentBase64: Buffer.from(xml).toString('base64') }];
+      setStatus(`Posting ${ordersToPost.length} order(s) to OTM...`);
+
+      let successCount = 0;
+      let failCount = 0;
+      const results: PostResult[] = [];
+
+      // Create a copy of payloads to update status
+      const updatedPayloads = [...generatedPayloads];
+
+      for (let i = 0; i < ordersToPost.length; i++) {
+        const orderXml = Buffer.from(ordersToPost[i].contentBase64, 'base64').toString('utf-8');
+        setStatus(`Posting order ${i + 1} of ${ordersToPost.length} to OTM...`);
+
+        try {
+          const data = await orderPost<{ result: PostResult }>(ORDERS_API_BASE, "/post", {
+            endpoint,
+            username,
+            password,
+            xml: orderXml,
+            gzip: useGzip
+          });
+
+          if (data.result) {
+            results.push(data.result);
+            if (data.result.status === "OK") {
+              successCount++;
+              // Update payload status
+              if (updatedPayloads[i]) {
+                updatedPayloads[i].posted = true;
+                updatedPayloads[i].status = 'OK';
+              }
+            } else {
+              failCount++;
+              if (updatedPayloads[i]) {
+                updatedPayloads[i].posted = true;
+                updatedPayloads[i].status = 'ERROR';
+              }
+            }
+          }
+        } catch (e) {
+          failCount++;
+          if (updatedPayloads[i]) {
+            updatedPayloads[i].posted = true;
+            updatedPayloads[i].status = 'ERROR';
+          }
+          results.push({
+            id: `error-${i}`,
+            endpoint,
+            username,
+            status: "error",
+            message: e instanceof Error ? e.message : String(e),
+            createdAt: new Date().toISOString(),
+            payloadBytes: String(orderXml.length)
+          });
+        }
+      }
+
+      // Update the payloads state with post status
+      setGeneratedPayloads(updatedPayloads);
+
+      // Set the first result for display
+      setPostResult(results[0] ?? null);
+      setStatus(`Posted ${ordersToPost.length} orders: ${successCount} succeeded, ${failCount} failed.`);
     } catch (e) {
       setStatus(e instanceof Error ? e.message : String(e));
     } finally {
@@ -474,33 +545,59 @@ export default function OrdersPage() {
             <h3 style={{ marginBottom: 12, fontSize: 16, fontWeight: 700 }}>
               Generated Orders ({generatedPayloads.length})
             </h3>
-            <div style={{ overflowX: 'auto' }}>
-              <table className="table">
+            <div style={{ overflowX: 'auto', background: '#1e293b', padding: 16, borderRadius: 8 }}>
+              <table className="table" style={{ width: '100%', color: '#e2e8f0' }}>
                 <thead>
-                  <tr style={{ background: "#f9fafb" }}>
-                    <th>Order ID</th>
-                    <th>Ship From</th>
-                    <th>Ship To</th>
-                    <th style={{ textAlign: "right" }}># Lines</th>
+                  <tr style={{ background: "#334155", borderBottom: '2px solid #475569' }}>
+                    <th style={{ color: '#f1f5f9', padding: '12px 8px' }}>Order Xid</th>
+                    <th style={{ color: '#f1f5f9', padding: '12px 8px' }}>Order ID</th>
+                    <th style={{ color: '#f1f5f9', padding: '12px 8px' }}>Ellig Date</th>
+                    <th style={{ color: '#f1f5f9', padding: '12px 8px' }}>Ship To</th>
+                    <th style={{ color: '#f1f5f9', padding: '12px 8px', textAlign: 'right' }}># Lines</th>
+                    <th style={{ color: '#f1f5f9', padding: '12px 8px', textAlign: 'center' }}>Posted?</th>
+                    <th style={{ color: '#f1f5f9', padding: '12px 8px', textAlign: 'center' }}>Status</th>
+                    <th style={{ color: '#f1f5f9', padding: '12px 8px' }}>Job1 Date</th>
                   </tr>
                 </thead>
                 <tbody>
                   {generatedPayloads.map((p, idx) => (
-                    <tr key={p.humanId} style={{ background: idx % 2 === 0 ? "#fff" : "#fafbfc" }}>
-                      <td style={{ fontWeight: 600, fontFamily: "monospace" }}>{p.humanId}</td>
-                      <td className="muted">{p.shipFrom}</td>
-                      <td className="muted">{p.shipTo}</td>
-                      <td style={{ textAlign: "right" }}>
+                    <tr key={p.humanId} style={{ background: idx % 2 === 0 ? "#1e293b" : "#0f172a", borderBottom: '1px solid #334155' }}>
+                      <td style={{ fontWeight: 600, fontFamily: "monospace", padding: '10px 8px', fontSize: '13px' }}>{p.humanId}</td>
+                      <td style={{ fontFamily: "monospace", padding: '10px 8px', fontSize: '13px', color: '#94a3b8' }}>{p.humanId}</td>
+                      <td style={{ padding: '10px 8px', fontSize: '13px', color: '#94a3b8' }}>
+                        {p.timestamp ? new Date(p.timestamp).toLocaleDateString() : '-'}
+                      </td>
+                      <td style={{ padding: '10px 8px', fontSize: '13px', color: '#94a3b8' }}>{p.shipTo}</td>
+                      <td style={{ textAlign: "right", padding: '10px 8px' }}>
                         <span style={{
-                          background: "#eff6ff",
-                          color: "#1e40af",
-                          padding: "2px 8px",
+                          background: "#1e40af",
+                          color: "#bfdbfe",
+                          padding: "4px 10px",
                           borderRadius: 4,
                           fontSize: 12,
                           fontWeight: 600
                         }}>
                           {p.lineCount}
                         </span>
+                      </td>
+                      <td style={{ textAlign: 'center', padding: '10px 8px' }}>
+                        {p.posted ? (
+                          <span style={{ color: '#22c55e', fontSize: '18px' }}>✓</span>
+                        ) : (
+                          <span style={{ color: '#64748b', fontSize: '14px' }}>-</span>
+                        )}
+                      </td>
+                      <td style={{ textAlign: 'center', padding: '10px 8px' }}>
+                        {p.status === 'OK' ? (
+                          <span style={{ color: '#22c55e', fontSize: '18px' }}>✓</span>
+                        ) : p.status === 'ERROR' ? (
+                          <span style={{ color: '#ef4444', fontSize: '18px' }}>✗</span>
+                        ) : (
+                          <span style={{ color: '#64748b', fontSize: '14px' }}>-</span>
+                        )}
+                      </td>
+                      <td style={{ padding: '10px 8px', fontSize: '13px', color: '#94a3b8', fontFamily: 'monospace' }}>
+                        {p.timestamp || new Date().toLocaleString()}
                       </td>
                     </tr>
                   ))}
