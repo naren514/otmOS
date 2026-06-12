@@ -171,17 +171,17 @@ export default function OrdersPage() {
     if (name.endsWith(".csv") || name.endsWith(".txt")) {
       setImportText(await file.text());
       setUploadedFileName(file.name);
-      setStatus(`Loaded ${file.name}`);
+      setStatus("");
       return;
     }
     setUploadedFileName(file.name);
-    setStatus(`Loaded ${file.name}, but CSV/text parsing is currently enabled in-browser. Paste content manually for now.`);
+    setStatus("");
   }
 
   function clearUploadedFile() {
     setImportText("");
     setUploadedFileName("");
-    setStatus("Cleared uploaded file.");
+    setStatus("");
   }
 
   function downloadTemplate(kind: "sales" | "purchase") {
@@ -197,7 +197,7 @@ export default function OrdersPage() {
 
   async function generatePreview() {
     setIsGenerating(true);
-    setStatus("Generating preview...");
+    setStatus("");
     try {
       const payload = {
       orderKind,
@@ -242,7 +242,7 @@ export default function OrdersPage() {
     setZipFiles(data.zipFiles ?? []);
       setLastXml(data.lastXml ?? "");
       if (data.templates) setTemplates(data.templates);
-      setStatus("Preview ready.");
+      setStatus("");
       return xml;
     } catch (error) {
       setStatus(error instanceof Error ? error.message : String(error));
@@ -269,7 +269,7 @@ export default function OrdersPage() {
 
       // Post ALL generated orders, not just the first one
       const ordersToPost = zipFiles.length > 0 ? zipFiles : [{ name: 'order.xml', contentBase64: Buffer.from(xml).toString('base64') }];
-      setStatus(`Posting ${ordersToPost.length} order(s) to OTM...`);
+      setStatus("");
 
       let successCount = 0;
       let failCount = 0;
@@ -280,7 +280,6 @@ export default function OrdersPage() {
 
       for (let i = 0; i < ordersToPost.length; i++) {
         const orderXml = Buffer.from(ordersToPost[i].contentBase64, 'base64').toString('utf-8');
-        setStatus(`Posting order ${i + 1} of ${ordersToPost.length} to OTM...`);
 
         try {
           const data = await orderPost<{ result: PostResult }>(ORDERS_API_BASE, "/post", {
@@ -626,86 +625,82 @@ export default function OrdersPage() {
               <table style={{
                 width: '100%',
                 borderCollapse: 'collapse',
-                fontSize: '13px'
+                fontSize: '12px',
+                tableLayout: 'fixed'
               }}>
                 <thead>
                   <tr style={{ background: "#1e293b", borderBottom: '2px solid #334155' }}>
-                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'left', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Order Xid</th>
-                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'left', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Order ID</th>
-                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'left', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Ellig Date</th>
-                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'left', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Ship To</th>
-                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'center', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}># Lines</th>
-                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'center', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Posted?</th>
-                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'center', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Status</th>
-                    <th style={{ color: '#94a3b8', padding: '8px 12px', textAlign: 'left', fontWeight: 600, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Job1 Date</th>
+                    <th style={{ color: '#94a3b8', padding: '6px 8px', textAlign: 'left', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', width: '18%' }}>Order XID</th>
+                    <th style={{ color: '#94a3b8', padding: '6px 8px', textAlign: 'left', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', width: '12%' }}>Date</th>
+                    <th style={{ color: '#94a3b8', padding: '6px 8px', textAlign: 'left', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', width: '10%' }}>Ship To</th>
+                    <th style={{ color: '#94a3b8', padding: '6px 4px', textAlign: 'center', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', width: '8%' }}>Lines</th>
+                    <th style={{ color: '#94a3b8', padding: '6px 4px', textAlign: 'center', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', width: '8%' }}>Posted</th>
+                    <th style={{ color: '#94a3b8', padding: '6px 4px', textAlign: 'center', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', width: '8%' }}>Status</th>
+                    <th style={{ color: '#94a3b8', padding: '6px 8px', textAlign: 'left', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', width: '10%' }}>Time</th>
                   </tr>
                 </thead>
                 <tbody>
                   {generatedPayloads.map((p, idx) => (
                     <tr key={p.humanId} style={{
                       background: idx % 2 === 0 ? "#0f172a" : "#1e293b",
-                      borderBottom: '1px solid #1e293b',
-                      transition: 'background 0.15s'
+                      borderBottom: '1px solid #1e293b'
                     }}>
                       <td style={{
                         fontWeight: 600,
                         fontFamily: "ui-monospace, monospace",
-                        padding: '8px 12px',
+                        padding: '6px 8px',
                         color: '#f1f5f9',
+                        fontSize: '11px',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
                         whiteSpace: 'nowrap'
-                      }}>{p.humanId}</td>
+                      }} title={p.humanId}>{p.humanId}</td>
                       <td style={{
-                        fontFamily: "ui-monospace, monospace",
-                        padding: '8px 12px',
-                        color: '#cbd5e1',
-                        whiteSpace: 'nowrap'
-                      }}>{p.humanId}</td>
-                      <td style={{
-                        padding: '8px 12px',
+                        padding: '6px 8px',
                         color: '#94a3b8',
-                        whiteSpace: 'nowrap'
+                        fontSize: '11px'
                       }}>
                         {p.timestamp ? new Date(p.timestamp).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: '2-digit' }) : '-'}
                       </td>
                       <td style={{
-                        padding: '8px 12px',
+                        padding: '6px 8px',
                         color: '#cbd5e1',
-                        fontWeight: 500
+                        fontWeight: 500,
+                        fontSize: '11px'
                       }}>{p.shipTo}</td>
-                      <td style={{ textAlign: "center", padding: '8px 12px' }}>
+                      <td style={{ textAlign: "center", padding: '6px 4px' }}>
                         <span style={{
                           background: "#1e40af",
                           color: "#dbeafe",
-                          padding: "2px 8px",
-                          borderRadius: 4,
-                          fontSize: 11,
+                          padding: "2px 6px",
+                          borderRadius: 3,
+                          fontSize: 10,
                           fontWeight: 700
                         }}>
                           {p.lineCount}
                         </span>
                       </td>
-                      <td style={{ textAlign: 'center', padding: '8px 12px' }}>
+                      <td style={{ textAlign: 'center', padding: '6px 4px' }}>
                         {p.posted ? (
-                          <span style={{ color: '#10b981', fontSize: '16px', fontWeight: 'bold' }}>✓</span>
+                          <span style={{ color: '#10b981', fontSize: '14px' }}>✓</span>
                         ) : (
-                          <span style={{ color: '#475569', fontSize: '14px' }}>—</span>
+                          <span style={{ color: '#475569', fontSize: '12px' }}>—</span>
                         )}
                       </td>
-                      <td style={{ textAlign: 'center', padding: '8px 12px' }}>
+                      <td style={{ textAlign: 'center', padding: '6px 4px' }}>
                         {p.status === 'OK' ? (
-                          <span style={{ color: '#10b981', fontSize: '16px', fontWeight: 'bold' }}>✓</span>
+                          <span style={{ color: '#10b981', fontSize: '14px' }}>✓</span>
                         ) : p.status === 'ERROR' ? (
-                          <span style={{ color: '#ef4444', fontSize: '16px', fontWeight: 'bold' }}>✗</span>
+                          <span style={{ color: '#ef4444', fontSize: '14px' }}>✗</span>
                         ) : (
-                          <span style={{ color: '#475569', fontSize: '14px' }}>—</span>
+                          <span style={{ color: '#475569', fontSize: '12px' }}>—</span>
                         )}
                       </td>
                       <td style={{
-                        padding: '8px 12px',
+                        padding: '6px 8px',
                         color: '#94a3b8',
                         fontFamily: 'ui-monospace, monospace',
-                        fontSize: '12px',
-                        whiteSpace: 'nowrap'
+                        fontSize: '10px'
                       }}>
                         {p.timestamp ? new Date(p.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '-'}
                       </td>
