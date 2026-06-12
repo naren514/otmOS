@@ -561,55 +561,52 @@ export default function OrdersPage() {
       <div style={{ marginTop: 16 }}>
         {summary && (
           <div style={{
-            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-            borderRadius: 12,
-            padding: 20,
-            marginBottom: 16,
-            color: "white"
+            background: "#667eea",
+            borderRadius: 6,
+            padding: '8px 16px',
+            marginBottom: 12,
+            color: "white",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            fontSize: 12
           }}>
-            <h3 style={{ marginBottom: 16, fontSize: 18, fontWeight: 700, color: "white" }}>
-              Generation Summary
-            </h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 16 }}>
-              <div>
-                <div style={{ fontSize: 12, opacity: 0.9, marginBottom: 4 }}>Order Kind</div>
-                <div style={{ fontSize: 16, fontWeight: 600 }}>{summary.orderKind}</div>
-              </div>
-              <div>
-                <div style={{ fontSize: 12, opacity: 0.9, marginBottom: 4 }}>Mode</div>
-                <div style={{ fontSize: 16, fontWeight: 600 }}>{summary.inputMode}</div>
-              </div>
-              <div>
-                <div style={{ fontSize: 12, opacity: 0.9, marginBottom: 4 }}>Domain</div>
-                <div style={{ fontSize: 16, fontWeight: 600, fontFamily: "monospace" }}>{summary.domain}</div>
-              </div>
-              <div>
-                <div style={{ fontSize: 12, opacity: 0.9, marginBottom: 4 }}>Base XID</div>
-                <div style={{ fontSize: 16, fontWeight: 600, fontFamily: "monospace" }}>{summary.baseXid}</div>
-              </div>
-              <div>
-                <div style={{ fontSize: 12, opacity: 0.9, marginBottom: 4 }}>Total Lines</div>
-                <div style={{ fontSize: 20, fontWeight: 700 }}>{summary.lineCount}</div>
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+              <strong style={{ fontSize: 13 }}>Generation Summary</strong>
+              <span style={{ opacity: 0.9 }}>{summary.orderKind}</span>
+              <span style={{ opacity: 0.75 }}>•</span>
+              <span style={{ opacity: 0.9 }}>{summary.inputMode}</span>
+              <span style={{ opacity: 0.75 }}>•</span>
+              <span style={{ opacity: 0.9, fontFamily: 'monospace' }}>{summary.domain}</span>
+              <span style={{ opacity: 0.75 }}>•</span>
+              <span style={{ opacity: 0.9, fontFamily: 'monospace' }}>{summary.baseXid}</span>
+            </div>
+            <div style={{
+              background: 'rgba(255,255,255,0.25)',
+              padding: '4px 12px',
+              borderRadius: 4,
+              fontWeight: 700
+            }}>
+              {summary.lineCount} lines
             </div>
           </div>
         )}
         {generatedPayloads.length > 0 && (
-          <div style={{ marginBottom: 20 }}>
+          <div style={{ marginBottom: 16 }}>
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginBottom: 12,
-              padding: '8px 12px',
+              marginBottom: 8,
+              padding: '6px 12px',
               background: '#f8fafc',
               borderRadius: 6,
               border: '1px solid #e2e8f0'
             }}>
-              <h3 style={{ margin: 0, fontSize: 14, fontWeight: 700, color: '#334155' }}>
+              <h3 style={{ margin: 0, fontSize: 13, fontWeight: 700, color: '#334155' }}>
                 📋 Generated Orders ({generatedPayloads.length})
               </h3>
-              <div style={{ fontSize: 12, color: '#64748b' }}>
+              <div style={{ fontSize: 11, color: '#64748b' }}>
                 {generatedPayloads.filter(p => p.posted).length > 0 &&
                   `${generatedPayloads.filter(p => p.posted).length} posted`
                 }
@@ -756,55 +753,17 @@ export default function OrdersPage() {
             )}
           </div>
         ) : null}
-        <p className="muted mono" style={{ marginBottom: 12 }}>{status}</p>
-
-        <div style={{ position: "relative" }}>
-          {preview !== "<xml>Preview will appear here after generation.</xml>" && (
-            <button className="copyBtn" onClick={copyXmlToClipboard}>📋 Copy</button>
-          )}
-          <div style={{
-            background: "#0f1720",
-            borderRadius: 10,
-            padding: 16,
-            position: "relative",
-            border: "1px solid #1f2937",
-            maxHeight: 600,
-            overflowY: "auto"
-          }}>
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              marginBottom: 12,
-              paddingBottom: 12,
-              borderBottom: "1px solid #374151"
-            }}>
-              <span style={{
-                background: "#374151",
-                padding: "4px 10px",
-                borderRadius: 6,
-                fontSize: 12,
-                color: "#9ca3af",
-                fontWeight: 600
-              }}>XML</span>
-              <span style={{ color: "#6b7280", fontSize: 12 }}>
-                {preview.split('\n').length} lines • {preview.length} characters
-              </span>
-            </div>
-            <pre
-              style={{
-                margin: 0,
-                color: "#dbe5f0",
-                fontFamily: "monospace",
-                fontSize: 13,
-                lineHeight: 1.6,
-                whiteSpace: "pre",
-                overflow: "visible"
-              }}
-              dangerouslySetInnerHTML={{ __html: highlightXml(formatXml(preview)) }}
-            />
-          </div>
-        </div>
+        {status && (
+          <p style={{
+            fontSize: 12,
+            color: '#ef4444',
+            background: '#fef2f2',
+            padding: '8px 12px',
+            borderRadius: 6,
+            border: '1px solid #fecaca',
+            marginBottom: 12
+          }}>{status}</p>
+        )}
       </div>
     </Shell>
   );
