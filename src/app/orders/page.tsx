@@ -250,10 +250,12 @@ export default function OrdersPage() {
       setLastXml(data.lastXml ?? "");
       if (data.templates) setTemplates(data.templates);
       setStatus("");
-      return xml;
+
+      // Return both xml and the generated data for use in generateAndPost
+      return { xml, payloads: payloadsWithStatus, zipFiles: data.zipFiles ?? [] };
     } catch (error) {
       setStatus(error instanceof Error ? error.message : String(error));
-      return "";
+      return { xml: "", payloads: [], zipFiles: [] };
     } finally {
       setIsGenerating(false);
     }
@@ -262,20 +264,21 @@ export default function OrdersPage() {
   async function generateAndPost() {
     try {
       setIsPosting(true);
-      const xml = await generatePreview();
-      if (!xml) {
+      const result = await generatePreview();
+      if (!result.xml) {
         setIsPosting(false);
         return;
       }
+
       if (dryRun) {
-        setPostResult({ id: "dry-run", endpoint, username, status: "dry-run", message: "Dry run enabled — payload generated but not POSTed.", createdAt: new Date().toISOString(), payloadBytes: String(xml.length) });
+        setPostResult({ id: "dry-run", endpoint, username, status: "dry-run", message: "Dry run enabled — payload generated but not POSTed.", createdAt: new Date().toISOString(), payloadBytes: String(result.xml.length) });
         setStatus("");
         setIsPosting(false);
         return;
       }
 
       // Post ALL generated orders, not just the first one
-      const ordersToPost = zipFiles.length > 0 ? zipFiles : [{ name: 'order.xml', contentBase64: Buffer.from(xml).toString('base64') }];
+      const ordersToPost = result.zipFiles.length > 0 ? result.zipFiles : [{ name: 'order.xml', contentBase64: Buffer.from(result.xml).toString('base64') }];
       setStatus("");
 
       let successCount = 0;
@@ -283,7 +286,7 @@ export default function OrdersPage() {
       const results: PostResult[] = [];
 
       // Create a copy of payloads to update status
-      const updatedPayloads = [...generatedPayloads];
+      const updatedPayloads = [...result.payloads];
 
       for (let i = 0; i < ordersToPost.length; i++) {
         const orderXml = Buffer.from(ordersToPost[i].contentBase64, 'base64').toString('utf-8');
